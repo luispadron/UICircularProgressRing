@@ -2,7 +2,6 @@
 
 Pod::Spec.new do |s|
 
-
   s.name         = "UICircularProgressRing"
   s.version      = "0.1"
   s.summary      = "A circular progress bar for iOS written in Swift 3"
@@ -31,5 +30,4 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "UICircularProgressRing", "UICircularProgressRing/**/*.{h,m}"
-
 end
