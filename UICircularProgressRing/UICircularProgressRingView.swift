@@ -68,10 +68,6 @@ public class UICircularProgressRingView: UIView {
     
     @IBInspectable var rotateClockWise: Bool = true
     
-    // MARK: Constant
-    
-    private let pi = CGFloat(M_PI)
-    
     // MARK: Label
     /// The label for the value, will change an animate when value is set
     lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -86,7 +82,6 @@ public class UICircularProgressRingView: UIView {
     override public func draw(_ rect: CGRect) {
         drawRings()
         drawValueLabel()
-        self.setValue(50, animate: false)
     }
     
     /// Draws the inner and outer rings
