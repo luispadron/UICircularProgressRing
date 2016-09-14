@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OAc-De-3f3">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Test-->
+        <scene sceneID="Dw3-SS-PqT">
+            <objects>
+                <viewController title="Test" id="OAc-De-3f3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t1d-Bl-C9R"/>
+                        <viewControllerLayoutGuide type="bottom" id="SK1-Ku-5fE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Khj-96-t42">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-sD-BSv" customClass="UICircularProgressRingView" customModule="UICircularProgressRing" customModuleProvider="target">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="BFW-WX-Bxb"/>
+                                    <constraint firstAttribute="width" constant="240" id="Eyt-Zm-Ars"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerY" secondItem="Khj-96-t42" secondAttribute="centerY" id="MCJ-RH-lH6"/>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerX" secondItem="Khj-96-t42" secondAttribute="centerX" id="lZ8-1X-F1Y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cc7-4Z-unU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182" y="241"/>
+        </scene>
+    </scenes>
+</document>
