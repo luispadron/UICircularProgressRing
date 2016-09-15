@@ -13,17 +13,35 @@ extension CGFloat {
     var toRads: CGFloat { return self * CGFloat(M_PI) / 180 }
 }
 
+extension UILabel {
+    func update(withValue value: CGFloat, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
+        if showsDecimal {
+            self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+        } else {
+            self.text = "\(Int(value))\(valueIndicator)"
+        }
+        self.sizeToFit()
+    }
+}
+
 @IBDesignable
-public class UICircularProgressRingView: UIView {
+public class UICircularProgressRingView: UIView, CAAnimationDelegate {
     
     // MARK: Value properties
     
     /// The value of the current progress. Range [0, maxValue]
     @IBInspectable public var value: CGFloat = 0 {
+        willSet {
+            print("========== OLD \(self.value)")
+            self.oldValue = self.value
+        }
         didSet {
             self.setNeedsDisplay()
         }
     }
+    
+    private var oldValue: CGFloat = 0.0
+    
     /// The value of the maximum amount of progress. Range [0, ∞]
     @IBInspectable public var maxValue: CGFloat = 100 {
         didSet {
@@ -126,11 +144,14 @@ public class UICircularProgressRingView: UIView {
             self.setNeedsDisplay()
         }
     }
+    @IBInspectable public var decimalPlaces: Int = 2
     
     public var animationDuration: CFTimeInterval = 1.0
     public var animationStyle: String = kCAMediaTimingFunctionEaseIn
     
     private lazy var shapeLayer = CAShapeLayer()
+    
+    private lazy var timer = Timer()
     
     
     // MARK: Methods
@@ -188,8 +209,9 @@ public class UICircularProgressRingView: UIView {
     
     /// Draws the value label inside of the progress rings
     private func drawValueLabel() {
-        if showFloatingPoint { valueLabel.text = "\(value)\(valueIndicator)" }
-        else { valueLabel.text = "\(Int(value))\(valueIndicator)" }
+        valueLabel.update(withValue: value, valueIndicator: valueIndicator,
+                          showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
+        
         valueLabel.font = UIFont.systemFont(ofSize: fontSize)
         valueLabel.textAlignment = .center
         valueLabel.textColor = textColor
@@ -198,13 +220,16 @@ public class UICircularProgressRingView: UIView {
         self.addSubview(valueLabel)
     }
     
-    public func setValue(_ newVal: CGFloat, animated: Bool) {
+    public func setValue(_ newVal: CGFloat, animated: Bool, completion: () -> Void) {
         self.value = newVal
         if animated {
             animateInnerRing()
         }
         
     }
+    
+    private lazy var startTime = CACurrentMediaTime()
+    private lazy var link = CADisplayLink()
     
     func animateInnerRing() {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -215,5 +240,31 @@ public class UICircularProgressRingView: UIView {
         animation.isRemovedOnCompletion = false
         animation.fillMode = kCAFillModeForwards
         shapeLayer.add(animation, forKey: "animateInnerRing")
+        
+        valueLabel.text = "\(self.oldValue)"
+        link = CADisplayLink(target: self, selector: #selector(self.animateLabel))
+        link.add(to: RunLoop.current, forMode: .commonModes)
+    }
+    
+    
+    @objc private func animateLabel() {
+        let dt = (link.timestamp - self.startTime) / animationDuration
+        
+        if (dt >= 1.0) {
+            valueLabel.update(withValue: value, valueIndicator: valueIndicator,
+                              showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
+            
+            link.remove(from: RunLoop.current, forMode: .commonModes)
+            return
+        }
+        
+        let current = (self.value - self.oldValue) * CGFloat(dt) + self.oldValue
+        
+        valueLabel.update(withValue: current, valueIndicator: valueIndicator,
+                          showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
+    }
+    
+    private func update(withValue: CGFloat) {
+        
     }
 }
