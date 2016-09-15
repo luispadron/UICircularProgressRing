@@ -121,7 +121,16 @@ public class UICircularProgressRingView: UIView {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable public var showFloatingPoint: Bool = false
+    @IBInspectable public var showFloatingPoint: Bool = false {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    public var animationDuration: CFTimeInterval = 1.0
+    public var animationStyle: String = kCAMediaTimingFunctionEaseIn
+    
+    private lazy var shapeLayer = CAShapeLayer()
     
     
     // MARK: Methods
@@ -166,10 +175,15 @@ public class UICircularProgressRingView: UIView {
                                      endAngle: innerEndAngle,
                                      clockwise: true)
         
-        innerPath.lineWidth = innerRingWidth
-        innerRingColor.setStroke()
-        innerPath.lineCapStyle = inStyle
-        innerPath.stroke()
+        shapeLayer.path = innerPath.cgPath
+        shapeLayer.strokeColor = innerRingColor.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = innerRingWidth
+        shapeLayer.strokeEnd = 1.0
+        shapeLayer.lineCap = kCALineCapRound
+        shapeLayer.lineJoin = kCALineCapRound
+        
+        self.layer.addSublayer(shapeLayer)
     }
     
     /// Draws the value label inside of the progress rings
@@ -185,10 +199,21 @@ public class UICircularProgressRingView: UIView {
     }
     
     public func setValue(_ newVal: CGFloat, animated: Bool) {
+        self.value = newVal
         if animated {
-            
+            animateInnerRing()
         }
         
-        self.value = newVal
+    }
+    
+    func animateInnerRing() {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.duration = animationDuration
+        animation.fromValue = 0.0
+        animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+        animation.toValue = 1.0
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = kCAFillModeForwards
+        shapeLayer.add(animation, forKey: "animateInnerRing")
     }
 }
