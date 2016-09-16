@@ -83,7 +83,7 @@ private extension UILabel {
      ## Important ##
      Default = 0
      When assigning to this var the view will be redrawn.
-     Recommended to assign value using setValue(_:) instead.
+     Recommended to assign value using setProgress(_:) instead.
      
      ## Author:
      Luis Padron
