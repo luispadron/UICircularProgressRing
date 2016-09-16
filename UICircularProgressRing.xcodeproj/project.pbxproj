@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0A815EC1D8B8CC000CB3A6D /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A815EB1D8B8CC000CB3A6D /* UICircularProgressRingDelegate.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
 		A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */; };
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A0A815EB1D8B8CC000CB3A6D /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICircularProgressRing.h; sourceTree = "<group>"; };
 		A0C6DE801D88CBE1008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				A0C6DE801D88CBE1008AE742 /* Info.plist */,
 				A0C6DE9A1D88CC77008AE742 /* TestSpace.storyboard */,
 				A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */,
+				A0A815EB1D8B8CC000CB3A6D /* UICircularProgressRingDelegate.swift */,
 			);
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A815EC1D8B8CC000CB3A6D /* UICircularProgressRingDelegate.swift in Sources */,
 				A0C6DE9D1D88CCFD008AE742 /* UICircularProgressRingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
