@@ -81,7 +81,7 @@ To set a value and animate the view
 progressRing.setProgress(value: 83, animated: true)
 ```
 
-**Read the documentation [HERE](DOCUMENTATION.md)**
+**Read the documentation [HERE](docs/index.html)**
 
 ## License
 
