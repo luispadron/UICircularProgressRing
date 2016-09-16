@@ -9,11 +9,11 @@
 import UIKit
 
 // Extension for quick conversion
-extension CGFloat {
+private extension CGFloat {
     var toRads: CGFloat { return self * CGFloat(M_PI) / 180 }
 }
 
-extension UILabel {
+private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
         if showsDecimal {
             self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
@@ -32,7 +32,6 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
     /// The value of the current progress. Range [0, maxValue]
     @IBInspectable public var value: CGFloat = 0 {
         willSet {
-            print("========== OLD \(self.value)")
             self.oldValue = self.value
         }
         didSet {
