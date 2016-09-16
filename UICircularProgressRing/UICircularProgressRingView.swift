@@ -25,7 +25,7 @@ private extension UILabel {
 }
 
 @IBDesignable
-public class UICircularProgressRingView: UIView, CAAnimationDelegate {
+public class UICircularProgressRingView: UIView {
     
     // MARK: Value properties
     
@@ -152,6 +152,9 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
     
     private lazy var timer = Timer()
     
+    private lazy var startTime = CACurrentMediaTime()
+    private lazy var link = CADisplayLink()
+    public var delegate: UICircularProgressRingDelegate?
     
     // MARK: Methods
     
@@ -200,8 +203,8 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = innerRingWidth
         shapeLayer.strokeEnd = 1.0
-        shapeLayer.lineCap = kCALineCapRound
-        shapeLayer.lineJoin = kCALineCapRound
+        shapeLayer.lineCap =  String(innerRingStyle)
+        shapeLayer.lineJoin = String(innerRingStyle)
         
         self.layer.addSublayer(shapeLayer)
     }
@@ -219,16 +222,13 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
         self.addSubview(valueLabel)
     }
     
-    public func setValue(_ newVal: CGFloat, animated: Bool, completion: () -> Void) {
+    public func setValue(_ newVal: CGFloat, animated: Bool) {
         self.value = newVal
         if animated {
             animateInnerRing()
         }
         
     }
-    
-    private lazy var startTime = CACurrentMediaTime()
-    private lazy var link = CADisplayLink()
     
     func animateInnerRing() {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -254,6 +254,7 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
                               showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
             
             link.remove(from: RunLoop.current, forMode: .commonModes)
+            delegate?.progressRingAnimationDidFinish()
             return
         }
         
@@ -261,9 +262,5 @@ public class UICircularProgressRingView: UIView, CAAnimationDelegate {
         
         valueLabel.update(withValue: current, valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
-    }
-    
-    private func update(withValue: CGFloat) {
-        
     }
 }
