@@ -5,3 +5,5 @@
 <p align="center">
 <img src="/GitHubAssets/demo.gif"/>  
 </p>
+
+![Styles](/GitHubAssets/styles-banner.png)
