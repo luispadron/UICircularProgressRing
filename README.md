@@ -68,11 +68,11 @@ Design your heart out
 ### Code
 
 ```swift
-# Create the view
+// Create the view
 let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
-# Assign the delegate
+// Assign the delegate
 progressRing.delegate = self
-# Add the view as a subview or whatever else you would like to do
+// Add the view as a subview or whatever else you would like to do
 ```
 
 To set a value and animate the view
