@@ -37,13 +37,14 @@ private extension CGFloat {
  At the end it sizesToFit() in order to
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
+    func update(withValue value: CGFloat, centerInView cView: UIView, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
         if showsDecimal {
             self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
         } else {
             self.text = "\(Int(value))\(valueIndicator)"
         }
         self.sizeToFit()
+        self.center = CGPoint(x: cView.bounds.midX, y: cView.bounds.midY)
     }
 }
 
@@ -627,7 +628,7 @@ private extension UILabel {
     
     /// Draws the value label inside of the progress rings
     private func drawValueLabel() {
-        valueLabel.update(withValue: value, valueIndicator: valueIndicator,
+        valueLabel.update(withValue: value, centerInView: self, valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
         
         valueLabel.font = UIFont.systemFont(ofSize: fontSize)
@@ -666,7 +667,7 @@ private extension UILabel {
         let dt = (link.timestamp - startTime) / animationDuration
         
         if (dt >= 1.0) {
-            valueLabel.update(withValue: value, valueIndicator: valueIndicator,
+            valueLabel.update(withValue: value, centerInView: self, valueIndicator: valueIndicator,
                               showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
             
             link.remove(from: RunLoop.current, forMode: .commonModes)
@@ -676,7 +677,7 @@ private extension UILabel {
         
         let current = (value - oldValue) * CGFloat(dt) + oldValue
         
-        valueLabel.update(withValue: current, valueIndicator: valueIndicator,
+        valueLabel.update(withValue: current, centerInView: self, valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
     }
 }
