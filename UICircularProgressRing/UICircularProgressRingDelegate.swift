@@ -20,6 +20,19 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 //
 
+/**
+ 
+ The delegate for a UICirculaProgressRingView
+ 
+ Just implement the progressRingAnimationDidFinish(_:) to be notified
+ 
+ - Important:
+ Make sure to set delegate for the UICircularProgressRingView
+ 
+ - Author:
+ Luis Padron
+ 
+ */
 public protocol UICircularProgressRingDelegate {
     func progressRingAnimationDidFinish()
 }
