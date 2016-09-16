@@ -60,7 +60,7 @@ private extension UILabel {
  Luis Padron
  
  */
-@IBDesignable public class UICircularProgressRingView: UIView {
+@IBDesignable open class UICircularProgressRingView: UIView {
     // MARK: Delegate
     
     /**
@@ -570,7 +570,7 @@ private extension UILabel {
      ## Author:
      Luis Padron
      */
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         drawOuterRing()
         drawInnerRing()
         if shouldShowValueText {
