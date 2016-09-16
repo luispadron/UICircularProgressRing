@@ -590,7 +590,7 @@ private extension UILabel {
      ## Author:
      Luis Padron
      */
-    public func setValue(_ newVal: CGFloat, animated: Bool) {
+    public func setProgress(value newVal: CGFloat, animated: Bool) {
         value = newVal
         if animated {
             animateInnerRing()
