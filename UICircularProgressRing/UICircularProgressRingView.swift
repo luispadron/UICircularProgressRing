@@ -152,6 +152,13 @@ public class UICircularProgressRingView: UIView {
             self.setNeedsDisplay()
         }
     }
+    
+    @IBInspectable public var customFontWithName: String? {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
     @IBInspectable public var valueIndicator: String = "%" {
         didSet {
             self.setNeedsDisplay()
@@ -249,8 +256,14 @@ public class UICircularProgressRingView: UIView {
         valueLabel.font = UIFont.systemFont(ofSize: fontSize)
         valueLabel.textAlignment = .center
         valueLabel.textColor = textColor
+        
+        if let fName = customFontWithName {
+            valueLabel.font = UIFont(name: fName, size: fontSize)
+        }
+        
         valueLabel.sizeToFit()
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        
         self.addSubview(valueLabel)
     }
     
