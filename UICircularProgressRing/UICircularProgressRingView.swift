@@ -48,6 +48,20 @@ public class UICircularProgressRingView: UIView {
         }
     }
     
+    
+    @IBInspectable public var progressRingStyle: Int = 1 {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    public var patternForDashes: [CGFloat] = [7.0, 7.0] {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    
     // MARK: Outer Ring properties
     
     @IBInspectable public var outerRingWidth: CGFloat = 10.0 {
@@ -71,9 +85,10 @@ public class UICircularProgressRingView: UIView {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable public var outerRingStyle: Int = 1 {
+    
+    @IBInspectable public var outerRingCapStyle: Int = 1 {
         didSet {
-            switch self.outerRingStyle{
+            switch self.outerRingCapStyle{
             case 1: self.outStyle = CGLineCap.butt
             case 2: self.outStyle = CGLineCap.round
             case 3: self.outStyle = CGLineCap.square
@@ -102,26 +117,30 @@ public class UICircularProgressRingView: UIView {
             self.setNeedsDisplay()
         }
     }
-    @IBInspectable public var innerRingStyle: Int = 2 {
+    @IBInspectable public var innerRingCapStyle: Int = 2 {
         didSet {
-            switch self.innerRingStyle {
-            case 1: self.inStyle = CGLineCap.butt
-            case 2: self.inStyle = CGLineCap.round
-            case 3: self.inStyle = CGLineCap.square
-            default: self.inStyle = CGLineCap.butt
+            switch self.innerRingCapStyle {
+            case 1: self.inCapStyle = kCALineCapButt
+            case 2: self.inCapStyle = kCALineCapRound
+            case 3: self.inCapStyle = kCALineCapSquare
+            default: self.inCapStyle = kCALineCapButt
             }
             
             self.setNeedsDisplay()
         }
     }
-    private var inStyle: CGLineCap = .round
+    private var inCapStyle: String = kCALineCapButt
     
-    // MARK: Booleans
-    @IBInspectable var rotateClockWise: Bool = true
     
     // MARK: Label
     /// The label for the value, will change an animate when value is set
     lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    
+    @IBInspectable public var shouldShowValueText: Bool = true {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     @IBInspectable public var textColor: UIColor = UIColor.black {
         didSet {
@@ -161,7 +180,9 @@ public class UICircularProgressRingView: UIView {
     override public func draw(_ rect: CGRect) {
         drawOuterRing()
         drawInnerRing()
-        drawValueLabel()
+        if shouldShowValueText {
+            drawValueLabel()
+        }
     }
     
     private func drawOuterRing() {
@@ -169,16 +190,24 @@ public class UICircularProgressRingView: UIView {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         
         // Draw the outer path
-        let radiusOut = max(bounds.width, bounds.height)
+        let radiusOut = max(bounds.width, bounds.height)/2 - outerRingWidth/2
         let outerPath = UIBezierPath(arcCenter: center,
-                                     radius: radiusOut/2 - outerRingWidth/2,
+                                     radius: radiusOut,
                                      startAngle: startAngle.toRads,
                                      endAngle: enndAngle.toRads,
-                                     clockwise: rotateClockWise)
+                                     clockwise: true)
         
         outerPath.lineWidth = outerRingWidth
         outerRingColor.setStroke()
         outerPath.lineCapStyle = outStyle
+        
+        if progressRingStyle == 3 {
+            outerPath.setLineDash(patternForDashes, count: 1, phase: 0.0)
+        } else if progressRingStyle == 4 {
+            outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
+            outerPath.lineCapStyle = .round
+        }
+        
         outerPath.stroke()
     }
     
@@ -189,11 +218,14 @@ public class UICircularProgressRingView: UIView {
         
         let innerEndAngle = arcLenPerValue * CGFloat(value) + startAngle.toRads
         
-        // Draw the inner path
-        let radiusIn = max(bounds.width - outerRingWidth*2 - innerRingSpacing,
-                           bounds.height - outerRingWidth*2 - innerRingSpacing)
+        var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing, bounds.height - outerRingWidth*2 - innerRingSpacing)/2) - innerRingWidth/2
+        
+        if progressRingStyle >= 2 {
+            radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
+        }
+        
         let innerPath = UIBezierPath(arcCenter: center,
-                                     radius: radiusIn/2 - innerRingWidth/2,
+                                     radius: radiusIn,
                                      startAngle: startAngle.toRads,
                                      endAngle: innerEndAngle,
                                      clockwise: true)
@@ -203,8 +235,8 @@ public class UICircularProgressRingView: UIView {
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = innerRingWidth
         shapeLayer.strokeEnd = 1.0
-        shapeLayer.lineCap =  String(innerRingStyle)
-        shapeLayer.lineJoin = String(innerRingStyle)
+        shapeLayer.lineCap = inCapStyle
+        shapeLayer.lineJoin = inCapStyle
         
         self.layer.addSublayer(shapeLayer)
     }
@@ -223,7 +255,7 @@ public class UICircularProgressRingView: UIView {
     }
     
     public func setValue(_ newVal: CGFloat, animated: Bool) {
-        self.value = newVal
+        value = newVal
         if animated {
             animateInnerRing()
         }
@@ -240,14 +272,16 @@ public class UICircularProgressRingView: UIView {
         animation.fillMode = kCAFillModeForwards
         shapeLayer.add(animation, forKey: "animateInnerRing")
         
-        valueLabel.text = "\(self.oldValue)"
-        link = CADisplayLink(target: self, selector: #selector(self.animateLabel))
-        link.add(to: RunLoop.current, forMode: .commonModes)
+        if shouldShowValueText {
+            valueLabel.text = "\(oldValue)"
+            link = CADisplayLink(target: self, selector: #selector(self.animateLabel))
+            link.add(to: RunLoop.current, forMode: .commonModes)
+        }
     }
     
     
     @objc private func animateLabel() {
-        let dt = (link.timestamp - self.startTime) / animationDuration
+        let dt = (link.timestamp - startTime) / animationDuration
         
         if (dt >= 1.0) {
             valueLabel.update(withValue: value, valueIndicator: valueIndicator,
@@ -258,7 +292,7 @@ public class UICircularProgressRingView: UIView {
             return
         }
         
-        let current = (self.value - self.oldValue) * CGFloat(dt) + self.oldValue
+        let current = (value - oldValue) * CGFloat(dt) + oldValue
         
         valueLabel.update(withValue: current, valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
