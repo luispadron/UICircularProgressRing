@@ -63,7 +63,7 @@ Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularPr
 
 Design your heart out
 
-[ib-demo.gif](/GitHubAssets/ib-demo.gif)
+![ib-demo.gif](/GitHubAssets/ib-demo.gif)
 
 ### Code
 
