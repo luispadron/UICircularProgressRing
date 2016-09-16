@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OAc-De-3f3">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OAc-De-3f3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -15,15 +15,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SK1-Ku-5fE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Khj-96-t42">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IFr-sD-BSv" customClass="UICircularProgressRingView" customModule="UICircularProgressRing" customModuleProvider="target">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="BFW-WX-Bxb"/>
-                                    <constraint firstAttribute="width" constant="240" id="Eyt-Zm-Ars"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="innerStartAngle">
                                         <real key="value" value="270"/>
@@ -31,43 +27,45 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="innerEndAngle">
                                         <real key="value" value="230"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="innerRingSpacing">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
-                                        <color key="value" red="0.15294117647058825" green="0.82745098039215681" blue="0.64313725490196083" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
-                                        <color key="value" red="0.094117647058823528" green="0.53725490196078429" blue="0.41568627450980394" alpha="1" colorSpace="calibratedRGB"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="innerRingStyle">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                        <real key="value" value="70"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
-                                        <color key="value" red="0.53725490196078429" green="0.070722302433098572" blue="0.0071796834153258814" alpha="1" colorSpace="calibratedRGB"/>
+                                        <real key="value" value="130"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
                                         <real key="value" value="100"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                        <color key="value" red="0.34509803921568627" green="0.78823529411764703" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                        <color key="value" red="0.31578266620635986" green="0.61729234457015991" blue="0.61825454235076904" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.81706339120864868" green="0.71497642993927002" blue="0.88007628917694092" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">
-                                        <real key="value" value="99"/>
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerY" secondItem="Khj-96-t42" secondAttribute="centerY" id="MCJ-RH-lH6"/>
-                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerX" secondItem="Khj-96-t42" secondAttribute="centerX" id="lZ8-1X-F1Y"/>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerX" secondItem="Khj-96-t42" secondAttribute="centerX" id="6Uj-us-cc7"/>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="top" secondItem="t1d-Bl-C9R" secondAttribute="bottom" constant="292" id="ExN-JA-6OE"/>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="leading" secondItem="Khj-96-t42" secondAttribute="leading" constant="184" id="lEO-A3-KzQ"/>
+                            <constraint firstItem="IFr-sD-BSv" firstAttribute="centerY" secondItem="Khj-96-t42" secondAttribute="centerY" id="ozD-dr-Pvi"/>
                         </constraints>
                     </view>
                 </viewController>
