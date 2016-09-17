@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "UICircularProgressRing"
-  s.version      = "0.9.5"
+  s.version      = "0.9.6"
   s.summary      = "A circular progress bar for iOS written in Swift 3"
 
   s.description  = <<-DESC
