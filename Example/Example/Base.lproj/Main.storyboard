@@ -15,10 +15,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-JQ-0vs" customClass="UICircularProgressRingView" customModule="Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUY-JQ-0vs" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="9hi-7s-pex"/>
@@ -48,7 +48,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-GC-GWg" customClass="UICircularProgressRingView" customModule="Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-GC-GWg" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="Rkz-dy-FUV"/>
@@ -75,7 +75,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPS-xO-zWD" customClass="UICircularProgressRingView" customModule="Example" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPS-xO-zWD" customClass="UICircularProgressRingView" customModule="UICircularProgressRing">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="Fc6-0m-vRZ"/>
@@ -127,14 +127,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jWR-af-gpB" firstAttribute="centerX" secondItem="gPS-xO-zWD" secondAttribute="centerX" id="5nL-fC-NGs"/>
+                            <constraint firstItem="jWR-af-gpB" firstAttribute="centerX" secondItem="gPS-xO-zWD" secondAttribute="centerX" constant="-141.5" id="5nL-fC-NGs"/>
                             <constraint firstItem="gPS-xO-zWD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AFT-oD-wak"/>
                             <constraint firstItem="vsN-GC-GWg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GK3-hS-ChV"/>
                             <constraint firstItem="cUY-JQ-0vs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="JDh-46-Ctc"/>
                             <constraint firstItem="vsN-GC-GWg" firstAttribute="top" secondItem="cUY-JQ-0vs" secondAttribute="bottom" constant="28" id="bdt-c7-Qqs"/>
                             <constraint firstItem="gPS-xO-zWD" firstAttribute="top" secondItem="vsN-GC-GWg" secondAttribute="bottom" constant="27" id="hLW-yS-VWx"/>
                             <constraint firstItem="cUY-JQ-0vs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mTq-kk-ASZ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jWR-af-gpB" secondAttribute="bottom" constant="67" id="x2G-48-dsv"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jWR-af-gpB" secondAttribute="bottom" constant="104" id="x2G-48-dsv"/>
                         </constraints>
                     </view>
                     <connections>
