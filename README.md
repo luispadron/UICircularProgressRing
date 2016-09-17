@@ -102,7 +102,7 @@ Take a look at the example project over [here](Example/)
 ## Upcoming enhancements
 
 * Add decreasing animation, currently nothing gets animated when decreasing value
-* Better way of handling animation finishing, probably a completion block
+* ~~Better way of handling animation finishing, probably a completion block~~
 
 ## License
 
