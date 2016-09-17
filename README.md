@@ -68,17 +68,25 @@ Design your heart out
 ### Code
 
 ```swift
-// Create the view
-let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
-// Assign the delegate
-progressRing.delegate = self
-// Add the view as a subview or whatever else you would like to do
+override func viewDidLoad() {
+  // Create the view
+  let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
+  // Change any of the properties you'd like
+  progressRing.maxValue = 50
+  progressRing.innerRingColor = UIColor.blue
+  progressRing.animationDuration = 3.0
+  // etc ...
+}
 ```
 
 To set a value and animate the view
 
 ```swift
-progressRing.setProgress(value: 83, animated: true)
+// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
+progressRing.setProgress(value: 83, animated: true) {
+  // The closure 
+  print("Done animating!")
+}
 ```
 
 ## Documentation
