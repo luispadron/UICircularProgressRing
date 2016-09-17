@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>UICircularProgressRing  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="UICircularProgressRing  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">UICircularProgressRing Docs</a> (96% documented)</p>
+        <p class="header-right"><a href="https://github.com/luispadron"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">UICircularProgressRing Reference</a>
+        <img id="carat" src="img/carat.png" />
+        UICircularProgressRing  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p><img src="/GitHubAssets/banner.png" alt="Banner"></p>
+
+<h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
+
+<p align="center">
+<img src="/GitHubAssets/demo.gif"/>  
+</p>
+
+<p><img src="/GitHubAssets/styles-banner.png" alt="Styles"></p>
+<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+
+<ul>
+<li>Interface builder designable</li>
+<li>Highly customizable</li>
+<li>Animation for progress and value text built in</li>
+<li>Written in Swift 3 and using Xcode 8</li>
+</ul>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<a href='#cocoapods-recommended' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods-recommended'>CocoaPods (Recommended)</h3>
+
+<ol>
+<li>Install <a href="https://cocoapods.org">CocoaPods</a></li>
+<li><p>Add this repo to your <code>Podfile</code></p>
+<pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'Example'</span> <span class="k">do</span>
+    <span class="c1"># IMPORTANT: Make sure use_frameworks! is included at the top of the file</span>
+    <span class="n">use_frameworks!</span>
+
+    <span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/luispadron/UICircularProgressRing'</span>
+<span class="k">end</span>
+</code></pre></li>
+<li><p>Run <code>pod install</code></p></li>
+<li><p>Open up the <code>.xcworkspace</code> that CocoaPods created</p></li>
+<li><p>Done!</p></li>
+</ol>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+
+<p><strong><em>Important note</em>: Carthage support for IBDesignable and IBInspectable is broken due to how frameworks work.
+So if you decide on using Carthage, you will not be able to use IB to design this view.
+Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> for the issue.</strong></p>
+
+<p>To use with <a href="https://github.com/Carthage/Carthage">Carthage</a></p>
+
+<ol>
+<li><p>Make sure Carthage is installed </p>
+
+<p><code>brew install carthage</code></p></li>
+<li><p>Add this repo to your Cartfile</p>
+
+<p><code>github &quot;luispadron/UICircularProgressRing&quot;</code> </p></li>
+<li><p>Drag the <code>UICircularProgressRing.framework</code> from <code>MyProjDir/Carthage/Builds/iOS/UICircularProgressRing</code> into the <code>General -&gt; Embeded Binaries</code> section of your Xcode project.</p></li>
+</ol>
+<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
+
+<ol>
+<li>Simply download the <code>UICircularProgressRingView.swift</code> and the <code>UICircularProgressRingDelegate.swift</code> from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
+</ol>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<a href='#interface-builder' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='interface-builder'>Interface Builder</h3>
+
+<p>Simply drag a <code>UIView</code> into your storyboard. Make sure to subclass <code>UICircularProgressRingView</code> and that the module points <code>UICircularProgressRing</code>. </p>
+
+<p>Design your heart out</p>
+
+<p><img src="/GitHubAssets/ib-demo.gif" alt="ib-demo.gif"></p>
+<a href='#code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code'>Code</h3>
+<pre class="highlight swift"><code><span class="c1">// Create the view</span>
+<span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="kt">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
+<span class="c1">// Assign the delegate</span>
+<span class="n">progressRing</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+<span class="c1">// Add the view as a subview or whatever else you would like to do</span>
+</code></pre>
+
+<p>To set a value and animate the view</p>
+<pre class="highlight swift"><code><span class="n">progressRing</span><span class="o">.</span><span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+</code></pre>
+
+<p><strong>Read the documentation <a href="docs/index.html">HERE</a></strong></p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+<pre class="highlight plaintext"><code>Copyright (c) 2016 Luis Padron
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</code></pre>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2016-09-16)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
