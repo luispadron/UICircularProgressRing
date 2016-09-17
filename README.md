@@ -87,6 +87,11 @@ Read all about everything there is to know here:
 
 [DOCUMENTATION](http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
 
+## Upcoming enhancements
+
+* Add decreasing animation, currently nothing gets animated when decreasing value
+* Better way of handling animation finishing, probably a completion block
+
 ## License
 
 ```
