@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "10.0"
 
-  s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "s.version.to_s" }
+  s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{s.version}" }
 
   s.source_files  = "UICircularProgressRing", "UICircularProgressRing/**/*.{h,m}"
 end
