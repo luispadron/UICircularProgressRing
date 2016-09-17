@@ -61,19 +61,6 @@ private extension UILabel {
  
  */
 @IBDesignable open class UICircularProgressRingView: UIView {
-    // MARK: Delegate
-    
-    /**
-     The delegate for the progress ring
-     
-     ## Important ##
-     In order to delegate class must conform to UICircularProgressRingDelegate
-     and override progressRingAnimtionDidFinish(_:)
-     
-     ## Author:
-     Luis Padron
-     */
-    public var delegate: UICircularProgressRingDelegate?
     
     // MARK: Value Properties
     
@@ -590,11 +577,20 @@ private extension UILabel {
      ## Author:
      Luis Padron
      */
-    public func setProgress(value newVal: CGFloat, animated: Bool) {
+    public func setProgress(value newVal: CGFloat, animated: Bool, completion: (() -> Void)?) {
         value = newVal
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            if let comp = completion {
+                comp()
+            }
+        }
+        
         if animated {
             animateInnerRing()
         }
+        
+        CATransaction.commit()
         
     }
     
@@ -716,8 +712,6 @@ private extension UILabel {
                               showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
             // Remove this animation run loop
             link.remove(from: RunLoop.current, forMode: .commonModes)
-            // Done animating everything, call the delegate method and return
-            delegate?.progressRingAnimationDidFinish()
             return
         }
         // Not done animating, calculate the current value based on time and duration left
