@@ -81,7 +81,11 @@ To set a value and animate the view
 progressRing.setProgress(value: 83, animated: true)
 ```
 
-**Read the documentation [HERE](docs/index.html)**
+## Documentation
+
+Read all about everything there is to know here:
+
+[DOCUMENTATION](http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
 
 ## License
 
