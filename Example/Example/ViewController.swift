@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UICircularProgressRing
 
 class ViewController: UIViewController, UICircularProgressRingDelegate {
 
