@@ -83,7 +83,7 @@ To set a value and animate the view
 
 ```swift
 // Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
-progressRing.setProgress(value: 83, animated: true) {
+progressRing.setProgress(value: 49, animated: true) {
   // The closure 
   print("Done animating!")
 }
