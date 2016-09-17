@@ -27,7 +27,7 @@
 		# IMPORTANT: Make sure use_frameworks! is included at the top of the file
 		use_frameworks!
 
-		pod 'UICircularProgressRing', :git => 'https://github.com/luispadron/UICircularProgressRing'
+		pod 'UICircularProgressRing'
 	end
 	```
 3. Run `pod install`
