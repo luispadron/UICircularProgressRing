@@ -4,53 +4,66 @@
     <title>UICircularProgressRing  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
   </head>
   <body>
+
+
     <a title="UICircularProgressRing  Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="index.html">UICircularProgressRing Docs</a> (96% documented)</p>
-        <p class="header-right"><a href="https://github.com/luispadron"><img src="img/gh.png"/>View on GitHub</a></p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="index.html">UICircularProgressRing Reference</a>
-        <img id="carat" src="img/carat.png" />
-        UICircularProgressRing  Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          UICircularProgressRing Docs
+        </a>
+         (100% documented)
       </p>
-    </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/luispadron/UICircularProgressRing">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">UICircularProgressRing Reference</a>
+      <img class="carat" src="img/carat.png" />
+      UICircularProgressRing  Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Classes.html">Classes</a>
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Protocols.html">Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+                <a class="nav-group-task-link" href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/banner.png" alt="Banner"></p>
 
 <h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/demo.gif"/>  
+</p>
+
+<p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/styles-banner.png" alt="Styles"></p>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
 <ul>
@@ -69,7 +82,7 @@
     <span class="c1"># IMPORTANT: Make sure use_frameworks! is included at the top of the file</span>
     <span class="n">use_frameworks!</span>
 
-    <span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/luispadron/UICircularProgressRing'</span>
+    <span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span>
 <span class="k">end</span>
 </code></pre></li>
 <li><p>Run <code>pod install</code></p></li>
@@ -105,19 +118,40 @@ Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> f
 
 <p>Design your heart out</p>
 
+<p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/ib-demo.gif" alt="ib-demo.gif"></p>
 <a href='#code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code'>Code</h3>
-<pre class="highlight swift"><code><span class="c1">// Create the view</span>
-<span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="kt">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
-<span class="c1">// Assign the delegate</span>
-<span class="n">progressRing</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
-<span class="c1">// Add the view as a subview or whatever else you would like to do</span>
+<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Create the view</span>
+  <span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="kt">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
+  <span class="c1">// Change any of the properties you'd like</span>
+  <span class="n">progressRing</span><span class="o">.</span><span class="n">maxValue</span> <span class="o">=</span> <span class="mi">50</span>
+  <span class="n">progressRing</span><span class="o">.</span><span class="n">innerRingColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span>
+  <span class="n">progressRing</span><span class="o">.</span><span class="n">animationDuration</span> <span class="o">=</span> <span class="mf">3.0</span>
+  <span class="c1">// etc ...</span>
+<span class="p">}</span>
 </code></pre>
 
 <p>To set a value and animate the view</p>
-<pre class="highlight swift"><code><span class="n">progressRing</span><span class="o">.</span><span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="c1">// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)</span>
+<span class="n">progressRing</span><span class="o">.</span><span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// The closure </span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"Done animating!"</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
+<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
 
-<p><strong>Read the documentation <a href="docs/index.html">HERE</a></strong></p>
+<p>Read all about everything there is to know here:</p>
+
+<p><a href="http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html">DOCUMENTATION</a></p>
+<a href='#example-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example-project'>Example project</h2>
+
+<p>Take a look at the example project over <a href="Example/">here</a></p>
+<a href='#upcoming-enhancements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='upcoming-enhancements'>Upcoming enhancements</h2>
+
+<ul>
+<li>Add decreasing animation, currently nothing gets animated when decreasing value</li>
+<li><del>Better way of handling animation finishing, probably a completion block</del></li>
+</ul>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 <pre class="highlight plaintext"><code>Copyright (c) 2016 Luis Padron
 
@@ -128,14 +162,16 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </code></pre>
 
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2016-09-16)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-09-17)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>

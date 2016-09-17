@@ -99,6 +99,10 @@ Read all about everything there is to know here:
 
 Take a look at the example project over [here](Example/)
 
+1. Download it
+2. Open the `Example.xcworkspace` in Xcode
+3. Mess around and experiment!
+
 ## Upcoming enhancements
 
 * Add decreasing animation, currently nothing gets animated when decreasing value

@@ -1,12 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/luis/Programming/Swift/UICircularProgressRing/UICircularProgressRing/UICircularProgressRingDelegate.swift",
-      "line": 37,
-      "symbol": "UICircularProgressRingDelegate.progressRingAnimationDidFinish()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/luis/Programming/Swift/UICircularProgressRing"
 }
