@@ -10,7 +10,6 @@
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
 		A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */; };
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0C6DE9B1D88CC77008AE742 /* TestSpace.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0C6DE9A1D88CC77008AE742 /* TestSpace.storyboard */; };
 		A0C6DE9D1D88CCFD008AE742 /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +30,6 @@
 		A0C6DE851D88CBE2008AE742 /* UICircularProgressRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UICircularProgressRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingTests.swift; sourceTree = "<group>"; };
 		A0C6DE8C1D88CBE2008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0C6DE9A1D88CC77008AE742 /* TestSpace.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TestSpace.storyboard; sourceTree = "<group>"; };
 		A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +75,6 @@
 			children = (
 				A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */,
 				A0C6DE801D88CBE1008AE742 /* Info.plist */,
-				A0C6DE9A1D88CC77008AE742 /* TestSpace.storyboard */,
 				A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */,
 			);
 			path = UICircularProgressRing;
@@ -188,7 +185,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0C6DE9B1D88CC77008AE742 /* TestSpace.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
