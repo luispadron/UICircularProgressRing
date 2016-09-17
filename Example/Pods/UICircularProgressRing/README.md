@@ -27,7 +27,7 @@
 		# IMPORTANT: Make sure use_frameworks! is included at the top of the file
 		use_frameworks!
 
-		pod 'UICircularProgressRing', :git => 'https://github.com/luispadron/UICircularProgressRing'
+		pod 'UICircularProgressRing'
 	end
 	```
 3. Run `pod install`
@@ -68,17 +68,25 @@ Design your heart out
 ### Code
 
 ```swift
-// Create the view
-let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
-// Assign the delegate
-progressRing.delegate = self
-// Add the view as a subview or whatever else you would like to do
+override func viewDidLoad() {
+  // Create the view
+  let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
+  // Change any of the properties you'd like
+  progressRing.maxValue = 50
+  progressRing.innerRingColor = UIColor.blue
+  progressRing.animationDuration = 3.0
+  // etc ...
+}
 ```
 
 To set a value and animate the view
 
 ```swift
-progressRing.setProgress(value: 83, animated: true)
+// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
+progressRing.setProgress(value: 49, animated: true) {
+  // The closure 
+  print("Done animating!")
+}
 ```
 
 ## Documentation
@@ -87,10 +95,14 @@ Read all about everything there is to know here:
 
 [DOCUMENTATION](http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
 
+## Example project
+
+Take a look at the example project over [here](Example/)
+
 ## Upcoming enhancements
 
 * Add decreasing animation, currently nothing gets animated when decreasing value
-* Better way of handling animation finishing, probably a completion block
+* ~~Better way of handling animation finishing, probably a completion block~~
 
 ## License
 

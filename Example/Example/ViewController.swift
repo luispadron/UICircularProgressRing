@@ -9,7 +9,8 @@
 import UIKit
 import UICircularProgressRing
 
-class ViewController: UIViewController, UICircularProgressRingDelegate {
+class ViewController: UIViewController {
+    
 
     @IBOutlet weak var ring1: UICircularProgressRingView!
     @IBOutlet weak var ring2: UICircularProgressRingView!
@@ -17,29 +18,30 @@ class ViewController: UIViewController, UICircularProgressRingDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Here we would do any customization to the view via code
+        // Example
+        ring1.animationDuration = 3.0
+        ring1.animationStyle = kCAMediaTimingFunctionLinear
+        ring2.animationDuration = 1.23
     }
     
     // Button clicked, animate them views
     @IBAction func animateTheViews(_ sender: AnyObject) {
-        ring1.setProgress(value: 100, animated: true)
-        // Set the delegate as an example
-        ring1.delegate = self
-        ring2.setProgress(value: 83, animated: true)
+        // You set the value that you want to be updated
+        // and whether the view should be animated our not
+        ring1.setProgress(value: 100, animated: true) {
+            print("Awesome ring 1 finished")
+        }
+        
+        // No completion here as its optional
+        ring2.setProgress(value: 83, animated: true, completion: nil)
         
         // Set max value to 10
         ring3.maxValue = 10
-        ring3.setProgress(value: 3.67, animated: true)
+        ring3.setProgress(value: 3.67, animated: true) {
+            print("Ring 3 finished!")
+        }
     }
     
-    // The delegate method
-    func progressRingAnimationDidFinish() {
-        print("yay the animation finished!")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
 }
 
