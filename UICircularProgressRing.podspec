@@ -2,11 +2,11 @@
 Pod::Spec.new do |s|
 
   s.name         = "UICircularProgressRing"
-  s.version      = "0.9.6"
-  s.summary      = "A circular progress bar for iOS written in Swift 3"
+  s.version      = "1.0.0"
+  s.summary      = "A highly customizable circular progress bar for iOS written in Swift 3"
 
   s.description  = <<-DESC
-  A circular progress bar for iOS written in Swift 3. With Interface Builder support.
+  A highly customizable circular progress bar for iOS written in Swift 3. With Interface Builder support.
                    DESC
 
   s.homepage     = "https://github.com/luispadron/UICircularProgressRing"
