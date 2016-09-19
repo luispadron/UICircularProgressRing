@@ -34,7 +34,7 @@ private extension CGFloat {
  A private extension to UILabel, in order to cut down on code repeation.
  This function will update the value of the progress label, depending on the
  parameters sent.
- At the end it sizesToFit() in order to
+ At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
@@ -47,12 +47,26 @@ private extension UILabel {
     }
 }
 
+/**
+ The internal subclass for CALayer.
+ This is the class that handles all the drawing and animation.
+ This class is not interacted with, instead properties are set in UICircularProgressRingView
+ and those are delegated to here.
+ 
+ */
 class UICircularProgressRingLayer: CALayer {
     
+    // MARK: Properties
+    
+    /**
+     The NSManaged properties for the CALayer.
+     These properties are initialized in UICircularProgressRingView.
+     They're also assigned by mutating UICircularProgressRingView.
+     */
     @NSManaged var value: CGFloat
     @NSManaged var maxValue: CGFloat
     
-    @NSManaged var progressRingStyle: Int
+    @NSManaged var viewStyle: Int
     @NSManaged var patternForDashes: [CGFloat]
     
     @NSManaged var startAngle: CGFloat
@@ -67,50 +81,86 @@ class UICircularProgressRingLayer: CALayer {
     @NSManaged var innerCapStyle: CGLineCap
     @NSManaged var innerRingSpacing: CGFloat
     
-    var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
-    var animated = false
-    
-    /**
-     The private value label used to show value user has provided
-     
-     */
-    lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    
     @NSManaged var shouldShowValueText: Bool
-    @NSManaged var textColor: UIColor
+    @NSManaged var fontColor: UIColor
     @NSManaged var fontSize: CGFloat
     @NSManaged var customFontWithName: String?
     @NSManaged var valueIndicator: String
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
     
-    private var outerRadius: CGFloat?
+    var animationDuration: TimeInterval = 1.0
+    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animated = false
     
+    // The value label which draws the text for the current value
+    lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
+    // MARK: Draw
+    
+    /**
+     Overriden for custom drawing.
+     Draws the outer ring, inner ring and value label.
+     */
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
         UIGraphicsPushContext(ctx)
         // Draw the rings
         drawOuterRing()
         drawInnerRing()
+        // Draw the label
         drawValueLabel()
         UIGraphicsPopContext()
     }
     
+    // MARK: Animation methods
+    
+    /**
+     Watches for changes in the value property, and setNeedsDisplay accordingly
+     */
+    override class func needsDisplay(forKey key: String) -> Bool {
+        if key == "value" {
+            return true
+        }
+        
+        return super.needsDisplay(forKey: key)
+    }
+    
+    /**
+     Creates animation when value property is changed
+     */
+    override func action(forKey event: String) -> CAAction? {
+        if event == "value" && self.animated {
+            let animation = CABasicAnimation(keyPath: "value")
+            animation.fromValue = self.presentation()?.value(forKey: "value")
+            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.duration = animationDuration
+            return animation
+        }
+        
+        return super.action(forKey: event)
+    }
+    
+    
+    // MARK: Helpers
+    
+    /**
+     Draws the outer ring for the view.
+     Sets path properties according to how the user has decided to customize the view.
+     */
     private func drawOuterRing() {
         guard outerRingWidth > 0 else {
-            print("Not drawing outer ring since Inner Ring Width <= 0")
+            print("Not drawing outer ring since outer Ring Width <= 0")
             return
         }
         
         let width = bounds.width
         let height = bounds.width
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        outerRadius = max(width, height)/2 - outerRingWidth/2
+        let outerRadius = max(width, height)/2 - outerRingWidth/2
         
         let outerPath = UIBezierPath(arcCenter: center,
-                                     radius: outerRadius!,
+                                     radius: outerRadius,
                                      startAngle: startAngle.toRads,
                                      endAngle: endAngle.toRads,
                                      clockwise: true)
@@ -119,9 +169,9 @@ class UICircularProgressRingLayer: CALayer {
         outerPath.lineCapStyle = outerCapStyle
         
         // If the style is 3 or 4, make sure to draw either dashes or dotted path
-        if progressRingStyle == 3 {
+        if viewStyle == 3 {
             outerPath.setLineDash(patternForDashes, count: 1, phase: 0.0)
-        } else if progressRingStyle == 4 {
+        } else if viewStyle == 4 {
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
         }
@@ -130,7 +180,15 @@ class UICircularProgressRingLayer: CALayer {
         outerPath.stroke()
     }
     
+    /**
+     Draws the inner ring for the view.
+     Sets path properties according to how the user has decided to customize the view.
+     */
     private func drawInnerRing() {
+        guard innerRingWidth > 0 else {
+            print("Not drawing inner ring since Inner Ring Width <= 0")
+            return
+        }
         
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         
@@ -146,7 +204,7 @@ class UICircularProgressRingLayer: CALayer {
         var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing, bounds.height - outerRingWidth*2 - innerRingSpacing)/2) - innerRingWidth/2
         
         // If the style is different, mae the radius equal to the outerRadius
-        if progressRingStyle >= 2 {
+        if viewStyle >= 2 {
             radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
         }
         // Start drawing
@@ -161,12 +219,21 @@ class UICircularProgressRingLayer: CALayer {
         innerPath.stroke()
     }
     
+    /**
+     Draws the value label for the view.
+     Only drawn if shouldShowValueText = true
+     */
     private func drawValueLabel() {
+        guard shouldShowValueText else {
+            print("Not drawing value label because shouldShowValueText = false")
+            return
+        }
+        
         // Draws the text field
         // Some basic label properties are set
         valueLabel.font = UIFont.systemFont(ofSize: fontSize)
         valueLabel.textAlignment = .center
-        valueLabel.textColor = textColor
+        valueLabel.textColor = fontColor
         
         if let fName = customFontWithName {
             valueLabel.font = UIFont(name: fName, size: fontSize)
@@ -177,32 +244,7 @@ class UICircularProgressRingLayer: CALayer {
         
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        // Add it as a subview
+        
         valueLabel.drawText(in: self.bounds)
     }
-    
-    
-    
-    override class func needsDisplay(forKey key: String) -> Bool {
-        
-        if key == "value" {
-            return true
-        }
-        
-        return super.needsDisplay(forKey: key)
-    }
-    
-    override func action(forKey event: String) -> CAAction? {
-        if event == "value" && self.animated {
-            let animation = CABasicAnimation(keyPath: "value")
-            animation.fromValue = self.presentation()?.value(forKey: "value")
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
-            animation.duration = animationDuration
-            return animation
-        }
-        
-        return super.action(forKey: event)
-    }
-    
-    
 }
