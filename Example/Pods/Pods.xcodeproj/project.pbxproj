@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		087A485A9B2BB60736500C7F27C7B759 /* Pods-Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */; };
-		22224B6CA9917DDC79D002DBB0E188C8 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = B18B73FD0A70FFB4F1651FB54432CB7B /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2B97982B63A3B60D5C4EE5E17A0BE4DF /* UICircularProgressRing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D1CE07397E09CBFBC0CABD3D99111C79 /* UICircularProgressRing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22224B6CA9917DDC79D002DBB0E188C8 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E6BC1038B2FCA5AC15CFA9D5DE2A2BF /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B97982B63A3B60D5C4EE5E17A0BE4DF /* UICircularProgressRing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C358646E9E8AF4522CC9C893A886426D /* UICircularProgressRing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2FA430550A2F138171B839A69D862F46 /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245E78647F9200C71F69716E9FFD8B3 /* UICircularProgressRingLayer.swift */; };
 		3244CC2F09F083119DE3283096DF9953 /* Pods-Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		643F26EECBDEB7D4C7FBBC1FB3EC1CA4 /* UICircularProgressRing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A66F57BA5B2BE87E3E9F63CECFEA469 /* UICircularProgressRing-dummy.m */; };
+		5942CD7FC9A90F6A88CA5C382D270B00 /* UICircularProgressRing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4DFFFC3015EF330EB11FFDDF7BE7CC /* UICircularProgressRing-dummy.m */; };
 		87F037F0906749F19BF96ABAE9A5CA1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		9A192A7DE562E204BAF996346EA9376E /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54449F7CEB8EE18C4E876F6EABAD0E0 /* UICircularProgressRingView.swift */; };
 		CF90BB2B3320D5590D286E9C14304251 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		FC27FEE1428F5C50BDFB3228EB24F465 /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B660DAEF07D5FC4F780C761B336CAC52 /* UICircularProgressRingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,27 +30,28 @@
 
 /* Begin PBXFileReference section */
 		01E6907CF2644EB1CF8E23F708A3DA0B /* Pods-Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-resources.sh"; sourceTree = "<group>"; };
-		063C53FB02E9D0538C3DD92A3809868E /* UICircularProgressRing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICircularProgressRing-prefix.pch"; sourceTree = "<group>"; };
 		119072C64A19799964E1620D83F514FB /* Pods-Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Example.modulemap"; sourceTree = "<group>"; };
 		149054C495E8EC590CAB4C524133016F /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
-		2A66F57BA5B2BE87E3E9F63CECFEA469 /* UICircularProgressRing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICircularProgressRing-dummy.m"; sourceTree = "<group>"; };
-		474A57BDC7E0710708E88C1F3066FD9D /* UICircularProgressRing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UICircularProgressRing.xcconfig; sourceTree = "<group>"; };
+		1D75B5764743953C6C535B3A4A6B2249 /* UICircularProgressRing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICircularProgressRing-prefix.pch"; sourceTree = "<group>"; };
 		552550F3F912264E5D073F8893691F88 /* Pods-Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Example-frameworks.sh"; sourceTree = "<group>"; };
 		5910AA0DB9EE59FEFBBC8DDCD190DA18 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F03C79D486F7555A3FA5B29FCA45100 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F4DFFFC3015EF330EB11FFDDF7BE7CC /* UICircularProgressRing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICircularProgressRing-dummy.m"; sourceTree = "<group>"; };
 		699118D7DDD5F335E4FB8B17DC0F12D2 /* Pods-Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Example-dummy.m"; sourceTree = "<group>"; };
+		72C229937AB0429CD0D7AB017F05E085 /* UICircularProgressRing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UICircularProgressRing.modulemap; sourceTree = "<group>"; };
 		764D33E23CE6C1111110B04F5CBADADB /* Pods-Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9A351F66730DF6C4FBD08D0119BDDE60 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E6BC1038B2FCA5AC15CFA9D5DE2A2BF /* UICircularProgressRing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UICircularProgressRing.h; path = UICircularProgressRing/UICircularProgressRing.h; sourceTree = "<group>"; };
 		A661FECCEBFF9D01869EE3B29C4C1EFF /* Pods-Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B18B73FD0A70FFB4F1651FB54432CB7B /* UICircularProgressRing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UICircularProgressRing.h; path = UICircularProgressRing/UICircularProgressRing.h; sourceTree = "<group>"; };
+		B168B6E28F6644018378F502140216F4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B660DAEF07D5FC4F780C761B336CAC52 /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircularProgressRingView.swift; path = UICircularProgressRing/UICircularProgressRingView.swift; sourceTree = "<group>"; };
+		C245E78647F9200C71F69716E9FFD8B3 /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircularProgressRingLayer.swift; path = UICircularProgressRing/UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
+		C358646E9E8AF4522CC9C893A886426D /* UICircularProgressRing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICircularProgressRing-umbrella.h"; sourceTree = "<group>"; };
 		C9BDE82371C83FA9AE91B05F77ACAA36 /* Pods-Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Example-umbrella.h"; sourceTree = "<group>"; };
+		CEBFD72F7EA4EE8EC1BD540B2CEA3EFC /* UICircularProgressRing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UICircularProgressRing.xcconfig; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D1CE07397E09CBFBC0CABD3D99111C79 /* UICircularProgressRing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICircularProgressRing-umbrella.h"; sourceTree = "<group>"; };
 		E512A5F985F876750237FD237C3AEEDA /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		EFFB74AAA6B2AE8DABF0E88E61E09178 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F53C9DDA93B684EB8DC1164713FF019A /* UICircularProgressRing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UICircularProgressRing.modulemap; sourceTree = "<group>"; };
-		F54449F7CEB8EE18C4E876F6EABAD0E0 /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICircularProgressRingView.swift; path = UICircularProgressRing/UICircularProgressRingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,30 +82,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		40265E5B41082A5E2D8F08F28B09272D /* UICircularProgressRing */ = {
-			isa = PBXGroup;
-			children = (
-				B18B73FD0A70FFB4F1651FB54432CB7B /* UICircularProgressRing.h */,
-				F54449F7CEB8EE18C4E876F6EABAD0E0 /* UICircularProgressRingView.swift */,
-				50B734E6AD6677197F871A663275C00E /* Support Files */,
-			);
-			path = UICircularProgressRing;
-			sourceTree = "<group>";
-		};
-		50B734E6AD6677197F871A663275C00E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				9A351F66730DF6C4FBD08D0119BDDE60 /* Info.plist */,
-				F53C9DDA93B684EB8DC1164713FF019A /* UICircularProgressRing.modulemap */,
-				474A57BDC7E0710708E88C1F3066FD9D /* UICircularProgressRing.xcconfig */,
-				2A66F57BA5B2BE87E3E9F63CECFEA469 /* UICircularProgressRing-dummy.m */,
-				063C53FB02E9D0538C3DD92A3809868E /* UICircularProgressRing-prefix.pch */,
-				D1CE07397E09CBFBC0CABD3D99111C79 /* UICircularProgressRing-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/UICircularProgressRing";
-			sourceTree = "<group>";
-		};
 		674964DA1B35186696046900827F2AE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,18 +104,35 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				B932EB8B10C54CB2D324C5CDA86D0519 /* Pods */,
+				CC46EEF687EC2ED4EC299AA843D5146D /* Pods */,
 				674964DA1B35186696046900827F2AE1 /* Products */,
 				6A4F6A14E3FB951290E4531728B7A461 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		B932EB8B10C54CB2D324C5CDA86D0519 /* Pods */ = {
+		83E814959CF8C704929856D08D744F88 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				40265E5B41082A5E2D8F08F28B09272D /* UICircularProgressRing */,
+				B168B6E28F6644018378F502140216F4 /* Info.plist */,
+				72C229937AB0429CD0D7AB017F05E085 /* UICircularProgressRing.modulemap */,
+				CEBFD72F7EA4EE8EC1BD540B2CEA3EFC /* UICircularProgressRing.xcconfig */,
+				5F4DFFFC3015EF330EB11FFDDF7BE7CC /* UICircularProgressRing-dummy.m */,
+				1D75B5764743953C6C535B3A4A6B2249 /* UICircularProgressRing-prefix.pch */,
+				C358646E9E8AF4522CC9C893A886426D /* UICircularProgressRing-umbrella.h */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/UICircularProgressRing";
+			sourceTree = "<group>";
+		};
+		8F0DDA1A7F2F3FF78D16CCCE81D860FB /* UICircularProgressRing */ = {
+			isa = PBXGroup;
+			children = (
+				9E6BC1038B2FCA5AC15CFA9D5DE2A2BF /* UICircularProgressRing.h */,
+				C245E78647F9200C71F69716E9FFD8B3 /* UICircularProgressRingLayer.swift */,
+				B660DAEF07D5FC4F780C761B336CAC52 /* UICircularProgressRingView.swift */,
+				83E814959CF8C704929856D08D744F88 /* Support Files */,
+			);
+			path = UICircularProgressRing;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -146,6 +141,14 @@
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CC46EEF687EC2ED4EC299AA843D5146D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8F0DDA1A7F2F3FF78D16CCCE81D860FB /* UICircularProgressRing */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		FE9811ABEB5931E154211FCA14B78350 /* Pods-Example */ = {
@@ -211,7 +214,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00A8D5B93EFB2E4288637A71F895B65F /* Build configuration list for PBXNativeTarget "UICircularProgressRing" */;
 			buildPhases = (
-				087B74CBFD9D47B50A8012FD02592381 /* Sources */,
+				2305372827AA51B3AFF084EDBC823A60 /* Sources */,
 				9BEE2BAB69FE0F59454F334AC779B0B6 /* Frameworks */,
 				30F84A53433A18311448C32954A1CE36 /* Headers */,
 			);
@@ -252,12 +255,13 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		087B74CBFD9D47B50A8012FD02592381 /* Sources */ = {
+		2305372827AA51B3AFF084EDBC823A60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643F26EECBDEB7D4C7FBBC1FB3EC1CA4 /* UICircularProgressRing-dummy.m in Sources */,
-				9A192A7DE562E204BAF996346EA9376E /* UICircularProgressRingView.swift in Sources */,
+				5942CD7FC9A90F6A88CA5C382D270B00 /* UICircularProgressRing-dummy.m in Sources */,
+				2FA430550A2F138171B839A69D862F46 /* UICircularProgressRingLayer.swift in Sources */,
+				FC27FEE1428F5C50BDFB3228EB24F465 /* UICircularProgressRingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +331,7 @@
 		};
 		1D2E257A3FF8E058CDE5C2F3954B0352 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 474A57BDC7E0710708E88C1F3066FD9D /* UICircularProgressRing.xcconfig */;
+			baseConfigurationReference = CEBFD72F7EA4EE8EC1BD540B2CEA3EFC /* UICircularProgressRing.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -396,7 +400,7 @@
 		};
 		4D61E4E285AFC047BDFCE06FFF11764C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 474A57BDC7E0710708E88C1F3066FD9D /* UICircularProgressRing.xcconfig */;
+			baseConfigurationReference = CEBFD72F7EA4EE8EC1BD540B2CEA3EFC /* UICircularProgressRing.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
