@@ -62,9 +62,18 @@
 
                 </div>
               </div>
-            <p><a href='#uicircularprogressview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='uicircularprogressview'>UICircularProgressView</h1></p>
+            <p><a href='#uiciruclarprogressringview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='uiciruclarprogressringview'>UICiruclarProgressRingView</h1></p>
 
-<p>Circular progress ring view.</p>
+<p>This is the UIView subclass that creates and handles everything
+to do with the progress ring</p>
+
+<p>This class has a custom CALayer (UICircularProgressRingLayer) which
+handels the drawing and animating of the view</p>
+
+<p>The properties in this class correspond with the properties in UICircularProgressRingLayer.
+When they are set in here, they are also set for the layer and drawn accordingly</p>
+
+<p>Read the docs for what each property does and what can be customized.</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -101,9 +110,10 @@
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
-<p>Default = 0
-When assigning to this var the view will be redrawn.
-Recommended to assign value using setProgress(_:) instead.</p>
+<p>Default = 0</p>
+
+<p>Recommended to assign value using setProgress(_:) instead as you have more control over what happens
+This is public simply for storyboard support</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -141,8 +151,6 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 
 <p>Default = 100</p>
 
-<p>When assigning to this var the view will be redrawn.</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -159,12 +167,23 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/View%20Style"></a>
+                <a name="//apple_ref/swift/Section/View Style" class="dashAnchor"></a>
+                <a href="#/View%20Style">
+                  <h3 class="section-name">View Style</h3>
+                </a>
+              </div>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView17progressRingStyleSi"></a>
-                    <a name="//apple_ref/swift/Property/progressRingStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView17progressRingStyleSi">progressRingStyle</a>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView9viewStyleSi"></a>
+                    <a name="//apple_ref/swift/Property/viewStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView9viewStyleSi">viewStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -189,8 +208,6 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 
 <p>Default = 1</p>
 
-<p>When assigning to this var the view will be redrawn.</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -200,7 +217,7 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">progressRingStyle</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">viewStyle</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
 
                         </div>
                       </div>
@@ -220,13 +237,11 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An array of CGFloats, used to calculate the dash length for progressRingStyle = 3</p>
+                        <p>An array of CGFloats, used to calculate the dash length for viewStyle = 3</p>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = [7.0, 7.0]</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -238,91 +253,6 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternForDashes</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Outer%20Ring%20properties"></a>
-                <a name="//apple_ref/swift/Section/Outer Ring properties" class="dashAnchor"></a>
-                <a href="#/Outer%20Ring%20properties">
-                  <h3 class="section-name">Outer Ring properties</h3>
-                </a>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingWidthV12CoreGraphics7CGFloat"></a>
-                    <a name="//apple_ref/swift/Property/outerRingWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingWidthV12CoreGraphics7CGFloat">outerRingWidth</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The width of the outer ring for the progres bar</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
-
-<p>Default = 10.0</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">outerRingWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">10.0</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingColorCSo7UIColor"></a>
-                    <a name="//apple_ref/swift/Property/outerRingColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingColorCSo7UIColor">outerRingColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color for the outer ring</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
-
-<p>Default = UIColor.gray</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">outerRingColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">gray</span></code></pre>
 
                         </div>
                       </div>
@@ -351,9 +281,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 
 <p>Default = 0 (degrees)</p>
 
-<p>Values should be in degrees</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
+<p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -393,9 +321,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 
 <p>Default = 0 (degrees)</p>
 
-<p>Values should be in degrees</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
+<p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -407,6 +333,87 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">360</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Outer%20Ring%20properties"></a>
+                <a name="//apple_ref/swift/Section/Outer Ring properties" class="dashAnchor"></a>
+                <a href="#/Outer%20Ring%20properties">
+                  <h3 class="section-name">Outer Ring properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingWidthV12CoreGraphics7CGFloat"></a>
+                    <a name="//apple_ref/swift/Property/outerRingWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingWidthV12CoreGraphics7CGFloat">outerRingWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The width of the outer ring for the progres bar</p>
+
+<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+
+<p>Default = 10.0</p>
+
+<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">outerRingWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">10.0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingColorCSo7UIColor"></a>
+                    <a name="//apple_ref/swift/Property/outerRingColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView14outerRingColorCSo7UIColor">outerRingColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The color for the outer ring</p>
+
+<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+
+<p>Default = UIColor.gray</p>
+
+<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">outerRingColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">gray</span></code></pre>
 
                         </div>
                       </div>
@@ -426,7 +433,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The style for the outer ring line (how it is drawn on screen)
+                        <p>The style for the outer ring end cap (how it is drawn on screen)
 Range [1,3]
 - 1: Line with a squared off end
 - 2: Line with a rounded off end
@@ -436,8 +443,6 @@ Range [1,3]
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = 1</p>
-
-<p>When assigning to this var the view will be redrawn</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -485,8 +490,6 @@ Range [1,3]
 
 <p>Default = 5.0</p>
 
-<p>When assigning to this var the view will be redrawn.</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -521,8 +524,6 @@ Range [1,3]
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = UIColor.blue</p>
-
-<p>When assigning to this var the view will be redrawn.</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -561,8 +562,6 @@ Range [1,3]
 
 <p>Default = 1</p>
 
-<p>When assigning to this var the view will be redrawn.</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -592,7 +591,7 @@ Range [1,3]
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The style for the inner ring line (how it is drawn on screen)</p>
+                        <p>The style for the inner ring end cap (how it is drawn on screen)</p>
 
 <p>Range [1,3]</p>
 
@@ -606,8 +605,6 @@ Range [1,3]
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = 2</p>
-
-<p>When assigning to this var the view will be redrawn</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -650,14 +647,11 @@ Range [1,3]
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>A toggle for showing or hiding the value label.
-If false the current value will not be shown.
-The value label is also never added as a subview or drawn</p>
+If false the current value will not be shown.</p>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = true</p>
-
-<p>When assigning to this var the view will be redrawn</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -678,9 +672,9 @@ The value label is also never added as a subview or drawn</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView9textColorCSo7UIColor"></a>
-                    <a name="//apple_ref/swift/Property/textColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView9textColorCSo7UIColor">textColor</a>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView9fontColorCSo7UIColor"></a>
+                    <a name="//apple_ref/swift/Property/fontColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView9fontColorCSo7UIColor">fontColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -694,8 +688,6 @@ The value label is also never added as a subview or drawn</p>
 
 <p>Default = UIColor.black</p>
 
-<p>When assigning to this var the view will be redrawn</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -705,7 +697,7 @@ The value label is also never added as a subview or drawn</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">textColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">black</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">fontColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">black</span></code></pre>
 
                         </div>
                       </div>
@@ -730,8 +722,6 @@ The value label is also never added as a subview or drawn</p>
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = 18</p>
-
-<p>When assigning to this var the view will be redrawn</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -770,8 +760,6 @@ is set inside the Info.plist of the project.</p>
 
 <p>Default = nil</p>
 
-<p>When assigning to this var the view will be redrawn</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -803,13 +791,11 @@ is set inside the Info.plist of the project.</p>
                       <div class="abstract">
                         <p>The name of the value indicator the value label will
 appened to the value
-Example: <q>%</q> -&gt; <q>100%</q></p>
+Example: <q>GB</q> -&gt; <q>100 GB</q></p>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
 <p>Default = <q>%</q></p>
-
-<p>When assigning to this var the view will be redrawn</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -849,8 +835,6 @@ the value in the value label</p>
 
 <p>To customize number of decmial places to show, assign a value to decimalPlaces.</p>
 
-<p>When assigning to this var the view will be redrawn</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -888,8 +872,6 @@ the value in the value label</p>
 
 <p>Only used when showFloatingPoint = true</p>
 
-<p>When assigning to this var the view will be redrawn</p>
-
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
@@ -917,43 +899,6 @@ the value in the value label</p>
                 </a>
               </div>
               <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView17animationDurationSd"></a>
-                    <a name="//apple_ref/swift/Property/animationDuration" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView17animationDurationSd">animationDuration</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The duration of the animation</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
-
-<p>Default = 1.0</p>
-
-<p>Only used when calling .setValue(animated: true)</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">CFTimeInterval</span> <span class="o">=</span> <span class="mf">1.0</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -997,6 +942,44 @@ the value in the value label</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
+                <a name="/CALayer"></a>
+                <a name="//apple_ref/swift/Section/CALayer" class="dashAnchor"></a>
+                <a href="#/CALayer">
+                  <h3 class="section-name">CALayer</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC22UICircularProgressRing26UICircularProgressRingView10layerClassPMPs9AnyObject_"></a>
+                    <a name="//apple_ref/swift/Variable/layerClass" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC22UICircularProgressRing26UICircularProgressRingView10layerClassPMPs9AnyObject_">layerClass</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Overrides the default layer with the custom UICircularProgressRingLayer class</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="n">open</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">layerClass</span><span class="p">:</span> <span class="kt">AnyClass</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
                 <a name="/Methods"></a>
                 <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
                 <a href="#/Methods">
@@ -1004,6 +987,60 @@ the value in the value label</p>
                 </a>
               </div>
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingViewcFT5frameVSC6CGRect_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(frame:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingViewcFT5frameVSC6CGRect_S0_">init(frame:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Overriden public init to initialize the layer and view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingViewcFT5coderCSo7NSCoder_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingViewcFT5coderCSo7NSCoder_GSqS0__">init(coder:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Overriden public init to initialize the layer and view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1017,12 +1054,7 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Overriden draw method which draws the outer ring, inner ring,
-and the value label.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
-
-<p>Luis Padron</p>
+                        <p>Overriden because custom drawing is happening in UICircularProgressRingLayer</p>
 
                       </div>
                       <div class="declaration">
@@ -1039,9 +1071,9 @@ and the value label.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat8animatedSb10completionGSqFT_T___T_"></a>
-                    <a name="//apple_ref/swift/Method/setProgress(value:animated:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat8animatedSb10completionGSqFT_T___T_">setProgress(value:animated:completion:)</a>
+                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat17animationDurationSd10completionGSqFT_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/setProgress(value:animationDuration:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat17animationDurationSd10completionGSqFT_T___T_">setProgress(value:animationDuration:completion:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1059,13 +1091,19 @@ and the value label.</p>
 
 <div class="aside aside-parameter">
     <p class="aside-title">Parameter</p>
-    Parameter animated: Boolean value if the progress ring should be animated or not
+    Parameter animationDuration: The time interval duration for the animation
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)
 
 </div>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
-<p>The view will be drawn and animated if set to animate</p>
+<p>Animatin duration = 0 will cause no animation to occur</p>
 
 <p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
@@ -1076,7 +1114,7 @@ and the value label.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="n"><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView5valueV12CoreGraphics7CGFloat">value</a></span> <span class="nv">newVal</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
 
                         </div>
                       </div>
@@ -1100,12 +1138,25 @@ and the value label.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>animated</em>
+                                <em>animationDuration</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>Boolean value if the progress ring should be animated or not</p>
+                                  <p>The time interval duration for the animation</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)</p>
 
                                 </div>
                               </td>
@@ -1124,7 +1175,7 @@ and the value label.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-09-17)</p>
+      <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-09-19)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

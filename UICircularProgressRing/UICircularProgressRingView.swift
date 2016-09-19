@@ -41,7 +41,7 @@ import UIKit
  Luis Padron
  
  */
-@IBDesignable class UICircularProgressRingView: UIView {
+@IBDesignable open class UICircularProgressRingView: UIView {
     
     // MARK: Value Properties
     
@@ -80,7 +80,7 @@ import UIKit
         }
     }
     
-    // MARK:
+    // MARK: View Style
     
     /**
      Variable for the style of the progress ring.
@@ -475,13 +475,17 @@ import UIKit
     
     // MARK: CALayer
     
-    // Set the ring layer to the default layer, cated as custom layer
+    /**
+     Set the ring layer to the default layer, cated as custom layer
+    */
     var ringLayer: UICircularProgressRingLayer {
         return self.layer as! UICircularProgressRingLayer
     }
     
-    // Override the default layer with the custom UICircularProgressRingLayer class
-    override class var layerClass: AnyClass {
+    /** 
+     Overrides the default layer with the custom UICircularProgressRingLayer class
+    */
+    override open class var layerClass: AnyClass {
         get {
             return UICircularProgressRingLayer.self
         }
@@ -489,13 +493,19 @@ import UIKit
     
     // MARK: Methods
     
-    override init(frame: CGRect) {
+    /**
+     Overriden public init to initialize the layer and view
+    */
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         // Call the private initializer
         initialize()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /**
+     Overriden public init to initialize the layer and view
+     */
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         // Call the private initializer
         initialize()
@@ -533,7 +543,7 @@ import UIKit
      Overriden because custom drawing is happening in UICircularProgressRingLayer
      
      */
-    override func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         
     }
     
