@@ -1,9 +1,23 @@
 //
 //  UICircularProgressRingView.swift
-//  TestEnv
+//  UICircularProgressRing
 //
-//  Created by Luis Padron on 9/18/16.
-//  Copyright © 2016 Luis Padron. All rights reserved.
+//  Copyright (c) 2016 Luis Padron
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+//  associated documentation files (the "Software"), to deal in the Software without restriction,
+//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
+//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
+//  is furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all copies or
+//  substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+//  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
 import UIKit
@@ -19,7 +33,8 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 0
      When assigning to this var the view will be redrawn.
-     Recommended to assign value using setProgress(_:) instead.
+     Recommended to assign value using setProgress(_:) instead as you have more control over what happens
+     This is public simply for storyboard support
      
      ## Author:
      Luis Padron
@@ -320,7 +335,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var shouldShowValueText: Bool = true {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.shouldShowValueText = self.shouldShowValueText
         }
     }
     /**
@@ -336,7 +351,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var textColor: UIColor = UIColor.black {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.textColor = self.textColor
         }
     }
     /**
@@ -352,7 +367,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var fontSize: CGFloat = 18 {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.fontSize = self.fontSize
         }
     }
     /**
@@ -370,7 +385,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var customFontWithName: String? {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.customFontWithName = self.customFontWithName
         }
     }
     /**
@@ -388,7 +403,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var valueIndicator: String = "%" {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.valueIndicator = self.valueIndicator
         }
     }
     /**
@@ -407,7 +422,7 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var showFloatingPoint: Bool = false {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.showFloatingPoint = self.showFloatingPoint
         }
     }
     /**
@@ -425,24 +440,12 @@ class UICircularProgressRingView: UIView {
      */
     @IBInspectable public var decimalPlaces: Int = 2 {
         didSet {
-            self.setNeedsDisplay()
+            self.ringLayer.decimalPlaces = self.decimalPlaces
         }
     }
     
     // MARK: Animation properties
     
-    /**
-     The duration of the animation
-     
-     ## Important ##
-     Default = 1.0
-     
-     Only used when calling .setValue(animated: true)
-     
-     ## Author:
-     Luis Padron
-     */
-    public var animationDuration: CFTimeInterval = 1.0
     /**
      The type of function animation to use
      
@@ -457,43 +460,22 @@ class UICircularProgressRingView: UIView {
      Luis Padron
      */
     public var animationStyle: String = kCAMediaTimingFunctionEaseIn
-    /**
-     Private CAShapeLayer for drawing and animating the progress ring
-     
-     ## Author:
-     Luis Padron
-     */
-    private lazy var shapeLayer = CAShapeLayer()
-    /**
-     Private Timer for animating purposes
-     
-     ## Author:
-     Luis Padron
-     */
-    private lazy var timer = Timer()
-    /**
-     Start time for animating value label
-     
-     ## Author:
-     Luis Padron
-     */
-    private lazy var startTime = CACurrentMediaTime()
-    /**
-     CADisplayLink for animating the label
-     
-     ## Author:
-     Luis Padron
-     */
-    private lazy var link = CADisplayLink()
+    
+    // MARK: CALayer
+    
+    // Set the ring layer to the default layer, cated as custom layer
+    var ringLayer: UICircularProgressRingLayer {
+        return self.layer as! UICircularProgressRingLayer
+    }
+    
+    // Override the default layer with the custom UICircularProgressRingLayer class
+    override class var layerClass: AnyClass {
+        get {
+            return UICircularProgressRingLayer.self
+        }
+    }
     
     // MARK: Methods
-    
-    /**
-     Ring gets drawn from its layer
-     
-     ## Author:
-     Luis Padron
-     */
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -507,8 +489,6 @@ class UICircularProgressRingView: UIView {
     
     private func initialize() {
         // Initialize the layer
-        self.ringLayer.frame = self.frame
-        self.ringLayer.bounds = self.bounds
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
         self.ringLayer.progressRingStyle = progressRingStyle
@@ -522,17 +502,40 @@ class UICircularProgressRingView: UIView {
         self.ringLayer.innerRingColor = innerRingColor
         self.ringLayer.innerCapStyle = inStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
+        self.ringLayer.shouldShowValueText = shouldShowValueText
+        self.ringLayer.textColor = textColor
+        self.ringLayer.fontSize = fontSize
+        self.ringLayer.customFontWithName = customFontWithName
+        self.ringLayer.showFloatingPoint = showFloatingPoint
+        self.ringLayer.decimalPlaces = decimalPlaces
     }
     
     override func draw(_ rect: CGRect) {
         self.setNeedsDisplay()
     }
     
-    public func set(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)?) {
-        self.ringLayer.animated = true
+    
+    /**
+     Sets the current value for the progress ring
+     
+     - Parameter newVal: The value to be set for the progress ring
+     - Parameter animationDuration: The time interval duration for the animation
+     - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)
+     
+     ## Important ##
+     Animatin duration = 0 will cause no animation to occur
+     
+     ## Author:
+     Luis Padron
+     */
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)?) {
+        // Only animte if duration sent is greater than zero
+        self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
+        // Create a transaction to be notified when animation is complete
         CATransaction.begin()
         CATransaction.setCompletionBlock {
+            // Call the closure block
             if let comp = completion {
                 comp()
             }
@@ -541,15 +544,4 @@ class UICircularProgressRingView: UIView {
         CATransaction.commit()
         
     }
-    
-    var ringLayer: UICircularProgressRingLayer {
-        return self.layer as! UICircularProgressRingLayer
-    }
-    
-    override class var layerClass: AnyClass {
-        get {
-            return UICircularProgressRingLayer.self
-        }
-    }
-    
 }
