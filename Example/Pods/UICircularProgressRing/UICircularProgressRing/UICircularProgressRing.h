@@ -14,6 +14,5 @@ FOUNDATION_EXPORT double UICircularProgressRingVersionNumber;
 //! Project version string for UICircularProgressRing.
 FOUNDATION_EXPORT const unsigned char UICircularProgressRingVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <UICircularProgressRing/PublicHeader.h>
 
 

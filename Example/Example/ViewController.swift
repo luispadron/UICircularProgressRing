@@ -18,29 +18,45 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Here we would do any customization to the view via code
-        // Example
-        ring1.animationDuration = 3.0
+        // Customize some properties
         ring1.animationStyle = kCAMediaTimingFunctionLinear
-        ring2.animationDuration = 1.23
+        ring1.fontSize = 100
+        ring2.fontColor = UIColor.gray
+        ring3.maxValue = 100
+        
     }
     
     // Button clicked, animate them views
     @IBAction func animateTheViews(_ sender: AnyObject) {
-        // You set the value that you want to be updated
-        // and whether the view should be animated our not
-        ring1.setProgress(value: 100, animated: true) {
-            print("Awesome ring 1 finished")
+        // Animate the views
+        /* 
+         Send in the value you would like to update the view with.
+         animationDuration when set to 0 causes view to not be animated.
+         Optionally you can also supply a completion handler
+         */
+        ring1.setProgress(value: 99, animationDuration: 5) {
+            // When done setting to 99, go back to 0
+            print("Ring 1 finished")
+            self.ring1.setProgress(value: 0, animationDuration: 2, completion: nil)
         }
         
-        // No completion here as its optional
-        ring2.setProgress(value: 83, animated: true, completion: nil)
-        
-        // Set max value to 10
-        ring3.maxValue = 10
-        ring3.setProgress(value: 3.67, animated: true) {
-            print("Ring 3 finished!")
+        ring2.setProgress(value: 56, animationDuration: 2) {
+            // Increase it more, and customize some properties
+            self.ring2.viewStyle = 4
+            self.ring2.setProgress(value: 100, animationDuration: 3) {
+                self.ring2.fontSize = 70
+                print("Ring 2 finished")
+            }
         }
+        
+        // This has a max value of 10 so we set this accordingly and the view calculates how the progress should look
+        ring3.setProgress(value: 8.32, animationDuration: 6) {
+            // We can also change the max value
+            self.ring3.maxValue = 20
+            self.ring3.setProgress(value: 15.32, animationDuration: 2, completion: nil)
+            print("Ring 3 finished")
+        }
+        
     }
     
 }
