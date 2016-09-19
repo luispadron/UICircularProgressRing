@@ -11,57 +11,34 @@ private extension CGFloat {
 class UICircularProgressRingLayer: CALayer {
     
     @NSManaged var value: CGFloat
+    @NSManaged var maxValue: CGFloat
     
-    var maxValue: CGFloat = 100
-    var outerRingWidth: CGFloat = 10
-    var innerRingWidth: CGFloat = 5
-    var startAngle: CGFloat = 0
-    var endAngle: CGFloat = 360
-    var outerRingColor: UIColor = UIColor.black
-    var innerRingColor: UIColor = UIColor.blue
-    var outerCapStyle: Int = 1 {
-        didSet {
-            switch self.outerCapStyle {
-            case 1:
-                outStyle = .butt
-            case 2:
-                outStyle = .round
-            case 3:
-                outStyle = .square
-            default:
-                outStyle = .butt
-            }
-        }
-    }
+    @NSManaged var progressRingStyle: Int
+    @NSManaged var patternForDashes: [CGFloat]
     
-    var innerCapStyle: Int = 1 {
-        didSet {
-            switch self.innerCapStyle {
-            case 1:
-                inStyle = .butt
-            case 2:
-                inStyle = .round
-            case 3:
-                inStyle = .square
-            default:
-                inStyle = .butt
-            }
-        }
-    }
+    @NSManaged var startAngle: CGFloat
+    @NSManaged var endAngle: CGFloat
     
-    var outStyle: CGLineCap = .butt
-    var inStyle: CGLineCap = .round
-    var progressRingStyle: Int = 1
-    var innerRingSpacing: CGFloat = 0
+    @NSManaged var outerRingWidth: CGFloat
+    @NSManaged var outerRingColor: UIColor
+    @NSManaged var outerCapStyle: CGLineCap
+    
+    @NSManaged var innerRingWidth: CGFloat
+    @NSManaged var innerRingColor: UIColor
+    @NSManaged var innerCapStyle: CGLineCap
+    @NSManaged var innerRingSpacing: CGFloat
+    
     var animationDuration: TimeInterval = 1.0
     var animated = false
+    
+    private var outerRadius: CGFloat?
     
     
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
         
         UIGraphicsPushContext(ctx)
-        let size = self.bounds.integral.size
+        let size = bounds.integral.size
         drawOuterRing(withSize: size, context: ctx)
         drawInnerRing(withSize: size, context: ctx)
         UIGraphicsPopContext()
@@ -74,19 +51,30 @@ class UICircularProgressRingLayer: CALayer {
         }
         
         let path = CGMutablePath()
-        
+        let width = bounds.width - 1
+        let height = bounds.width - 1
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radiusOut = max(bounds.width, bounds.height)/2 - outerRingWidth/2
+        outerRadius = max(width - 1, height - 1)/2 - outerRingWidth/2 - 1
         
         path.addArc(center: center,
-                    radius: radiusOut,
+                    radius: outerRadius!,
                     startAngle: startAngle.toRads,
                     endAngle: endAngle.toRads,
                     clockwise: true)
         
-        let stroked = path.copy(strokingWithWidth: outerRingWidth, lineCap: outStyle, lineJoin: .miter, miterLimit: 10)
         
-        context.addPath(stroked)
+        let stroked = path.copy(strokingWithWidth: outerRingWidth, lineCap: outerCapStyle, lineJoin: .miter, miterLimit: 10)
+        let dotted = path.copy(strokingWithWidth: outerRingWidth, lineCap: .round, lineJoin: .miter, miterLimit: 10)
+        
+        if progressRingStyle < 3 {
+            context.addPath(stroked)
+        } else if progressRingStyle == 3 {
+            context.addPath(stroked.copy(dashingWithPhase: 0.0, lengths: patternForDashes))
+        }
+        else {
+            context.addPath(dotted)
+        }
+        
         context.setStrokeColor(outerRingColor.cgColor)
         context.setFillColor(outerRingColor.cgColor)
         context.drawPath(using: .fillStroke)
@@ -102,10 +90,13 @@ class UICircularProgressRingLayer: CALayer {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let angleDiff: CGFloat = endAngle.toRads - startAngle.toRads
         let arcLenPerValue = angleDiff / CGFloat(maxValue)
-        var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing, bounds.height - outerRingWidth*2 - innerRingSpacing)/2) - innerRingWidth/2
+        let width = bounds.width - 1
+        let height = bounds.height - 1
+        
+        var radiusIn = outerRadius! - (innerRingWidth*2 - 2 + innerRingSpacing)
         
         if progressRingStyle >= 2 {
-            radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
+            radiusIn = (max(width, height)/2) - (outerRingWidth/2)
         }
         
         let innerEndAngle = arcLenPerValue * CGFloat(value) + startAngle.toRads
@@ -116,7 +107,7 @@ class UICircularProgressRingLayer: CALayer {
                     endAngle: innerEndAngle,
                     clockwise: false)
         
-        let stroked = path.copy(strokingWithWidth: innerRingWidth, lineCap: inStyle, lineJoin: .miter, miterLimit: 10)
+        let stroked = path.copy(strokingWithWidth: innerRingWidth, lineCap: innerCapStyle, lineJoin: .miter, miterLimit: 10)
         
         context.addPath(stroked)
         context.setStrokeColor(innerRingColor.cgColor)
@@ -135,7 +126,6 @@ class UICircularProgressRingLayer: CALayer {
     }
     
     override func action(forKey event: String) -> CAAction? {
-        print(event)
         if event == "value" && self.animated {
             let animation = CABasicAnimation(keyPath: "value")
             animation.fromValue = self.presentation()?.value(forKey: "value")
