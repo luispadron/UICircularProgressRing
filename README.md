@@ -53,7 +53,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ### Manually
 
-1. Simply download the `UICircularProgressRingView.swift` file from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
+1. Simply download the `UICircularProgressRingView.swift` and `UICircularProgressRingLayer.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
 
 ## Usage
 
@@ -74,7 +74,6 @@ override func viewDidLoad() {
   // Change any of the properties you'd like
   progressRing.maxValue = 50
   progressRing.innerRingColor = UIColor.blue
-  progressRing.animationDuration = 3.0
   // etc ...
 }
 ```
@@ -83,9 +82,9 @@ To set a value and animate the view
 
 ```swift
 // Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
-progressRing.setProgress(value: 49, animated: true) {
-  // The closure 
+progressRing.setProgress(value: 49, animationDuration: 2.0) {
   print("Done animating!")
+  // Do anything your heart desires...
 }
 ```
 
@@ -105,7 +104,7 @@ Take a look at the example project over [here](Example/)
 
 ## Upcoming enhancements
 
-* Add decreasing animation, currently nothing gets animated when decreasing value
+* ~~Add decreasing animation, currently nothing gets animated when decreasing value~~
 * ~~Better way of handling animation finishing, probably a completion block~~
 
 ## License
