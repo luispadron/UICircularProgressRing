@@ -22,8 +22,26 @@
 
 import UIKit
 
-@IBDesignable
-class UICircularProgressRingView: UIView {
+/**
+ 
+ # UICiruclarProgressRingView
+ 
+ This is the UIView subclass that creates and handles everything
+ to do with the progress ring
+ 
+ This class has a custom CALayer (UICircularProgressRingLayer) which
+ handels the drawing and animating of the view
+ 
+ The properties in this class correspond with the properties in UICircularProgressRingLayer.
+ When they are set in here, they are also set for the layer and drawn accordingly
+ 
+ Read the docs for what each property does and what can be customized.
+ 
+ ## Author:
+ Luis Padron
+ 
+ */
+@IBDesignable class UICircularProgressRingView: UIView {
     
     // MARK: Value Properties
     
@@ -32,7 +50,7 @@ class UICircularProgressRingView: UIView {
      
      ## Important ##
      Default = 0
-     When assigning to this var the view will be redrawn.
+     
      Recommended to assign value using setProgress(_:) instead as you have more control over what happens
      This is public simply for storyboard support
      
@@ -52,7 +70,6 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 100
      
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
@@ -62,6 +79,8 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.maxValue = self.maxValue
         }
     }
+    
+    // MARK:
     
     /**
      Variable for the style of the progress ring.
@@ -78,24 +97,21 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 1
      
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var progressRingStyle: Int = 1 {
+    @IBInspectable public var viewStyle: Int = 1 {
         didSet {
-            self.ringLayer.progressRingStyle = self.progressRingStyle
+            self.ringLayer.viewStyle = self.viewStyle
         }
     }
     
     /**
-     An array of CGFloats, used to calculate the dash length for progressRingStyle = 3
+     An array of CGFloats, used to calculate the dash length for viewStyle = 3
      
      ## Important ##
      Default = [7.0, 7.0]
-     
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
@@ -115,9 +131,7 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 0 (degrees)
      
-     Values should be in degrees
-     
-     When assigning to this var the view will be redrawn.
+     Values should be in degrees (they're converted to radians internally)
      
      ## Author:
      Luis Padron
@@ -137,9 +151,7 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 0 (degrees)
      
-     Values should be in degrees
-     
-     When assigning to this var the view will be redrawn.
+     Values should be in degrees (they're converted to radians internally)
      
      ## Author:
      Luis Padron
@@ -158,8 +170,6 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 10.0
      
-     When assigning to this var the view will be redrawn.
-     
      ## Author:
      Luis Padron
      */
@@ -168,13 +178,12 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.outerRingWidth = self.outerRingWidth
         }
     }
+    
     /**
      The color for the outer ring
      
      ## Important ##
      Default = UIColor.gray
-     
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
@@ -186,7 +195,7 @@ class UICircularProgressRingView: UIView {
     }
     
     /**
-     The style for the outer ring line (how it is drawn on screen)
+     The style for the outer ring end cap (how it is drawn on screen)
      Range [1,3]
      - 1: Line with a squared off end
      - 2: Line with a rounded off end
@@ -195,8 +204,6 @@ class UICircularProgressRingView: UIView {
      
      ## Important ##
      Default = 1
-     
-     When assigning to this var the view will be redrawn
      
      ## Author:
      Luis Padron
@@ -220,6 +227,14 @@ class UICircularProgressRingView: UIView {
         }
     }
     
+    /**
+     
+     A private outerRingCapStyle variable, this is set whenever the
+     IB compatible variable above is set.
+     
+     Basically in here because IB doesn't support CGLineCap selection.
+     
+     */
     private var outStyle: CGLineCap = .butt
     
     // MARK: Inner Ring properties
@@ -230,8 +245,6 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 5.0
      
-     When assigning to this var the view will be redrawn.
-     
      ## Author:
      Luis Padron
      */
@@ -240,13 +253,12 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.innerRingWidth = self.innerRingWidth
         }
     }
+    
     /**
      The color of the inner ring for the progres bar
      
      ## Important ##
      Default = UIColor.blue
-     
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
@@ -256,6 +268,7 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.innerRingColor = self.innerRingColor
         }
     }
+    
     /**
      The spacing between the outer ring and inner ring
      
@@ -263,8 +276,6 @@ class UICircularProgressRingView: UIView {
      This only applies when using progressRingStyle = 1
      
      Default = 1
-     
-     When assigning to this var the view will be redrawn.
      
      ## Author:
      Luis Padron
@@ -274,8 +285,9 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.innerRingSpacing = self.innerRingSpacing
         }
     }
+    
     /**
-     The style for the inner ring line (how it is drawn on screen)
+     The style for the inner ring end cap (how it is drawn on screen)
      
      Range [1,3]
      
@@ -287,7 +299,7 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = 2
      
-     When assigning to this var the view will be redrawn
+     
      
      ## Author:
      Luis Padron
@@ -311,24 +323,25 @@ class UICircularProgressRingView: UIView {
         }
     }
     
+    
+    /**
+     
+     A private innerRingCapStyle variable, this is set whenever the
+     IB compatible variable above is set.
+     
+     Basically in here because IB doesn't support CGLineCap selection.
+     
+     */
     private var inStyle: CGLineCap = .butt
     
     // MARK: Label
     
     /**
-     The private value label used to show value user has provided
-     
-     */
-    lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    /**
      A toggle for showing or hiding the value label.
      If false the current value will not be shown.
-     The value label is also never added as a subview or drawn
      
      ## Important ##
      Default = true
-     
-     When assigning to this var the view will be redrawn
      
      ## Author:
      Luis Padron
@@ -338,29 +351,30 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.shouldShowValueText = self.shouldShowValueText
         }
     }
+    
     /**
      The text color for the value label field
      
      ## Important ##
      Default = UIColor.black
      
-     When assigning to this var the view will be redrawn
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var textColor: UIColor = UIColor.black {
+    @IBInspectable public var fontColor: UIColor = UIColor.black {
         didSet {
-            self.ringLayer.textColor = self.textColor
+            self.ringLayer.fontColor = self.fontColor
         }
     }
+    
     /**
      The text/font size for the value label
      
      ## Important ##
      Default = 18
      
-     When assigning to this var the view will be redrawn
+     
      
      ## Author:
      Luis Padron
@@ -370,6 +384,7 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.fontSize = self.fontSize
         }
     }
+    
     /**
      The name of the custom font for value label to use
      Provide name as a string, and make sure "Fonts Provided by application"
@@ -378,7 +393,7 @@ class UICircularProgressRingView: UIView {
      ## Important ##
      Default = nil
      
-     When assigning to this var the view will be redrawn
+     
      
      ## Author:
      Luis Padron
@@ -388,15 +403,14 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.customFontWithName = self.customFontWithName
         }
     }
+    
     /**
      The name of the value indicator the value label will
      appened to the value
-     Example: "%" -> "100%"
+     Example: " GB" -> "100 GB"
      
      ## Important ##
      Default = "%"
-     
-     When assigning to this var the view will be redrawn
      
      ## Author:
      Luis Padron
@@ -406,6 +420,7 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.valueIndicator = self.valueIndicator
         }
     }
+    
     /**
      A toggle for showing or hiding floating points from
      the value in the value label
@@ -415,8 +430,6 @@ class UICircularProgressRingView: UIView {
      
      To customize number of decmial places to show, assign a value to decimalPlaces.
      
-     When assigning to this var the view will be redrawn
-     
      ## Author:
      Luis Padron
      */
@@ -425,6 +438,7 @@ class UICircularProgressRingView: UIView {
             self.ringLayer.showFloatingPoint = self.showFloatingPoint
         }
     }
+    
     /**
      The amount of decimal places to show in the value label
      
@@ -432,8 +446,6 @@ class UICircularProgressRingView: UIView {
      Default = 2
      
      Only used when showFloatingPoint = true
-     
-     When assigning to this var the view will be redrawn
      
      ## Author:
      Luis Padron
@@ -479,19 +491,26 @@ class UICircularProgressRingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        // Call the private initializer
         initialize()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        // Call the private initializer
         initialize()
     }
     
+    /**
+     This method initializes the custom CALayer
+     For some reason didSet doesnt get called during initializing, so
+     has to be done manually in here or else nothing would be drawn.
+     
+     */
     private func initialize() {
-        // Initialize the layer
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
-        self.ringLayer.progressRingStyle = progressRingStyle
+        self.ringLayer.viewStyle = viewStyle
         self.ringLayer.patternForDashes = patternForDashes
         self.ringLayer.startAngle = startAngle
         self.ringLayer.endAngle = endAngle
@@ -503,15 +522,19 @@ class UICircularProgressRingView: UIView {
         self.ringLayer.innerCapStyle = inStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
         self.ringLayer.shouldShowValueText = shouldShowValueText
-        self.ringLayer.textColor = textColor
+        self.ringLayer.fontColor = fontColor
         self.ringLayer.fontSize = fontSize
         self.ringLayer.customFontWithName = customFontWithName
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
     }
     
+    /**
+     Overriden because custom drawing is happening in UICircularProgressRingLayer
+     
+     */
     override func draw(_ rect: CGRect) {
-        self.setNeedsDisplay()
+        
     }
     
     
@@ -542,6 +565,5 @@ class UICircularProgressRingView: UIView {
         }
         self.ringLayer.value = value
         CATransaction.commit()
-        
     }
 }
