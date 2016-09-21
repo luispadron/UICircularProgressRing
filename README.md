@@ -34,7 +34,7 @@
 4. Open up the `.xcworkspace` that CocoaPods created
 5. Done!
 
-Note: If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).
+__Note:__ If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).
 
 Add this to the end of your `Podfile`
 
