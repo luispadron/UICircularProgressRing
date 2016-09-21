@@ -34,6 +34,19 @@
 4. Open up the `.xcworkspace` that CocoaPods created
 5. Done!
 
+Note: If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).
+
+Add this to the end of your `Podfile`
+
+```ruby
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |configuration|
+      configuration.build_settings['SWIFT_VERSION'] = "3.0"
+    end
+  end
+end
+```
 
 ### Carthage
 
