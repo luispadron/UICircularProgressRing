@@ -4,57 +4,74 @@
     <title>Protocols  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
   </head>
   <body>
+
+
     <a title="Protocols  Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="index.html">UICircularProgressRing Docs</a> (96% documented)</p>
-        <p class="header-right"><a href="https://github.com/luispadron"><img src="img/gh.png"/>View on GitHub</a></p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="index.html">UICircularProgressRing Reference</a>
-        <img id="carat" src="img/carat.png" />
-        Protocols  Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          UICircularProgressRing Docs
+        </a>
+         (96% documented)
       </p>
-    </div>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/luispadron/UICircularProgressRing">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">UICircularProgressRing Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Protocols  Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Classes.html">Classes</a>
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a>
+                <a class="nav-group-task-link" href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Protocols.html">Protocols</a>
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+                <a class="nav-group-task-link" href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
             <h1>Protocols</h1>
             <p>The following protocols are available globally.</p>
 
-          </section>
-          <section class="section task-group-section">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -68,15 +85,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The delegate for a UICirculaProgressRingView</p>
-
-<p>Just implement the progressRingAnimationDidFinish(_:) to be notified</p>
+                        <p>This is the protocol declaration for the UICircularProgressRingView delegate property</p>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
-<p>Make sure to set delegate for the UICircularProgressRingView</p>
+<p>When progress is done updating via UICircularProgressRingView.setValue(<em>:), the
+finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be called.</p>
 
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author</h2></p>
+<p>The ring will be passed to the delegate in order to keep track of multiple ring updates if needed.</p>
+
+<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
 
 <p>Luis Padron</p>
 
@@ -95,14 +113,15 @@
                 </li>
               </ul>
             </div>
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://www.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2016-09-16)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2016 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-10-04)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>
