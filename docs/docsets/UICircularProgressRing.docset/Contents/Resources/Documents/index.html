@@ -97,6 +97,18 @@
 <li><p>Open up the <code>.xcworkspace</code> that CocoaPods created</p></li>
 <li><p>Done!</p></li>
 </ol>
+
+<p><strong>Note:</strong> If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).</p>
+
+<p>Add this to the end of your <code>Podfile</code></p>
+<pre class="highlight ruby"><code><span class="n">post_install</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span>
+  <span class="n">installer</span><span class="p">.</span><span class="nf">pods_project</span><span class="p">.</span><span class="nf">targets</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target</span><span class="o">|</span>
+    <span class="n">target</span><span class="p">.</span><span class="nf">build_configurations</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">configuration</span><span class="o">|</span>
+      <span class="n">configuration</span><span class="p">.</span><span class="nf">build_settings</span><span class="p">[</span><span class="s1">'SWIFT_VERSION'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"3.0"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
 <a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
 
 <p><strong><em>Important note</em>: Carthage support for IBDesignable and IBInspectable is broken due to how frameworks work.
@@ -117,7 +129,7 @@ Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> f
 <a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
 
 <ol>
-<li>Simply download the <code>UICircularProgressRingView.swift</code> and <code>UICircularProgressRingLayer.swift</code> files from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
+<li>Simply download the <code>UICircularProgressRingView.swift</code>, <code>UICircularProgressRingLayer.swift</code> and <code>UICiruclarProgressRingDelegate.swift</code> files from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
 </ol>
 <a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
 <a href='#interface-builder' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='interface-builder'>Interface Builder</h3>
