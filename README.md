@@ -66,7 +66,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ### Manually
 
-1. Simply download the `UICircularProgressRingView.swift` and `UICircularProgressRingLayer.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
+1. Simply download the `UICircularProgressRingView.swift`, `UICircularProgressRingLayer.swift` and `UICiruclarProgressRingDelegate.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
 
 ## Usage
 
