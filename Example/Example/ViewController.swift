@@ -8,8 +8,8 @@
 
 import UIKit
 import UICircularProgressRing
-
-class ViewController: UIViewController {
+                                        // If you'd prefer to use a delegate then you can implement it and override func finishedUpdatingProgressFor(_ ring: UICircularProgressRingView)
+class ViewController: UIViewController, UICircularProgressRingDelegate  {
     
 
     @IBOutlet weak var ring1: UICircularProgressRingView!
@@ -19,10 +19,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Customize some properties
+        
         ring1.animationStyle = kCAMediaTimingFunctionLinear
         ring1.fontSize = 100
         ring2.fontColor = UIColor.gray
         ring3.maxValue = 100
+        
+        // Set the delegate
+        ring1.delegate = self
+        ring2.delegate = self
         
     }
     
@@ -34,11 +39,8 @@ class ViewController: UIViewController {
          animationDuration when set to 0 causes view to not be animated.
          Optionally you can also supply a completion handler
          */
-        ring1.setProgress(value: 99, animationDuration: 5) {
-            // When done setting to 99, go back to 0
-            print("Ring 1 finished")
-            self.ring1.setProgress(value: 0, animationDuration: 2, completion: nil)
-        }
+        
+        ring1.setProgress(value: 99, animationDuration: 5, completion: nil)
         
         ring2.setProgress(value: 56, animationDuration: 2) {
             // Increase it more, and customize some properties
@@ -57,6 +59,14 @@ class ViewController: UIViewController {
             print("Ring 3 finished")
         }
         
+    }
+    
+    func finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) {
+        if ring === ring1 {
+            print("From delegate: Ring 1 finished")
+        } else if ring === ring2 {
+            print("From delegate: Ring 2 finished")
+        }
     }
     
 }

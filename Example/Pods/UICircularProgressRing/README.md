@@ -34,6 +34,19 @@
 4. Open up the `.xcworkspace` that CocoaPods created
 5. Done!
 
+__Note:__ If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).
+
+Add this to the end of your `Podfile`
+
+```ruby
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |configuration|
+      configuration.build_settings['SWIFT_VERSION'] = "3.0"
+    end
+  end
+end
+```
 
 ### Carthage
 
@@ -53,7 +66,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ### Manually
 
-1. Simply download the `UICircularProgressRingView.swift` and `UICircularProgressRingLayer.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
+1. Simply download the `UICircularProgressRingView.swift`, `UICircularProgressRingLayer.swift` and `UICiruclarProgressRingDelegate.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
 
 ## Usage
 
