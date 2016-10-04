@@ -43,6 +43,21 @@ import UIKit
  */
 @IBDesignable open class UICircularProgressRingView: UIView {
     
+    // MARK: Delegate
+    /**
+     The delegate for the UICircularProgressRingView
+     
+     ## Important ##
+     When progress is done updating via UICircularProgressRingView.setValue(_:), the
+     finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
+     
+     The ring will be passed to the delegate in order to keep track of multiple ring updates if needed.
+     
+     ## Author:
+     Luis Padron
+     */
+    public var delegate: UICircularProgressRingDelegate?
+    
     // MARK: Value Properties
     
     /**
@@ -477,14 +492,14 @@ import UIKit
     
     /**
      Set the ring layer to the default layer, cated as custom layer
-    */
+     */
     var ringLayer: UICircularProgressRingLayer {
         return self.layer as! UICircularProgressRingLayer
     }
     
-    /** 
+    /**
      Overrides the default layer with the custom UICircularProgressRingLayer class
-    */
+     */
     override open class var layerClass: AnyClass {
         get {
             return UICircularProgressRingLayer.self
@@ -495,7 +510,7 @@ import UIKit
     
     /**
      Overriden public init to initialize the layer and view
-    */
+     */
     override public init(frame: CGRect) {
         super.init(frame: frame)
         // Call the private initializer
@@ -569,6 +584,7 @@ import UIKit
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Call the closure block
+            self.delegate?.finishedUpdatingProgressFor(self)
             if let comp = completion {
                 comp()
             }
