@@ -56,7 +56,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    var delegate: UICircularProgressRingDelegate?
+    public var delegate: UICircularProgressRingDelegate?
     
     // MARK: Value Properties
     
