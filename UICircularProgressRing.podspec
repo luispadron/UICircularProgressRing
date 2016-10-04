@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author             = { "Luis Padron" => "luispadronedu@gmail.com" }
   s.social_media_url   = "https://luispadron.com"
 
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, “9.0”
 
   s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{s.version}" }
 
