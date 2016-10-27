@@ -533,6 +533,10 @@ import UIKit
      
      */
     private func initialize() {
+        // Helps with pixelation and blurriness on retina devices
+        self.layer.contentsScale = UIScreen.main.scale
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale * 2
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
         self.ringLayer.viewStyle = viewStyle
