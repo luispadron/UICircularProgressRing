@@ -486,7 +486,11 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var animationStyle: String = kCAMediaTimingFunctionEaseIn
+    public var animationStyle: String = kCAMediaTimingFunctionEaseIn {
+        didSet {
+            self.ringLayer.animationStyle = self.animationStyle
+        }
+    }
     
     // MARK: CALayer
     
