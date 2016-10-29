@@ -40,6 +40,8 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
          Optionally you can also supply a completion handler
          */
         
+        // You can set the animationStyle like this
+        ring1.animationStyle = kCAMediaTimingFunctionLinear
         ring1.setProgress(value: 99, animationDuration: 5, completion: nil)
         
         ring2.setProgress(value: 56, animationDuration: 2) {
