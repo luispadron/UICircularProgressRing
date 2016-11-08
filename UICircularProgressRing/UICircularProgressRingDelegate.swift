@@ -25,7 +25,7 @@
  
  ## Important ##
  When progress is done updating via UICircularProgressRingView.setValue(_:), the
- finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
+ finishedUpdatingProgress(forRing: UICircularProgressRingView) will be called.
  
  The ring will be passed to the delegate in order to keep track of multiple ring updates if needed.
  
@@ -33,5 +33,5 @@
  Luis Padron
  */
 public protocol UICircularProgressRingDelegate {
-    func finishedUpdatingProgressFor(_ ring: UICircularProgressRingView)
+    func finishedUpdatingProgress(forRing: UICircularProgressRingView)
 }

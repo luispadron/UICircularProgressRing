@@ -474,7 +474,7 @@ import UIKit
     // MARK: Animation properties
     
     /**
-     The type of function animation to use
+     The type of animation function the ring view will use
      
      ## Important ##
      Default = kCAMediaTimingFunctionEaseIn
@@ -490,6 +490,19 @@ import UIKit
         didSet {
             self.ringLayer.animationStyle = self.animationStyle
         }
+    }
+    
+    /**
+     This returns whether or not the ring is currently animating
+     
+     ## Important ##
+     Get only property
+     
+     ## Author:
+     Luis Padron
+     */
+    public var isAnimating: Bool {
+        get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
     // MARK: CALayer
@@ -576,7 +589,7 @@ import UIKit
      
      - Parameter newVal: The value to be set for the progress ring
      - Parameter animationDuration: The time interval duration for the animation
-     - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)
+     - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
      
      ## Important ##
      Animatin duration = 0 will cause no animation to occur
@@ -584,7 +597,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)?) {
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)? = nil) {
         // Only animte if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
@@ -592,7 +605,7 @@ import UIKit
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Call the closure block
-            self.delegate?.finishedUpdatingProgressFor(self)
+            self.delegate?.finishedUpdatingProgress(forRing: self)
             if let comp = completion {
                 comp()
             }
