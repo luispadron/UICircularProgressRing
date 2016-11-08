@@ -1,3 +1,16 @@
+# Version 1.1.4
+
+Add isAnimating to UICircularProgressRingView
+
+- Added new property to determine whether ring is animating currently
+- Fix some typos
+- Made completion handler default to nil
+- Refactor delegate method call to look more Swifty
+
+## Breaking API Changes:
+
+Delegate method renamed to: `func finishedUpdatingProgress(forRing: UICircularProgressRingView)`
+
 # Version 1.0.0
 
 ### Hugh Mungus changes
