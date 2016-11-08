@@ -63,10 +63,10 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         
     }
     
-    func finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) {
-        if ring === ring1 {
+    func finishedUpdatingProgress(forRing: UICircularProgressRingView) {
+        if forRing === ring1 {
             print("From delegate: Ring 1 finished")
-        } else if ring === ring2 {
+        } else if forRing === ring2 {
             print("From delegate: Ring 2 finished")
         }
     }
