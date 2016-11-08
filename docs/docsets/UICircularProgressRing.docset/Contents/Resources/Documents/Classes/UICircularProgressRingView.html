@@ -969,7 +969,7 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The type of function animation to use</p>
+                        <p>The type of animation function the ring view will use</p>
 
 <p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
 
@@ -989,6 +989,41 @@ the value in the value label</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">animationStyle</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">kCAMediaTimingFunctionEaseIn</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView11isAnimatingSb"></a>
+                    <a name="//apple_ref/swift/Property/isAnimating" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView11isAnimatingSb">isAnimating</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This returns whether or not the ring is currently animating</p>
+
+<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+
+<p>Get only property</p>
+
+<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isAnimating</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -1154,7 +1189,7 @@ the value in the value label</p>
 
 <div class="aside aside-parameter">
     <p class="aside-title">Parameter</p>
-    Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)
+    Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
 
 </div>
 
@@ -1171,7 +1206,7 @@ the value in the value label</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1213,7 +1248,7 @@ the value in the value label</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion closure block that will be called when animtion is finished (also called when animationDuration = 0)</p>
+                                  <p>The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil</p>
 
                                 </div>
                               </td>
@@ -1232,7 +1267,7 @@ the value in the value label</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-10-04)</p>
+      <p>&copy; 2016 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-11-07)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
