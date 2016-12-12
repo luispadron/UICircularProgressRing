@@ -33,5 +33,5 @@
  Luis Padron
  */
 public protocol UICircularProgressRingDelegate {
-    func finishedUpdatingProgress(forRing: UICircularProgressRingView)
+    func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
 }
