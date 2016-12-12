@@ -610,6 +610,7 @@ import UIKit
                 comp()
             }
         }
+        self.value = value
         self.ringLayer.value = value
         CATransaction.commit()
     }

@@ -58,15 +58,16 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
             // We can also change the max value
             self.ring3.maxValue = 20
             self.ring3.setProgress(value: 15.32, animationDuration: 2, completion: nil)
-            print("Ring 3 finished")
+            print("Ring 3 finished, with value: \(self.ring3.value)")
         }
         
     }
     
-    func finishedUpdatingProgress(forRing: UICircularProgressRingView) {
-        if forRing === ring1 {
+    // The delegate method!
+    func finishedUpdatingProgress(forRing ring: UICircularProgressRingView) {
+        if ring === ring1 {
             print("From delegate: Ring 1 finished")
-        } else if forRing === ring2 {
+        } else if ring === ring2 {
             print("From delegate: Ring 2 finished")
         }
     }
