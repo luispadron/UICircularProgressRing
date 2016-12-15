@@ -1,10 +1,11 @@
 # Version 1.1.5
 
 Fix inaccesible ring value thanks to [@DaveKim](https://github.com/davekim)
-Update delegate method parameters for more Swift like method names/parameters
-Update Xcode project to recommended settings
 
-## Breaking API Changes:
+- Update delegate method parameters for more Swift like method names/parameters
+- Update Xcode project to recommended settings
+
+### API Changes:
 
 Delegate method renamed to: `func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)` (this is the last time, I swear)
 
