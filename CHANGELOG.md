@@ -1,3 +1,10 @@
+# Version 1.1.6
+
+Lower required iOS version to iOS 8.0
+
+- Lower podspec for compatability with iOS 8.0
+- Lower project deployment target to 8.0
+
 # Version 1.1.5
 
 Fix inaccesible ring value thanks to [@DaveKim](https://github.com/davekim)
