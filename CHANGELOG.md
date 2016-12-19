@@ -1,3 +1,11 @@
+# Version 1.1.7
+
+Fix bug where progress bar was pixelated inside of tableView from [issue #4](https://github.com/luispadron/UICircularProgressRing/issues/4)
+
+Thanks to [@DeepAnchor](https://github.com/DeepAnchor) for the fix!
+
+- Default background color for view and layer is now of `UIColor.clear`
+
 # Version 1.1.6
 
 Lower required iOS version to iOS 8.0
