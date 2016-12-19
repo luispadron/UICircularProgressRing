@@ -573,6 +573,10 @@ import UIKit
         self.ringLayer.customFontWithName = customFontWithName
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
+        
+        // Sets background color to clear, this fixes a bug when placing view in tableview cells
+        self.backgroundColor = UIColor.clear
+        self.ringLayer.backgroundColor = UIColor.clear.cgColor
     }
     
     /**
