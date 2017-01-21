@@ -20,7 +20,7 @@
         <a class="header-link" href="../index.html">
           UICircularProgressRing Docs
         </a>
-         (96% documented)
+         (100% documented)
       </p>
     
         <p class="header-col header-col--secondary">
@@ -104,9 +104,36 @@ When they are set in here, they are also set for the layer and drawn accordingly
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateGSqPS_30UICircularProgressRingDelegate__"></a>
+                    <a name="/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion"></a>
+                    <a name="//apple_ref/swift/Alias/ProgressCompletion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for the setProgress(:) method closure</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressCompletion</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateXwGSqPS_30UICircularProgressRingDelegate__"></a>
                     <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateGSqPS_30UICircularProgressRingDelegate__">delegate</a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateXwGSqPS_30UICircularProgressRingDelegate__">delegate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -132,7 +159,7 @@ finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be call
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1136,9 +1163,9 @@ the value in the value label</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView4drawFVSC6CGRectT_"></a>
-                    <a name="//apple_ref/swift/Method/draw(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView4drawFVSC6CGRectT_">draw(_:)</a>
+                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView26prepareForInterfaceBuilderFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/prepareForInterfaceBuilder()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView26prepareForInterfaceBuilderFT_T_">prepareForInterfaceBuilder()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1146,14 +1173,14 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Overriden because custom drawing is happening in UICircularProgressRingLayer</p>
+                        <p>Prepares to draw the view for use with interface builder</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">override</span> <span class="n">open</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">prepareForInterfaceBuilder</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -1206,7 +1233,7 @@ the value in the value label</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1267,7 +1294,7 @@ the value in the value label</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2016-12-12)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-01-20)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

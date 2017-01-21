@@ -579,11 +579,13 @@ import UIKit
     }
     
     /**
-     Overriden because custom drawing is happening in UICircularProgressRingLayer
+     Prepares to draw the view for use with interface builder
      */
-    override open func draw(_ rect: CGRect) {
-        
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        self.setNeedsDisplay()
     }
+    
     
     /**
      Typealias for the setProgress(:) method closure

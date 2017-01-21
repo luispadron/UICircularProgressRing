@@ -1,3 +1,16 @@
+# Version 1.1.8
+
+- Remove overriden `draw(rect:)` method to avoid any issues with performance and iOS drawing
+	- Implemented `prepareForInterfaceBuilder` to still allow for IB designing
+
+- Remove strong refrence to delegate
+    - UICircularProgressRingDelegate is now a class protocol
+    - UICircularProgressRingDelegate inside of UICircularProgressRingView is now weak to avoid retain cycle
+
+#### BREAKING CHANGES:
+
+- UICircularProgressRingDelegate is now a `protocol: class` can only be used on `class` types
+
 # Version 1.1.7
 
 Fix bug where progress bar was pixelated inside of tableView from [issue #4](https://github.com/luispadron/UICircularProgressRing/issues/4)
