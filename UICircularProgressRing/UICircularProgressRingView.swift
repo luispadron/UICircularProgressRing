@@ -56,7 +56,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var delegate: UICircularProgressRingDelegate?
+    public weak var delegate: UICircularProgressRingDelegate?
     
     // MARK: Value Properties
     
@@ -547,7 +547,6 @@ import UIKit
      This method initializes the custom CALayer
      For some reason didSet doesnt get called during initializing, so
      has to be done manually in here or else nothing would be drawn.
-     
      */
     private func initialize() {
         // Helps with pixelation and blurriness on retina devices
@@ -581,12 +580,15 @@ import UIKit
     
     /**
      Overriden because custom drawing is happening in UICircularProgressRingLayer
-     
      */
     override open func draw(_ rect: CGRect) {
         
     }
     
+    /**
+     Typealias for the setProgress(:) method closure
+    */
+    public typealias ProgressCompletion = (() -> Void)?
     
     /**
      Sets the current value for the progress ring
@@ -601,7 +603,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)? = nil) {
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion) {
         // Only animte if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration

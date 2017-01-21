@@ -32,6 +32,6 @@
  ## Author:
  Luis Padron
  */
-public protocol UICircularProgressRingDelegate {
+public protocol UICircularProgressRingDelegate: class {
     func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
 }
