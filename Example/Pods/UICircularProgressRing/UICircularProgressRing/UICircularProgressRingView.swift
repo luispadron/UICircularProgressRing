@@ -29,7 +29,7 @@ import UIKit
  This is the UIView subclass that creates and handles everything
  to do with the progress ring
  
- This class has a custom CALayer (UICircularProgressRingLayer) which
+ This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
  handels the drawing and animating of the view
  
  The properties in this class correspond with the properties in UICircularProgressRingLayer.
@@ -56,7 +56,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var delegate: UICircularProgressRingDelegate?
+    public weak var delegate: UICircularProgressRingDelegate?
     
     // MARK: Value Properties
     
@@ -505,7 +505,7 @@ import UIKit
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
-    // MARK: CALayer
+    // MARK: Layer
     
     /**
      Set the ring layer to the default layer, cated as custom layer
@@ -547,7 +547,6 @@ import UIKit
      This method initializes the custom CALayer
      For some reason didSet doesnt get called during initializing, so
      has to be done manually in here or else nothing would be drawn.
-     
      */
     private func initialize() {
         // Helps with pixelation and blurriness on retina devices
@@ -580,13 +579,17 @@ import UIKit
     }
     
     /**
-     Overriden because custom drawing is happening in UICircularProgressRingLayer
-     
+     Overriden because of custom layer drawing in UICircularProgressRingLayer
      */
-    override open func draw(_ rect: CGRect) {
-        
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
+    
+    /**
+     Typealias for the setProgress(:) method closure
+    */
+    public typealias ProgressCompletion = (() -> Void)?
     
     /**
      Sets the current value for the progress ring
@@ -601,7 +604,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: (() -> Void)? = nil) {
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion) {
         // Only animte if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration

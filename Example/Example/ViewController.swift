@@ -18,12 +18,12 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Customize some properties
         
+        // Customize some properties
         ring1.animationStyle = kCAMediaTimingFunctionLinear
         ring1.fontSize = 100
         ring2.fontColor = UIColor.gray
-        ring3.maxValue = 100
+        ring3.maxValue = 10
         
         // Set the delegate
         ring1.delegate = self
@@ -44,7 +44,7 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         ring1.animationStyle = kCAMediaTimingFunctionLinear
         ring1.setProgress(value: 99, animationDuration: 5, completion: nil)
         
-        ring2.setProgress(value: 56, animationDuration: 2) {
+        ring2.setProgress(value: 56, animationDuration: 2) { [unowned self] in
             // Increase it more, and customize some properties
             self.ring2.viewStyle = 4
             self.ring2.setProgress(value: 100, animationDuration: 3) {
@@ -54,11 +54,8 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         }
         
         // This has a max value of 10 so we set this accordingly and the view calculates how the progress should look
-        ring3.setProgress(value: 8.32, animationDuration: 6) {
-            // We can also change the max value
-            self.ring3.maxValue = 20
-            self.ring3.setProgress(value: 15.32, animationDuration: 2, completion: nil)
-            print("Ring 3 finished, with value: \(self.ring3.value)")
+        ring3.setProgress(value: 6.52, animationDuration: 6) {
+            print("Ring 3 finished")
         }
         
     }

@@ -95,6 +95,7 @@ To set a value and animate the view
 
 ```swift
 // Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
+// Remember to use unowned or weak self if refrencing self to avoid retain cycle
 progressRing.setProgress(value: 49, animationDuration: 2.0) {
   print("Done animating!")
   // Do anything your heart desires...
@@ -103,7 +104,7 @@ progressRing.setProgress(value: 49, animationDuration: 2.0) {
 
 ## Documentation
 
-Read all about everything there is to know here:
+Please read this before creating an issue about how to use the package:
 
 [DOCUMENTATION](http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
 
@@ -115,10 +116,6 @@ Take a look at the example project over [here](Example/)
 2. Open the `Example.xcworkspace` in Xcode
 3. Mess around and experiment!
 
-## Upcoming enhancements
-
-* ~~Add decreasing animation, currently nothing gets animated when decreasing value~~
-* ~~Better way of handling animation finishing, probably a completion block~~
 
 ## License
 

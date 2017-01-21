@@ -1,12 +1,12 @@
 PODS:
-  - UICircularProgressRing (1.1.7)
+  - UICircularProgressRing (1.1.9)
 
 DEPENDENCIES:
   - UICircularProgressRing
 
 SPEC CHECKSUMS:
-  UICircularProgressRing: aa42aecd035658bd7212fab6e2feabc8dcc72fae
+  UICircularProgressRing: a047fe1070e13c5d151b9c38a3a669604b8a3a88
 
 PODFILE CHECKSUM: bff4735b1f3d9f2f90f144e8cc121cf8af67e40b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.1

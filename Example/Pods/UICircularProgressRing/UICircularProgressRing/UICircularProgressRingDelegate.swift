@@ -32,6 +32,12 @@
  ## Author:
  Luis Padron
  */
-public protocol UICircularProgressRingDelegate {
+public protocol UICircularProgressRingDelegate: class {
+    /**
+     Delegate call back, called when progress ring is done animating for current value
+     
+     - Parameter ring: The ring which finished animating
+     
+    */
     func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
 }
