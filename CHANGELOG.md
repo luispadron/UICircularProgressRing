@@ -1,3 +1,9 @@
+# Version 1.1.9
+
+
+- Revert back to using `draw(rect:)` as was having issues with nib loaded views?
+- Change class of UICircularProgressRingLayer from `CALayer` to `CAShapeLayer`
+
 # Version 1.1.8
 
 - Remove overriden `draw(rect:)` method to avoid any issues with performance and iOS drawing

@@ -48,18 +48,18 @@ private extension UILabel {
 }
 
 /**
- The internal subclass for CALayer.
+ The internal subclass for CAShapeLayer.
  This is the class that handles all the drawing and animation.
  This class is not interacted with, instead properties are set in UICircularProgressRingView
  and those are delegated to here.
  
  */
-class UICircularProgressRingLayer: CALayer {
+class UICircularProgressRingLayer: CAShapeLayer {
     
     // MARK: Properties
     
     /**
-     The NSManaged properties for the CALayer.
+     The NSManaged properties for the layer.
      These properties are initialized in UICircularProgressRingView.
      They're also assigned by mutating UICircularProgressRingView.
      */

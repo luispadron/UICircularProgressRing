@@ -75,7 +75,7 @@
 <p>This is the UIView subclass that creates and handles everything
 to do with the progress ring</p>
 
-<p>This class has a custom CALayer (UICircularProgressRingLayer) which
+<p>This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
 handels the drawing and animating of the view</p>
 
 <p>The properties in this class correspond with the properties in UICircularProgressRingLayer.
@@ -1061,10 +1061,10 @@ the value in the value label</p>
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/CALayer"></a>
-                <a name="//apple_ref/swift/Section/CALayer" class="dashAnchor"></a>
-                <a href="#/CALayer">
-                  <h3 class="section-name">CALayer</h3>
+                <a name="/Layer"></a>
+                <a name="//apple_ref/swift/Section/Layer" class="dashAnchor"></a>
+                <a href="#/Layer">
+                  <h3 class="section-name">Layer</h3>
                 </a>
               </div>
               <ul class="item-container">
@@ -1163,9 +1163,9 @@ the value in the value label</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView26prepareForInterfaceBuilderFT_T_"></a>
-                    <a name="//apple_ref/swift/Method/prepareForInterfaceBuilder()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView26prepareForInterfaceBuilderFT_T_">prepareForInterfaceBuilder()</a>
+                    <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView4drawFVSC6CGRectT_"></a>
+                    <a name="//apple_ref/swift/Method/draw(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView4drawFVSC6CGRectT_">draw(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1173,14 +1173,14 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Prepares to draw the view for use with interface builder</p>
+                        <p>Overriden because of custom layer drawing in UICircularProgressRingLayer</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">prepareForInterfaceBuilder</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>

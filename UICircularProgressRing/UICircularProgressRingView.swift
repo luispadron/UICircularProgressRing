@@ -29,7 +29,7 @@ import UIKit
  This is the UIView subclass that creates and handles everything
  to do with the progress ring
  
- This class has a custom CALayer (UICircularProgressRingLayer) which
+ This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
  handels the drawing and animating of the view
  
  The properties in this class correspond with the properties in UICircularProgressRingLayer.
@@ -505,7 +505,7 @@ import UIKit
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
-    // MARK: CALayer
+    // MARK: Layer
     
     /**
      Set the ring layer to the default layer, cated as custom layer
@@ -579,11 +579,10 @@ import UIKit
     }
     
     /**
-     Prepares to draw the view for use with interface builder
+     Overriden because of custom layer drawing in UICircularProgressRingLayer
      */
-    open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        self.setNeedsDisplay()
+    open override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     
