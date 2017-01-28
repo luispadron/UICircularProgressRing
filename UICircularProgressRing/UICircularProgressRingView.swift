@@ -604,7 +604,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion) {
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion = nil) {
         // Only animte if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
