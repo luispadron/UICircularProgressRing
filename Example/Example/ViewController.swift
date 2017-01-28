@@ -54,9 +54,7 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         }
         
         // This has a max value of 10 so we set this accordingly and the view calculates how the progress should look
-        ring3.setProgress(value: 6.52, animationDuration: 6) {
-            print("Ring 3 finished")
-        }
+        ring3.setProgress(value: 6.52, animationDuration: 6)
         
     }
     

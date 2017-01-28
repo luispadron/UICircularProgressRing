@@ -66,8 +66,8 @@ import UIKit
      ## Important ##
      Default = 0
      
-     Recommended to assign value using setProgress(_:) instead as you have more control over what happens
-     This is public simply for storyboard support
+     The current value of the progress ring, use setProgress(value:) to alter the value with the option
+     to animate and have a completion handler.
      
      ## Author:
      Luis Padron
@@ -164,7 +164,7 @@ import UIKit
      I.e: 90 degrees is at the bottom and 270 degrees is at the top
      
      ## Important ##
-     Default = 0 (degrees)
+     Default = 360 (degrees)
      
      Values should be in degrees (they're converted to radians internally)
      
@@ -244,13 +244,13 @@ import UIKit
     
     /**
      
-     A private outerRingCapStyle variable, this is set whenever the
+     A internal outerRingCapStyle variable, this is set whenever the
      IB compatible variable above is set.
      
      Basically in here because IB doesn't support CGLineCap selection.
      
      */
-    private var outStyle: CGLineCap = .butt
+    internal var outStyle: CGLineCap = .butt
     
     // MARK: Inner Ring properties
     
@@ -341,13 +341,13 @@ import UIKit
     
     /**
      
-     A private innerRingCapStyle variable, this is set whenever the
+     A internal innerRingCapStyle variable, this is set whenever the
      IB compatible variable above is set.
      
      Basically in here because IB doesn't support CGLineCap selection.
      
      */
-    private var inStyle: CGLineCap = .butt
+    internal var inStyle: CGLineCap = .round
     
     // MARK: Label
     
@@ -530,7 +530,7 @@ import UIKit
      */
     override public init(frame: CGRect) {
         super.init(frame: frame)
-        // Call the private initializer
+        // Call the internal initializer
         initialize()
     }
     
@@ -539,7 +539,7 @@ import UIKit
      */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        // Call the private initializer
+        // Call the internal initializer
         initialize()
     }
     
@@ -548,7 +548,7 @@ import UIKit
      For some reason didSet doesnt get called during initializing, so
      has to be done manually in here or else nothing would be drawn.
      */
-    private func initialize() {
+    internal func initialize() {
         // Helps with pixelation and blurriness on retina devices
         self.layer.contentsScale = UIScreen.main.scale
         self.layer.shouldRasterize = true
@@ -589,7 +589,7 @@ import UIKit
     /**
      Typealias for the setProgress(:) method closure
     */
-    public typealias ProgressCompletion = (() -> Void)?
+    public typealias ProgressCompletion = (() -> Void)
     
     /**
      Sets the current value for the progress ring
@@ -604,7 +604,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion) {
+    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion? = nil) {
         // Only animte if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
@@ -613,9 +613,7 @@ import UIKit
         CATransaction.setCompletionBlock {
             // Call the closure block
             self.delegate?.finishedUpdatingProgress(forRing: self)
-            if let comp = completion {
-                comp()
-            }
+            completion?()
         }
         self.value = value
         self.ringLayer.value = value
