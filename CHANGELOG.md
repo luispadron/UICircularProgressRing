@@ -1,3 +1,13 @@
+# Version 1.2.0
+
+
+- Default completion handler to nil for `setProgress(:)`
+- Fix issue with module version number, now actually supports __iOS 8__
+- Added some basic tests for right now
+- Refactor some comments
+- Remove `private` access, set to `internal` for unit testing
+- Fix default with inCapStyle being sett to wrong value
+
 # Version 1.1.9
 
 
