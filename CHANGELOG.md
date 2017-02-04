@@ -1,3 +1,7 @@
+# Version 1.2.1
+
+- Fix line dash property when using `viewStyle = 3` not being set properly, thanks to [RomainBSQT](https://github.com/RomainBSQT).
+
 # Version 1.2.0
 
 
