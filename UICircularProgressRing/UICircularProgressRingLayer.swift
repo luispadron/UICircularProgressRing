@@ -149,10 +149,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Sets path properties according to how the user has decided to customize the view.
      */
     private func drawOuterRing() {
-        guard outerRingWidth > 0 else {
-            print("Not drawing outer ring since outer Ring Width <= 0")
-            return
-        }
+        guard outerRingWidth > 0 else { return }
         
         let width = bounds.width
         let height = bounds.width
@@ -185,10 +182,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Sets path properties according to how the user has decided to customize the view.
      */
     private func drawInnerRing() {
-        guard innerRingWidth > 0 else {
-            print("Not drawing inner ring since Inner Ring Width <= 0")
-            return
-        }
+        guard innerRingWidth > 0 else { return }
         
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         
@@ -224,10 +218,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Only drawn if shouldShowValueText = true
      */
     private func drawValueLabel() {
-        guard shouldShowValueText else {
-            print("Not drawing value label because shouldShowValueText = false")
-            return
-        }
+        guard shouldShowValueText else { return }
         
         // Draws the text field
         // Some basic label properties are set
