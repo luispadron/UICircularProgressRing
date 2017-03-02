@@ -1,3 +1,11 @@
+# Version 1.3.0
+
+- Add a property for accessing the current value of the progress ring while animating, closes [issue #14](https://github.com/luispadron/UICircularProgressRing/issues/14)
+- Add fix for removing a currently running animation when calling `setProgress(:)` while ring is animating, closes [issue #19](https://github.com/luispadron/UICircularProgressRing/issues/19)
+- Fixed access levels for variables and functions, changed from `public` to `open` to allow subclassing.
+- Updated `docs` by running Jazzy
+
+
 # Version 1.2.2
 
 - Remove useless print statements from guards

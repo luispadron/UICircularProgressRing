@@ -56,7 +56,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public weak var delegate: UICircularProgressRingDelegate?
+    open weak var delegate: UICircularProgressRingDelegate?
     
     // MARK: Value Properties
     
@@ -66,15 +66,36 @@ import UIKit
      ## Important ##
      Default = 0
      
+     This cannot be used to get the value while the ring is animating, to get current value while animating use `currentValue`
+     
      The current value of the progress ring, use setProgress(value:) to alter the value with the option
      to animate and have a completion handler.
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var value: CGFloat = 0 {
+    @IBInspectable open var value: CGFloat = 0 {
         didSet {
             self.ringLayer.value = self.value
+        }
+    }
+    
+    /**
+     The current value of the progress ring
+     
+     This will return the current value of the progress ring, if the ring is animating it will be updated in real time. 
+     If the ring is not currently animating then the value returned will be the `value` property of the ring
+     
+     ## Author:
+     Luis Padron
+     */
+    open var currentValue: CGFloat? {
+        get {
+            if isAnimating {
+                return self.layer.presentation()?.value(forKey: "value") as? CGFloat
+            } else {
+                return self.value
+            }
         }
     }
     
@@ -89,7 +110,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var maxValue: CGFloat = 100 {
+    @IBInspectable open var maxValue: CGFloat = 100 {
         didSet {
             self.ringLayer.maxValue = self.maxValue
         }
@@ -116,7 +137,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var viewStyle: Int = 1 {
+    @IBInspectable open var viewStyle: Int = 1 {
         didSet {
             self.ringLayer.viewStyle = self.viewStyle
         }
@@ -131,7 +152,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var patternForDashes: [CGFloat] = [7.0, 7.0] {
+    open var patternForDashes: [CGFloat] = [7.0, 7.0] {
         didSet {
             self.ringLayer.patternForDashes = self.patternForDashes
         }
@@ -151,7 +172,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var startAngle: CGFloat = 0 {
+    @IBInspectable open var startAngle: CGFloat = 0 {
         didSet {
             self.ringLayer.startAngle = self.startAngle
         }
@@ -171,7 +192,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var endAngle: CGFloat = 360 {
+    @IBInspectable open var endAngle: CGFloat = 360 {
         didSet {
             self.ringLayer.endAngle = self.endAngle
         }
@@ -188,7 +209,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var outerRingWidth: CGFloat = 10.0 {
+    @IBInspectable open var outerRingWidth: CGFloat = 10.0 {
         didSet {
             self.ringLayer.outerRingWidth = self.outerRingWidth
         }
@@ -203,7 +224,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var outerRingColor: UIColor = UIColor.gray {
+    @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
         didSet {
             self.ringLayer.outerRingColor = self.outerRingColor
         }
@@ -223,7 +244,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var outerRingCapStyle: Int = 1 {
+    @IBInspectable open var outerRingCapStyle: Int = 1 {
         didSet {
             switch self.outerRingCapStyle{
             case 1:
@@ -263,7 +284,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var innerRingWidth: CGFloat = 5.0 {
+    @IBInspectable open var innerRingWidth: CGFloat = 5.0 {
         didSet {
             self.ringLayer.innerRingWidth = self.innerRingWidth
         }
@@ -278,7 +299,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var innerRingColor: UIColor = UIColor.blue {
+    @IBInspectable open var innerRingColor: UIColor = UIColor.blue {
         didSet {
             self.ringLayer.innerRingColor = self.innerRingColor
         }
@@ -295,7 +316,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var innerRingSpacing: CGFloat = 1 {
+    @IBInspectable open var innerRingSpacing: CGFloat = 1 {
         didSet {
             self.ringLayer.innerRingSpacing = self.innerRingSpacing
         }
@@ -319,7 +340,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var innerRingCapStyle: Int = 2 {
+    @IBInspectable open var innerRingCapStyle: Int = 2 {
         didSet {
             switch self.innerRingCapStyle {
             case 1:
@@ -361,7 +382,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var shouldShowValueText: Bool = true {
+    @IBInspectable open var shouldShowValueText: Bool = true {
         didSet {
             self.ringLayer.shouldShowValueText = self.shouldShowValueText
         }
@@ -377,7 +398,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var fontColor: UIColor = UIColor.black {
+    @IBInspectable open var fontColor: UIColor = UIColor.black {
         didSet {
             self.ringLayer.fontColor = self.fontColor
         }
@@ -394,7 +415,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var fontSize: CGFloat = 18 {
+    @IBInspectable open var fontSize: CGFloat = 18 {
         didSet {
             self.ringLayer.fontSize = self.fontSize
         }
@@ -413,7 +434,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var customFontWithName: String? {
+    @IBInspectable open var customFontWithName: String? {
         didSet {
             self.ringLayer.customFontWithName = self.customFontWithName
         }
@@ -430,7 +451,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var valueIndicator: String = "%" {
+    @IBInspectable open var valueIndicator: String = "%" {
         didSet {
             self.ringLayer.valueIndicator = self.valueIndicator
         }
@@ -448,7 +469,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var showFloatingPoint: Bool = false {
+    @IBInspectable open var showFloatingPoint: Bool = false {
         didSet {
             self.ringLayer.showFloatingPoint = self.showFloatingPoint
         }
@@ -465,7 +486,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable public var decimalPlaces: Int = 2 {
+    @IBInspectable open var decimalPlaces: Int = 2 {
         didSet {
             self.ringLayer.decimalPlaces = self.decimalPlaces
         }
@@ -486,7 +507,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var animationStyle: String = kCAMediaTimingFunctionEaseIn {
+    open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
         didSet {
             self.ringLayer.animationStyle = self.animationStyle
         }
@@ -501,7 +522,7 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    public var isAnimating: Bool {
+    open var isAnimating: Bool {
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
     }
     
@@ -510,7 +531,7 @@ import UIKit
     /**
      Set the ring layer to the default layer, cated as custom layer
      */
-    var ringLayer: UICircularProgressRingLayer {
+    internal var ringLayer: UICircularProgressRingLayer {
         return self.layer as! UICircularProgressRingLayer
     }
     
@@ -592,20 +613,22 @@ import UIKit
     public typealias ProgressCompletion = (() -> Void)
     
     /**
-     Sets the current value for the progress ring
+     Sets the current value for the progress ring, calling this method while ring is animating will cancel the previously set animation and start a new one.
      
      - Parameter newVal: The value to be set for the progress ring
      - Parameter animationDuration: The time interval duration for the animation
      - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
      
      ## Important ##
-     Animatin duration = 0 will cause no animation to occur
+     Animatin duration = 0 will cause no animation to occur, and value will instantly be set
      
      ## Author:
      Luis Padron
      */
-    public func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion? = nil) {
-        // Only animte if duration sent is greater than zero
+    open func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion? = nil) {
+        // Remove the current animation, so that new can be processed
+        if isAnimating { self.layer.removeAnimation(forKey: "value") }
+        // Only animate if duration sent is greater than zero
         self.ringLayer.animated = animationDuration > 0
         self.ringLayer.animationDuration = animationDuration
         // Create a transaction to be notified when animation is complete
