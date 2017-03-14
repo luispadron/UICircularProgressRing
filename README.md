@@ -108,7 +108,7 @@ progressRing.setProgress(value: 49, animationDuration: 2.0) {
 
 Please read this before creating an issue about how to use the package:
 
-[DOCUMENTATION](http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
+[DOCUMENTATION](https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRingView.html)
 
 ## Example project
 
