@@ -1,12 +1,12 @@
-![Banner](/GitHubAssets/banner.png)
+![Banner](/.github/banner.png)
 
 <h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
 
 <p align="center">
-<img src="/GitHubAssets/demo.gif"/>  
+<img src="/.github/demo.gif"/>  
 </p>
 
-![Styles](/GitHubAssets/styles-banner.png)
+![Styles](/.github/styles-banner.png)
 
 ## Features
 
@@ -76,7 +76,7 @@ Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularPr
 
 Design your heart out
 
-![ib-demo.gif](/GitHubAssets/ib-demo.gif)
+![ib-demo.gif](/.github/ib-demo.gif)
 
 ### Code
 
