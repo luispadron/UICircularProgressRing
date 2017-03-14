@@ -8,6 +8,8 @@
 
 ![Styles](/.github/styles-banner.png)
 
+### Looking for people to help maintain and contribute, email me [here](mailto:luis@luispadron.com)
+
 ## Features
 
 * Interface builder designable
