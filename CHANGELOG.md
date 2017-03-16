@@ -1,3 +1,18 @@
+# Version 1.4.0
+
+- Remove the `fontSize` and `customFontWithName` properties
+- Add new `font` property of type `UIFont` to handle all font related configuration
+- Update documentation to include changes
+
+#### Breaking API Changes in 1.4.0
+
+- Since no longer using `fontSize` or `customFontWithName` any projects using these properties will break until updated to newer `font` and to use `UIFont`. 
+- Any interface builder views which used `fontSize` or `customFontWithName` will now complain about breaking. To fix this simply go into the class inspector of the view, under `User Defined Run Time Attributes` remove any of the `fontSize` or `customFontWithName` values. Then refresh the views by doing `Editor -> Refresh Views`
+
+__Why was this done?__
+
+This made sense to do because it was slightly confusing how to accomplish fonts and interface builder since apple does not add support for `IBDesignable` fonts. I've decided to sacrifice the interface builder support for code only font management, because this leads to safer use of fonts since the view is no longer handeling the creation of `UIFont` itself. This also adds more customization to the view since previously you could only change the font size and font. Now users can do whatever is allowed with UIFont, such as using defined font families, etc.
+
 # Version 1.3.0
 
 - Add a property for accessing the current value of the progress ring while animating, closes [issue #14](https://github.com/luispadron/UICircularProgressRing/issues/14)

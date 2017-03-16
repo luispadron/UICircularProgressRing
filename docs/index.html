@@ -63,124 +63,16 @@
         <section class="section">
           <div class="section-content">
             
-            <p><img src="/.github/banner.png" alt="Banner"></p>
+            <a href='#uicircularprogressring' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='uicircularprogressring'>UICircularProgressRing</h1>
+<a href='#a-highly-customizable-circular-progress-bar-for-ios-written-in-swift-3' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='a-highly-customizable-circular-progress-bar-for-ios-written-in-swift-3'>A highly customizable circular progress bar for iOS written in Swift 3</h3>
 
-<h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
-
-<p align="center">
-<img src="/.github/demo.gif"/>  
-</p>
-
-<p><img src="/.github/styles-banner.png" alt="Styles"></p>
-<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
-
-<ul>
-<li>Interface builder designable</li>
-<li>Highly customizable</li>
-<li>Animation for progress and value text built in</li>
-<li>Written in Swift 3 and using Xcode 8</li>
-</ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#cocoapods-recommended' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods-recommended'>CocoaPods (Recommended)</h3>
-
-<ol>
-<li>Install <a href="https://cocoapods.org">CocoaPods</a></li>
-<li><p>Add this repo to your <code>Podfile</code></p>
-<pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'Example'</span> <span class="k">do</span>
-    <span class="c1"># IMPORTANT: Make sure use_frameworks! is included at the top of the file</span>
-    <span class="n">use_frameworks!</span>
-
-    <span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span>
-<span class="k">end</span>
-</code></pre></li>
-<li><p>Run <code>pod install</code></p></li>
-<li><p>Open up the <code>.xcworkspace</code> that CocoaPods created</p></li>
-<li><p>Done!</p></li>
-</ol>
-
-<p><strong>Note:</strong> If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).</p>
-
-<p>Add this to the end of your <code>Podfile</code></p>
-<pre class="highlight ruby"><code><span class="n">post_install</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span>
-  <span class="n">installer</span><span class="p">.</span><span class="nf">pods_project</span><span class="p">.</span><span class="nf">targets</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target</span><span class="o">|</span>
-    <span class="n">target</span><span class="p">.</span><span class="nf">build_configurations</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">configuration</span><span class="o">|</span>
-      <span class="n">configuration</span><span class="p">.</span><span class="nf">build_settings</span><span class="p">[</span><span class="s1">'SWIFT_VERSION'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"3.0"</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+<p>A highly customizable circular progress bar for iOS written in Swift 3. With Interface Builder support.</p>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='installation'>Installation</h3>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span>
 </code></pre>
-<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+<a href='#authors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='authors'>Authors</h3>
 
-<p><strong><em>Important note</em>: Carthage support for IBDesignable and IBInspectable is broken due to how frameworks work.
-So if you decide on using Carthage, you will not be able to use IB to design this view.
-Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> for the issue.</strong></p>
-
-<p>To use with <a href="https://github.com/Carthage/Carthage">Carthage</a></p>
-
-<ol>
-<li><p>Make sure Carthage is installed </p>
-
-<p><code>brew install carthage</code></p></li>
-<li><p>Add this repo to your Cartfile</p>
-
-<p><code>github &quot;luispadron/UICircularProgressRing&quot;</code> </p></li>
-<li><p>Drag the <code>UICircularProgressRing.framework</code> from <code>MyProjDir/Carthage/Builds/iOS/UICircularProgressRing</code> into the <code>General -&gt; Embeded Binaries</code> section of your Xcode project.</p></li>
-</ol>
-<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
-
-<ol>
-<li>Simply download the <code>UICircularProgressRingView.swift</code>, <code>UICircularProgressRingLayer.swift</code> and <code>UICiruclarProgressRingDelegate.swift</code> files from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
-</ol>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
-<a href='#interface-builder' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='interface-builder'>Interface Builder</h3>
-
-<p>Simply drag a <code>UIView</code> into your storyboard. Make sure to subclass <code>UICircularProgressRingView</code> and that the module points <code>UICircularProgressRing</code>. </p>
-
-<p>Design your heart out</p>
-
-<p><img src="/.github/ib-demo.gif" alt="ib-demo.gif"></p>
-<a href='#code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code'>Code</h3>
-<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Create the view</span>
-  <span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="kt">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
-  <span class="c1">// Change any of the properties you'd like</span>
-  <span class="n">progressRing</span><span class="o">.</span><span class="n">maxValue</span> <span class="o">=</span> <span class="mi">50</span>
-  <span class="n">progressRing</span><span class="o">.</span><span class="n">innerRingColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span>
-  <span class="c1">// etc ...</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>To set a value and animate the view</p>
-<pre class="highlight swift"><code><span class="c1">// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)</span>
-<span class="c1">// Remember to use unowned or weak self if refrencing self to avoid retain cycle</span>
-<span class="n">progressRing</span><span class="o">.</span><span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nf">print</span><span class="p">(</span><span class="s">"Done animating!"</span><span class="p">)</span>
-  <span class="c1">// Do anything your heart desires...</span>
-<span class="p">}</span>
-</code></pre>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
-
-<p>Please read this before creating an issue about how to use the package:</p>
-
-<p><a href="http://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html">DOCUMENTATION</a></p>
-<a href='#example-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example-project'>Example project</h2>
-
-<p>Take a look at the example project over <a href="Example/">here</a></p>
-
-<ol>
-<li>Download it</li>
-<li>Open the <code>Example.xcworkspace</code> in Xcode</li>
-<li>Mess around and experiment!</li>
-</ol>
-<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
-<pre class="highlight plaintext"><code>Copyright (c) 2016 Luis Padron
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-</code></pre>
+<p>Luis</p>
 
           </div>
         </section>
@@ -189,7 +81,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-03-14)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-03-16)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

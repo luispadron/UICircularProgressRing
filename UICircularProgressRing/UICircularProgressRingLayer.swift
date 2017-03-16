@@ -83,8 +83,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     
     @NSManaged var shouldShowValueText: Bool
     @NSManaged var fontColor: UIColor
-    @NSManaged var fontSize: CGFloat
-    @NSManaged var customFontWithName: String?
+    @NSManaged var font: UIFont
     @NSManaged var valueIndicator: String
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
@@ -222,13 +221,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
         
         // Draws the text field
         // Some basic label properties are set
-        valueLabel.font = UIFont.systemFont(ofSize: fontSize)
+        valueLabel.font = self.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
-        
-        if let fName = customFontWithName {
-            valueLabel.font = UIFont(name: fName, size: fontSize)
-        }
         
         valueLabel.update(withValue: value, valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
