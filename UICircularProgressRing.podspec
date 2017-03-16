@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/luispadron/UICircularProgressRing"
-  s.screenshots  = "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/styles-banner.png", "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/GitHubAssets/demo.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png", "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
