@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         // Customize some properties
         ring1.animationStyle = kCAMediaTimingFunctionLinear
         ring1.fontSize = 100
+        ring1.valueIndicator = "%"
         ring2.fontColor = UIColor.gray
         ring3.maxValue = 10
         
