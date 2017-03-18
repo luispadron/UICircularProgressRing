@@ -570,6 +570,7 @@ import UIKit
         self.ringLayer.innerCapStyle = inStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
         self.ringLayer.shouldShowValueText = shouldShowValueText
+        self.ringLayer.valueIndicator = valueIndicator
         self.ringLayer.fontColor = fontColor
         self.ringLayer.font = font
         self.ringLayer.showFloatingPoint = showFloatingPoint

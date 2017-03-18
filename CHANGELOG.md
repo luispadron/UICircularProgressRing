@@ -1,3 +1,15 @@
+# Version 1.4.1
+
+- Fix bug where the default `valueIndicator` _'%'_ - was not set on initialization
+
+#### Breaking API Changes in 1.4.1
+
+Nothing really, but previously if you had not set the `valueIndicator` property then there would be no value indicator shown to the right of the value. This was not inteded and has been fixed in this release. If you prefer to have no value indicator, you must now explicitly set the property to empty
+
+```swift
+ring.valueIndicator = ""
+```
+
 # Version 1.4.0
 
 - Remove the `fontSize` and `customFontWithName` properties
