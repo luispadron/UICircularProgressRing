@@ -405,38 +405,20 @@ import UIKit
     }
     
     /**
-     The text/font size for the value label
+     The font to be used for the progress indicator.
+     All font attributes are specified here except for font color, which is done using `fontColor`.
+     
      
      ## Important ##
-     Default = 18
-     
+     Default = UIFont.systemFont(ofSize: 18)
      
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable open var fontSize: CGFloat = 18 {
+    @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
         didSet {
-            self.ringLayer.fontSize = self.fontSize
-        }
-    }
-    
-    /**
-     The name of the custom font for value label to use
-     Provide name as a string, and make sure "Fonts Provided by application"
-     is set inside the Info.plist of the project.
-     
-     ## Important ##
-     Default = nil
-     
-     
-     
-     ## Author:
-     Luis Padron
-     */
-    @IBInspectable open var customFontWithName: String? {
-        didSet {
-            self.ringLayer.customFontWithName = self.customFontWithName
+            self.ringLayer.font = self.font
         }
     }
     
@@ -588,9 +570,9 @@ import UIKit
         self.ringLayer.innerCapStyle = inStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
         self.ringLayer.shouldShowValueText = shouldShowValueText
+        self.ringLayer.valueIndicator = valueIndicator
         self.ringLayer.fontColor = fontColor
-        self.ringLayer.fontSize = fontSize
-        self.ringLayer.customFontWithName = customFontWithName
+        self.ringLayer.font = font
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
         

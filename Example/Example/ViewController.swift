@@ -21,7 +21,7 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
         
         // Customize some properties
         ring1.animationStyle = kCAMediaTimingFunctionLinear
-        ring1.fontSize = 100
+        ring1.font = UIFont.systemFont(ofSize: 70)
         ring2.fontColor = UIColor.gray
         ring3.maxValue = 10
         
@@ -48,7 +48,7 @@ class ViewController: UIViewController, UICircularProgressRingDelegate  {
             // Increase it more, and customize some properties
             self.ring2.viewStyle = 4
             self.ring2.setProgress(value: 100, animationDuration: 3) {
-                self.ring2.fontSize = 70
+                self.ring2.font = UIFont.systemFont(ofSize: 50)
                 print("Ring 2 finished")
             }
         }
