@@ -1,0 +1,10 @@
+#!/bin/sh
+
+### COPY THIS INTO YOUR .git/hooks folder and rename to pre-commit to use
+
+# A hook script to run Xcode unit tests before committing.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+
+xcodebuild -workspace UICircularProgressRing.xcworkspace -scheme UICircularProgressRing -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7 Plus,OS=10.2' clean test | xcpretty && exit ${PIPESTATUS[0]}
