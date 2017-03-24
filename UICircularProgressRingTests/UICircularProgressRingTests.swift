@@ -119,9 +119,9 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.fontColor = UIColor.darkText
         XCTAssertEqual(progressRing.fontColor, UIColor.darkText)
         
-        XCTAssertEqual(progressRing.fontSize, 18)
-        progressRing.fontSize = 20
-        XCTAssertEqual(progressRing.fontSize, 20)
+        XCTAssertEqual(progressRing.font, UIFont.systemFont(ofSize: 18.0))
+        progressRing.font = UIFont.italicSystemFont(ofSize: 12.0)
+        XCTAssertEqual(progressRing.font, UIFont.italicSystemFont(ofSize: 12.0))
         
         XCTAssertEqual(progressRing.animationStyle, kCAMediaTimingFunctionEaseIn)
         progressRing.animationStyle = kCAMediaTimingFunctionLinear
