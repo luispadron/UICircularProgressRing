@@ -54,6 +54,10 @@ class UICircularProgressRingTests: XCTestCase {
         // Check the defaults for the view, change them, then make sure they changed
         XCTAssertNil(progressRing.delegate)
         
+        XCTAssertEqual(progressRing.fullCircle, true)
+        progressRing.fullCircle = false
+        XCTAssertEqual(progressRing.fullCircle, false)
+        
         XCTAssertEqual(progressRing.value, 0)
         progressRing.value = 50
         XCTAssertEqual(progressRing.value, 50)

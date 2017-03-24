@@ -58,6 +58,28 @@ import UIKit
      */
     open weak var delegate: UICircularProgressRingDelegate?
     
+    // MARK: Circle Properties
+    
+    /**
+     Whether or not the progress ring should be a full circle.
+     
+     What this means is that the outer ring will always go from 0 - 360 degrees and the inner ring will be calculated accordingly depending on current value.
+     
+     ## Important ##
+     Default = true
+     
+     When this property is true any value set for `endAngle` will be ignored.
+     
+     ## Author: 
+     Luis Padron
+     
+    */
+    @IBInspectable open var fullCircle: Bool = true {
+        didSet {
+            self.ringLayer.fullCircle = self.fullCircle
+        }
+    }
+    
     // MARK: Value Properties
     
     /**
@@ -556,6 +578,7 @@ import UIKit
         self.layer.contentsScale = UIScreen.main.scale
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale * 2
+        self.ringLayer.fullCircle = fullCircle
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
         self.ringLayer.viewStyle = viewStyle
