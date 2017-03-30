@@ -27,7 +27,7 @@ import UIKit
  conversion from degrees to radians, used when drawing the rings.
  */
 private extension CGFloat {
-    var toRads: CGFloat { return self * CGFloat(M_PI) / 180 }
+    var toRads: CGFloat { return self * CGFloat.pi / 180 }
 }
 
 /**

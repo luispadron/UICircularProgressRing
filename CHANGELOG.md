@@ -1,4 +1,8 @@
-# Version 1.4.2 (latest)
+# Version 1.4.3 (latest)
+
+- Fix deprecation warning in new Xcode version from using `M_PI`
+
+# Version 1.4.2
 
 - Add new `fullCircle` property to the `UICircularProgressRingView`. Which removes the confusion of setting a valid end angle. For example previously if you wanted a full circle and you wanted the progress to start from the top you could do `startAngle = -90` however this would also require you to subtract 90 from the end angle, since the default is 360. This was not fully understood by some users. Now you have the option using `fullCircle` to set and forget the `startAngle` and the `endAngle` will automagically be corrected for you, thus always giving you a full circle with your desired start ange.
 - Update some Xcode unit tests
