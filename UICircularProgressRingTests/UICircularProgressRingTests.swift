@@ -66,9 +66,9 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.maxValue = 200
         XCTAssertEqual(progressRing.maxValue, 200)
         
-        XCTAssertEqual(progressRing.viewStyle, 1)
-        progressRing.viewStyle = 2
-        XCTAssertEqual(progressRing.viewStyle, 2)
+        XCTAssertEqual(progressRing.ringStyle, 1)
+        progressRing.ringStyle = 2
+        XCTAssertEqual(progressRing.ringStyle, 2)
         
         XCTAssertEqual(progressRing.patternForDashes, [7.0, 7.0])
         progressRing.patternForDashes = [6.0, 5.0]

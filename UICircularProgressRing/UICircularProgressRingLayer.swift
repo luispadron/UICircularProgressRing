@@ -73,7 +73,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var value: CGFloat
     @NSManaged var maxValue: CGFloat
     
-    @NSManaged var viewStyle: Int
+    @NSManaged var ringStyle: Int
     @NSManaged var patternForDashes: [CGFloat]
     
     @NSManaged var startAngle: CGFloat
@@ -176,11 +176,11 @@ class UICircularProgressRingLayer: CAShapeLayer {
         outerPath.lineCapStyle = outerCapStyle
         
         // If the style is 3 or 4, make sure to draw either dashes or dotted path
-        if viewStyle == 3 {
+        if ringStyle == 3 {
             outerPath.setLineDash(patternForDashes,
                                   count: patternForDashes.count,
                                   phase: 0.0)
-        } else if viewStyle == 4 {
+        } else if ringStyle == 4 {
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
         }
@@ -220,7 +220,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
                             - innerRingWidth/2
         
         // If the style is different, mae the radius equal to the outerRadius
-        if viewStyle >= 2 {
+        if ringStyle >= 2 {
             radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
         }
         // Start drawing

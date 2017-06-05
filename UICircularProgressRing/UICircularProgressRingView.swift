@@ -168,9 +168,9 @@ import UIKit
      ## Author:
      Luis Padron
      */
-    @IBInspectable open var viewStyle: Int = 1 {
+    @IBInspectable open var ringStyle: Int = 1 {
         didSet {
-            self.ringLayer.viewStyle = self.viewStyle
+            self.ringLayer.ringStyle = self.ringStyle
         }
     }
     
@@ -591,7 +591,7 @@ import UIKit
         self.ringLayer.fullCircle = fullCircle
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
-        self.ringLayer.viewStyle = viewStyle
+        self.ringLayer.ringStyle = ringStyle
         self.ringLayer.patternForDashes = patternForDashes
         self.ringLayer.startAngle = startAngle
         self.ringLayer.endAngle = endAngle
