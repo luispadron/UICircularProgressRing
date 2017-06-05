@@ -4,19 +4,22 @@
 //
 //  Copyright (c) 2016 Luis Padron
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
-//  associated documentation files (the "Software"), to deal in the Software without restriction,
-//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
-//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
-//  is furnished to do so, subject to the following conditions:
+//  Permission is hereby granted, free of charge, to any person obtaining a 
+//  copy of this software and associated documentation files (the "Software"), 
+//  to deal in the Software without restriction, including without limitation the 
+//  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is furnished
+//  to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in all copies or
-//  substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included 
+// in all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-//  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+//  FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+//  OR OTHERWISE, ARISING FROM, OUT OF OR IN
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
@@ -37,9 +40,11 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String, showsDecimal: Bool, decimalPlaces: Int) {
+    func update(withValue value: CGFloat, valueIndicator: String,
+                showsDecimal: Bool, decimalPlaces: Int) {
         if showsDecimal {
-            self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+            self.text = String(format: "%.\(decimalPlaces)f", value) +
+                        "\(valueIndicator)"
         } else {
             self.text = "\(Int(value))\(valueIndicator)"
         }
@@ -50,8 +55,8 @@ private extension UILabel {
 /**
  The internal subclass for CAShapeLayer.
  This is the class that handles all the drawing and animation.
- This class is not interacted with, instead properties are set in UICircularProgressRingView
- and those are delegated to here.
+ This class is not interacted with, instead 
+ properties are set in UICircularProgressRingView and those are delegated to here.
  
  */
 class UICircularProgressRingLayer: CAShapeLayer {
@@ -95,7 +100,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
     var animated = false
     
     // The value label which draws the text for the current value
-    lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    lazy private var valueLabel: UILabel = UILabel(frame:
+                                                CGRect(x: 0, y: 0,
+                                                       width: 0, height: 0))
     
     // MARK: Draw
     
@@ -170,7 +177,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
         
         // If the style is 3 or 4, make sure to draw either dashes or dotted path
         if viewStyle == 3 {
-            outerPath.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
+            outerPath.setLineDash(patternForDashes,
+                                  count: patternForDashes.count,
+                                  phase: 0.0)
         } else if viewStyle == 4 {
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
@@ -192,7 +201,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
         var innerEndAngle: CGFloat = 0.0
         
         if fullCircle {
-            innerEndAngle = (360.0 / CGFloat(maxValue)) * CGFloat(value) + startAngle
+            innerEndAngle = (360.0 / CGFloat(maxValue))
+                            * CGFloat(value) + startAngle
         } else {
             // Calculate the center difference between the end and start angle
             let angleDiff: CGFloat = endAngle - startAngle
@@ -203,8 +213,11 @@ class UICircularProgressRingLayer: CAShapeLayer {
         }
         
         // The radius for style 1 is set below
-        // The radius for style 1 is a bit less than the outer, this way it looks like its inside the circle
-        var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing, bounds.height - outerRingWidth*2 - innerRingSpacing)/2) - innerRingWidth/2
+        // The radius for style 1 is a bit less than the outer, 
+        // this way it looks like its inside the circle
+        var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing,
+                            bounds.height - outerRingWidth*2 - innerRingSpacing)/2)
+                            - innerRingWidth/2
         
         // If the style is different, mae the radius equal to the outerRadius
         if viewStyle >= 2 {
@@ -235,8 +248,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
         
-        valueLabel.update(withValue: value, valueIndicator: valueIndicator,
-                          showsDecimal: showFloatingPoint, decimalPlaces: decimalPlaces)
+        valueLabel.update(withValue: value,
+                          valueIndicator: valueIndicator,
+                          showsDecimal: showFloatingPoint,
+                          decimalPlaces: decimalPlaces)
         
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)

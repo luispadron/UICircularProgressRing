@@ -4,19 +4,22 @@
 //
 //  Copyright (c) 2016 Luis Padron
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
-//  associated documentation files (the "Software"), to deal in the Software without restriction,
-//  including without limitation the rights to use, copy, modify, merge, publish, distribute,
-//  sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
-//  is furnished to do so, subject to the following conditions:
+//  Permission is hereby granted, free of charge, to any person obtaining a
+//  copy of this software and associated documentation files (the "Software"),
+//  to deal in the Software without restriction, including without limitation the
+//  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is furnished
+//  to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included in all copies or
-//  substantial portions of the Software.
+//  The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-//  OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+//  INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND
+//  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+//  FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
+//  OR OTHERWISE, ARISING FROM, OUT OF OR IN
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
@@ -32,7 +35,8 @@ import UIKit
  This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
  handels the drawing and animating of the view
  
- The properties in this class correspond with the properties in UICircularProgressRingLayer.
+ The properties in this class correspond with the 
+ properties in UICircularProgressRingLayer.
  When they are set in here, they are also set for the layer and drawn accordingly
  
  Read the docs for what each property does and what can be customized.
@@ -51,7 +55,8 @@ import UIKit
      When progress is done updating via UICircularProgressRingView.setValue(_:), the
      finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
      
-     The ring will be passed to the delegate in order to keep track of multiple ring updates if needed.
+     The ring will be passed to the delegate in order to keep track of 
+     multiple ring updates if needed.
      
      ## Author:
      Luis Padron
@@ -63,7 +68,8 @@ import UIKit
     /**
      Whether or not the progress ring should be a full circle.
      
-     What this means is that the outer ring will always go from 0 - 360 degrees and the inner ring will be calculated accordingly depending on current value.
+     What this means is that the outer ring will always go from 0 - 360 degrees and 
+     the inner ring will be calculated accordingly depending on current value.
      
      ## Important ##
      Default = true
@@ -88,10 +94,11 @@ import UIKit
      ## Important ##
      Default = 0
      
-     This cannot be used to get the value while the ring is animating, to get current value while animating use `currentValue`
+     This cannot be used to get the value while the ring is animating, to get 
+     current value while animating use `currentValue`
      
-     The current value of the progress ring, use setProgress(value:) to alter the value with the option
-     to animate and have a completion handler.
+     The current value of the progress ring after animating, use setProgress(value:) 
+     to alter the value with the option to animate and have a completion handler.
      
      ## Author:
      Luis Padron
@@ -105,8 +112,10 @@ import UIKit
     /**
      The current value of the progress ring
      
-     This will return the current value of the progress ring, if the ring is animating it will be updated in real time. 
-     If the ring is not currently animating then the value returned will be the `value` property of the ring
+     This will return the current value of the progress ring, 
+     if the ring is animating it will be updated in real time.
+     If the ring is not currently animating then the value returned 
+     will be the `value` property of the ring
      
      ## Author:
      Luis Padron
@@ -428,7 +437,8 @@ import UIKit
     
     /**
      The font to be used for the progress indicator.
-     All font attributes are specified here except for font color, which is done using `fontColor`.
+     All font attributes are specified here except for font color, which is done 
+     using `fontColor`.
      
      
      ## Important ##
@@ -599,7 +609,8 @@ import UIKit
         self.ringLayer.showFloatingPoint = showFloatingPoint
         self.ringLayer.decimalPlaces = decimalPlaces
         
-        // Sets background color to clear, this fixes a bug when placing view in tableview cells
+        // Sets background color to clear, this fixes a bug when placing view in
+        // tableview cells
         self.backgroundColor = UIColor.clear
         self.ringLayer.backgroundColor = UIColor.clear.cgColor
     }
@@ -618,19 +629,23 @@ import UIKit
     public typealias ProgressCompletion = (() -> Void)
     
     /**
-     Sets the current value for the progress ring, calling this method while ring is animating will cancel the previously set animation and start a new one.
+     Sets the current value for the progress ring, calling this method while ring is 
+     animating will cancel the previously set animation and start a new one.
      
      - Parameter newVal: The value to be set for the progress ring
      - Parameter animationDuration: The time interval duration for the animation
-     - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
+     - Parameter completion: The completion closure block that will be called when 
+     animtion is finished (also called when animationDuration = 0), default is nil
      
      ## Important ##
-     Animatin duration = 0 will cause no animation to occur, and value will instantly be set
+     Animatin duration = 0 will cause no animation to occur, and value will instantly 
+     be set
      
      ## Author:
      Luis Padron
      */
-    open func setProgress(value: CGFloat, animationDuration: TimeInterval, completion: ProgressCompletion? = nil) {
+    open func setProgress(value: CGFloat, animationDuration: TimeInterval,
+                          completion: ProgressCompletion? = nil) {
         // Remove the current animation, so that new can be processed
         if isAnimating { self.layer.removeAnimation(forKey: "value") }
         // Only animate if duration sent is greater than zero
