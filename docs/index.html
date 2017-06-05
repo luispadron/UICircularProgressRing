@@ -8,6 +8,9 @@
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
     
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -20,6 +23,12 @@
           UICircularProgressRing Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -63,17 +72,11 @@
         <section class="section">
           <div class="section-content">
             
-            <p><img src="/.github/banner.png" alt="Banner"></p>
 
 <h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
 
-<p align="center">
-<img src="/.github/demo.gif"/>  
-</p>
-
-<p><img src="/.github/styles-banner.png" alt="Styles"></p>
-<a href='#looking-for-people-to-help-maintain-and-contribute-email-me-a-href-mailto-luis-luispadron-com-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='looking-for-people-to-help-maintain-and-contribute-email-me-a-href-mailto-luis-luispadron-com-here-a'>Looking for people to help maintain and contribute, email me <a href="mailto:luis@luispadron.com">here</a></h3>
-<a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
+<h3 id='looking-for-people-to-help-maintain-and-contribute-email-me-a-href-mailto-luis-luispadron-com-here-a' class='heading'>Looking for people to help maintain and contribute, email me <a href="mailto:luis@luispadron.com">here</a></h3>
+<h2 id='features' class='heading'>Features</h2>
 
 <ul>
 <li>Interface builder designable</li>
@@ -81,8 +84,8 @@
 <li>Animation for progress and value text built in</li>
 <li>Written in Swift 3 and using Xcode 8</li>
 </ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#cocoapods-recommended' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods-recommended'>CocoaPods (Recommended)</h3>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods-recommended' class='heading'>CocoaPods (Recommended)</h3>
 
 <ol>
 <li>Install <a href="https://cocoapods.org">CocoaPods</a></li>
@@ -110,7 +113,7 @@
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
-<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+<h3 id='carthage' class='heading'>Carthage</h3>
 
 <p><strong><em>Important note</em>: Carthage support for IBDesignable and IBInspectable is broken due to how frameworks work.
 So if you decide on using Carthage, you will not be able to use IB to design this view.
@@ -127,20 +130,19 @@ Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> f
 <p><code>github &quot;luispadron/UICircularProgressRing&quot;</code> </p></li>
 <li><p>Drag the <code>UICircularProgressRing.framework</code> from <code>MyProjDir/Carthage/Builds/iOS/UICircularProgressRing</code> into the <code>General -&gt; Embeded Binaries</code> section of your Xcode project.</p></li>
 </ol>
-<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='manually'>Manually</h3>
+<h3 id='manually' class='heading'>Manually</h3>
 
 <ol>
 <li>Simply download the <code>UICircularProgressRingView.swift</code>, <code>UICircularProgressRingLayer.swift</code> and <code>UICiruclarProgressRingDelegate.swift</code> files from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
 </ol>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
-<a href='#interface-builder' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='interface-builder'>Interface Builder</h3>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='interface-builder' class='heading'>Interface Builder</h3>
 
 <p>Simply drag a <code>UIView</code> into your storyboard. Make sure to subclass <code>UICircularProgressRingView</code> and that the module points <code>UICircularProgressRing</code>. </p>
 
 <p>Design your heart out</p>
 
-<p><img src="/.github/ib-demo.gif" alt="ib-demo.gif"></p>
-<a href='#code' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code'>Code</h3>
+<h3 id='code' class='heading'>Code</h3>
 <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Create the view</span>
   <span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="kt">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
@@ -159,12 +161,12 @@ Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> f
   <span class="c1">// Do anything your heart desires...</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
+<h2 id='documentation' class='heading'>Documentation</h2>
 
 <p>Please read this before creating an issue about how to use the package:</p>
 
 <p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRingView.html">DOCUMENTATION</a></p>
-<a href='#example-project' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example-project'>Example project</h2>
+<h2 id='example-project' class='heading'>Example project</h2>
 
 <p>Take a look at the example project over <a href="Example/">here</a></p>
 
@@ -173,7 +175,7 @@ Take a look <a href="https://github.com/Carthage/Carthage/issues/335">here</a> f
 <li>Open the <code>Example.xcworkspace</code> in Xcode</li>
 <li>Mess around and experiment!</li>
 </ol>
-<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+<h2 id='license' class='heading'>License</h2>
 <pre class="highlight plaintext"><code>Copyright (c) 2016 Luis Padron
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -190,8 +192,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-03-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-06-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

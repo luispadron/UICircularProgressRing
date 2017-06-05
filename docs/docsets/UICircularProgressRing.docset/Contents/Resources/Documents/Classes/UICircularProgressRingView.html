@@ -8,6 +8,9 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
 
@@ -21,6 +24,12 @@
           UICircularProgressRing Docs
         </a>
          (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
       </p>
     
         <p class="header-col header-col--secondary">
@@ -70,7 +79,7 @@
 
                 </div>
               </div>
-            <p><a href='#uiciruclarprogressringview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='uiciruclarprogressringview'>UICiruclarProgressRingView</h1></p>
+            <h1 id='uiciruclarprogressringview' class='heading'>UICiruclarProgressRingView</h1>
 
 <p>This is the UIView subclass that creates and handles everything
 to do with the progress ring</p>
@@ -78,12 +87,12 @@ to do with the progress ring</p>
 <p>This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
 handels the drawing and animating of the view</p>
 
-<p>The properties in this class correspond with the properties in UICircularProgressRingLayer.
+<p>The properties in this class correspond with the 
+properties in UICircularProgressRingLayer.
 When they are set in here, they are also set for the layer and drawn accordingly</p>
 
 <p>Read the docs for what each property does and what can be customized.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -104,33 +113,6 @@ When they are set in here, they are also set for the layer and drawn accordingly
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion"></a>
-                    <a name="//apple_ref/swift/Alias/ProgressCompletion" class="dashAnchor"></a>
-                    <a class="token" href="#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Typealias for the setProgress(:) method closure</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressCompletion</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateXwGSqPS_30UICircularProgressRingDelegate__"></a>
                     <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
                     <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView8delegateXwGSqPS_30UICircularProgressRingDelegate__">delegate</a>
@@ -142,15 +124,14 @@ When they are set in here, they are also set for the layer and drawn accordingly
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The delegate for the UICircularProgressRingView</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>When progress is done updating via UICircularProgressRingView.setValue(<em>:), the
 finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be called.</p>
 
-<p>The ring will be passed to the delegate in order to keep track of multiple ring updates if needed.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<p>The ring will be passed to the delegate in order to keep track of 
+multiple ring updates if needed.</p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -192,15 +173,14 @@ finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be call
                       <div class="abstract">
                         <p>Whether or not the progress ring should be a full circle.</p>
 
-<p>What this means is that the outer ring will always go from 0 - 360 degrees and the inner ring will be calculated accordingly depending on current value.</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<p>What this means is that the outer ring will always go from 0 - 360 degrees and 
+the inner ring will be calculated accordingly depending on current value.</p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = true</p>
 
 <p>When this property is true any value set for <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView8endAngleV12CoreGraphics7CGFloat">endAngle</a></code> will be ignored.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -241,17 +221,16 @@ finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be call
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The value property for the progress ring. ex: (23)/100</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 0</p>
 
-<p>This cannot be used to get the value while the ring is animating, to get current value while animating use <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView12currentValueGSqV12CoreGraphics7CGFloat_">currentValue</a></code></p>
+<p>This cannot be used to get the value while the ring is animating, to get 
+current value while animating use <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView12currentValueGSqV12CoreGraphics7CGFloat_">currentValue</a></code></p>
 
-<p>The current value of the progress ring, use setProgress(value:) to alter the value with the option
-to animate and have a completion handler.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<p>The current value of the progress ring after animating, use setProgress(value:) 
+to alter the value with the option to animate and have a completion handler.</p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -282,10 +261,11 @@ to animate and have a completion handler.</p>
                       <div class="abstract">
                         <p>The current value of the progress ring</p>
 
-<p>This will return the current value of the progress ring, if the ring is animating it will be updated in real time. 
-If the ring is not currently animating then the value returned will be the <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView5valueV12CoreGraphics7CGFloat">value</a></code> property of the ring</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<p>This will return the current value of the progress ring, 
+if the ring is animating it will be updated in real time.
+If the ring is not currently animating then the value returned 
+will be the <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView5valueV12CoreGraphics7CGFloat">value</a></code> property of the ring</p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -316,12 +296,10 @@ If the ring is not currently animating then the value returned will be the <code
                       <div class="abstract">
                         <p>The max value for the progress ring. ex: 23/(100)
 Used to calculate amount of progress depending on self.value and self.maxValue</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 100</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -373,12 +351,10 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 <li>3: Radius of inner ring is equal to outer ring, and the outer ring is dashed</li>
 <li>4: Radius of inner ring is equal to outer ring, and the outer ring is dotted</li>
 </ul>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 1</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -408,12 +384,10 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>An array of CGFloats, used to calculate the dash length for viewStyle = 3</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = [7.0, 7.0]</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -446,14 +420,12 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 
 <p>Please note that Cocoa Touch uses a clockwise rotating unit circle.
 I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 0 (degrees)</p>
 
 <p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -486,14 +458,12 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 
 <p>Please note that Cocoa Touch uses a clockwise rotating unit circle.
 I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 360 (degrees)</p>
 
 <p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -534,12 +504,10 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The width of the outer ring for the progres bar</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 10.0</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -569,12 +537,10 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The color for the outer ring</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.gray</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -604,17 +570,18 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The style for the outer ring end cap (how it is drawn on screen)
-Range [1,3]
-- 1: Line with a squared off end
-- 2: Line with a rounded off end
-- 3: Line with a square end
-- <1 & >3: Defaults to style 1</p>
+Range [1,3]</p>
 
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<ul>
+<li>1: Line with a squared off end</li>
+<li>2: Line with a rounded off end</li>
+<li>3: Line with a square end</li>
+<li><1 & >3: Defaults to style 1</li>
+</ul>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 1</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -655,12 +622,10 @@ Range [1,3]
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The width of the inner ring for the progres bar</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 5.0</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -690,12 +655,10 @@ Range [1,3]
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The color of the inner ring for the progres bar</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.blue</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -725,14 +688,12 @@ Range [1,3]
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The spacing between the outer ring and inner ring</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>This only applies when using progressRingStyle = 1</p>
 
 <p>Default = 1</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -771,12 +732,10 @@ Range [1,3]
 <li>3: Line with a square end</li>
 <li><1 & >3: Defaults to style 2</li>
 </ul>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 2</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -818,12 +777,10 @@ Range [1,3]
                       <div class="abstract">
                         <p>A toggle for showing or hiding the value label.
 If false the current value will not be shown.</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = true</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -853,12 +810,10 @@ If false the current value will not be shown.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The text color for the value label field</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.black</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -888,13 +843,12 @@ If false the current value will not be shown.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The font to be used for the progress indicator.
-All font attributes are specified here except for font color, which is done using <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView9fontColorCSo7UIColor">fontColor</a></code>.</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+All font attributes are specified here except for font color, which is done 
+using <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView9fontColorCSo7UIColor">fontColor</a></code>.</p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIFont.systemFont(ofSize: 18)</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -926,12 +880,10 @@ All font attributes are specified here except for font color, which is done usin
                         <p>The name of the value indicator the value label will
 appened to the value
 Example: <q>GB</q> -&gt; <q>100 GB</q></p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = <q>%</q></p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -962,14 +914,12 @@ Example: <q>GB</q> -&gt; <q>100 GB</q></p>
                       <div class="abstract">
                         <p>A toggle for showing or hiding floating points from
 the value in the value label</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = false (dont show)</p>
 
 <p>To customize number of decmial places to show, assign a value to decimalPlaces.</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -999,14 +949,12 @@ the value in the value label</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The amount of decimal places to show in the value label</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 2</p>
 
 <p>Only used when showFloatingPoint = true</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -1047,16 +995,14 @@ the value in the value label</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The type of animation function the ring view will use</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Default = kCAMediaTimingFunctionEaseIn</p>
 
 <p>String should be from kCAMediaTimingFunction_____</p>
 
 <p>Only used when calling .setValue(animated: true)</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -1086,12 +1032,10 @@ the value in the value label</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>This returns whether or not the ring is currently animating</p>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
+<h2 id='important' class='heading'>Important</h2>
 
 <p>Get only property</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -1240,6 +1184,33 @@ the value in the value label</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion"></a>
+                    <a name="//apple_ref/swift/Alias/ProgressCompletion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for the setProgress(:) method closure</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressCompletion</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat17animationDurationSd10completionGSqFT_T___T_"></a>
                     <a name="//apple_ref/swift/Method/setProgress(value:animationDuration:completion:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC22UICircularProgressRing26UICircularProgressRingView11setProgressFT5valueV12CoreGraphics7CGFloat17animationDurationSd10completionGSqFT_T___T_">setProgress(value:animationDuration:completion:)</a>
@@ -1250,31 +1221,13 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Sets the current value for the progress ring, calling this method while ring is animating will cancel the previously set animation and start a new one.</p>
+                        <p>Sets the current value for the progress ring, calling this method while ring is 
+animating will cancel the previously set animation and start a new one.</p>
+<h2 id='important' class='heading'>Important</h2>
 
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter newVal: The value to be set for the progress ring
-
-</div>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter animationDuration: The time interval duration for the animation
-
-</div>
-
-<div class="aside aside-parameter">
-    <p class="aside-title">Parameter</p>
-    Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
-
-</div>
-
-<p><a href='#important' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='important'>Important</h2></p>
-
-<p>Animatin duration = 0 will cause no animation to occur, and value will instantly be set</p>
-
-<p><a href='#author' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='author'>Author:</h2></p>
+<p>Animatin duration = 0 will cause no animation to occur, and value will instantly 
+be set</p>
+<h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
 
@@ -1283,7 +1236,8 @@ the value in the value label</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span>
+                          <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html#/s:C22UICircularProgressRing26UICircularProgressRingView18ProgressCompletion">ProgressCompletion</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1300,7 +1254,6 @@ the value in the value label</p>
                               <td>
                                 <div>
                                   <p>The value to be set for the progress ring</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1313,7 +1266,6 @@ the value in the value label</p>
                               <td>
                                 <div>
                                   <p>The time interval duration for the animation</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -1325,8 +1277,8 @@ the value in the value label</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil</p>
-
+                                  <p>The completion closure block that will be called when 
+animtion is finished (also called when animationDuration = 0), default is nil</p>
                                 </div>
                               </td>
                             </tr>
@@ -1344,8 +1296,8 @@ the value in the value label</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-03-24)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-06-05)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
