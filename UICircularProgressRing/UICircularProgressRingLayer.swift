@@ -73,7 +73,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var value: CGFloat
     @NSManaged var maxValue: CGFloat
     
-    @NSManaged var ringStyle: Int
+    @NSManaged var ringStyle: UICircularProgressRingStyle
     @NSManaged var patternForDashes: [CGFloat]
     
     @NSManaged var startAngle: CGFloat
@@ -175,14 +175,22 @@ class UICircularProgressRingLayer: CAShapeLayer {
         outerPath.lineWidth = outerRingWidth
         outerPath.lineCapStyle = outerCapStyle
         
-        // If the style is 3 or 4, make sure to draw either dashes or dotted path
-        if ringStyle == 3 {
+        // Update path depending on style of the ring
+        switch ringStyle {
+        case .inside: break
+            
+        case .ontop: break
+            
+        case .dashed:
             outerPath.setLineDash(patternForDashes,
                                   count: patternForDashes.count,
                                   phase: 0.0)
-        } else if ringStyle == 4 {
+            
+        case .dotted:
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
+            
+        case .shadowed: break
         }
         
         outerRingColor.setStroke()
@@ -215,20 +223,27 @@ class UICircularProgressRingLayer: CAShapeLayer {
         // The radius for style 1 is set below
         // The radius for style 1 is a bit less than the outer, 
         // this way it looks like its inside the circle
-        var radiusIn = (max(bounds.width - outerRingWidth*2 - innerRingSpacing,
-                            bounds.height - outerRingWidth*2 - innerRingSpacing)/2)
-                            - innerRingWidth/2
         
-        // If the style is different, mae the radius equal to the outerRadius
-        if ringStyle >= 2 {
+        var radiusIn: CGFloat = 0.0
+        
+        switch ringStyle {
+            
+        case .inside:
+            let difference = outerRingWidth*2 - innerRingSpacing
+            radiusIn = (max(bounds.width - difference,
+                            bounds.height - difference)/2) - innerRingWidth/2
+        default:
             radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
         }
+        
         // Start drawing
         let innerPath = UIBezierPath(arcCenter: center,
                                      radius: radiusIn,
                                      startAngle: startAngle.toRads,
                                      endAngle: innerEndAngle.toRads,
                                      clockwise: true)
+        
+        
         innerPath.lineWidth = innerRingWidth
         innerPath.lineCapStyle = innerCapStyle
         innerRingColor.setStroke()

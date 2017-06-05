@@ -152,27 +152,53 @@ import UIKit
     /**
      Variable for the style of the progress ring.
      
-     Range: [1,4]
+     Range: [1,5]
      
-     The four styles are
+     The five styles are
      
      - 1: Radius of the inner ring is smaller (inner ring inside outer ring)
      - 2: Radius of inner ring is equal to outer ring (both at same location)
      - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
      - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
+     - 5: Radius of inner ring is equal to outer ring, and the inner ring has a shadow
      
      ## Important ##
-     Default = 1
+     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
+     
+     The reason for this is IB has no support for enumerations as of yet
      
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable open var ringStyle: Int = 1 {
+    @available(*, unavailable,
+    message: "This property is reserved for Interface Builder, use 'ringStyle' instead")
+    @IBInspectable open var ibRingStyle: Int = 1 {
+        willSet {
+            let style = UICircularProgressRingStyle(rawValue: newValue)
+            self.ringStyle = style ?? .inside
+        }
+    }
+    
+    /**
+     The style of the progress ring.
+     
+     Type: `UICircularProgressRingStyle`
+     
+     The five styles include `inside`, `ontop`, `dashed`, `dotted`, and `shadowed`
+     
+     ## Important ##
+     Default = UICircularProgressRingStyle.inside
+     
+     ## Author:
+     Luis Padron
+     */
+    open var ringStyle: UICircularProgressRingStyle = .inside {
         didSet {
             self.ringLayer.ringStyle = self.ringStyle
         }
     }
+    
     
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
@@ -270,39 +296,48 @@ import UIKit
      - <1 & >3: Defaults to style 1
      
      ## Important ##
+     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
+     
      Default = 1
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable open var outerRingCapStyle: Int = 1 {
-        didSet {
-            switch self.outerRingCapStyle{
+    @available(*, unavailable,
+    message: "This property is reserved for Interface Builder, use 'outerCapStyle' instead")
+    @IBInspectable open var outerRingCapStyle: Int32 = 1 {
+        willSet {
+            switch newValue {
             case 1:
-                self.outStyle = .butt
-                self.ringLayer.outerCapStyle = .butt
+                self.outerCapStyle = .butt
             case 2:
-                self.outStyle = .round
-                self.ringLayer.outerCapStyle = .round
+                self.outerCapStyle = .round
             case 3:
-                self.outStyle = .square
-                self.ringLayer.outerCapStyle = .square
+                self.outerCapStyle = .square
             default:
-                self.outStyle = .butt
-                self.ringLayer.outerCapStyle = .butt
+                self.outerCapStyle = .butt
             }
         }
     }
     
     /**
+     The style for the tip/cap of the outer ring
      
-     A internal outerRingCapStyle variable, this is set whenever the
-     IB compatible variable above is set.
+     Type: `CGLineCap`
      
-     Basically in here because IB doesn't support CGLineCap selection.
+     ## Important ##
+     Default = CGLineCap.butt
      
+     This is only noticible when ring is not a full circle.
+     
+     ## Author:
+     Luis Padron
      */
-    internal var outStyle: CGLineCap = .butt
+    open var outerCapStyle: CGLineCap = .butt {
+        didSet {
+            self.ringLayer.outerCapStyle = self.outerCapStyle
+        }
+    }
     
     // MARK: Inner Ring properties
     
@@ -364,42 +399,47 @@ import UIKit
      - <1 & >3: Defaults to style 2
      
      ## Important ##
+     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
+     
      Default = 2
-     
-     
      
      ## Author:
      Luis Padron
      */
-    @IBInspectable open var innerRingCapStyle: Int = 2 {
-        didSet {
-            switch self.innerRingCapStyle {
+    @available(*, unavailable,
+    message: "This property is reserved for Interface Builder, use 'innerCapStyle' instead")
+    @IBInspectable open var innerRingCapStyle: Int32 = 2 {
+        willSet {
+            switch newValue {
             case 1:
-                self.inStyle = .butt
-                self.ringLayer.innerCapStyle = .butt
+                self.innerCapStyle = .butt
             case 2:
-                self.inStyle = .round
-                self.ringLayer.innerCapStyle = .round
+                self.innerCapStyle = .round
             case 3:
-                self.inStyle = .square
-                self.ringLayer.innerCapStyle = .square
+                self.innerCapStyle = .square
             default:
-                self.inStyle = .butt
-                self.ringLayer.innerCapStyle = .butt
+                self.innerCapStyle = .round
             }
         }
     }
     
     
     /**
+     The style for the tip/cap of the inner ring
      
-     A internal innerRingCapStyle variable, this is set whenever the
-     IB compatible variable above is set.
+     Type: `CGLineCap`
      
-     Basically in here because IB doesn't support CGLineCap selection.
+     ## Important ##
+     Default = CGLineCap.round
      
+     ## Author:
+     Luis Padron
      */
-    internal var inStyle: CGLineCap = .round
+    open var innerCapStyle: CGLineCap = .round {
+        didSet {
+            self.ringLayer.innerCapStyle = self.innerCapStyle
+        }
+    }
     
     // MARK: Label
     
@@ -579,15 +619,14 @@ import UIKit
     }
     
     /**
-     This method initializes the custom CALayer
-     For some reason didSet doesnt get called during initializing, so
-     has to be done manually in here or else nothing would be drawn.
+     This method initializes the custom CALayer to the default values
      */
     internal func initialize() {
         // Helps with pixelation and blurriness on retina devices
         self.layer.contentsScale = UIScreen.main.scale
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale * 2
+        self.layer.masksToBounds = false
         self.ringLayer.fullCircle = fullCircle
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
@@ -597,10 +636,10 @@ import UIKit
         self.ringLayer.endAngle = endAngle
         self.ringLayer.outerRingWidth = outerRingWidth
         self.ringLayer.outerRingColor = outerRingColor
-        self.ringLayer.outerCapStyle = outStyle
+        self.ringLayer.outerCapStyle = outerCapStyle
         self.ringLayer.innerRingWidth = innerRingWidth
         self.ringLayer.innerRingColor = innerRingColor
-        self.ringLayer.innerCapStyle = inStyle
+        self.ringLayer.innerCapStyle = innerCapStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
         self.ringLayer.shouldShowValueText = shouldShowValueText
         self.ringLayer.valueIndicator = valueIndicator

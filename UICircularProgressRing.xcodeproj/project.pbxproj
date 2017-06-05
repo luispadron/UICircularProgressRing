@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */; };
 		A01A67581D8F55D700AC8CAD /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */; };
+		A0A20FC21EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
 		A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */; };
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
+		A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingStyle.swift; sourceTree = "<group>"; };
 		A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICircularProgressRing.h; sourceTree = "<group>"; };
 		A0C6DE801D88CBE1008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */,
 				A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */,
 				A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */,
+				A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */,
 			);
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				A0C6DE9D1D88CCFD008AE742 /* UICircularProgressRingView.swift in Sources */,
 				A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */,
 				A01A67581D8F55D700AC8CAD /* UICircularProgressRingLayer.swift in Sources */,
+				A0A20FC21EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
