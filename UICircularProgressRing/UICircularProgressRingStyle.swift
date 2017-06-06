@@ -42,6 +42,4 @@
     case dashed = 3
     /// Outer ring is dotted
     case dotted = 4
-    /// Inner ring is placed inside the circle, and has a drop shadow
-    case shadowed = 5
 }

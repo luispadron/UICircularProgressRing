@@ -152,15 +152,14 @@ import UIKit
     /**
      Variable for the style of the progress ring.
      
-     Range: [1,5]
+     Range: [1,4]
      
-     The five styles are
+     The four styles are
      
      - 1: Radius of the inner ring is smaller (inner ring inside outer ring)
      - 2: Radius of inner ring is equal to outer ring (both at same location)
      - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
      - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
-     - 5: Radius of inner ring is equal to outer ring, and the inner ring has a shadow
      
      ## Important ##
      THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
@@ -185,7 +184,7 @@ import UIKit
      
      Type: `UICircularProgressRingStyle`
      
-     The five styles include `inside`, `ontop`, `dashed`, `dotted`, and `shadowed`
+     The four styles include `inside`, `ontop`, `dashed`, `dotted`
      
      ## Important ##
      Default = UICircularProgressRingStyle.inside

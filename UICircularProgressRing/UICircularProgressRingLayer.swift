@@ -189,8 +189,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
         case .dotted:
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
-            
-        case .shadowed: break
         }
         
         outerRingColor.setStroke()
