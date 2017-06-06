@@ -1,10 +1,29 @@
-# Version 1.4.3 (latest)
+# Version 1.5.0 (latest)
+
+#### Highlight:  Major refactoring and making properties safer/easier to use.
+
+- Refactored the `ringStyle` property to `ibRingStyle` and made unavailable for use with code (see below)
+-  Refactored `outerRingCapStyle`,  and `innerRingCapStyle` into new properties and made them unavailable for code use. As these properties will only be used for interface builder, while I patiently wait for Apple to allow enums in IBInspectable properties
+- Added new `ringStyle` which uses new type `UICircularProgressRingStyle` enum to make it easier and safer to assign a style to the progress ring
+- Added new `outCapStyle` and `inCapStyle` enum properties of type `CGCapStyle` which again, allow for easer and safer assignment of progress ring cap styles in code. 
+- Refactored most of the source code to maintain a max line width of 80, cause I'm insane like that
+- Updated documentation
+
+##### Breaking Changes in 1.5.0
+
+Due to the refactoring, any code which previously used these properties will have to use the new enumerations provided (sorry). 
+ 
+Also, since the `ringStyle` property was changed to `ibRingStyle` then any customized ring style inside of Interface Builder will need to be updated to use the new property, you may see a warning from interface builder. To fix these warnings: Go into the class inspector of the view, under `User Defined Run Time Attributes` remove any of the `ringStyle` values. Then refresh the views by doing `Editor -> Refresh Views`
+
+
+
+# Version 1.4.3
 
 - Fix deprecation warning in new Xcode version from using `M_PI`
 
 # Version 1.4.2
 
-- Add new `fullCircle` property to the `UICircularProgressRingView`. Which removes the confusion of setting a valid end angle. For example previously if you wanted a full circle and you wanted the progress to start from the top you could do `startAngle = -90` however this would also require you to subtract 90 from the end angle, since the default is 360. This was not fully understood by some users. Now you have the option using `fullCircle` to set and forget the `startAngle` and the `endAngle` will automagically be corrected for you, thus always giving you a full circle with your desired start ange.
+- Add new `fullCircle` property to the `UICircularProgressRingView`. Which removes the confusion of setting a valid end angle. For example previously if you wanted a full circle and you wanted the progress to start from the top you could do `startAngle = -90` however this would also require you to subtract 90 from the end angle, since the default is 360. This was not fully understood by some users. Now you have the option using `fullCircle` to set and forget the `startAngle` and the `endAngle` will automagically be corrected for you, thus always giving you a full circle with your desired start angle.
 - Update some Xcode unit tests
 - Update documentation to include new `fullCircle` property
 
@@ -18,7 +37,7 @@ With the addition of the `fullCircle` property which is `true` by default anyone
 
 #### Breaking API Changes in 1.4.1
 
-Nothing really, but previously if you had not set the `valueIndicator` property then there would be no value indicator shown to the right of the value. This was not inteded and has been fixed in this release. If you prefer to have no value indicator, you must now explicitly set the property to empty
+Nothing really, but previously if you had not set the `valueIndicator` property then there would be no value indicator shown to the right of the value. This was not intended and has been fixed in this release. If you prefer to have no value indicator, you must now explicitly set the property to empty
 
 ```swift
 ring.valueIndicator = ""
@@ -37,7 +56,7 @@ ring.valueIndicator = ""
 
 __Why was this done?__
 
-This made sense to do because it was slightly confusing how to accomplish fonts and interface builder since apple does not add support for `IBDesignable` fonts. I've decided to sacrifice the interface builder support for code only font management, because this leads to safer use of fonts since the view is no longer handeling the creation of `UIFont` itself. This also adds more customization to the view since previously you could only change the font size and font. Now users can do whatever is allowed with UIFont, such as using defined font families, etc.
+This made sense to do because it was slightly confusing how to accomplish fonts and interface builder since apple does not add support for `IBDesignable` fonts. I've decided to sacrifice the interface builder support for code only font management, because this leads to safer use of fonts since the view is no longer handleing the creation of `UIFont` itself. This also adds more customization to the view since previously you could only change the font size and font. Now users can do whatever is allowed with UIFont, such as using defined font families, etc.
 
 # Version 1.3.0
 
@@ -73,10 +92,10 @@ This made sense to do because it was slightly confusing how to accomplish fonts 
 
 # Version 1.1.8
 
-- Remove overriden `draw(rect:)` method to avoid any issues with performance and iOS drawing
+- Remove overridden `draw(rect:)` method to avoid any issues with performance and iOS drawing
 	- Implemented `prepareForInterfaceBuilder` to still allow for IB designing
 
-- Remove strong refrence to delegate
+- Remove strong reference to delegate
     - UICircularProgressRingDelegate is now a class protocol
     - UICircularProgressRingDelegate inside of UICircularProgressRingView is now weak to avoid retain cycle
 
@@ -96,12 +115,12 @@ Thanks to [@DeepAnchor](https://github.com/DeepAnchor) for the fix!
 
 Lower required iOS version to iOS 8.0
 
-- Lower podspec for compatability with iOS 8.0
+- Lower podspec for compatibility with iOS 8.0
 - Lower project deployment target to 8.0
 
 # Version 1.1.5
 
-Fix inaccesible ring value thanks to [@DaveKim](https://github.com/davekim)
+Fix inaccessible ring value thanks to [@DaveKim](https://github.com/davekim)
 
 - Update delegate method parameters for more Swift like method names/parameters
 - Update Xcode project to recommended settings

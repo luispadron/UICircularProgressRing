@@ -59,6 +59,14 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -329,9 +337,9 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView9viewStyleSi"></a>
-                    <a name="//apple_ref/swift/Property/viewStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView9viewStyleSi">viewStyle</a>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView9ringStyleOS_27UICircularProgressRingStyle"></a>
+                    <a name="//apple_ref/swift/Property/ringStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView9ringStyleOS_27UICircularProgressRingStyle">ringStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -339,21 +347,14 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Variable for the style of the progress ring.</p>
+                        <p>The style of the progress ring.</p>
 
-<p>Range: [1,4]</p>
+<p>Type: <code><a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a></code></p>
 
-<p>The four styles are</p>
-
-<ul>
-<li>1: Radius of the inner ring is smaller (inner ring inside outer ring)</li>
-<li>2: Radius of inner ring is equal to outer ring (both at same location)</li>
-<li>3: Radius of inner ring is equal to outer ring, and the outer ring is dashed</li>
-<li>4: Radius of inner ring is equal to outer ring, and the outer ring is dotted</li>
-</ul>
+<p>The four styles include <code>inside</code>, <code>ontop</code>, <code>dashed</code>, <code>dotted</code></p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>Default = 1</p>
+<p>Default = UICircularProgressRingStyle.inside</p>
 <h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
@@ -363,7 +364,7 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">viewStyle</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">ringStyle</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">inside</span></code></pre>
 
                         </div>
                       </div>
@@ -559,9 +560,9 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView17outerRingCapStyleSi"></a>
-                    <a name="//apple_ref/swift/Property/outerRingCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView17outerRingCapStyleSi">outerRingCapStyle</a>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView13outerCapStyleOSC9CGLineCap"></a>
+                    <a name="//apple_ref/swift/Property/outerCapStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView13outerCapStyleOSC9CGLineCap">outerCapStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -569,18 +570,14 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The style for the outer ring end cap (how it is drawn on screen)
-Range [1,3]</p>
+                        <p>The style for the tip/cap of the outer ring</p>
 
-<ul>
-<li>1: Line with a squared off end</li>
-<li>2: Line with a rounded off end</li>
-<li>3: Line with a square end</li>
-<li><1 & >3: Defaults to style 1</li>
-</ul>
+<p>Type: <code>CGLineCap</code></p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>Default = 1</p>
+<p>Default = CGLineCap.butt</p>
+
+<p>This is only noticible when ring is not a full circle.</p>
 <h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
@@ -590,7 +587,7 @@ Range [1,3]</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">outerRingCapStyle</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">outerCapStyle</span><span class="p">:</span> <span class="kt">CGLineCap</span> <span class="o">=</span> <span class="o">.</span><span class="n">butt</span></code></pre>
 
                         </div>
                       </div>
@@ -712,9 +709,9 @@ Range [1,3]</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView17innerRingCapStyleSi"></a>
-                    <a name="//apple_ref/swift/Property/innerRingCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView17innerRingCapStyleSi">innerRingCapStyle</a>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView13innerCapStyleOSC9CGLineCap"></a>
+                    <a name="//apple_ref/swift/Property/innerCapStyle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView13innerCapStyleOSC9CGLineCap">innerCapStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -722,19 +719,12 @@ Range [1,3]</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The style for the inner ring end cap (how it is drawn on screen)</p>
+                        <p>The style for the tip/cap of the inner ring</p>
 
-<p>Range [1,3]</p>
-
-<ul>
-<li>1: Line with a squared off end</li>
-<li>2: Line with a rounded off end</li>
-<li>3: Line with a square end</li>
-<li><1 & >3: Defaults to style 2</li>
-</ul>
+<p>Type: <code>CGLineCap</code></p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>Default = 2</p>
+<p>Default = CGLineCap.round</p>
 <h2 id='author' class='heading'>Author:</h2>
 
 <p>Luis Padron</p>
@@ -744,7 +734,7 @@ Range [1,3]</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">innerRingCapStyle</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">innerCapStyle</span><span class="p">:</span> <span class="kt">CGLineCap</span> <span class="o">=</span> <span class="o">.</span><span class="n">round</span></code></pre>
 
                         </div>
                       </div>
