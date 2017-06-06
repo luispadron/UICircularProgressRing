@@ -181,6 +181,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
         case .ontop: break
             
+        case .gradient: break
+            
         case .dashed:
             outerPath.setLineDash(patternForDashes,
                                   count: patternForDashes.count,
@@ -241,11 +243,36 @@ class UICircularProgressRingLayer: CAShapeLayer {
                                      endAngle: innerEndAngle.toRads,
                                      clockwise: true)
         
-        
-        innerPath.lineWidth = innerRingWidth
-        innerPath.lineCapStyle = innerCapStyle
-        innerRingColor.setStroke()
-        innerPath.stroke()
+        if ringStyle == .gradient {
+            // Create gradient
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
+            let gradient = CGGradient(colorsSpace: colorSpace,
+                                      colors: colors as CFArray,
+                                      locations: [0.0, 1.0] as [CGFloat])
+            let context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
+            context?.setLineWidth(innerRingWidth)
+            context?.setLineJoin(.round)
+            context?.setLineCap(innerCapStyle)
+            context?.addPath(innerPath.cgPath)
+            context?.replacePathWithStrokedPath()
+            context?.clip()
+            let start = CGPoint(x: bounds.maxX, y: bounds.midY)
+            let end = CGPoint(x: bounds.minX, y: bounds.midY)
+            context?.drawLinearGradient(gradient!,
+                                        start: start,
+                                        end: end,
+                                        options: .drawsBeforeStartLocation)
+            context?.resetClip()
+            context?.restoreGState()
+        } else {
+            // Draw the path
+            innerPath.lineWidth = innerRingWidth
+            innerPath.lineCapStyle = innerCapStyle
+            innerRingColor.setStroke()
+            innerPath.stroke()
+        }
     }
     
     /**
