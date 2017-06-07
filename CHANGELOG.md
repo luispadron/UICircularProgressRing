@@ -1,4 +1,17 @@
-# Version 1.5.0 (latest)
+# Version 1.5.5 (latest)
+
+#### Highlight: New Progress ring style `gradient` added!
+
+- Added new progress ring style `gradient` which allows for drawing a gradient inner ring given some colors.
+- Added 4 new properties to `UICircularProgressRingView` which are used to determine the look of the gradient when drawing
+- Added new enumeration type `UICircularProgressRingGradientPosition` to determine position of gradient for drawing purposes
+- Updated docs to reflect these new changes
+
+##### Breaking changes in 1.5.5
+
+None!
+
+# Version 1.5.0
 
 #### Highlight:  Major refactoring and making properties safer/easier to use.
 
