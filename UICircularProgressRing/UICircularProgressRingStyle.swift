@@ -29,7 +29,7 @@
  
  This is an enumeration which is used to determine the style of the progress ring.
  
- ## Author:
+ ## Author
  Luis Padron
  
  */

@@ -41,7 +41,7 @@ import UIKit
  
  Read the docs for what each property does and what can be customized.
  
- ## Author:
+ ## Author
  Luis Padron
  
  */
@@ -58,7 +58,7 @@ import UIKit
      The ring will be passed to the delegate in order to keep track of 
      multiple ring updates if needed.
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open weak var delegate: UICircularProgressRingDelegate?
@@ -76,7 +76,7 @@ import UIKit
      
      When this property is true any value set for `endAngle` will be ignored.
      
-     ## Author: 
+     ## Author
      Luis Padron
      
     */
@@ -100,7 +100,7 @@ import UIKit
      The current value of the progress ring after animating, use setProgress(value:) 
      to alter the value with the option to animate and have a completion handler.
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var value: CGFloat = 0 {
@@ -117,7 +117,7 @@ import UIKit
      If the ring is not currently animating then the value returned 
      will be the `value` property of the ring
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var currentValue: CGFloat? {
@@ -138,7 +138,7 @@ import UIKit
      Default = 100
      
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var maxValue: CGFloat = 100 {
@@ -152,7 +152,7 @@ import UIKit
     /**
      Variable for the style of the progress ring.
      
-     Range: [1,4]
+     Range: [1,5]
      
      The four styles are
      
@@ -160,6 +160,7 @@ import UIKit
      - 2: Radius of inner ring is equal to outer ring (both at same location)
      - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
      - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
+     - 5: Radius of inner ring is equal to outer ring, and inner ring has gradient
      
      ## Important ##
      THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
@@ -167,7 +168,7 @@ import UIKit
      The reason for this is IB has no support for enumerations as of yet
      
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @available(*, unavailable,
@@ -184,12 +185,12 @@ import UIKit
      
      Type: `UICircularProgressRingStyle`
      
-     The four styles include `inside`, `ontop`, `dashed`, `dotted`
+     The five styles include `inside`, `ontop`, `dashed`, `dotted`, and `gradient`
      
      ## Important ##
      Default = UICircularProgressRingStyle.inside
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var ringStyle: UICircularProgressRingStyle = .inside {
@@ -205,7 +206,7 @@ import UIKit
      ## Important ##
      Default = [7.0, 7.0]
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var patternForDashes: [CGFloat] = [7.0, 7.0] {
@@ -225,7 +226,7 @@ import UIKit
      
      Values should be in degrees (they're converted to radians internally)
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var startAngle: CGFloat = 0 {
@@ -245,7 +246,7 @@ import UIKit
      
      Values should be in degrees (they're converted to radians internally)
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var endAngle: CGFloat = 360 {
@@ -266,7 +267,7 @@ import UIKit
      
      If this array is empty, no gradient will be drawn.
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var gradientColors: [UIColor] = [UIColor]() {
@@ -291,7 +292,7 @@ import UIKit
      ## Important ##
      By default this property will be nil
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var gradientColorLocations: [CGFloat]? = nil {
@@ -308,7 +309,7 @@ import UIKit
      ## Important ##
      By default this property is `.topRight`
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var gradientStartPosition: UICircularProgressRingGradientPosition = .topRight {
@@ -325,7 +326,7 @@ import UIKit
      ## Important ##
      By default this property is `.bottomLeft`
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var gradientEndPosition: UICircularProgressRingGradientPosition = .bottomLeft {
@@ -343,7 +344,7 @@ import UIKit
      ## Important ##
      Default = 10.0
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var outerRingWidth: CGFloat = 10.0 {
@@ -358,7 +359,7 @@ import UIKit
      ## Important ##
      Default = UIColor.gray
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
@@ -380,7 +381,7 @@ import UIKit
      
      Default = 1
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @available(*, unavailable,
@@ -410,7 +411,7 @@ import UIKit
      
      This is only noticible when ring is not a full circle.
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var outerCapStyle: CGLineCap = .butt {
@@ -427,7 +428,7 @@ import UIKit
      ## Important ##
      Default = 5.0
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingWidth: CGFloat = 5.0 {
@@ -442,7 +443,7 @@ import UIKit
      ## Important ##
      Default = UIColor.blue
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingColor: UIColor = UIColor.blue {
@@ -459,7 +460,7 @@ import UIKit
      
      Default = 1
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingSpacing: CGFloat = 1 {
@@ -483,7 +484,7 @@ import UIKit
      
      Default = 2
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @available(*, unavailable,
@@ -512,7 +513,7 @@ import UIKit
      ## Important ##
      Default = CGLineCap.round
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var innerCapStyle: CGLineCap = .round {
@@ -530,7 +531,7 @@ import UIKit
      ## Important ##
      Default = true
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var shouldShowValueText: Bool = true {
@@ -546,7 +547,7 @@ import UIKit
      Default = UIColor.black
      
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var fontColor: UIColor = UIColor.black {
@@ -565,7 +566,7 @@ import UIKit
      Default = UIFont.systemFont(ofSize: 18)
      
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
@@ -582,7 +583,7 @@ import UIKit
      ## Important ##
      Default = "%"
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var valueIndicator: String = "%" {
@@ -600,7 +601,7 @@ import UIKit
      
      To customize number of decmial places to show, assign a value to decimalPlaces.
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var showFloatingPoint: Bool = false {
@@ -617,7 +618,7 @@ import UIKit
      
      Only used when showFloatingPoint = true
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     @IBInspectable open var decimalPlaces: Int = 2 {
@@ -638,7 +639,7 @@ import UIKit
      
      Only used when calling .setValue(animated: true)
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
@@ -653,7 +654,7 @@ import UIKit
      ## Important ##
      Get only property
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open var isAnimating: Bool {
@@ -771,7 +772,7 @@ import UIKit
      Animatin duration = 0 will cause no animation to occur, and value will instantly 
      be set
      
-     ## Author:
+     ## Author
      Luis Padron
      */
     open func setProgress(value: CGFloat, animationDuration: TimeInterval,

@@ -34,7 +34,7 @@
  The ring will be passed to the delegate in order to keep 
  track of multiple ring updates if needed.
  
- ## Author:
+ ## Author
  Luis Padron
  */
 public protocol UICircularProgressRingDelegate: class {

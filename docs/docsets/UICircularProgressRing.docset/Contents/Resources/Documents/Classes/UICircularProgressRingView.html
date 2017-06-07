@@ -62,6 +62,9 @@
             <a class="nav-group-name-link" href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a>
               </li>
             </ul>
@@ -100,7 +103,7 @@ properties in UICircularProgressRingLayer.
 When they are set in here, they are also set for the layer and drawn accordingly</p>
 
 <p>Read the docs for what each property does and what can be customized.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -139,7 +142,7 @@ finishedUpdatingProgressFor(</em> ring: UICircularProgressRingView) will be call
 
 <p>The ring will be passed to the delegate in order to keep track of 
 multiple ring updates if needed.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -188,7 +191,7 @@ the inner ring will be calculated accordingly depending on current value.</p>
 <p>Default = true</p>
 
 <p>When this property is true any value set for <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView8endAngleV12CoreGraphics7CGFloat">endAngle</a></code> will be ignored.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -238,7 +241,7 @@ current value while animating use <code><a href="../Classes/UICircularProgressRi
 
 <p>The current value of the progress ring after animating, use setProgress(value:) 
 to alter the value with the option to animate and have a completion handler.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -273,7 +276,7 @@ to alter the value with the option to animate and have a completion handler.</p>
 if the ring is animating it will be updated in real time.
 If the ring is not currently animating then the value returned 
 will be the <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView5valueV12CoreGraphics7CGFloat">value</a></code> property of the ring</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -307,7 +310,7 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 100</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -351,11 +354,11 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 
 <p>Type: <code><a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a></code></p>
 
-<p>The four styles include <code>inside</code>, <code>ontop</code>, <code>dashed</code>, <code>dotted</code></p>
+<p>The five styles include <code>inside</code>, <code>ontop</code>, <code>dashed</code>, <code>dotted</code>, and <code>gradient</code></p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UICircularProgressRingStyle.inside</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -388,7 +391,7 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = [7.0, 7.0]</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -426,7 +429,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <p>Default = 0 (degrees)</p>
 
 <p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -464,7 +467,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <p>Default = 360 (degrees)</p>
 
 <p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -474,6 +477,158 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">360</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_"></a>
+                    <a name="//apple_ref/swift/Property/gradientColors" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_">gradientColors</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The colors which will be used to create the gradient.</p>
+
+<p>Only used when <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView9ringStyleOS_27UICircularProgressRingStyle">ringStyle</a></code> is <code>.gradient</code></p>
+
+<p>The colors should be in the order they will be drawn in.</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>By default this property will be an empty array.</p>
+
+<p>If this array is empty, no gradient will be drawn.</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">gradientColors</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIColor</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kt">UIColor</span><span class="p">]()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView22gradientColorLocationsGSqGSaV12CoreGraphics7CGFloat__"></a>
+                    <a name="//apple_ref/swift/Property/gradientColorLocations" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView22gradientColorLocationsGSqGSaV12CoreGraphics7CGFloat__">gradientColorLocations</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The location for each color provided in <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_">gradientColors</a></code>; each location must be
+a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
+locations array, Quartz uses the colors provided that are closest to 0 and 1 for
+those locations.</p>
+
+<p>If locations is nil, the first color in <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_">gradientColors</a></code> is assigned to location 0,
+the last color in <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_">gradientColors</a></code> is assigned to location 1, and intervening
+colors are assigned locations that are at equal intervals in between.</p>
+
+<p>The locations array should contain the same number of items as the <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircularProgressRing26UICircularProgressRingView14gradientColorsGSaCSo7UIColor_">gradientColors</a></code>
+array.</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>By default this property will be nil</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">gradientColorLocations</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView21gradientStartPositionOS_38UICircularProgressRingGradientPosition"></a>
+                    <a name="//apple_ref/swift/Property/gradientStartPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView21gradientStartPositionOS_38UICircularProgressRingGradientPosition">gradientStartPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The start location for the gradient.
+This property determines where the gradient will begin to draw,
+for all possible values see <code><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></code>.</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>By default this property is <code>.topRight</code></p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">gradientStartPosition</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">topRight</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC22UICircularProgressRing26UICircularProgressRingView19gradientEndPositionOS_38UICircularProgressRingGradientPosition"></a>
+                    <a name="//apple_ref/swift/Property/gradientEndPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC22UICircularProgressRing26UICircularProgressRingView19gradientEndPositionOS_38UICircularProgressRingGradientPosition">gradientEndPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The end location for the gradient.
+This property determines where the gradient will end drawing,
+for all possible values see <code><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></code>.</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>By default this property is <code>.bottomLeft</code></p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">gradientEndPosition</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">bottomLeft</span></code></pre>
 
                         </div>
                       </div>
@@ -508,7 +663,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 10.0</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -541,7 +696,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.gray</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -578,7 +733,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <p>Default = CGLineCap.butt</p>
 
 <p>This is only noticible when ring is not a full circle.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -622,7 +777,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 5.0</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -655,7 +810,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.blue</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -690,7 +845,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <p>This only applies when using progressRingStyle = 1</p>
 
 <p>Default = 1</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -725,7 +880,7 @@ I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = CGLineCap.round</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -770,7 +925,7 @@ If false the current value will not be shown.</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = true</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -803,7 +958,7 @@ If false the current value will not be shown.</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIColor.black</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -838,7 +993,7 @@ using <code><a href="../Classes/UICircularProgressRingView.html#/s:vC22UICircula
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = UIFont.systemFont(ofSize: 18)</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -873,7 +1028,7 @@ Example: <q>GB</q> -&gt; <q>100 GB</q></p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = <q>%</q></p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -909,7 +1064,7 @@ the value in the value label</p>
 <p>Default = false (dont show)</p>
 
 <p>To customize number of decmial places to show, assign a value to decimalPlaces.</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -944,7 +1099,7 @@ the value in the value label</p>
 <p>Default = 2</p>
 
 <p>Only used when showFloatingPoint = true</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -992,7 +1147,7 @@ the value in the value label</p>
 <p>String should be from kCAMediaTimingFunction_____</p>
 
 <p>Only used when calling .setValue(animated: true)</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -1025,7 +1180,7 @@ the value in the value label</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Get only property</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -1217,7 +1372,7 @@ animating will cancel the previously set animation and start a new one.</p>
 
 <p>Animatin duration = 0 will cause no animation to occur, and value will instantly 
 be set</p>
-<h2 id='author' class='heading'>Author:</h2>
+<h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
 
@@ -1286,7 +1441,7 @@ animtion is finished (also called when animationDuration = 0), default is nil</p
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-06-05)</p>
+      <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-06-06)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -32,7 +32,7 @@
  gradient. Used inside the `UICircularProgressRingLayer` to allow customization
  for the gradient.
  
- ## Author:
+ ## Author
  Luis Padron
  
  */
