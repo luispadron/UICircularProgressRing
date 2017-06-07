@@ -66,9 +66,9 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.maxValue = 200
         XCTAssertEqual(progressRing.maxValue, 200)
         
-        XCTAssertEqual(progressRing.ringStyle, 1)
-        progressRing.ringStyle = 2
-        XCTAssertEqual(progressRing.ringStyle, 2)
+        XCTAssertEqual(progressRing.ringStyle, .inside)
+        progressRing.ringStyle = .ontop
+        XCTAssertEqual(progressRing.ringStyle, .ontop)
         
         XCTAssertEqual(progressRing.patternForDashes, [7.0, 7.0])
         progressRing.patternForDashes = [6.0, 5.0]
@@ -91,11 +91,9 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.outerRingColor = UIColor.red
         XCTAssertEqual(progressRing.outerRingColor, UIColor.red)
         
-        XCTAssertEqual(progressRing.outerRingCapStyle, 1)
-        XCTAssertEqual(progressRing.outStyle, .butt)
-        progressRing.outerRingCapStyle = 2
-        XCTAssertEqual(progressRing.outerRingCapStyle, 2)
-        XCTAssertEqual(progressRing.outStyle, .round)
+        XCTAssertEqual(progressRing.outerCapStyle, .butt)
+        progressRing.outerCapStyle = .round
+        XCTAssertEqual(progressRing.outerCapStyle, .round)
         
         XCTAssertEqual(progressRing.innerRingWidth, 5.0)
         progressRing.innerRingWidth = 10.0
@@ -109,11 +107,9 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.innerRingSpacing = 2
         XCTAssertEqual(progressRing.innerRingSpacing, 2)
         
-        XCTAssertEqual(progressRing.innerRingCapStyle, 2)
-        XCTAssertEqual(progressRing.inStyle, .round)
-        progressRing.innerRingCapStyle = 3
-        XCTAssertEqual(progressRing.innerRingCapStyle, 3)
-        XCTAssertEqual(progressRing.inStyle, .square)
+        XCTAssertEqual(progressRing.innerCapStyle, .round)
+        progressRing.innerCapStyle = .square
+        XCTAssertEqual(progressRing.innerCapStyle, .square)
         
         XCTAssertEqual(progressRing.shouldShowValueText, true)
         progressRing.shouldShowValueText = false
