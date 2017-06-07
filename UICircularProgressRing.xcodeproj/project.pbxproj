@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */; };
 		A01A67581D8F55D700AC8CAD /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */; };
-		A0A20FC21EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
 		A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */; };
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0C6DE9D1D88CCFD008AE742 /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */; };
+		A0E0ED771EE782620034062A /* UICircularProgressRingGradientPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED751EE782490034062A /* UICircularProgressRingGradientPosition.swift */; };
+		A0E0ED781EE782650034062A /* UICircularProgressRingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED761EE782490034062A /* UICircularProgressRingStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +30,6 @@
 /* Begin PBXFileReference section */
 		A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
-		A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingStyle.swift; sourceTree = "<group>"; };
 		A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICircularProgressRing.h; sourceTree = "<group>"; };
 		A0C6DE801D88CBE1008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +37,8 @@
 		A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingTests.swift; sourceTree = "<group>"; };
 		A0C6DE8C1D88CBE2008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingView.swift; sourceTree = "<group>"; };
+		A0E0ED751EE782490034062A /* UICircularProgressRingGradientPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingGradientPosition.swift; sourceTree = "<group>"; };
+		A0E0ED761EE782490034062A /* UICircularProgressRingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,8 @@
 				A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */,
 				A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */,
 				A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */,
-				A0A20FC11EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift */,
+				A0E0ED751EE782490034062A /* UICircularProgressRingGradientPosition.swift */,
+				A0E0ED761EE782490034062A /* UICircularProgressRingStyle.swift */,
 			);
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
@@ -211,10 +214,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E0ED781EE782650034062A /* UICircularProgressRingStyle.swift in Sources */,
+				A0E0ED771EE782620034062A /* UICircularProgressRingGradientPosition.swift in Sources */,
 				A0C6DE9D1D88CCFD008AE742 /* UICircularProgressRingView.swift in Sources */,
 				A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */,
 				A01A67581D8F55D700AC8CAD /* UICircularProgressRingLayer.swift in Sources */,
-				A0A20FC21EE5FBDB001BDA10 /* UICircularProgressRingStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -254,6 +254,87 @@ import UIKit
         }
     }
     
+    /**
+     The colors which will be used to create the gradient.
+     
+     Only used when `ringStyle` is `.gradient`
+     
+     The colors should be in the order they will be drawn in.
+     
+     ## Important ##
+     By default this property will be an empty array.
+     
+     If this array is empty, no gradient will be drawn.
+     
+     ## Author:
+     Luis Padron
+     */
+    open var gradientColors: [UIColor] = [UIColor]() {
+        didSet {
+            self.ringLayer.gradientColors = self.gradientColors
+        }
+    }
+    
+    /**
+     The location for each color provided in `gradientColors`; each location must be
+     a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
+     locations array, Quartz uses the colors provided that are closest to 0 and 1 for
+     those locations.
+     
+     If locations is nil, the first color in `gradientColors` is assigned to location 0,
+     the last color in `gradientColors` is assigned to location 1, and intervening
+     colors are assigned locations that are at equal intervals in between.
+     
+     The locations array should contain the same number of items as the `gradientColors`
+     array.
+     
+     ## Important ##
+     By default this property will be nil
+     
+     ## Author:
+     Luis Padron
+     */
+    open var gradientColorLocations: [CGFloat]? = nil {
+        didSet {
+            self.ringLayer.gradientColorLocations = self.gradientColorLocations
+        }
+    }
+    
+    /**
+     The start location for the gradient.
+     This property determines where the gradient will begin to draw,
+     for all possible values see `UICircularProgressRingGradientPosition`.
+     
+     ## Important ##
+     By default this property is `.topRight`
+     
+     ## Author:
+     Luis Padron
+     */
+    open var gradientStartPosition: UICircularProgressRingGradientPosition = .topRight {
+        didSet {
+            self.ringLayer.gradientStartPosition = self.gradientStartPosition
+        }
+    }
+    
+    /**
+     The end location for the gradient.
+     This property determines where the gradient will end drawing,
+     for all possible values see `UICircularProgressRingGradientPosition`.
+     
+     ## Important ##
+     By default this property is `.bottomLeft`
+     
+     ## Author:
+     Luis Padron
+     */
+    open var gradientEndPosition: UICircularProgressRingGradientPosition = .bottomLeft {
+        didSet {
+            self.ringLayer.gradientEndPosition = self.gradientEndPosition
+        }
+    }
+    
+    
     // MARK: Outer Ring properties
     
     /**
@@ -626,20 +707,31 @@ import UIKit
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale * 2
         self.layer.masksToBounds = false
+        
         self.ringLayer.fullCircle = fullCircle
+        
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
+        
         self.ringLayer.ringStyle = ringStyle
         self.ringLayer.patternForDashes = patternForDashes
+        self.ringLayer.gradientColors = gradientColors
+        self.ringLayer.gradientColorLocations = gradientColorLocations
+        self.ringLayer.gradientStartPosition = gradientStartPosition
+        self.ringLayer.gradientEndPosition = gradientEndPosition
+        
         self.ringLayer.startAngle = startAngle
         self.ringLayer.endAngle = endAngle
+        
         self.ringLayer.outerRingWidth = outerRingWidth
         self.ringLayer.outerRingColor = outerRingColor
         self.ringLayer.outerCapStyle = outerCapStyle
+        
         self.ringLayer.innerRingWidth = innerRingWidth
         self.ringLayer.innerRingColor = innerRingColor
         self.ringLayer.innerCapStyle = innerCapStyle
         self.ringLayer.innerRingSpacing = innerRingSpacing
+        
         self.ringLayer.shouldShowValueText = shouldShowValueText
         self.ringLayer.valueIndicator = valueIndicator
         self.ringLayer.fontColor = fontColor
