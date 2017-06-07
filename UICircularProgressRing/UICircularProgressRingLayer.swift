@@ -244,8 +244,16 @@ class UICircularProgressRingLayer: CAShapeLayer {
                                      endAngle: innerEndAngle.toRads,
                                      clockwise: true)
         
+        // Draw path
+        ctx.setLineWidth(innerRingWidth)
+        ctx.setLineJoin(.round)
+        ctx.setLineCap(innerCapStyle)
+        ctx.setStrokeColor(innerRingColor.cgColor)
+        ctx.addPath(innerPath.cgPath)
+        ctx.drawPath(using: .stroke)
+        
         if ringStyle == .gradient && gradientColors.count > 1 {
-            // Create gradient
+            // Create gradient and draw it
             var cgColors = [CGColor]()
             for color in gradientColors {
                 cgColors.append(color.cgColor)
@@ -257,10 +265,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 fatalError("\nUnable to create gradient for progress ring.\n" +
                     "Check values of gradientColors and gradientLocations.\n")
             }
+            
             ctx.saveGState()
-            ctx.setLineWidth(innerRingWidth)
-            ctx.setLineJoin(.round)
-            ctx.setLineCap(innerCapStyle)
             ctx.addPath(innerPath.cgPath)
             ctx.replacePathWithStrokedPath()
             ctx.clip()
@@ -272,13 +278,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             ctx.resetClip()
             ctx.restoreGState()
-            
-        } else {
-            // Draw the path
-            innerPath.lineWidth = innerRingWidth
-            innerPath.lineCapStyle = innerCapStyle
-            innerRingColor.setStroke()
-            innerPath.stroke()
         }
     }
     
