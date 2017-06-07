@@ -276,7 +276,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
                          end: gradientEndPosition,
                          inContext: ctx)
             
-            ctx.resetClip()
             ctx.restoreGState()
         }
     }
