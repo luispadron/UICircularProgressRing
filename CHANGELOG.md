@@ -1,4 +1,12 @@
-# Version 1.5.5 (latest)
+# Version 1.6.0
+
+#### Highlight: Updated for Xcode 9 and Swift 4
+
+- Updated project settings to recommended Xcode settings
+- Updated language to Swift 4
+- Updated `@objc inference` to `default`
+
+# Version 1.5.5
 
 #### Highlight: New Progress ring style `gradient` added!
 
