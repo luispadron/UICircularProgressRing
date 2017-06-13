@@ -1,3 +1,7 @@
+# Version 1.6.1
+
+- Make sure `.swift-version` is included in pod, in order to fix issue with Xcode 9
+
 # Version 1.6.0
 
 #### Highlight: Updated for Xcode 9 and Swift 4
