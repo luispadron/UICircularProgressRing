@@ -1,3 +1,9 @@
+# Version 1.6.2
+
+#### Highlight: New `UICircularProgressRingDelegate` method.
+
+- New method in `UICircularProgressRingDelegate `, `didUpdateProgressValue(to newValue: CGFloat)`, which can be used to get notified of value changes to the progress ring in real time. As the documentation states, this is a very hot method and it may be called hundreds of times per second, thus only very minimal work should be performed in this method.
+
 # Version 1.6.1
 
 - Make sure `.swift-version` is included in pod, in order to fix issue with Xcode 9

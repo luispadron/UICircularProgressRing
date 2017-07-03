@@ -703,6 +703,9 @@ import UIKit
      This method initializes the custom CALayer to the default values
      */
     internal func initialize() {
+        // This view will become the value delegate of the layer, which will call the updateValue method when needed
+        self.ringLayer.valueDelegate = self
+        
         // Helps with pixelation and blurriness on retina devices
         self.layer.contentsScale = UIScreen.main.scale
         self.layer.shouldRasterize = true
@@ -753,6 +756,13 @@ import UIKit
         super.draw(rect)
     }
     
+    /**
+     Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
+     the `newValue` so that it notifies any delegates who may need to know about value updates in real time
+     */
+    internal func didUpdateValue(newValue: CGFloat) {
+        delegate?.didUpdateProgressValue(to: newValue)
+    }
     
     /**
      Typealias for the setProgress(:) method closure

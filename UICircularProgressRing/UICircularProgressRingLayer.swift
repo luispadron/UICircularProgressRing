@@ -103,6 +103,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     var animationDuration: TimeInterval = 1.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
     var animated = false
+    @NSManaged weak var valueDelegate: UICircularProgressRingView?
     
     // The value label which draws the text for the current value
     lazy private var valueLabel: UILabel = UILabel(frame: .zero)
@@ -121,7 +122,12 @@ class UICircularProgressRingLayer: CAShapeLayer {
         drawInnerRing(in: ctx)
         // Draw the label
         drawValueLabel()
+        // Call the delegate and notifiy of updated value
+        if let updatedValue = self.value(forKey: "value") as? CGFloat {
+            valueDelegate?.didUpdateValue(newValue: updatedValue)
+        }
         UIGraphicsPopContext()
+        
     }
     
     // MARK: Animation methods
