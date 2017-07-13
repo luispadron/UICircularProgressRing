@@ -1,6 +1,6 @@
 ![Banner](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png)
 
-<h3 align="center">A circular progress bar for iOS written in Swift 3</h3>
+<h3 align="center">A circular progress bar for iOS written in Swift</h3>
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>  
@@ -13,9 +13,10 @@
 ## Features
 
 * Interface builder designable
-* Highly customizable 
-* Animation for progress and value text built in
-* Written in Swift 3 and using Xcode 8
+* Highly customizable and flexible
+* Easy to use
+* Sleek animations
+* Written in Swift
 
 ## Installation 
 
@@ -35,20 +36,6 @@
 3. Run `pod install`
 4. Open up the `.xcworkspace` that CocoaPods created
 5. Done!
-
-__Note:__ If you have any issues with Swift 3 and CocoaPods you can try to force the version. (Cocoapods support for Swift 3 projects has been a bit wonky).
-
-Add this to the end of your `Podfile`
-
-```ruby
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |configuration|
-      configuration.build_settings['SWIFT_VERSION'] = "3.0"
-    end
-  end
-end
-```
 
 ### Carthage
 
@@ -80,7 +67,7 @@ Design your heart out
 
 ![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
 
-### Code
+### Usage
 
 ```swift
 override func viewDidLoad() {
