@@ -205,13 +205,16 @@ the inner ring will be calculated accordingly depending on current value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The value property for the progress ring. ex: (23)/100</p>
+                        <p>The value property for the progress ring.</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 0</p>
 
+<p>Must be a non-negative value. If this value falls below <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)minValue">minValue</a></code> it will be
+clamped and set equal to <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)minValue">minValue</a></code>.</p>
+
 <p>This cannot be used to get the value while the ring is animating, to get 
-current value while animating use <code><a href="../Classes/UICircularProgressRingView.html#/s:22UICircularProgressRing0abC4ViewC12currentValue12CoreGraphics7CGFloatVSgv">currentValue</a></code></p>
+current value while animating use <code><a href="../Classes/UICircularProgressRingView.html#/s:22UICircularProgressRing0abC4ViewC12currentValue12CoreGraphics7CGFloatVSgv">currentValue</a></code>.</p>
 
 <p>The current value of the progress ring after animating, use setProgress(value:) 
 to alter the value with the option to animate and have a completion handler.</p>
@@ -269,6 +272,46 @@ will be the <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICi
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)minValue"></a>
+                    <a name="//apple_ref/swift/Property/minValue" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)minValue">minValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum value for the progress ring. ex: (0) -&gt; 100.</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>Default = 100</p>
+
+<p>Must be a non-negative value, the absolute value is taken when setting this property.</p>
+
+<p>The <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)value">value</a></code> of the progress ring must NOT fall below <code>minValue</code> if it does the <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)value">value</a></code> property is clamped
+and will be set equal to <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)value">value</a></code>, you will receive a warning message in the console.</p>
+
+<p>Making this value greater than</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">minValue</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.0</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)maxValue"></a>
                     <a name="//apple_ref/swift/Property/maxValue" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)maxValue">maxValue</a>
@@ -279,11 +322,15 @@ will be the <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICi
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The max value for the progress ring. ex: 23/(100)
-Used to calculate amount of progress depending on self.value and self.maxValue</p>
+                        <p>The maximum value for the progress ring. ex: 0 -&gt; (100)</p>
 <h2 id='important' class='heading'>Important</h2>
 
 <p>Default = 100</p>
+
+<p>Must be a non-negative value, the absolute value is taken when setting this property.</p>
+
+<p>Unlike the <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)minValue">minValue</a></code> member <code><a href="../Classes/UICircularProgressRingView.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingView(py)value">value</a></code> can extend beyond <code>maxValue</code>. What happens in this case
+is the inner ring will do an extra loop through the outer ring, this is not noticible however.</p>
 <h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
@@ -293,7 +340,7 @@ Used to calculate amount of progress depending on self.value and self.maxValue</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">maxValue</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">100</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="n">open</span> <span class="k">var</span> <span class="nv">maxValue</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">100.0</span></code></pre>
 
                         </div>
                       </div>
@@ -689,9 +736,9 @@ for all possible values see <code><a href="../Enums/UICircularProgressRingGradie
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0abC4ViewC13outerCapStyleSo06CGLineF0Ov"></a>
+                    <a name="/s:22UICircularProgressRing0abC4ViewC13outerCapStyleSC06CGLineF0Ov"></a>
                     <a name="//apple_ref/swift/Property/outerCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0abC4ViewC13outerCapStyleSo06CGLineF0Ov">outerCapStyle</a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC4ViewC13outerCapStyleSC06CGLineF0Ov">outerCapStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -838,9 +885,9 @@ for all possible values see <code><a href="../Enums/UICircularProgressRingGradie
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0abC4ViewC13innerCapStyleSo06CGLineF0Ov"></a>
+                    <a name="/s:22UICircularProgressRing0abC4ViewC13innerCapStyleSC06CGLineF0Ov"></a>
                     <a name="//apple_ref/swift/Property/innerCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0abC4ViewC13innerCapStyleSo06CGLineF0Ov">innerCapStyle</a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC4ViewC13innerCapStyleSC06CGLineF0Ov">innerCapStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1360,6 +1407,50 @@ be set</p>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newVal</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The value to be set for the progress ring</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animationDuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The time interval duration for the animation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The completion closure block that will be called when 
+animtion is finished (also called when animationDuration = 0), default is nil</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </section>
                   </div>
                 </li>
@@ -1368,8 +1459,8 @@ be set</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-07-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2017-08-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

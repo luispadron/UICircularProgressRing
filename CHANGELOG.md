@@ -1,3 +1,14 @@
+# Version 1.7.0
+
+#### Highlight: New `UICircularProgressRingView.minValue` property.
+
+- Add ability to set a range of values for the ring, unlike before where only `maxValue` could be set. You can now use the new `minValue` to specify a range that the value can fall between. Read the docs to learn about any issues that may arise with setting a `value` less than `minValue`.
+- Fixed bugs related to how many degrees the inner ring for the progress ring draws. Everything should exact now even if not using the `fullCircle` property.
+- Fixed a bug which allowed setting a `value` less than zero. Read the docs to learn why this was an issue.
+- Refactored some unused code and tidied things up a bit
+- Regenerated documentation using Jazzy
+
+
 # Version 1.6.2
 
 #### Highlight: New `UICircularProgressRingDelegate` method.
