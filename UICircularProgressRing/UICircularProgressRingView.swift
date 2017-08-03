@@ -105,6 +105,11 @@ import UIKit
      */
     @IBInspectable open var value: CGFloat = 0 {
         didSet {
+            if value < minValue {
+                print("Warning in: UICircularProgressRingView.value: Line #\(#line)")
+                print("Attempted to set a value less than minValue, value has been set to minValue.\n")
+                self.value = self.minValue
+            }
             self.ringLayer.value = self.value
         }
     }
@@ -141,9 +146,15 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var maxValue: CGFloat = 100 {
+    @IBInspectable open var maxValue: CGFloat = 100.0 {
         didSet {
             self.ringLayer.maxValue = self.maxValue
+        }
+    }
+
+    @IBInspectable open var minValue: CGFloat = 0.0 {
+        didSet {
+            self.ringLayer.minValue = self.minValue
         }
     }
     
@@ -716,6 +727,7 @@ import UIKit
         
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
+        self.ringLayer.minValue = minValue
         
         self.ringLayer.ringStyle = ringStyle
         self.ringLayer.patternForDashes = patternForDashes
@@ -799,8 +811,8 @@ import UIKit
             self.delegate?.finishedUpdatingProgress(forRing: self)
             completion?()
         }
+
         self.value = value
-        self.ringLayer.value = value
         CATransaction.commit()
     }
 }

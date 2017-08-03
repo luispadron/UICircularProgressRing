@@ -72,6 +72,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     
     @NSManaged var value: CGFloat
     @NSManaged var maxValue: CGFloat
+    @NSManaged var minValue: CGFloat
     
     @NSManaged var ringStyle: UICircularProgressRingStyle
     @NSManaged var patternForDashes: [CGFloat]
@@ -216,15 +217,15 @@ class UICircularProgressRingLayer: CAShapeLayer {
         var innerEndAngle: CGFloat = 0.0
         
         if fullCircle {
-            innerEndAngle = (360.0 / CGFloat(maxValue))
-                            * CGFloat(value) + startAngle
+            innerEndAngle = (360.0 / maxValue)
+                            * value + startAngle
         } else {
             // Calculate the center difference between the end and start angle
             let angleDiff: CGFloat = endAngle - startAngle
             // Calculate how much we should draw depending on the value set
-            let arcLenPerValue = angleDiff / CGFloat(maxValue)
+            let arcLenPerValue = angleDiff / maxValue
             // The inner end angle some basic math is done
-            innerEndAngle = arcLenPerValue * CGFloat(value) + startAngle
+            innerEndAngle = arcLenPerValue * value + startAngle
         }
         
         // The radius for style 1 is set below
