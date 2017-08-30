@@ -172,7 +172,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let width = bounds.width
         let height = bounds.width
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let outerRadius = max(width, height)/2 - outerRingWidth/2
+        let outerRadius = max(width, height)/2 - max(outerRingWidth, innerRingWidth)/2
         let start = fullCircle ? 0 : startAngle.toRads
         let end = fullCircle ? CGFloat.pi * 2 : endAngle.toRads
         
@@ -238,7 +238,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             radiusIn = (max(bounds.width - difference,
                             bounds.height - difference)/2) - innerRingWidth/2
         default:
-            radiusIn = (max(bounds.width, bounds.height)/2) - (outerRingWidth/2)
+            radiusIn = (max(bounds.width, bounds.height)/2) - (max(outerRingWidth, innerRingWidth)/2)
         }
         
         // Start drawing
