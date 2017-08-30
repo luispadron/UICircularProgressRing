@@ -1,3 +1,8 @@
+# Version 1.7.1
+
+- Fix issue where outer ring width couldn't be smaller than inner ring width.
+Thanks to: [SwiftTsubame](https://github.com/SwiftTsubame) for the contribution.
+
 # Version 1.7.0
 
 #### Highlight: New `UICircularProgressRingView.minValue` property.
