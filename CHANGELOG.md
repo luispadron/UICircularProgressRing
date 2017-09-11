@@ -1,3 +1,7 @@
+# Version 1.7.2
+
+- Add `s.ios.deployment_target = "8.0"` to Podspec, thanks to [@younatics](https://github.com/younatics)
+
 # Version 1.7.1
 
 - Fix issue where outer ring width couldn't be smaller than inner ring width.
