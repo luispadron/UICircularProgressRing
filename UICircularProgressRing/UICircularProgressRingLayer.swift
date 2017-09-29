@@ -217,12 +217,12 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let innerEndAngle: CGFloat
         
         if fullCircle {
-            innerEndAngle = (value - minValue) / maxValue * 360.0 + startAngle
+            innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
         } else {
             // Calculate the center difference between the end and start angle
-            let angleDiff: CGFloat = abs(endAngle - startAngle)
+            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle) 
             // Calculate how much we should draw depending on the value set
-            innerEndAngle = (value - minValue) / maxValue * angleDiff + startAngle
+            innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
         }
         
         // The radius for style 1 is set below
