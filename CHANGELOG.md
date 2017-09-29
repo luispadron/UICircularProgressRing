@@ -1,3 +1,7 @@
+# Version 1.7.3
+- Improved calculations for inner ring angle.
+	- Thanks to [@jeffro256](https://github.com/jeffro256) for committing.
+	
 # Version 1.7.2
 
 - Add `s.ios.deployment_target = "8.0"` to Podspec, thanks to [@younatics](https://github.com/younatics)
