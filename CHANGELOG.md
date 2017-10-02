@@ -1,3 +1,12 @@
+# Version 1.7.4
+
+Code optimization & Added missing test cases
+
+- Refactored test cases to also test UICircularProgressRingLayer.
+- Add missing test cases for new gradient members.
+- Add explicit typing to local variables in order to speed up compilation.
+- Add new Swift compiler flags to warn about long function/type inference compilation.
+
 # Version 1.7.3
 - Improved calculations for inner ring angle.
 	- Thanks to [@jeffro256](https://github.com/jeffro256) for committing.
