@@ -8,8 +8,6 @@
 
 ![Styles](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png)
 
-### _Looking for awesome people to help maintain and contribute_
-
 ## Features
 
 * Interface builder designable
@@ -105,3 +103,6 @@ Take a look at the example project over [here](Example/)
 2. Open the `Example.xcworkspace` in Xcode
 3. Mess around and experiment!
 
+## Misc.
+
+Do you use this library? Want to be featured? Go [here.](https://github.com/luispadron/UICircularProgressRing/issues/54)
