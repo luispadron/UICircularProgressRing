@@ -18,7 +18,7 @@
 
 ## Apps Usig UICircularProgressRing
 
-- [GradePoint](gradepoint.luispadron.com) by Luis Padron. 
+- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron. 
 
 - [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
 
