@@ -16,6 +16,12 @@
 * Sleek animations
 * Written in Swift
 
+## Apps Usig UICircularProgressRing
+
+- [GradePoint](gradepoint.luispadron.com) by Luis Padron. 
+
+- [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
+
 ## Installation 
 
 ### CocoaPods (Recommended)
@@ -65,13 +71,7 @@ Design your heart out
 
 ![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
 
-### Apps Usig UICircularProgressRing
-
-- [GradePoint](gradepoint.luispadron.com) by Luis Padron. 
-
-- [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov. 
-
-### Usage
+### Code
 
 ```swift
 override func viewDidLoad() {
