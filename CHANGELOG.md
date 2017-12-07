@@ -1,6 +1,6 @@
 # Version 1.7.5
 
-- Add fix for progress ring requiring squal frame
+- Add fix for progress ring requiring square frame
 - Fix issue where height was set to width.
 - Use min between height and width to calculate radius for both outer
     and inner ring
