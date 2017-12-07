@@ -170,9 +170,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
         guard outerRingWidth > 0 else { return }
         
         let width = bounds.width
-        let height = bounds.width
+        let height = bounds.height
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let outerRadius = max(width, height)/2 - max(outerRingWidth, innerRingWidth)/2
+        let outerRadius = min(width, height)/2 - max(outerRingWidth, innerRingWidth)/2
         let start = fullCircle ? 0 : startAngle.toRads
         let end = fullCircle ? CGFloat.pi * 2 : endAngle.toRads
         
@@ -235,10 +235,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
         case .inside:
             let difference = outerRingWidth*2 - innerRingSpacing
-            radiusIn = (max(bounds.width - difference,
+            radiusIn = (min(bounds.width - difference,
                             bounds.height - difference)/2) - innerRingWidth/2
         default:
-            radiusIn = (max(bounds.width, bounds.height)/2) - (max(outerRingWidth, innerRingWidth)/2)
+            radiusIn = (min(bounds.width, bounds.height)/2) - (max(outerRingWidth, innerRingWidth)/2)
         }
         
         // Start drawing
@@ -310,7 +310,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         valueLabel.font = self.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
-        
+
         valueLabel.update(withValue: value,
                           valueIndicator: valueIndicator,
                           showsDecimal: showFloatingPoint,
