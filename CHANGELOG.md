@@ -1,3 +1,10 @@
+# Version 1.7.4
+
+- Add fix for progress ring requiring squal frame
+- Fix issue where height was set to width.
+- Use min between height and width to calculate radius for both outer
+    and inner ring
+
 # Version 1.7.3
 - Improved calculations for inner ring angle.
 	- Thanks to [@jeffro256](https://github.com/jeffro256) for committing.
