@@ -8,8 +8,6 @@
 
 ![Styles](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png)
 
-### _Looking for awesome people to help maintain and contribute_
-
 ## Features
 
 * Interface builder designable
@@ -17,6 +15,12 @@
 * Easy to use
 * Sleek animations
 * Written in Swift
+
+## Apps Usig UICircularProgressRing
+
+- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron. 
+
+- [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
 
 ## Installation 
 
@@ -67,7 +71,7 @@ Design your heart out
 
 ![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
 
-### Usage
+### Code
 
 ```swift
 override func viewDidLoad() {
@@ -105,3 +109,6 @@ Take a look at the example project over [here](Example/)
 2. Open the `Example.xcworkspace` in Xcode
 3. Mess around and experiment!
 
+## Misc.
+
+Do you use this library? Want to be featured? Go [here.](https://github.com/luispadron/UICircularProgressRing/issues/54)

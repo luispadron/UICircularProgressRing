@@ -15,21 +15,14 @@ class UICircularProgressRingTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        
         progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
     }
     
     override func tearDown() {
         super.tearDown()
-        
-        progressRing = nil
     }
     
     func testApiAndAnimations() {
-        
-        progressRing.setProgress(value: 20, animationDuration: 2) {
-            XCTAssertEqual(self.progressRing.value, 20)
-        }
         
         progressRing.setProgress(value: 23.1, animationDuration: 0)
         XCTAssertEqual(progressRing.value, 23.1)
@@ -37,94 +30,130 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.setProgress(value: 17.9, animationDuration: 0, completion: nil)
         XCTAssertEqual(progressRing.value, 17.9)
         
-        progressRing.setProgress(value: 100, animationDuration: 2) {
-            XCTAssertEqual(self.progressRing.value, 100) // Value should be set
-            XCTAssertEqual(self.progressRing.isAnimating, false) // No longer animating, this should be false
-            self.progressRing.setProgress(value: 25.32, animationDuration: 3, completion: {
-                XCTAssertEqual(self.progressRing.value, 25.32) // Value set
-                XCTAssertEqual(self.progressRing.isAnimating, false) // No longer animating, this should be false
+        progressRing.setProgress(value: 100, animationDuration: 0.2) {
+            XCTAssertEqual(self.progressRing.value, 100)
+            XCTAssertEqual(self.progressRing.isAnimating, false)
+            self.progressRing.setProgress(value: 25.32, animationDuration: 0.3, completion: {
+                XCTAssertEqual(self.progressRing.value, 25.32)
+                XCTAssertEqual(self.progressRing.isAnimating, false)
             })
         }
-        
         // Since animation takes 2 seconds and happens concurrently, isAnimating should be true here
         XCTAssertEqual(progressRing.isAnimating, true)
     }
     
-    func testDefaultsAndSetters() {
-        // Check the defaults for the view, change them, then make sure they changed
+    func testSettersAndLayer() {
+        // Check that changing views members also change the approriate layers members
         XCTAssertNil(progressRing.delegate)
-        
-        XCTAssertEqual(progressRing.fullCircle, true)
+    
         progressRing.fullCircle = false
         XCTAssertEqual(progressRing.fullCircle, false)
+        XCTAssertEqual(progressRing.ringLayer.fullCircle, false)
         
-        XCTAssertEqual(progressRing.value, 0)
         progressRing.value = 50
         XCTAssertEqual(progressRing.value, 50)
+        XCTAssertEqual(progressRing.ringLayer.value, 50)
         
-        XCTAssertEqual(progressRing.maxValue, 100)
+        XCTAssertEqual(progressRing.currentValue, 50)
+        XCTAssertEqual(progressRing.ringLayer.value(forKey: "value") as! CGFloat, 50)
+        
+        progressRing.minValue = 10
+        XCTAssertEqual(progressRing.minValue, 10)
+        XCTAssertEqual(progressRing.ringLayer.minValue, 10)
+        progressRing.minValue = 0
+        XCTAssertEqual(progressRing.minValue, 0)
+        XCTAssertEqual(progressRing.ringLayer.minValue, 0)
+        
         progressRing.maxValue = 200
         XCTAssertEqual(progressRing.maxValue, 200)
+        XCTAssertEqual(progressRing.ringLayer.maxValue, 200)
         
-        XCTAssertEqual(progressRing.ringStyle, .inside)
         progressRing.ringStyle = .ontop
         XCTAssertEqual(progressRing.ringStyle, .ontop)
+        XCTAssertEqual(progressRing.ringLayer.ringStyle, .ontop)
         
-        XCTAssertEqual(progressRing.patternForDashes, [7.0, 7.0])
         progressRing.patternForDashes = [6.0, 5.0]
         XCTAssertEqual(progressRing.patternForDashes, [6.0, 5.0])
+        XCTAssertEqual(progressRing.ringLayer.patternForDashes, [6.0, 5.0])
         
-        XCTAssertEqual(progressRing.startAngle, 0)
         progressRing.startAngle = 90
         XCTAssertEqual(progressRing.startAngle, 90)
+        XCTAssertEqual(progressRing.ringLayer.startAngle, 90)
         
-        XCTAssertEqual(progressRing.endAngle, 360)
         progressRing.endAngle = 180
         XCTAssertEqual(progressRing.endAngle, 180)
+        XCTAssertEqual(progressRing.ringLayer.endAngle, 180)
         
+        progressRing.gradientColors = [UIColor.blue, UIColor.red]
+        XCTAssertEqual(progressRing.gradientColors, [UIColor.blue, UIColor.red])
+        XCTAssertEqual(progressRing.ringLayer.gradientColors, [UIColor.blue, UIColor.red])
         
-        XCTAssertEqual(progressRing.outerRingWidth, 10)
+        progressRing.gradientColorLocations = [0.0, 1.0]
+        XCTAssertEqual(progressRing.gradientColorLocations!, [0.0, 1.0])
+        XCTAssertEqual(progressRing.ringLayer.gradientColorLocations!, [0.0, 1.0])
+        
+        progressRing.gradientStartPosition = .topLeft
+        XCTAssertEqual(progressRing.gradientStartPosition, .topLeft)
+        XCTAssertEqual(progressRing.ringLayer.gradientStartPosition, .topLeft)
+        
+        progressRing.gradientEndPosition = .bottomRight
+        XCTAssertEqual(progressRing.gradientEndPosition, .bottomRight)
+        XCTAssertEqual(progressRing.ringLayer.gradientEndPosition, .bottomRight)
+        
         progressRing.outerRingWidth = 5
         XCTAssertEqual(progressRing.outerRingWidth, 5)
+        XCTAssertEqual(progressRing.ringLayer.outerRingWidth, 5)
         
-        XCTAssertEqual(progressRing.outerRingColor, UIColor.gray)
         progressRing.outerRingColor = UIColor.red
         XCTAssertEqual(progressRing.outerRingColor, UIColor.red)
+        XCTAssertEqual(progressRing.ringLayer.outerRingColor, UIColor.red)
         
-        XCTAssertEqual(progressRing.outerCapStyle, .butt)
         progressRing.outerCapStyle = .round
         XCTAssertEqual(progressRing.outerCapStyle, .round)
+        XCTAssertEqual(progressRing.ringLayer.outerCapStyle, .round)
         
-        XCTAssertEqual(progressRing.innerRingWidth, 5.0)
         progressRing.innerRingWidth = 10.0
         XCTAssertEqual(progressRing.innerRingWidth, 10.0)
+        XCTAssertEqual(progressRing.ringLayer.innerRingWidth, 10.0)
         
-        XCTAssertEqual(progressRing.innerRingColor, UIColor.blue)
         progressRing.innerRingColor = UIColor.green
         XCTAssertEqual(progressRing.innerRingColor, UIColor.green)
+        XCTAssertEqual(progressRing.ringLayer.innerRingColor, UIColor.green)
         
-        XCTAssertEqual(progressRing.innerRingSpacing, 1)
         progressRing.innerRingSpacing = 2
         XCTAssertEqual(progressRing.innerRingSpacing, 2)
+        XCTAssertEqual(progressRing.innerRingSpacing, 2)
         
-        XCTAssertEqual(progressRing.innerCapStyle, .round)
         progressRing.innerCapStyle = .square
         XCTAssertEqual(progressRing.innerCapStyle, .square)
+        XCTAssertEqual(progressRing.ringLayer.innerCapStyle, .square)
         
-        XCTAssertEqual(progressRing.shouldShowValueText, true)
         progressRing.shouldShowValueText = false
         XCTAssertEqual(progressRing.shouldShowValueText, false)
+        XCTAssertEqual(progressRing.ringLayer.shouldShowValueText, false)
         
-        XCTAssertEqual(progressRing.fontColor, UIColor.black)
         progressRing.fontColor = UIColor.darkText
         XCTAssertEqual(progressRing.fontColor, UIColor.darkText)
+        XCTAssertEqual(progressRing.ringLayer.fontColor, UIColor.darkText)
         
-        XCTAssertEqual(progressRing.font, UIFont.systemFont(ofSize: 18.0))
         progressRing.font = UIFont.italicSystemFont(ofSize: 12.0)
         XCTAssertEqual(progressRing.font, UIFont.italicSystemFont(ofSize: 12.0))
+        XCTAssertEqual(progressRing.ringLayer.font, UIFont.italicSystemFont(ofSize: 12.0))
         
-        XCTAssertEqual(progressRing.animationStyle, kCAMediaTimingFunctionEaseIn)
+        progressRing.valueIndicator = " GB"
+        XCTAssertEqual(progressRing.valueIndicator, " GB")
+        XCTAssertEqual(progressRing.ringLayer.valueIndicator, " GB")
+        
+        progressRing.showFloatingPoint = true
+        XCTAssertEqual(progressRing.showFloatingPoint, true)
+        XCTAssertEqual(progressRing.ringLayer.showFloatingPoint, true)
+        
+        progressRing.decimalPlaces = 1
+        XCTAssertEqual(progressRing.decimalPlaces, 1)
+        XCTAssertEqual(progressRing.ringLayer.decimalPlaces, 1)
+        
         progressRing.animationStyle = kCAMediaTimingFunctionLinear
         XCTAssertEqual(progressRing.animationStyle, kCAMediaTimingFunctionLinear)
+        XCTAssertEqual(progressRing.ringLayer.animationStyle, kCAMediaTimingFunctionLinear)
     }
 }
