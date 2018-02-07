@@ -1,3 +1,7 @@
+## Version 1.7.6
+
+Add Carthage Interface Builder support, thanks to [@AbelToy](https://github.com/abeltoy).
+
 # Version 1.7.5
 
 - Add fix for progress ring requiring square frame
