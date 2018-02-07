@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E699E1B202B010F00B83D94 /* UICircularProgressRingView.swift in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE9C1D88CCFD008AE742 /* UICircularProgressRingView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */; };
 		A01A67581D8F55D700AC8CAD /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularProgressRingLayer.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
@@ -109,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */,
+				9E699E1B202B010F00B83D94 /* UICircularProgressRingView.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
