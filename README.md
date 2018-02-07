@@ -22,6 +22,8 @@
 
 - [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
 
+- [HotelTonight](https://itunes.apple.com/app/id407690035?mt=8) by Hotel Tonight Inc.
+
 ## Installation 
 
 ### CocoaPods (Recommended)
