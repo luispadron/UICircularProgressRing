@@ -1,4 +1,4 @@
-## Version 1.7.6
+# Version 1.7.6
 
 Add Carthage Interface Builder support, thanks to [@AbelToy](https://github.com/abeltoy).
 
