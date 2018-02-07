@@ -43,10 +43,6 @@
 
 ### Carthage
 
-**_Important note_: Carthage support for IBDesignable and IBInspectable is broken due to how frameworks work.
-So if you decide on using Carthage, you will not be able to use IB to design this view.
-Take a look [here](https://github.com/Carthage/Carthage/issues/335) for the issue.**
-
 To use with [Carthage](https://github.com/Carthage/Carthage)
 
 1. Make sure Carthage is installed 
