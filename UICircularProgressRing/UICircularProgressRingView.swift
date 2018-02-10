@@ -61,7 +61,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open weak var delegate: UICircularProgressRingDelegate?
+    @objc open weak var delegate: UICircularProgressRingDelegate? = nil
     
     // MARK: Circle Properties
     
