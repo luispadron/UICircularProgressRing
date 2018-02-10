@@ -37,7 +37,7 @@
  ## Author
  Luis Padron
  */
-public protocol UICircularProgressRingDelegate: class {
+@objc public protocol UICircularProgressRingDelegate: class {
     /**
      Delegate call back, called when progress ring is done animating for current value
      
