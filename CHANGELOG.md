@@ -1,3 +1,7 @@
+# Version 1.7.7
+
+Add Objective-C support, thanks to [@hohteri](https://github.com/.hohteri)
+
 # Version 1.7.6
 
 Add Carthage Interface Builder support, thanks to [@AbelToy](https://github.com/abeltoy).
