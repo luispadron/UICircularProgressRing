@@ -1,3 +1,19 @@
+# Version 1.8.0
+
+Add new `animateProperties(duration:animations:completion:)` method. 
+
+This allows you to animate any of the animatable properties of the `UICircularProgressRing`, which currently are: `innerRingColor`, `innerRingWidth`, `outerRingColor`, `outerRingWidth`, `innerRingSpacing`, `fontColor`.
+
+Example usage: 
+
+```swift
+self.ring.animateProperties(duration: 1.5) {
+	// Animate things here
+	self.ring.innerRingColor = .purple
+	self.ring.outerRingColor = .blue
+}
+```
+
 # Version 1.7.7
 
 Add Objective-C support, thanks to [@hohteri](https://github.com/.hohteri)

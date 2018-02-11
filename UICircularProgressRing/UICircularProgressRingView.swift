@@ -836,4 +836,47 @@ import UIKit
         self.value = value
         CATransaction.commit()
     }
+
+    /**
+     Typealias for animateProperties(duration:animations:completion:) fucntion completion
+     */
+    public typealias PropertyAnimationCompletion = (() -> Void)
+
+    /**
+     This function allows animation of the animatable properties of the `UICircularProgressRing`.
+     These properties include `innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor`.
+
+     Simply call this function and inside of the animation block change the animatable properties as you would in any `UView`
+     animation block.
+
+     The completion block is called when all animations finish.
+     */
+    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void) {
+        self.animateProperties(duration: duration, animations: animations, completion: nil)
+    }
+
+    /**
+     This function allows animation of the animatable properties of the `UICircularProgressRing`.
+     These properties include `innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor`.
+
+     Simply call this function and inside of the animation block change the animatable properties as you would in any `UView`
+     animation block.
+
+     The completion block is called when all animations finish.
+     */
+    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void,
+                                      completion: PropertyAnimationCompletion? = nil) {
+        self.ringLayer.shouldAnimateProperties = true
+        self.ringLayer.propertyAnimationDuration = duration
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            // Reset and call completion
+            self.ringLayer.shouldAnimateProperties = false
+            self.ringLayer.propertyAnimationDuration = 0.0
+            completion?()
+        }
+        // Commit and perform animations
+        animations()
+        CATransaction.commit()
+    }
 }
