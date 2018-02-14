@@ -1,3 +1,7 @@
+# Version 1.8.3
+
+- Fix issue with `@objc` and new `willDisplayLabel` method in `UICircularProgressRingDelegate`.
+
 # Version 1.8.2
 
 - Add ability to modify ring label before drawing, thanks to [@hohteri](https://github.com/hohteri)
