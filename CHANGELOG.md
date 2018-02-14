@@ -1,3 +1,7 @@
+# Version 1.8.1
+
+- Fix bug with not checking `shouldAnimateProperties` in the progress ring layer.
+
 # Version 1.8.0
 
 Add new `animateProperties(duration:animations:completion:)` method. 
