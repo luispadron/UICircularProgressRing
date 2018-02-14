@@ -47,6 +47,13 @@
     func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
     
     /**
+     This method is called whenever the label is about to be drawn.
+     This can be used to modify the label looks e.g. NSAttributedString for text kerning
+     
+    */
+    func willDisplayLabel(label: UILabel)
+    
+    /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
      This can be used to update another label or do some other work, whenever you need the exact current value of the ring
      during animation.
@@ -66,4 +73,5 @@
 public extension UICircularProgressRingDelegate {
     // Adds default conformance with an empty method stub
     func didUpdateProgressValue(to newValue: CGFloat) { }
+    func willDisplayLabel(label: UILabel) { }
 }

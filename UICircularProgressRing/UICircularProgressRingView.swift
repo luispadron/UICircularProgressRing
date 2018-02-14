@@ -797,6 +797,10 @@ import UIKit
         delegate?.didUpdateProgressValue(to: newValue)
     }
     
+    internal func willDisplayLabel(label: UILabel) {
+        delegate?.willDisplayLabel(label: label)
+    }
+    
     /**
      Typealias for the setProgress(:) method closure
     */
