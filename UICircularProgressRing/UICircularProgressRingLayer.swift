@@ -172,7 +172,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             animation.timingFunction = CAMediaTimingFunction(name: self.animationStyle)
             animation.duration = self.animationDuration
             return animation
-        } else if UICircularProgressRingLayer.isAnimatableProperty(event) {
+        } else if UICircularProgressRingLayer.isAnimatableProperty(event) && self.shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
             animation.fromValue = self.presentation()?.value(forKey: event)
             animation.timingFunction = CAMediaTimingFunction(name: self.animationStyle)
