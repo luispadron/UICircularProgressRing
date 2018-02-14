@@ -23,6 +23,7 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import UIKit
 
 /**
  This is the protocol declaration for the UICircularProgressRingView delegate property
@@ -44,34 +45,32 @@
      - Parameter ring: The ring which finished animating
      
     */
-    func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
+    @objc func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
+
+    /**
+     This method is called whenever the value is updated, this means during animation this method will be called in real time.
+     This can be used to update another label or do some other work, whenever you need the exact current value of the ring
+     during animation.
+
+     ## Important:
+
+     This is a very hot method and may be called hundreds of times per second during animations. As such make sure to only
+     do very simple and non-intensive work in this method. Do any work that takes time will considerably slow down your application.
+
+     - Paramater newValue: The value which the ring has updated to
+     */
+    @objc func didUpdateProgressValue(to newValue: CGFloat)
     
     /**
      This method is called whenever the label is about to be drawn.
      This can be used to modify the label looks e.g. NSAttributedString for text kerning
      
     */
-    func willDisplayLabel(label: UILabel)
-    
-    /**
-     This method is called whenever the value is updated, this means during animation this method will be called in real time.
-     This can be used to update another label or do some other work, whenever you need the exact current value of the ring
-     during animation.
-     
-     ## Important:
-     
-     This is a very hot method and may be called hundreds of times per second during animations. As such make sure to only
-     do very simple and non-intensive work in this method. Do any work that takes time will considerably slow down your application.
-     
-     - Paramater newValue: The value which the ring has updated to
-     */
-    func didUpdateProgressValue(to newValue: CGFloat)
+    @objc optional func willDisplayLabel(label: UILabel)
 }
 
-
-/// Protocol extension to add default conformance
-public extension UICircularProgressRingDelegate {
-    // Adds default conformance with an empty method stub
+extension UICircularProgressRingDelegate {
+    // Default conformance
+    func finishedUpdatingProgress(forRing ring: UICircularProgressRingView) { }
     func didUpdateProgressValue(to newValue: CGFloat) { }
-    func willDisplayLabel(label: UILabel) { }
 }

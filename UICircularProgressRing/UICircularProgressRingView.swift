@@ -798,7 +798,7 @@ import UIKit
     }
     
     internal func willDisplayLabel(label: UILabel) {
-        delegate?.willDisplayLabel(label: label)
+        delegate?.willDisplayLabel?(label: label)
     }
     
     /**
