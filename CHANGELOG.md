@@ -1,14 +1,18 @@
+# Version 1.8.2
+
+- Add ability to modify ring label before drawing, thanks to [@hohteri](https://github.com/hohteri)
+
 # Version 1.8.1
 
 - Fix bug with not checking `shouldAnimateProperties` in the progress ring layer.
 
 # Version 1.8.0
 
-Add new `animateProperties(duration:animations:completion:)` method. 
+Add new `animateProperties(duration:animations:completion:)` method.
 
 This allows you to animate any of the animatable properties of the `UICircularProgressRing`, which currently are: `innerRingColor`, `innerRingWidth`, `outerRingColor`, `outerRingWidth`, `innerRingSpacing`, `fontColor`.
 
-Example usage: 
+Example usage:
 
 ```swift
 self.ring.animateProperties(duration: 1.5) {
@@ -44,7 +48,7 @@ Add Carthage Interface Builder support, thanks to [@AbelToy](https://github.com/
 # Version 1.7.3
 - Improved calculations for inner ring angle.
 	- Thanks to [@jeffro256](https://github.com/jeffro256) for committing.
-	
+
 # Version 1.7.2
 
 - Add `s.ios.deployment_target = "8.0"` to Podspec, thanks to [@younatics](https://github.com/younatics)
@@ -103,14 +107,14 @@ None!
 - Refactored the `ringStyle` property to `ibRingStyle` and made unavailable for use with code (see below)
 -  Refactored `outerRingCapStyle`,  and `innerRingCapStyle` into new properties and made them unavailable for code use. As these properties will only be used for interface builder, while I patiently wait for Apple to allow enums in IBInspectable properties
 - Added new `ringStyle` which uses new type `UICircularProgressRingStyle` enum to make it easier and safer to assign a style to the progress ring
-- Added new `outCapStyle` and `inCapStyle` enum properties of type `CGCapStyle` which again, allow for easer and safer assignment of progress ring cap styles in code. 
+- Added new `outCapStyle` and `inCapStyle` enum properties of type `CGCapStyle` which again, allow for easer and safer assignment of progress ring cap styles in code.
 - Refactored most of the source code to maintain a max line width of 80, cause I'm insane like that
 - Updated documentation
 
 ##### Breaking Changes in 1.5.0
 
-Due to the refactoring, any code which previously used these properties will have to use the new enumerations provided (sorry). 
- 
+Due to the refactoring, any code which previously used these properties will have to use the new enumerations provided (sorry).
+
 Also, since the `ringStyle` property was changed to `ibRingStyle` then any customized ring style inside of Interface Builder will need to be updated to use the new property, you may see a warning from interface builder. To fix these warnings: Go into the class inspector of the view, under `User Defined Run Time Attributes` remove any of the `ringStyle` values. Then refresh the views by doing `Editor -> Refresh Views`
 
 
@@ -127,7 +131,7 @@ Also, since the `ringStyle` property was changed to `ibRingStyle` then any custo
 
 #### Breaking changes in 1.4.2
 
-With the addition of the `fullCircle` property which is `true` by default anyone who was using a non-circular progress ring will see that their progress ring is now circular. To fix this either set `fullCircle` to `false` via code or go into interface builder and toggle `Full Circle` to `Off`. 
+With the addition of the `fullCircle` property which is `true` by default anyone who was using a non-circular progress ring will see that their progress ring is now circular. To fix this either set `fullCircle` to `false` via code or go into interface builder and toggle `Full Circle` to `Off`.
 
 # Version 1.4.1
 
@@ -149,7 +153,7 @@ ring.valueIndicator = ""
 
 #### Breaking API Changes in 1.4.0
 
-- Since no longer using `fontSize` or `customFontWithName` any projects using these properties will break until updated to newer `font` and to use `UIFont`. 
+- Since no longer using `fontSize` or `customFontWithName` any projects using these properties will break until updated to newer `font` and to use `UIFont`.
 - Any interface builder views which used `fontSize` or `customFontWithName` will now complain about breaking. To fix this simply go into the class inspector of the view, under `User Defined Run Time Attributes` remove any of the `fontSize` or `customFontWithName` values. Then refresh the views by doing `Editor -> Refresh Views`
 
 __Why was this done?__
