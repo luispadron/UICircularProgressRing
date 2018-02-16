@@ -1,3 +1,7 @@
+# Version 1.8.4
+
+- Mark delegate methods as `@objc optional` to allow default or optional conformance, thanks to [@AbelToy](https://github.com/AbelToy)
+
 # Version 1.8.3
 
 - Fix issue with `@objc` and new `willDisplayLabel` method in `UICircularProgressRingDelegate`.
