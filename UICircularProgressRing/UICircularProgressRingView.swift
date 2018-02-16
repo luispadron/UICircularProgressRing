@@ -794,7 +794,7 @@ import UIKit
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
      */
     internal func didUpdateValue(newValue: CGFloat) {
-        delegate?.didUpdateProgressValue(to: newValue)
+        delegate?.didUpdateProgressValue?(to: newValue)
     }
     
     internal func willDisplayLabel(label: UILabel) {
@@ -833,7 +833,7 @@ import UIKit
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Call the closure block
-            self.delegate?.finishedUpdatingProgress(forRing: self)
+            self.delegate?.finishedUpdatingProgress?(forRing: self)
             completion?()
         }
 
