@@ -45,7 +45,7 @@ import UIKit
      - Parameter ring: The ring which finished animating
      
     */
-    @objc func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
+    @objc optional func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
 
     /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
@@ -59,7 +59,7 @@ import UIKit
 
      - Paramater newValue: The value which the ring has updated to
      */
-    @objc func didUpdateProgressValue(to newValue: CGFloat)
+    @objc optional func didUpdateProgressValue(to newValue: CGFloat)
     
     /**
      This method is called whenever the label is about to be drawn.
@@ -67,10 +67,4 @@ import UIKit
      
     */
     @objc optional func willDisplayLabel(label: UILabel)
-}
-
-extension UICircularProgressRingDelegate {
-    // Default conformance
-    func finishedUpdatingProgress(forRing ring: UICircularProgressRingView) { }
-    func didUpdateProgressValue(to newValue: CGFloat) { }
 }
