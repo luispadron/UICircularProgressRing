@@ -1,3 +1,7 @@
+# Version 1.8.5
+
+- Build project with Swift 4.1
+
 # Version 1.8.4
 
 - Mark delegate methods as `@objc optional` to allow default or optional conformance, thanks to [@AbelToy](https://github.com/AbelToy)
