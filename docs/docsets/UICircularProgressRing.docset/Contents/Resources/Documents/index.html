@@ -60,127 +60,15 @@
         <section>
           <section class="section">
             
-            <p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png" alt="Banner"></p>
+            <h1 id='uicircularprogressring' class='heading'>UICircularProgressRing</h1>
+<h3 id='authors' class='heading'>Authors</h3>
 
-<h3 align="center">A circular progress bar for iOS written in Swift</h3>
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>  
-</p>
-
-<p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png" alt="Styles"></p>
-<h2 id='features' class='heading'>Features</h2>
-
-<ul>
-<li>Interface builder designable</li>
-<li>Highly customizable and flexible</li>
-<li>Easy to use</li>
-<li>Sleek animations</li>
-<li>Written in Swift</li>
-</ul>
-<h2 id='apps-usig-uicircularprogressring' class='heading'>Apps Usig UICircularProgressRing</h2>
-
-<ul>
-<li><p><a href="http://gradepoint.luispadron.com">GradePoint</a> by Luis Padron. </p></li>
-<li><p><a href="https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8">UVI Mate</a> by Alexander Ershov.</p></li>
-<li><p><a href="https://itunes.apple.com/app/id407690035?mt=8">HotelTonight</a> by Hotel Tonight Inc.</p></li>
-</ul>
-<h2 id='installation' class='heading'>Installation</h2>
-<h3 id='cocoapods-recommended' class='heading'>CocoaPods (Recommended)</h3>
-
-<ol>
-<li>Install <a href="https://cocoapods.org">CocoaPods</a></li>
-<li><p>Add this repo to your <code>Podfile</code></p>
-<pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'Example'</span> <span class="k">do</span>
-    <span class="c1"># IMPORTANT: Make sure use_frameworks! is included at the top of the file</span>
-    <span class="n">use_frameworks!</span>
-
-    <span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span>
-<span class="k">end</span>
-</code></pre></li>
-<li><p>Run <code>pod install</code></p></li>
-<li><p>Open up the <code>.xcworkspace</code> that CocoaPods created</p></li>
-<li><p>Done!</p></li>
-</ol>
-<h3 id='carthage' class='heading'>Carthage</h3>
-
-<p>To use with <a href="https://github.com/Carthage/Carthage">Carthage</a></p>
-
-<ol>
-<li><p>Make sure Carthage is installed </p>
-
-<p><code>brew install carthage</code></p></li>
-<li><p>Add this repo to your Cartfile</p>
-
-<p><code>github &quot;luispadron/UICircularProgressRing&quot;</code> </p></li>
-</ol>
-<h5 id='either-embed-or-link-the-framework' class='heading'>Either Embed or Link the framework</h5>
-<h6 id='embed' class='heading'>Embed:</h6>
-
-<ol>
-<li>Drag the <code>UICircularProgressRing.framework</code> from <code>MyProjDir/Carthage/Builds/iOS/UICircularProgressRing</code> into the <code>General -&gt; Embeded Binaries</code> section of your Xcode project.</li>
-</ol>
-<h6 id='link' class='heading'>Link:</h6>
-
-<ol>
-<li>Drag the <code>UICircularProgressRing.framework</code> from <code>MyProjDir/Carthage/Builds/iOS/UICircularProgressRing</code> into the <code>General -&gt; Linked Frameworks and Binaries</code> section of your Xcode project.</li>
-<li>Add a run script phase, under <code>Build Phases -&gt; +</code>, put this in the code for the run script: <code>/usr/local/bin/carthage copy-frameworks</code></li>
-<li>Add a <code>Copy Files Phase</code> under <code>Build Phases -&gt; +</code>, select <code>Frameworks</code> as destination and add <code>UICircularProgressRing.framework</code>, make sure <code>Code Sign On Copy</code> is enabled.</li>
-</ol>
-<h3 id='manually' class='heading'>Manually</h3>
-
-<ol>
-<li>Simply download the <code>UICircularProgressRingView.swift</code>, <code>UICircularProgressRingLayer.swift</code> and <code>UICiruclarProgressRingDelegate.swift</code> files from <a href="https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing">here</a> into your project, make sure you point to your projects target</li>
-</ol>
-<h2 id='usage' class='heading'>Usage</h2>
-<h3 id='interface-builder' class='heading'>Interface Builder</h3>
-
-<p>Simply drag a <code>UIView</code> into your storyboard. Make sure to subclass <code><a href="Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></code> and that the module points <code>UICircularProgressRing</code>. </p>
-
-<p>Design your heart out</p>
-
-<p><img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif" alt="ib-demo.gif"></p>
-<h3 id='code' class='heading'>Code</h3>
-<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// Create the view</span>
-  <span class="k">let</span> <span class="nv">progressRing</span> <span class="o">=</span> <span class="nf">UICircularProgressRingView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="nf">CGRect</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">width</span><span class="p">:</span> <span class="mi">240</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">240</span><span class="p">))</span>
-  <span class="c1">// Change any of the properties you'd like</span>
-  <span class="n">progressRing</span><span class="o">.</span><span class="n">maxValue</span> <span class="o">=</span> <span class="mi">50</span>
-  <span class="n">progressRing</span><span class="o">.</span><span class="n">innerRingColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">blue</span>
-  <span class="c1">// etc ...</span>
-<span class="p">}</span>
-</code></pre>
-
-<p>To set a value and animate the view</p>
-<pre class="highlight swift"><code><span class="c1">// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)</span>
-<span class="c1">// Remember to use unowned or weak self if refrencing self to avoid retain cycle</span>
-<span class="n">progressRing</span><span class="o">.</span><span class="nf">setProgress</span><span class="p">(</span><span class="nv">value</span><span class="p">:</span> <span class="mi">49</span><span class="p">,</span> <span class="nv">animationDuration</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nf">print</span><span class="p">(</span><span class="s">"Done animating!"</span><span class="p">)</span>
-  <span class="c1">// Do anything your heart desires...</span>
-<span class="p">}</span>
-</code></pre>
-<h2 id='documentation' class='heading'>Documentation</h2>
-
-<p>Please read this before creating an issue about how to use the package:</p>
-
-<p><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRingView.html">DOCUMENTATION</a></p>
-<h2 id='example-project' class='heading'>Example project</h2>
-
-<p>Take a look at the example project over <a href="Example/">here</a></p>
-
-<ol>
-<li>Download it</li>
-<li>Open the <code>Example.xcworkspace</code> in Xcode</li>
-<li>Mess around and experiment!</li>
-</ol>
-<h2 id='misc' class='heading'>Misc.</h2>
-
-<p>Do you use this library? Want to be featured? Go <a href="https://github.com/luispadron/UICircularProgressRing/issues/54">here.</a></p>
+<p>Luis</p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2018-02-10)</p>
+          <p>&copy; 2018 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2018-04-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
