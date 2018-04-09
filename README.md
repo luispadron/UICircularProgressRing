@@ -45,6 +45,8 @@
 
 ### Carthage
 
+#### Important: Interface builder support with Carthage is either broken or extremely limted
+
 To use with [Carthage](https://github.com/Carthage/Carthage)
 
 1. Make sure Carthage is installed 
@@ -53,6 +55,8 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 2. Add this repo to your Cartfile
 
 	`github "luispadron/UICircularProgressRing"` 
+3. Install dependencies
+	`carthage update --platform iOS`
 
 ##### Either Embed or Link the framework
 
