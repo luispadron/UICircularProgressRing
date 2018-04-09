@@ -3,10 +3,10 @@ Pod::Spec.new do |s|
 
   s.name         = "UICircularProgressRing"
   s.version      = "1.8.5"
-  s.summary      = "A highly customizable circular progress bar for iOS written in Swift 3"
+  s.summary      = "A highly customizable circular progress bar for iOS written in Swift"
 
   s.description  = <<-DESC
-  A highly customizable circular progress bar for iOS written in Swift 3. With Interface Builder support.
+  A highly customizable circular progress bar for iOS written in Swift, with Interface Builder support.
                    DESC
 
   s.homepage     = "https://github.com/luispadron/UICircularProgressRing"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
-  s.author             = { "Luis Padron" => "luispadronedu@gmail.com" }
+  s.author             = { "Luis Padron" => "heyluispadron@gmail.com" }
   s.social_media_url   = "https://luispadron.com"
 
   s.ios.deployment_target = "8.0"
