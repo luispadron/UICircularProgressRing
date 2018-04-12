@@ -1,3 +1,16 @@
+# Version 2.0.0
+
+Add feature requested in [#86](https://github.com/luispadron/UICircularProgressRing/issues/86) and general clean up and refactoring of API.
+
+- Add new `ring` paramater to functions `didUpdateProgressValue` and `willDisplayLabel` so that they can be used with multiple rings if needed.
+
+## Breaking API Changes
+
+- `finishedUpdatingProgress(forRing:)` now changed to `finishedUpdatingProgress(for:)`
+- `didUpdateProgressValue(to:)` now changed to `didUpdateProgressValue(for:to:)`
+- `willDisplayLabel(label:)` now changed to `willDisplayLabel(for:_:)`
+- `setProgress(value:animationDuration:completion:)` now changed to `setProgress(to:duration:completion:)`
+
 # Version 1.8.5
 
 - Build project with Swift 4.1

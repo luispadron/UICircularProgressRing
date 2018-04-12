@@ -42,10 +42,11 @@ import UIKit
     /**
      Delegate call back, called when progress ring is done animating for current value
      
-     - Parameter ring: The ring which finished animating
+     - Paramater
+        - ring: The ring which finished animating
      
     */
-    @objc optional func finishedUpdatingProgress(forRing ring: UICircularProgressRingView)
+    @objc optional func finishedUpdatingProgress(for ring: UICircularProgressRingView)
 
     /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
@@ -57,14 +58,19 @@ import UIKit
      This is a very hot method and may be called hundreds of times per second during animations. As such make sure to only
      do very simple and non-intensive work in this method. Do any work that takes time will considerably slow down your application.
 
-     - Paramater newValue: The value which the ring has updated to
+     - Paramater
+        - ring: The ring which updated the progress
+        - newValue: The value which the ring has updated to
      */
-    @objc optional func didUpdateProgressValue(to newValue: CGFloat)
+    @objc optional func didUpdateProgressValue(for ring: UICircularProgressRingView, to newValue: CGFloat)
     
     /**
      This method is called whenever the label is about to be drawn.
      This can be used to modify the label looks e.g. NSAttributedString for text kerning
-     
+
+     - Paramater
+        - ring: The ring which the label will be displayed in
+        - label: The label which will be displayed
     */
-    @objc optional func willDisplayLabel(label: UILabel)
+    @objc optional func willDisplayLabel(for ring: UICircularProgressRingView, _ label: UILabel)
 }

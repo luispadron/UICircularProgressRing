@@ -794,11 +794,11 @@ import UIKit
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
      */
     internal func didUpdateValue(newValue: CGFloat) {
-        delegate?.didUpdateProgressValue?(to: newValue)
+        delegate?.didUpdateProgressValue?(for: self, to: newValue)
     }
     
     internal func willDisplayLabel(label: UILabel) {
-        delegate?.willDisplayLabel?(label: label)
+        delegate?.willDisplayLabel?(for: self, label)
     }
     
     /**
@@ -822,18 +822,17 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open func setProgress(value: CGFloat, animationDuration: TimeInterval,
-                          completion: ProgressCompletion? = nil) {
+    @objc open func setProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
         // Remove the current animation, so that new can be processed
         if isAnimating { self.layer.removeAnimation(forKey: "value") }
         // Only animate if duration sent is greater than zero
-        self.ringLayer.animated = animationDuration > 0
-        self.ringLayer.animationDuration = animationDuration
+        self.ringLayer.animated = duration > 0
+        self.ringLayer.animationDuration = duration
         // Create a transaction to be notified when animation is complete
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Call the closure block
-            self.delegate?.finishedUpdatingProgress?(forRing: self)
+            self.delegate?.finishedUpdatingProgress?(for: self)
             completion?()
         }
 
