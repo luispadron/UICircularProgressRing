@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{s.version}" }
 
-  s.source_files  = "UICircularProgressRing", "UICircularProgressRing/**/*.{h,m}"
+  s.source_files  = "src/UICircularProgressRing", "src/UICircularProgressRing/**/*.{h,m}"
 end
