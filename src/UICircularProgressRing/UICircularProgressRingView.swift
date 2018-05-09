@@ -627,6 +627,22 @@ import UIKit
     }
     
     /**
+     A toggle for either placing the value indicator right or left to the value
+     Example: true -> "GB 100" (instead of 100 GB)
+     
+     ## Important ##
+     Default = false (place value indicator to the right)
+     
+     ## Author
+     Elad Hayun
+     */
+    @IBInspectable open var showValueIndicatorToTheLeft: Bool = false {
+        didSet {
+            self.ringLayer.showValueIndicatorToTheLeft = self.showValueIndicatorToTheLeft
+        }
+    }
+    
+    /**
      A toggle for showing or hiding floating points from
      the value in the value label
      

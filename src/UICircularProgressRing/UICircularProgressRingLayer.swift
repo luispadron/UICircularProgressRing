@@ -40,13 +40,23 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String,
+    func update(withValue value: CGFloat, valueIndicator: String, showValueIndicatorToTheLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRingView?) {
-        if showsDecimal {
-            self.text = String(format: "%.\(decimalPlaces)f", value) +
-                        "\(valueIndicator)"
-        } else {
-            self.text = "\(Int(value))\(valueIndicator)"
+        switch showValueIndicatorToTheLeft {
+        case true:
+            switch showsDecimal {
+            case true:
+                self.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
+            default:
+                self.text = "\(valueIndicator)\(Int(value))"
+            }
+        default:
+            switch showsDecimal {
+                case true:
+                    self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+            default:
+                self.text = "\(Int(value))\(valueIndicator)"
+            }
         }
         valueDelegate?.willDisplayLabel(label: self)
         self.sizeToFit()
@@ -99,6 +109,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
     @NSManaged var valueIndicator: String
+    @NSManaged var showValueIndicatorToTheLeft: Bool
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
     
@@ -337,6 +348,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         valueLabel.update(withValue: value,
                           valueIndicator: valueIndicator,
+                          showValueIndicatorToTheLeft: showValueIndicatorToTheLeft,
                           showsDecimal: showFloatingPoint,
                           decimalPlaces: decimalPlaces,
                           valueDelegate: valueDelegate)
