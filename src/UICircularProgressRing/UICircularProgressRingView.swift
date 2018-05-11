@@ -636,9 +636,9 @@ import UIKit
      ## Author
      Elad Hayun
      */
-    @IBInspectable open var showValueIndicatorToTheLeft: Bool = false {
+    @IBInspectable open var rightToLeft: Bool = false {
         didSet {
-            self.ringLayer.showValueIndicatorToTheLeft = self.showValueIndicatorToTheLeft
+            self.ringLayer.rightToLeft = self.rightToLeft
         }
     }
     

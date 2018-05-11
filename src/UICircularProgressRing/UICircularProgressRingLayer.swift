@@ -40,21 +40,19 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String, showValueIndicatorToTheLeft: Bool,
+    func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRingView?) {
-        switch showValueIndicatorToTheLeft {
-        case true:
-            switch showsDecimal {
-            case true:
+        if rightToLeft {
+            if showsDecimal {
                 self.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            default:
+            } else {
                 self.text = "\(valueIndicator)\(Int(value))"
             }
-        default:
-            switch showsDecimal {
-                case true:
-                    self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            default:
+            
+        } else {
+            if showsDecimal {
+                self.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+            } else {
                 self.text = "\(Int(value))\(valueIndicator)"
             }
         }
@@ -109,7 +107,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
     @NSManaged var valueIndicator: String
-    @NSManaged var showValueIndicatorToTheLeft: Bool
+    @NSManaged var rightToLeft: Bool
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
     
@@ -348,7 +346,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         valueLabel.update(withValue: value,
                           valueIndicator: valueIndicator,
-                          showValueIndicatorToTheLeft: showValueIndicatorToTheLeft,
+                          rightToLeft: rightToLeft,
                           showsDecimal: showFloatingPoint,
                           decimalPlaces: decimalPlaces,
                           valueDelegate: valueDelegate)
