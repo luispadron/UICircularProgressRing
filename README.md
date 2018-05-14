@@ -3,7 +3,7 @@
 <h3 align="center">A circular progress bar for iOS written in Swift</h3>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>  
+<img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>
 </p>
 
 ![Styles](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png)
@@ -15,16 +15,17 @@
 * Easy to use
 * Sleek animations
 * Written in Swift
+* RTL language support
 
 ## Apps Usig UICircularProgressRing
 
-- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron. 
+- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron.
 
 - [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
 
 - [HotelTonight](https://itunes.apple.com/app/id407690035?mt=8) by Hotel Tonight Inc.
 
-## Installation 
+## Installation
 
 ### CocoaPods (Recommended)
 
@@ -49,12 +50,12 @@
 
 To use with [Carthage](https://github.com/Carthage/Carthage)
 
-1. Make sure Carthage is installed 
-	
+1. Make sure Carthage is installed
+
 	`brew install carthage`
 2. Add this repo to your Cartfile
 
-	`github "luispadron/UICircularProgressRing"` 
+	`github "luispadron/UICircularProgressRing"`
 3. Install dependencies
 	`carthage update --platform iOS`
 
@@ -78,7 +79,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ### Interface Builder
 
-Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRingView` and that the module points `UICircularProgressRing`. 
+Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRingView` and that the module points `UICircularProgressRing`.
 
 Design your heart out
 

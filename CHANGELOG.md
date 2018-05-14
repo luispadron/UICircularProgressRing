@@ -1,3 +1,9 @@
+# Version 2.1.0
+
+Add right-to-left language support, thanks [eladhayun](https://github.com/eladhayun).
+
+- New property `rightToLeft` which when set to true will display the ring with RTL language support, for example when `rightToLeft = true`, the progress will be `GB 100` instead of `100 GB`.
+
 # Version 2.0.0
 
 Add feature requested in [#86](https://github.com/luispadron/UICircularProgressRing/issues/86) and general clean up and refactoring of API.
