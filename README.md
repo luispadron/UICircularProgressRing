@@ -25,6 +25,8 @@
 
 - [HotelTonight](https://itunes.apple.com/app/id407690035?mt=8) by Hotel Tonight Inc.
 
+- [הנתיב המהיר](https://itunes.apple.com/us/app/הנתיב-המהיר/id1320456872?mt=8) by Elad Hayun
+
 ## Installation
 
 ### CocoaPods (Recommended)
