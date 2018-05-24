@@ -1,1 +1,6 @@
 theme: jekyll-theme-cayman
+title: UICircularProgressRing
+description: A circular progress bar for iOS written in Swift
+show_downloads: true
+pods_url: https://cocoapods.org/pods/UICircularProgressRing
+release_url: https://github.com/luispadron/UICircularProgressRing/releases
