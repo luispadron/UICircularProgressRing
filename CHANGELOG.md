@@ -1,3 +1,7 @@
+# Version 2.1.1
+
+- Build with Swift 4.1.2
+
 # Version 2.1.0
 
 Add right-to-left language support, thanks [eladhayun](https://github.com/eladhayun).
