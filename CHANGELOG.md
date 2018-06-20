@@ -1,3 +1,7 @@
+# Version 2.1.2
+
+- Enable app-extension safe API
+
 # Version 2.1.1
 
 - Build with Swift 4.1.2
