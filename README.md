@@ -119,11 +119,10 @@ Please read this before creating an issue about how to use the package:
 
 ## Example project
 
-Take a look at the example project over [here](Example/)
+Take a look at the example playground over [here](Example/)
 
 1. Download it
-2. Open the `Example.xcworkspace` in Xcode
-3. Mess around and experiment!
+2. Mess around and experiment!
 
 ## Misc.
 
