@@ -27,7 +27,7 @@ import UIKit
 
 /**
  
- # UICiruclarProgressRingView
+ # UICircularProgressRingView
  
  This is the UIView subclass that creates and handles everything
  to do with the progress ring
@@ -35,7 +35,7 @@ import UIKit
  This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
  handels the drawing and animating of the view
  
- The properties in this class correspond with the 
+ The properties in this class correspond with the
  properties in UICircularProgressRingLayer.
  When they are set in here, they are also set for the layer and drawn accordingly
  
@@ -55,7 +55,7 @@ import UIKit
      When progress is done updating via UICircularProgressRingView.setValue(_:), the
      finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
      
-     The ring will be passed to the delegate in order to keep track of 
+     The ring will be passed to the delegate in order to keep track of
      multiple ring updates if needed.
      
      ## Author
@@ -68,7 +68,7 @@ import UIKit
     /**
      Whether or not the progress ring should be a full circle.
      
-     What this means is that the outer ring will always go from 0 - 360 degrees and 
+     What this means is that the outer ring will always go from 0 - 360 degrees and
      the inner ring will be calculated accordingly depending on current value.
      
      ## Important ##
@@ -79,7 +79,7 @@ import UIKit
      ## Author
      Luis Padron
      
-    */
+     */
     @IBInspectable open var fullCircle: Bool = true {
         didSet {
             self.ringLayer.fullCircle = self.fullCircle
@@ -97,10 +97,10 @@ import UIKit
      Must be a non-negative value. If this value falls below `minValue` it will be
      clamped and set equal to `minValue`.
      
-     This cannot be used to get the value while the ring is animating, to get 
+     This cannot be used to get the value while the ring is animating, to get
      current value while animating use `currentValue`.
      
-     The current value of the progress ring after animating, use setProgress(value:) 
+     The current value of the progress ring after animating, use setProgress(value:)
      to alter the value with the option to animate and have a completion handler.
      
      ## Author
@@ -120,9 +120,9 @@ import UIKit
     /**
      The current value of the progress ring
      
-     This will return the current value of the progress ring, 
+     This will return the current value of the progress ring,
      if the ring is animating it will be updated in real time.
-     If the ring is not currently animating then the value returned 
+     If the ring is not currently animating then the value returned
      will be the `value` property of the ring
      
      ## Author
@@ -178,6 +178,22 @@ import UIKit
     @IBInspectable open var maxValue: CGFloat = 100.0 {
         didSet {
             self.ringLayer.maxValue = abs(self.maxValue)
+        }
+    }
+    
+    /**
+     The direction the circle is drawn in
+     Example: true -> clockwise
+     
+     ## Important ##
+     Default = true (draw the circle clockwise)
+     
+     ## Author
+     Pete Walker
+     */
+    @IBInspectable open var isClockwise: Bool = true {
+        didSet {
+            self.ringLayer.isClockwise = self.isClockwise
         }
     }
     
@@ -592,7 +608,7 @@ import UIKit
     
     /**
      The font to be used for the progress indicator.
-     All font attributes are specified here except for font color, which is done 
+     All font attributes are specified here except for font color, which is done
      using `fontColor`.
      
      
@@ -763,6 +779,7 @@ import UIKit
         self.layer.masksToBounds = false
         
         self.ringLayer.fullCircle = fullCircle
+        self.ringLayer.isClockwise = isClockwise
         
         self.ringLayer.value = value
         self.ringLayer.maxValue = maxValue
@@ -819,20 +836,20 @@ import UIKit
     
     /**
      Typealias for the setProgress(:) method closure
-    */
+     */
     public typealias ProgressCompletion = (() -> Void)
     
     /**
-     Sets the current value for the progress ring, calling this method while ring is 
+     Sets the current value for the progress ring, calling this method while ring is
      animating will cancel the previously set animation and start a new one.
      
-     - Parameter newVal: The value to be set for the progress ring
-     - Parameter animationDuration: The time interval duration for the animation
-     - Parameter completion: The completion closure block that will be called when 
+     - Parameter to: The value to be set for the progress ring
+     - Parameter duration: The time interval duration for the animation
+     - Parameter completion: The completion closure block that will be called when
      animtion is finished (also called when animationDuration = 0), default is nil
      
      ## Important ##
-     Animatin duration = 0 will cause no animation to occur, and value will instantly 
+     Animation duration = 0 will cause no animation to occur, and value will instantly
      be set
      
      ## Author
@@ -855,7 +872,7 @@ import UIKit
         self.value = value
         CATransaction.commit()
     }
-
+    
     /**
      Typealias for animateProperties(duration:animations:completion:) fucntion completion
      */

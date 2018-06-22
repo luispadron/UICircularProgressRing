@@ -24,16 +24,16 @@ class UICircularProgressRingTests: XCTestCase {
     
     func testApiAndAnimations() {
         
-        progressRing.setProgress(value: 23.1, animationDuration: 0)
+        progressRing.setProgress(to: 23.1, duration: 0)
         XCTAssertEqual(progressRing.value, 23.1)
         
-        progressRing.setProgress(value: 17.9, animationDuration: 0, completion: nil)
+        progressRing.setProgress(to: 17.9, duration: 0, completion: nil)
         XCTAssertEqual(progressRing.value, 17.9)
         
-        progressRing.setProgress(value: 100, animationDuration: 0.2) {
+        progressRing.setProgress(to: 100, duration: 0.2) {
             XCTAssertEqual(self.progressRing.value, 100)
             XCTAssertEqual(self.progressRing.isAnimating, false)
-            self.progressRing.setProgress(value: 25.32, animationDuration: 0.3, completion: {
+            self.progressRing.setProgress(to: 25.32, duration: 0.3, completion: {
                 XCTAssertEqual(self.progressRing.value, 25.32)
                 XCTAssertEqual(self.progressRing.isAnimating, false)
             })
