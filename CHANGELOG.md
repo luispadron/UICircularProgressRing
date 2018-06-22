@@ -1,3 +1,7 @@
+# Version 2.1.3
+
+- Add example playground, remove old example workspace
+
 # Version 2.1.2
 
 - Enable app-extension safe API
