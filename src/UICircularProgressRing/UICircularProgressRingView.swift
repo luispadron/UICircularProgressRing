@@ -181,22 +181,6 @@ import UIKit
         }
     }
     
-    /**
-     The direction the circle is drawn in
-     Example: true -> clockwise
-     
-     ## Important ##
-     Default = true (draw the circle clockwise)
-     
-     ## Author
-     Pete Walker
-     */
-    @IBInspectable open var isClockwise: Bool = true {
-        didSet {
-            self.ringLayer.isClockwise = self.isClockwise
-        }
-    }
-    
     // MARK: View Style
     
     /**
@@ -725,6 +709,22 @@ import UIKit
      */
     @objc open var isAnimating: Bool {
         get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
+    }
+
+    /**
+     The direction the circle is drawn in
+     Example: true -> clockwise
+     
+     ## Important ##
+     Default = true (draw the circle clockwise)
+     
+     ## Author
+     Pete Walker
+    */
+    @IBInspectable open var isClockwise: Bool = true {
+        didSet {
+            self.ringLayer.isClockwise = self.isClockwise
+        }
     }
     
     // MARK: Layer

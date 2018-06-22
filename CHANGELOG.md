@@ -1,3 +1,10 @@
+# Version 2.2.0
+
+- Add new `isClockwise` property which allows users of the library to
+set whether or not the ring should rotate in a clockwise fashion.
+
+Thanks to [@petewalker](https://github.com/petewalker) for adding this!
+
 # Version 2.1.3
 
 - Add example playground, remove old example workspace

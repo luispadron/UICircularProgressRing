@@ -63,7 +63,8 @@
             <h1>UICircularProgressRingDelegate</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@objc</span> <span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">UICircularProgressRingDelegate</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">UICircularProgressRingDelegate</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
 
                 </div>
               </div>
@@ -111,7 +112,8 @@ track of multiple ring updates if needed.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">finishedUpdatingProgress</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">finishedUpdatingProgress</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -153,7 +155,8 @@ do very simple and non-intensive work in this method. Do any work that takes tim
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">didUpdateProgressValue</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">newValue</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">didUpdateProgressValue</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">newValue</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -190,7 +193,8 @@ This can be used to modify the label looks e.g. NSAttributedString for text kern
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span> <span class="kd">optional</span> <span class="kd">func</span> <span class="nf">willDisplayLabel</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">UILabel</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">willDisplayLabel</span><span class="p">(</span><span class="k">for</span> <span class="nv">ring</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRingView.html">UICircularProgressRingView</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">UILabel</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -202,8 +206,8 @@ This can be used to modify the label looks e.g. NSAttributedString for text kern
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2018-05-14)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2018-06-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
