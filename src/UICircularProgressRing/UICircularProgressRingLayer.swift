@@ -4,14 +4,14 @@
 //
 //  Copyright (c) 2016 Luis Padron
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a 
-//  copy of this software and associated documentation files (the "Software"), 
-//  to deal in the Software without restriction, including without limitation the 
+//  Permission is hereby granted, free of charge, to any person obtaining a
+//  copy of this software and associated documentation files (the "Software"),
+//  to deal in the Software without restriction, including without limitation the
 //  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is furnished
 //  to do so, subject to the following conditions:
 //
-//  The above copyright notice and this permission notice shall be included 
+//  The above copyright notice and this permission notice shall be included
 // in all copies or substantial portions of the Software.
 //
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
@@ -64,7 +64,7 @@ private extension UILabel {
 /**
  The internal subclass for CAShapeLayer.
  This is the class that handles all the drawing and animation.
- This class is not interacted with, instead 
+ This class is not interacted with, instead
  properties are set in UICircularProgressRingView and those are delegated to here.
  
  */
@@ -110,6 +110,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var rightToLeft: Bool
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
+    @NSManaged var isClockwise: Bool
     
     var animationDuration: TimeInterval = 1.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
@@ -251,16 +252,24 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let innerEndAngle: CGFloat
         
         if fullCircle {
-            innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
+            if (!isClockwise) {
+                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * 360.0)
+            } else {
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
+            }
         } else {
             // Calculate the center difference between the end and start angle
-            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle) 
+            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle)
             // Calculate how much we should draw depending on the value set
-            innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
+            if (!isClockwise) {
+                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * angleDiff)
+            } else {
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
+            }
         }
         
         // The radius for style 1 is set below
-        // The radius for style 1 is a bit less than the outer, 
+        // The radius for style 1 is a bit less than the outer,
         // this way it looks like its inside the circle
         
         var radiusIn: CGFloat = 0.0
@@ -280,7 +289,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
                                                    radius: radiusIn,
                                                    startAngle: startAngle.toRads,
                                                    endAngle: innerEndAngle.toRads,
-                                                   clockwise: true)
+                                                   clockwise: isClockwise)
         
         // Draw path
         ctx.setLineWidth(innerRingWidth)
