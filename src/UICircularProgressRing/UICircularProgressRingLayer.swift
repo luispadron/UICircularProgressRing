@@ -41,7 +41,7 @@ private extension CGFloat {
  */
 private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRingView?) {
+                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
         if rightToLeft {
             if showsDecimal {
                 self.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
@@ -65,7 +65,7 @@ private extension UILabel {
  The internal subclass for CAShapeLayer.
  This is the class that handles all the drawing and animation.
  This class is not interacted with, instead
- properties are set in UICircularProgressRingView and those are delegated to here.
+ properties are set in UICircularProgressRing and those are delegated to here.
  
  */
 class UICircularProgressRingLayer: CAShapeLayer {
@@ -74,8 +74,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     
     /**
      The NSManaged properties for the layer.
-     These properties are initialized in UICircularProgressRingView.
-     They're also assigned by mutating UICircularProgressRingView properties.
+     These properties are initialized in UICircularProgressRing.
+     They're also assigned by mutating UICircularProgressRing properties.
      */
     @NSManaged var fullCircle: Bool
     
@@ -115,7 +115,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     var animationDuration: TimeInterval = 1.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
     var animated = false
-    @NSManaged weak var valueDelegate: UICircularProgressRingView?
+    @NSManaged weak var valueDelegate: UICircularProgressRing?
     
     // The value label which draws the text for the current value
     lazy private var valueLabel: UILabel = UILabel(frame: .zero)

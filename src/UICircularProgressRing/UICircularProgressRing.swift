@@ -1,5 +1,5 @@
 //
-//  UICircularProgressRingView.swift
+//  UICircularProgressRing.swift
 //  UICircularProgressRing
 //
 //  Copyright (c) 2016 Luis Padron
@@ -27,7 +27,7 @@ import UIKit
 
 /**
  
- # UICircularProgressRingView
+ # UICircularProgressRing
  
  This is the UIView subclass that creates and handles everything
  to do with the progress ring
@@ -45,15 +45,15 @@ import UIKit
  Luis Padron
  
  */
-@IBDesignable open class UICircularProgressRingView: UIView {
+@IBDesignable open class UICircularProgressRing: UIView {
     
     // MARK: Delegate
     /**
-     The delegate for the UICircularProgressRingView
+     The delegate for the UICircularProgressRing
      
      ## Important ##
-     When progress is done updating via UICircularProgressRingView.setValue(_:), the
-     finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
+     When progress is done updating via UICircularProgressRing.setValue(_:), the
+     finishedUpdatingProgressFor(_ ring: UICircularProgressRing) will be called.
      
      The ring will be passed to the delegate in order to keep track of
      multiple ring updates if needed.
@@ -100,16 +100,16 @@ import UIKit
      This cannot be used to get the value while the ring is animating, to get
      current value while animating use `currentValue`.
      
-     The current value of the progress ring after animating, use setProgress(value:)
+     The current value of the progress ring after animating, use startProgress(value:)
      to alter the value with the option to animate and have a completion handler.
      
      ## Author
      Luis Padron
      */
-    @IBInspectable open var value: CGFloat = 0 {
+    @IBInspectable open var value: ProgressValue = 0 {
         didSet {
             if value < minValue {
-                print("Warning in: UICircularProgressRingView.value: Line #\(#line)")
+                print("Warning in: UICircularProgressRing.value: Line #\(#line)")
                 print("Attempted to set a value less than minValue, value has been set to minValue.\n")
                 self.value = self.minValue
             }
@@ -128,10 +128,10 @@ import UIKit
      ## Author
      Luis Padron
      */
-    open var currentValue: CGFloat? {
+    open var currentValue: ProgressValue? {
         get {
             if isAnimating {
-                return self.layer.presentation()?.value(forKey: "value") as? CGFloat
+                return self.layer.presentation()?.value(forKey: "value") as? ProgressValue
             } else {
                 return self.value
             }
@@ -154,7 +154,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var minValue: CGFloat = 0.0 {
+    @IBInspectable open var minValue: ProgressValue = 0.0 {
         didSet {
             self.ringLayer.minValue = abs(self.minValue)
         }
@@ -175,7 +175,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var maxValue: CGFloat = 100.0 {
+    @IBInspectable open var maxValue: ProgressValue = 100.0 {
         didSet {
             self.ringLayer.maxValue = abs(self.maxValue)
         }
@@ -726,6 +726,12 @@ import UIKit
             self.ringLayer.isClockwise = self.isClockwise
         }
     }
+
+    /// Used to determine when the animation started
+    private var animationBeginTime: CFTimeInterval?
+
+    /// Used to determine when the animation was paused
+    private var animationPauseTime: CFTimeInterval?
     
     // MARK: Layer
     
@@ -744,6 +750,28 @@ import UIKit
             return UICircularProgressRingLayer.self
         }
     }
+
+    // MARK: Type aliases
+
+    /**
+     Typealias for the startProgress(:) method closure
+     */
+    public typealias ProgressCompletion = (() -> Void)
+
+    /**
+     Typealias for animateProperties(duration:animations:completion:) fucntion completion
+     */
+    public typealias PropertyAnimationCompletion = (() -> Void)
+
+    /**
+     Typealias for the value of the ring
+     */
+    public typealias ProgressValue = CGFloat
+
+    /**
+     Typealias for the duration of a ring animation
+     */
+    public typealias ProgressDuration = TimeInterval
     
     // MARK: Methods
     
@@ -826,18 +854,14 @@ import UIKit
      Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
      */
-    internal func didUpdateValue(newValue: CGFloat) {
+    internal func didUpdateValue(newValue: ProgressValue) {
         delegate?.didUpdateProgressValue?(for: self, to: newValue)
     }
     
     internal func willDisplayLabel(label: UILabel) {
         delegate?.willDisplayLabel?(for: self, label)
     }
-    
-    /**
-     Typealias for the setProgress(:) method closure
-     */
-    public typealias ProgressCompletion = (() -> Void)
+
     
     /**
      Sets the current value for the progress ring, calling this method while ring is
@@ -855,7 +879,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open func setProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
+    @objc open func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
         // Remove the current animation, so that new can be processed
         if isAnimating { self.layer.removeAnimation(forKey: "value") }
         // Only animate if duration sent is greater than zero
@@ -872,11 +896,6 @@ import UIKit
         self.value = value
         CATransaction.commit()
     }
-    
-    /**
-     Typealias for animateProperties(duration:animations:completion:) fucntion completion
-     */
-    public typealias PropertyAnimationCompletion = (() -> Void)
 
     /**
      This function allows animation of the animatable properties of the `UICircularProgressRing`.

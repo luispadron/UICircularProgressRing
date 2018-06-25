@@ -26,11 +26,11 @@
 import UIKit
 
 /**
- This is the protocol declaration for the UICircularProgressRingView delegate property
+ This is the protocol declaration for the UICircularProgressRing delegate property
  
  ## Important ##
- When progress is done updating via UICircularProgressRingView.setValue(_:), the
- finishedUpdatingProgress(forRing: UICircularProgressRingView) will be called.
+ When progress is done updating via UICircularProgressRing.setValue(_:), the
+ finishedUpdatingProgress(forRing: UICircularProgressRing) will be called.
  
  The ring will be passed to the delegate in order to keep 
  track of multiple ring updates if needed.
@@ -46,7 +46,7 @@ import UIKit
         - ring: The ring which finished animating
      
     */
-    @objc optional func finishedUpdatingProgress(for ring: UICircularProgressRingView)
+    @objc optional func finishedUpdatingProgress(for ring: UICircularProgressRing)
 
     /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
@@ -62,7 +62,7 @@ import UIKit
         - ring: The ring which updated the progress
         - newValue: The value which the ring has updated to
      */
-    @objc optional func didUpdateProgressValue(for ring: UICircularProgressRingView, to newValue: CGFloat)
+    @objc optional func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: UICircularProgressRing.ProgressValue)
     
     /**
      This method is called whenever the label is about to be drawn.
@@ -72,5 +72,5 @@ import UIKit
         - ring: The ring which the label will be displayed in
         - label: The label which will be displayed
     */
-    @objc optional func willDisplayLabel(for ring: UICircularProgressRingView, _ label: UILabel)
+    @objc optional func willDisplayLabel(for ring: UICircularProgressRing, _ label: UILabel)
 }
