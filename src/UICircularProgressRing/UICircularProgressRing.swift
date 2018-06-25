@@ -25,6 +25,18 @@
 
 import UIKit
 
+/// Helper enum for animation key
+fileprivate enum AnimationKeys: String {
+    case value = "value"
+}
+
+/// Helper extension to allow removing layer animation based on AnimationKeys enum
+fileprivate extension CALayer {
+    func removeAnimation(forKey key: AnimationKeys) {
+        self.removeAnimation(forKey: key.rawValue)
+    }
+}
+
 /**
  
  # UICircularProgressRing
@@ -727,9 +739,6 @@ import UIKit
         }
     }
 
-    /// Used to determine when the animation started
-    private var animationBeginTime: CFTimeInterval?
-
     /// Used to determine when the animation was paused
     private var animationPauseTime: CFTimeInterval?
     
@@ -874,28 +883,98 @@ import UIKit
      
      ## Important ##
      Animation duration = 0 will cause no animation to occur, and value will instantly
-     be set
+     be set.
+
+     Calling this method again while a current progress animation is in progress will **not**
+     cause the animation to be restarted. The old animation will be removed (calling the completion and delegate)
+     and a new animation will start from where the old one left off at. If you wish to instead reset an animation
+     consider `resetProgress`.
      
      ## Author
      Luis Padron
      */
     @objc open func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
-        // Remove the current animation, so that new can be processed
-        if isAnimating { self.layer.removeAnimation(forKey: "value") }
-        // Only animate if duration sent is greater than zero
+        if isAnimating {
+            self.value = self.currentValue ?? self.value
+            self.layer.removeAnimation(forKey: "value")
+        }
+
         self.ringLayer.animated = duration > 0
         self.ringLayer.animationDuration = duration
-        // Create a transaction to be notified when animation is complete
+        self.ringLayer.speed = 1.0
+        self.ringLayer.timeOffset = 0.0
+        self.ringLayer.beginTime = 0.0
+
         CATransaction.begin()
         CATransaction.setCompletionBlock {
-            // Call the closure block
             self.delegate?.finishedUpdatingProgress?(for: self)
             completion?()
         }
-
         self.value = value
         CATransaction.commit()
     }
+    
+
+    /**
+     Pauses the currently running animation and halts all progress.
+
+     ## Important ##
+     This method should **only** be called when there is a currently running animation.
+     That is, after a call to `startProgress`.
+
+     ## Author
+     Luis Padron
+     */
+    @objc open func pauseProgress() {
+        guard isAnimating else {
+            fatalError("\(#file):\(#line) Attempt to pause progress with no currently running animation")
+        }
+
+        let pauseTime = self.ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        self.animationPauseTime = pauseTime
+        self.ringLayer.timeOffset = pauseTime
+
+        self.ringLayer.speed = 0.0
+    }
+
+    /**
+     Continues the animation with it's remaining time from where it left off before it was paused.
+
+     ## Important ##
+     This method should **only** be called when there is a currently paused animation.
+     That is, only call this method after you have called `pauseProgress`.
+
+     ## Author
+     Luis Padron
+     */
+    @objc open func continueProgress() {
+        guard let pauseTime = self.animationPauseTime else {
+            fatalError("\(#file):\(#line) Attempt to continue progress on a ring that was never paused")
+        }
+
+        self.ringLayer.timeOffset = 0.0
+        self.ringLayer.speed = 1.0
+        self.ringLayer.beginTime = 0.0
+
+        let currentTime = self.ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        self.ringLayer.beginTime = currentTime - pauseTime
+
+        self.animationPauseTime = nil
+    }
+
+    /**
+     Resets the progress back to the `minValue` of the progress ring.
+     Does **not** perform any animations
+
+     ## Author
+     Luis Padron
+     */
+    @objc open func resetProgress() {
+        self.ringLayer.animated = false
+        self.ringLayer.removeAnimation(forKey: .value)
+        self.value = self.minValue
+    }
+
 
     /**
      This function allows animation of the animatable properties of the `UICircularProgressRing`.
