@@ -33,15 +33,15 @@ fileprivate enum AnimationKeys: String {
 /// Helper extension to allow removing layer animation based on AnimationKeys enum
 fileprivate extension CALayer {
     func removeAnimation(forKey key: AnimationKeys) {
-        self.removeAnimation(forKey: key.rawValue)
+        removeAnimation(forKey: key.rawValue)
     }
 
     func animation(forKey key: AnimationKeys) -> CAAnimation? {
-        return self.animation(forKey: key.rawValue)
+        return animation(forKey: key.rawValue)
     }
 
     func value(forKey key: AnimationKeys) -> Any? {
-        return self.value(forKey: key.rawValue)
+        return value(forKey: key.rawValue)
     }
 }
 
@@ -102,7 +102,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var fullCircle: Bool = true {
         didSet {
-            self.ringLayer.fullCircle = self.fullCircle
+            ringLayer.fullCircle = fullCircle
         }
     }
     
@@ -131,9 +131,9 @@ fileprivate extension CALayer {
             if value < minValue {
                 print("Warning in: \(#file):\(#line)")
                 print("Attempted to set a value less than minValue, value has been set to minValue.\n")
-                self.value = self.minValue
+                value = minValue
             }
-            self.ringLayer.value = self.value
+            ringLayer.value = value
         }
     }
     
@@ -151,9 +151,9 @@ fileprivate extension CALayer {
     open var currentValue: ProgressValue? {
         get {
             if isAnimating {
-                return self.layer.presentation()?.value(forKey: .value) as? ProgressValue
+                return layer.presentation()?.value(forKey: .value) as? ProgressValue
             } else {
-                return self.value
+                return value
             }
         }
     }
@@ -176,7 +176,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var minValue: ProgressValue = 0.0 {
         didSet {
-            self.ringLayer.minValue = abs(self.minValue)
+            ringLayer.minValue = abs(minValue)
         }
     }
     
@@ -197,7 +197,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var maxValue: ProgressValue = 100.0 {
         didSet {
-            self.ringLayer.maxValue = abs(self.maxValue)
+            ringLayer.maxValue = abs(maxValue)
         }
     }
     
@@ -230,7 +230,7 @@ fileprivate extension CALayer {
     @IBInspectable open var ibRingStyle: Int = 1 {
         willSet {
             let style = UICircularProgressRingStyle(rawValue: newValue)
-            self.ringStyle = style ?? .inside
+            ringStyle = style ?? .inside
         }
     }
     
@@ -249,10 +249,55 @@ fileprivate extension CALayer {
      */
     @objc open var ringStyle: UICircularProgressRingStyle = .inside {
         didSet {
-            self.ringLayer.ringStyle = self.ringStyle
+            ringLayer.ringStyle = ringStyle
         }
     }
-    
+
+    /**
+     Whether or not the value knob is shown
+
+     ## Important ##
+     Default = false
+
+     ## Author
+     Luis Padron
+     */
+    @objc open var showsValueKnob: Bool = false {
+        didSet {
+            ringLayer.showsValueKnob = showsValueKnob
+        }
+    }
+
+    /**
+     The size of the value knob (diameter)
+
+     ## Important ##
+     Default = 15
+
+     ## Author
+     Luis Padron
+     */
+    @objc open var valueKnobSize: CGFloat = 15.0 {
+        didSet {
+            ringLayer.valueKnobSize = valueKnobSize
+        }
+    }
+
+    /**
+     The color of the value knob
+
+     ## Important ##
+     Default = UIColor.lightGray
+
+     ## Author
+     Luis Padron
+     */
+    @objc open var valueKnobColor: UIColor = .lightGray {
+        didSet {
+            ringLayer.valueKnobColor = valueKnobColor
+        }
+    }
+
     
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
@@ -265,7 +310,7 @@ fileprivate extension CALayer {
      */
     @objc open var patternForDashes: [CGFloat] = [7.0, 7.0] {
         didSet {
-            self.ringLayer.patternForDashes = self.patternForDashes
+            ringLayer.patternForDashes = patternForDashes
         }
     }
     
@@ -285,7 +330,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var startAngle: CGFloat = 0 {
         didSet {
-            self.ringLayer.startAngle = self.startAngle
+            ringLayer.startAngle = startAngle
         }
     }
     
@@ -305,7 +350,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var endAngle: CGFloat = 360 {
         didSet {
-            self.ringLayer.endAngle = self.endAngle
+            ringLayer.endAngle = endAngle
         }
     }
     
@@ -326,7 +371,7 @@ fileprivate extension CALayer {
      */
     @objc open var gradientColors: [UIColor] = [UIColor]() {
         didSet {
-            self.ringLayer.gradientColors = self.gradientColors
+            ringLayer.gradientColors = gradientColors
         }
     }
     
@@ -351,7 +396,7 @@ fileprivate extension CALayer {
      */
     @objc open var gradientColorLocations: [CGFloat]? = nil {
         didSet {
-            self.ringLayer.gradientColorLocations = self.gradientColorLocations
+            ringLayer.gradientColorLocations = gradientColorLocations
         }
     }
     
@@ -368,7 +413,7 @@ fileprivate extension CALayer {
      */
     @objc open var gradientStartPosition: UICircularProgressRingGradientPosition = .topRight {
         didSet {
-            self.ringLayer.gradientStartPosition = self.gradientStartPosition
+            ringLayer.gradientStartPosition = gradientStartPosition
         }
     }
     
@@ -385,7 +430,7 @@ fileprivate extension CALayer {
      */
     @objc open var gradientEndPosition: UICircularProgressRingGradientPosition = .bottomLeft {
         didSet {
-            self.ringLayer.gradientEndPosition = self.gradientEndPosition
+            ringLayer.gradientEndPosition = gradientEndPosition
         }
     }
     
@@ -403,7 +448,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var outerRingWidth: CGFloat = 10.0 {
         didSet {
-            self.ringLayer.outerRingWidth = self.outerRingWidth
+            ringLayer.outerRingWidth = outerRingWidth
         }
     }
     
@@ -418,7 +463,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
         didSet {
-            self.ringLayer.outerRingColor = self.outerRingColor
+            ringLayer.outerRingColor = outerRingColor
         }
     }
     
@@ -444,13 +489,13 @@ fileprivate extension CALayer {
         willSet {
             switch newValue {
             case 1:
-                self.outerCapStyle = .butt
+                outerCapStyle = .butt
             case 2:
-                self.outerCapStyle = .round
+                outerCapStyle = .round
             case 3:
-                self.outerCapStyle = .square
+                outerCapStyle = .square
             default:
-                self.outerCapStyle = .butt
+                outerCapStyle = .butt
             }
         }
     }
@@ -470,7 +515,7 @@ fileprivate extension CALayer {
      */
     @objc open var outerCapStyle: CGLineCap = .butt {
         didSet {
-            self.ringLayer.outerCapStyle = self.outerCapStyle
+            ringLayer.outerCapStyle = outerCapStyle
         }
     }
     
@@ -487,7 +532,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var innerRingWidth: CGFloat = 5.0 {
         didSet {
-            self.ringLayer.innerRingWidth = self.innerRingWidth
+            ringLayer.innerRingWidth = innerRingWidth
         }
     }
     
@@ -502,7 +547,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var innerRingColor: UIColor = UIColor.blue {
         didSet {
-            self.ringLayer.innerRingColor = self.innerRingColor
+            ringLayer.innerRingColor = innerRingColor
         }
     }
     
@@ -519,7 +564,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var innerRingSpacing: CGFloat = 1 {
         didSet {
-            self.ringLayer.innerRingSpacing = self.innerRingSpacing
+            ringLayer.innerRingSpacing = innerRingSpacing
         }
     }
     
@@ -547,13 +592,13 @@ fileprivate extension CALayer {
         willSet {
             switch newValue {
             case 1:
-                self.innerCapStyle = .butt
+                innerCapStyle = .butt
             case 2:
-                self.innerCapStyle = .round
+                innerCapStyle = .round
             case 3:
-                self.innerCapStyle = .square
+                innerCapStyle = .square
             default:
-                self.innerCapStyle = .round
+                innerCapStyle = .round
             }
         }
     }
@@ -572,7 +617,7 @@ fileprivate extension CALayer {
      */
     @objc open var innerCapStyle: CGLineCap = .round {
         didSet {
-            self.ringLayer.innerCapStyle = self.innerCapStyle
+            ringLayer.innerCapStyle = innerCapStyle
         }
     }
     
@@ -590,7 +635,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var shouldShowValueText: Bool = true {
         didSet {
-            self.ringLayer.shouldShowValueText = self.shouldShowValueText
+            ringLayer.shouldShowValueText = shouldShowValueText
         }
     }
     
@@ -606,7 +651,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var fontColor: UIColor = UIColor.black {
         didSet {
-            self.ringLayer.fontColor = self.fontColor
+            ringLayer.fontColor = fontColor
         }
     }
     
@@ -625,7 +670,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
         didSet {
-            self.ringLayer.font = self.font
+            ringLayer.font = font
         }
     }
     
@@ -642,7 +687,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var valueIndicator: String = "%" {
         didSet {
-            self.ringLayer.valueIndicator = self.valueIndicator
+            ringLayer.valueIndicator = valueIndicator
         }
     }
     
@@ -658,7 +703,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var rightToLeft: Bool = false {
         didSet {
-            self.ringLayer.rightToLeft = self.rightToLeft
+            ringLayer.rightToLeft = rightToLeft
         }
     }
     
@@ -676,7 +721,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var showFloatingPoint: Bool = false {
         didSet {
-            self.ringLayer.showFloatingPoint = self.showFloatingPoint
+            ringLayer.showFloatingPoint = showFloatingPoint
         }
     }
     
@@ -693,7 +738,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var decimalPlaces: Int = 2 {
         didSet {
-            self.ringLayer.decimalPlaces = self.decimalPlaces
+            ringLayer.decimalPlaces = decimalPlaces
         }
     }
     
@@ -714,7 +759,7 @@ fileprivate extension CALayer {
      */
     @objc open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
         didSet {
-            self.ringLayer.animationStyle = self.animationStyle
+            ringLayer.animationStyle = animationStyle
         }
     }
     
@@ -729,7 +774,7 @@ fileprivate extension CALayer {
      */
     @objc open var isAnimating: Bool {
         get {
-            return (self.layer.animation(forKey: .value) != nil) ? true : false
+            return (layer.animation(forKey: .value) != nil) ? true : false
         }
     }
 
@@ -745,7 +790,7 @@ fileprivate extension CALayer {
     */
     @IBInspectable open var isClockwise: Bool = true {
         didSet {
-            self.ringLayer.isClockwise = self.isClockwise
+            ringLayer.isClockwise = isClockwise
         }
     }
 
@@ -758,7 +803,7 @@ fileprivate extension CALayer {
      Set the ring layer to the default layer, cated as custom layer
      */
     internal var ringLayer: UICircularProgressRingLayer {
-        return self.layer as! UICircularProgressRingLayer
+        return layer as! UICircularProgressRingLayer
     }
     
     /**
@@ -817,49 +862,52 @@ fileprivate extension CALayer {
      */
     internal func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
-        self.ringLayer.valueDelegate = self
+        ringLayer.valueDelegate = self
         
         // Helps with pixelation and blurriness on retina devices
-        self.layer.contentsScale = UIScreen.main.scale
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale * 2
-        self.layer.masksToBounds = false
+        layer.contentsScale = UIScreen.main.scale
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale * 2
+        layer.masksToBounds = false
         
-        self.ringLayer.fullCircle = fullCircle
-        self.ringLayer.isClockwise = isClockwise
+        ringLayer.fullCircle = fullCircle
+        ringLayer.isClockwise = isClockwise
         
-        self.ringLayer.value = value
-        self.ringLayer.maxValue = maxValue
-        self.ringLayer.minValue = minValue
+        ringLayer.value = value
+        ringLayer.maxValue = maxValue
+        ringLayer.minValue = minValue
         
-        self.ringLayer.ringStyle = ringStyle
-        self.ringLayer.patternForDashes = patternForDashes
-        self.ringLayer.gradientColors = gradientColors
-        self.ringLayer.gradientColorLocations = gradientColorLocations
-        self.ringLayer.gradientStartPosition = gradientStartPosition
-        self.ringLayer.gradientEndPosition = gradientEndPosition
+        ringLayer.ringStyle = ringStyle
+        ringLayer.showsValueKnob = showsValueKnob
+        ringLayer.valueKnobSize = valueKnobSize
+        ringLayer.valueKnobColor = valueKnobColor
+        ringLayer.patternForDashes = patternForDashes
+        ringLayer.gradientColors = gradientColors
+        ringLayer.gradientColorLocations = gradientColorLocations
+        ringLayer.gradientStartPosition = gradientStartPosition
+        ringLayer.gradientEndPosition = gradientEndPosition
         
-        self.ringLayer.startAngle = startAngle
-        self.ringLayer.endAngle = endAngle
+        ringLayer.startAngle = startAngle
+        ringLayer.endAngle = endAngle
         
-        self.ringLayer.outerRingWidth = outerRingWidth
-        self.ringLayer.outerRingColor = outerRingColor
-        self.ringLayer.outerCapStyle = outerCapStyle
+        ringLayer.outerRingWidth = outerRingWidth
+        ringLayer.outerRingColor = outerRingColor
+        ringLayer.outerCapStyle = outerCapStyle
         
-        self.ringLayer.innerRingWidth = innerRingWidth
-        self.ringLayer.innerRingColor = innerRingColor
-        self.ringLayer.innerCapStyle = innerCapStyle
-        self.ringLayer.innerRingSpacing = innerRingSpacing
+        ringLayer.innerRingWidth = innerRingWidth
+        ringLayer.innerRingColor = innerRingColor
+        ringLayer.innerCapStyle = innerCapStyle
+        ringLayer.innerRingSpacing = innerRingSpacing
         
-        self.ringLayer.shouldShowValueText = shouldShowValueText
-        self.ringLayer.valueIndicator = valueIndicator
-        self.ringLayer.fontColor = fontColor
-        self.ringLayer.font = font
-        self.ringLayer.showFloatingPoint = showFloatingPoint
-        self.ringLayer.decimalPlaces = decimalPlaces
+        ringLayer.shouldShowValueText = shouldShowValueText
+        ringLayer.valueIndicator = valueIndicator
+        ringLayer.fontColor = fontColor
+        ringLayer.font = font
+        ringLayer.showFloatingPoint = showFloatingPoint
+        ringLayer.decimalPlaces = decimalPlaces
 
-        self.backgroundColor = UIColor.clear
-        self.ringLayer.backgroundColor = UIColor.clear.cgColor
+        backgroundColor = UIColor.clear
+        ringLayer.backgroundColor = UIColor.clear.cgColor
     }
     
     /**
@@ -905,16 +953,16 @@ fileprivate extension CALayer {
      */
     @objc open func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
         if isAnimating {
-            self.animationPauseTime = nil
-            self.value = self.currentValue ?? self.value
-            self.ringLayer.removeAnimation(forKey: .value)
+            animationPauseTime = nil
+            self.value = currentValue ?? value
+            ringLayer.removeAnimation(forKey: .value)
         }
 
-        self.ringLayer.timeOffset = 0.0
-        self.ringLayer.beginTime = 0.0
-        self.ringLayer.speed = 1.0
-        self.ringLayer.animated = duration > 0
-        self.ringLayer.animationDuration = duration
+        ringLayer.timeOffset = 0.0
+        ringLayer.beginTime = 0.0
+        ringLayer.speed = 1.0
+        ringLayer.animated = duration > 0
+        ringLayer.animationDuration = duration
 
         CATransaction.begin()
         CATransaction.setCompletionBlock {
@@ -941,13 +989,13 @@ fileprivate extension CALayer {
             fatalError("\(#file):\(#line) Attempt to pause progress with no currently running animation")
         }
 
-        let pauseTime = self.ringLayer.convertTime(CACurrentMediaTime(), from: nil)
-        self.animationPauseTime = pauseTime
-        self.ringLayer.timeOffset = pauseTime
+        let pauseTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        animationPauseTime = pauseTime
+        ringLayer.timeOffset = pauseTime
 
-        self.ringLayer.speed = 0.0
+        ringLayer.speed = 0.0
 
-        self.delegate?.didPauseProgress?(for: self)
+        delegate?.didPauseProgress?(for: self)
     }
 
     /**
@@ -961,20 +1009,20 @@ fileprivate extension CALayer {
      Luis Padron
      */
     @objc open func continueProgress() {
-        guard let pauseTime = self.animationPauseTime else {
+        guard let pauseTime = animationPauseTime else {
             fatalError("\(#file):\(#line) Attempt to continue progress on a ring that was never paused")
         }
 
-        self.ringLayer.timeOffset = 0.0
-        self.ringLayer.speed = 1.0
-        self.ringLayer.beginTime = 0.0
+        ringLayer.timeOffset = 0.0
+        ringLayer.speed = 1.0
+        ringLayer.beginTime = 0.0
 
-        let currentTime = self.ringLayer.convertTime(CACurrentMediaTime(), from: nil)
-        self.ringLayer.beginTime = currentTime - pauseTime
+        let currentTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        ringLayer.beginTime = currentTime - pauseTime
 
-        self.animationPauseTime = nil
+        animationPauseTime = nil
 
-        self.delegate?.didContinueProgress?(for: self)
+        delegate?.didContinueProgress?(for: self)
     }
 
     /**
@@ -985,9 +1033,9 @@ fileprivate extension CALayer {
      Luis Padron
      */
     @objc open func resetProgress() {
-        self.ringLayer.animated = false
-        self.ringLayer.removeAnimation(forKey: .value)
-        self.value = self.minValue
+        ringLayer.animated = false
+        ringLayer.removeAnimation(forKey: .value)
+        value = minValue
     }
 
 
@@ -1001,7 +1049,7 @@ fileprivate extension CALayer {
      The completion block is called when all animations finish.
      */
     @objc open func animateProperties(duration: TimeInterval, animations: () -> Void) {
-        self.animateProperties(duration: duration, animations: animations, completion: nil)
+        animateProperties(duration: duration, animations: animations, completion: nil)
     }
 
     /**
@@ -1015,8 +1063,8 @@ fileprivate extension CALayer {
      */
     @objc open func animateProperties(duration: TimeInterval, animations: () -> Void,
                                       completion: PropertyAnimationCompletion? = nil) {
-        self.ringLayer.shouldAnimateProperties = true
-        self.ringLayer.propertyAnimationDuration = duration
+        ringLayer.shouldAnimateProperties = true
+        ringLayer.propertyAnimationDuration = duration
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Reset and call completion
