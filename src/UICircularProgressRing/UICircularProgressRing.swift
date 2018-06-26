@@ -918,7 +918,7 @@ fileprivate extension CALayer {
 
         CATransaction.begin()
         CATransaction.setCompletionBlock {
-            self.delegate?.finishedUpdatingProgress?(for: self)
+            self.delegate?.didFinishProgress?(for: self)
             completion?()
         }
         self.value = value
@@ -946,6 +946,8 @@ fileprivate extension CALayer {
         self.ringLayer.timeOffset = pauseTime
 
         self.ringLayer.speed = 0.0
+
+        self.delegate?.didPauseProgress?(for: self)
     }
 
     /**
@@ -971,6 +973,8 @@ fileprivate extension CALayer {
         self.ringLayer.beginTime = currentTime - pauseTime
 
         self.animationPauseTime = nil
+
+        self.delegate?.didContinueProgress?(for: self)
     }
 
     /**

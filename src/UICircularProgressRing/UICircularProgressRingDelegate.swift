@@ -40,13 +40,29 @@ import UIKit
  */
 @objc public protocol UICircularProgressRingDelegate: class {
     /**
-     Delegate call back, called when progress ring is done animating for current value
+     Called when progress ring is done animating for current value
      
      - Paramater
         - ring: The ring which finished animating
      
     */
-    @objc optional func finishedUpdatingProgress(for ring: UICircularProgressRing)
+    @objc optional func didFinishProgress(for ring: UICircularProgressRing)
+
+    /**
+     Called when progress has paused
+
+     - Parameter:
+       - ring: The ring which has paused
+     */
+    @objc optional func didPauseProgress(for ring: UICircularProgressRing)
+
+    /**
+     Called when the progress has continued after a pause
+
+     - Parameter:
+       - ring: The ring which has continued
+     */
+    @objc optional func didContinueProgress(for ring: UICircularProgressRing)
 
     /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
@@ -56,7 +72,7 @@ import UIKit
      ## Important:
 
      This is a very hot method and may be called hundreds of times per second during animations. As such make sure to only
-     do very simple and non-intensive work in this method. Do any work that takes time will considerably slow down your application.
+     do very simple and non-intensive work in this method. Doing any work that takes time will considerably slow down your application.
 
      - Paramater
         - ring: The ring which updated the progress
