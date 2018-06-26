@@ -35,6 +35,14 @@ fileprivate extension CALayer {
     func removeAnimation(forKey key: AnimationKeys) {
         self.removeAnimation(forKey: key.rawValue)
     }
+
+    func animation(forKey key: AnimationKeys) -> CAAnimation? {
+        return self.animation(forKey: key.rawValue)
+    }
+
+    func value(forKey key: AnimationKeys) -> Any? {
+        return self.value(forKey: key.rawValue)
+    }
 }
 
 /**
@@ -121,7 +129,7 @@ fileprivate extension CALayer {
     @IBInspectable open var value: ProgressValue = 0 {
         didSet {
             if value < minValue {
-                print("Warning in: UICircularProgressRing.value: Line #\(#line)")
+                print("Warning in: \(#file):\(#line)")
                 print("Attempted to set a value less than minValue, value has been set to minValue.\n")
                 self.value = self.minValue
             }
@@ -143,7 +151,7 @@ fileprivate extension CALayer {
     open var currentValue: ProgressValue? {
         get {
             if isAnimating {
-                return self.layer.presentation()?.value(forKey: "value") as? ProgressValue
+                return self.layer.presentation()?.value(forKey: .value) as? ProgressValue
             } else {
                 return self.value
             }
@@ -720,7 +728,9 @@ fileprivate extension CALayer {
      Luis Padron
      */
     @objc open var isAnimating: Bool {
-        get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
+        get {
+            return (self.layer.animation(forKey: .value) != nil) ? true : false
+        }
     }
 
     /**
@@ -895,15 +905,16 @@ fileprivate extension CALayer {
      */
     @objc open func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
         if isAnimating {
+            self.animationPauseTime = nil
             self.value = self.currentValue ?? self.value
-            self.layer.removeAnimation(forKey: "value")
+            self.ringLayer.removeAnimation(forKey: .value)
         }
 
-        self.ringLayer.animated = duration > 0
-        self.ringLayer.animationDuration = duration
-        self.ringLayer.speed = 1.0
         self.ringLayer.timeOffset = 0.0
         self.ringLayer.beginTime = 0.0
+        self.ringLayer.speed = 1.0
+        self.ringLayer.animated = duration > 0
+        self.ringLayer.animationDuration = duration
 
         CATransaction.begin()
         CATransaction.setCompletionBlock {
