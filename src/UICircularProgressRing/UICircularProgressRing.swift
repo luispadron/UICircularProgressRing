@@ -262,7 +262,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open var showsValueKnob: Bool = false {
+    @IBInspectable open var showsValueKnob: Bool = false {
         didSet {
             ringLayer.showsValueKnob = showsValueKnob
         }
@@ -277,7 +277,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open var valueKnobSize: CGFloat = 15.0 {
+    @IBInspectable open var valueKnobSize: CGFloat = 15.0 {
         didSet {
             ringLayer.valueKnobSize = valueKnobSize
         }
@@ -292,7 +292,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open var valueKnobColor: UIColor = .lightGray {
+    @IBInspectable open var valueKnobColor: UIColor = .lightGray {
         didSet {
             ringLayer.valueKnobColor = valueKnobColor
         }
