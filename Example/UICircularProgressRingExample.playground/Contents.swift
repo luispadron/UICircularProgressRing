@@ -6,7 +6,7 @@ import PlaygroundSupport
 let frame = CGRect(x: 0, y: 0, width: 300, height: 300)
 
 //: Create and customize the ring as you wish
-let progressRing = UICircularProgressRingView(frame: frame)
+let progressRing = UICircularProgressRing(frame: frame)
 progressRing.backgroundColor = .white
 progressRing.outerRingColor = .blue
 progressRing.innerRingColor = .white
@@ -19,11 +19,28 @@ progressRing.font = UIFont.boldSystemFont(ofSize: 40)
 PlaygroundPage.current.liveView = progressRing
 
 //: Animate with a given duration
-progressRing.setProgress(to: 100, duration: 5) {
+progressRing.startProgress(to: 100, duration: 6) {
     // This is called when it's finished animating!
 
-    // We can animate the ring back to another value here, and it does so fluidly
-    progressRing.setProgress(to: 80, duration: 2)
+    DispatchQueue.main.async {
+        // We can animate the ring back to another value here, and it does so fluidly
+        progressRing.startProgress(to: 80, duration: 2)
+    }
+}
+
+//: Pause and continue animations dynamically
+DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    progressRing.pauseProgress()
+    //: Customize the ring even more
+    progressRing.showsValueKnob = true
+    progressRing.valueKnobSize = 20
+    progressRing.valueKnobColor = .green
+
+}
+
+//: Continue the animation whenever you want
+DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+    progressRing.continueProgress()
 }
 
 //: For more information [read the docs](https://goo.gl/JJCHeo)

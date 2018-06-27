@@ -27,16 +27,16 @@ import Foundation
 import UIKit
 
 /**
- 
+
  # UICircularProgressRingGradientPosition
- 
+
  This is an enumeration which is used to determine the position for a
  gradient. Used inside the `UICircularProgressRingLayer` to allow customization
  for the gradient.
- 
+
  ## Author
  Luis Padron
- 
+
  */
 @objc public enum UICircularProgressRingGradientPosition: Int {
     /// Gradient positioned at the top
@@ -55,13 +55,13 @@ import UIKit
     case bottomLeft = 7
     /// Gradient positioned in the bottom right corner
     case bottomRight = 8
-    
+
     /**
-    
+
      Returns a `CGPoint` in the coordinates space of the passed in `CGRect`
      for the specified position of the gradient.
-     
-    */
+
+     */
     func pointForPosition(in rect: CGRect) -> CGPoint {
         switch self {
         case .top:

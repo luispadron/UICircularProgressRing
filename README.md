@@ -13,7 +13,7 @@
 * Interface builder designable
 * Highly customizable and flexible
 * Easy to use
-* Sleek animations
+* Fluid and interruptible animations
 * Written in Swift
 * RTL language support
 
@@ -36,9 +36,9 @@
 
 	```ruby
 	target 'Example' do
-		# IMPORTANT: Make sure use_frameworks! is included at the top of the file
+	    # IMPORTANT: Make sure use_frameworks! is included at the top of the file
 		use_frameworks!
-
+	
 		pod 'UICircularProgressRing'
 	end
 	```
@@ -73,10 +73,6 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 2. Add a run script phase, under `Build Phases -> +`, put this in the code for the run script: `/usr/local/bin/carthage copy-frameworks`
 3. Add a `Copy Files Phase` under `Build Phases -> +`, select `Frameworks` as destination and add `UICircularProgressRing.framework`, make sure `Code Sign On Copy` is enabled.
 
-### Manually
-
-1. Simply download the `UICircularProgressRingView.swift`, `UICircularProgressRingLayer.swift` and `UICiruclarProgressRingDelegate.swift` files from [here](https://github.com/luispadron/UICircularProgressRing/tree/master/UICircularProgressRing) into your project, make sure you point to your projects target
-
 ## Usage
 
 ### Interface Builder
@@ -105,10 +101,16 @@ To set a value and animate the view
 ```swift
 // Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
 // Remember to use unowned or weak self if refrencing self to avoid retain cycle
-progressRing.setProgress(value: 49, animationDuration: 2.0) {
+progressRing.startProgress(to: 49, duration: 2.0) {
   print("Done animating!")
   // Do anything your heart desires...
 }
+
+// Pause at any time during a running animation
+progressRing.pauseProgress()
+
+// Continue where you left off after a pause
+progressRing.continueProgress()
 ```
 
 ## Documentation

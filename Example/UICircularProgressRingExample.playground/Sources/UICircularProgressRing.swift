@@ -1,5 +1,5 @@
 //
-//  UICircularProgressRingView.swift
+//  UICircularProgressRing.swift
 //  UICircularProgressRing
 //
 //  Copyright (c) 2016 Luis Padron
@@ -23,118 +23,137 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
 import UIKit
 
+/// Helper enum for animation key
+fileprivate enum AnimationKeys: String {
+    case value = "value"
+}
+
+/// Helper extension to allow removing layer animation based on AnimationKeys enum
+fileprivate extension CALayer {
+    func removeAnimation(forKey key: AnimationKeys) {
+        removeAnimation(forKey: key.rawValue)
+    }
+
+    func animation(forKey key: AnimationKeys) -> CAAnimation? {
+        return animation(forKey: key.rawValue)
+    }
+
+    func value(forKey key: AnimationKeys) -> Any? {
+        return value(forKey: key.rawValue)
+    }
+}
+
 /**
- 
- # UICiruclarProgressRingView
- 
+
+ # UICircularProgressRing
+
  This is the UIView subclass that creates and handles everything
  to do with the progress ring
- 
+
  This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
  handels the drawing and animating of the view
- 
- The properties in this class correspond with the 
+
+ The properties in this class correspond with the
  properties in UICircularProgressRingLayer.
  When they are set in here, they are also set for the layer and drawn accordingly
- 
+
  Read the docs for what each property does and what can be customized.
- 
+
  ## Author
  Luis Padron
- 
+
  */
-@IBDesignable open class UICircularProgressRingView: UIView {
-    
+@IBDesignable open class UICircularProgressRing: UIView {
+
     // MARK: Delegate
     /**
-     The delegate for the UICircularProgressRingView
-     
+     The delegate for the UICircularProgressRing
+
      ## Important ##
-     When progress is done updating via UICircularProgressRingView.setValue(_:), the
-     finishedUpdatingProgressFor(_ ring: UICircularProgressRingView) will be called.
-     
-     The ring will be passed to the delegate in order to keep track of 
+     When progress is done updating via UICircularProgressRing.setValue(_:), the
+     finishedUpdatingProgressFor(_ ring: UICircularProgressRing) will be called.
+
+     The ring will be passed to the delegate in order to keep track of
      multiple ring updates if needed.
-     
+
      ## Author
      Luis Padron
      */
     @objc open weak var delegate: UICircularProgressRingDelegate? = nil
-    
+
     // MARK: Circle Properties
-    
+
     /**
      Whether or not the progress ring should be a full circle.
-     
-     What this means is that the outer ring will always go from 0 - 360 degrees and 
+
+     What this means is that the outer ring will always go from 0 - 360 degrees and
      the inner ring will be calculated accordingly depending on current value.
-     
+
      ## Important ##
      Default = true
-     
+
      When this property is true any value set for `endAngle` will be ignored.
-     
+
      ## Author
      Luis Padron
-     
-    */
+
+     */
     @IBInspectable open var fullCircle: Bool = true {
         didSet {
-            self.ringLayer.fullCircle = self.fullCircle
+            ringLayer.fullCircle = fullCircle
         }
     }
-    
+
     // MARK: Value Properties
-    
+
     /**
      The value property for the progress ring.
-     
+
      ## Important ##
      Default = 0
 
      Must be a non-negative value. If this value falls below `minValue` it will be
      clamped and set equal to `minValue`.
-     
-     This cannot be used to get the value while the ring is animating, to get 
+
+     This cannot be used to get the value while the ring is animating, to get
      current value while animating use `currentValue`.
-     
-     The current value of the progress ring after animating, use setProgress(value:) 
+
+     The current value of the progress ring after animating, use startProgress(value:)
      to alter the value with the option to animate and have a completion handler.
-     
+
      ## Author
      Luis Padron
      */
-    @IBInspectable open var value: CGFloat = 0 {
+    @IBInspectable open var value: ProgressValue = 0 {
         didSet {
             if value < minValue {
-                print("Warning in: UICircularProgressRingView.value: Line #\(#line)")
+                print("Warning in: \(#file):\(#line)")
                 print("Attempted to set a value less than minValue, value has been set to minValue.\n")
-                self.value = self.minValue
+                value = minValue
             }
-            self.ringLayer.value = self.value
+            ringLayer.value = value
         }
     }
-    
+
     /**
      The current value of the progress ring
-     
-     This will return the current value of the progress ring, 
+
+     This will return the current value of the progress ring,
      if the ring is animating it will be updated in real time.
-     If the ring is not currently animating then the value returned 
+     If the ring is not currently animating then the value returned
      will be the `value` property of the ring
-     
+
      ## Author
      Luis Padron
      */
-    open var currentValue: CGFloat? {
+    open var currentValue: ProgressValue? {
         get {
             if isAnimating {
-                return self.layer.presentation()?.value(forKey: "value") as? CGFloat
+                return layer.presentation()?.value(forKey: .value) as? ProgressValue
             } else {
-                return self.value
+                return value
             }
         }
     }
@@ -155,15 +174,15 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var minValue: CGFloat = 0.0 {
+    @IBInspectable open var minValue: ProgressValue = 0.0 {
         didSet {
-            self.ringLayer.minValue = abs(self.minValue)
+            ringLayer.minValue = abs(minValue)
         }
     }
-    
+
     /**
      The maximum value for the progress ring. ex: 0 -> (100)
-     
+
      ## Important ##
      Default = 100
 
@@ -171,38 +190,38 @@ import UIKit
 
      Unlike the `minValue` member `value` can extend beyond `maxValue`. What happens in this case
      is the inner ring will do an extra loop through the outer ring, this is not noticible however.
-     
-     
+
+
      ## Author
      Luis Padron
      */
-    @IBInspectable open var maxValue: CGFloat = 100.0 {
+    @IBInspectable open var maxValue: ProgressValue = 100.0 {
         didSet {
-            self.ringLayer.maxValue = abs(self.maxValue)
+            ringLayer.maxValue = abs(maxValue)
         }
     }
-    
+
     // MARK: View Style
-    
+
     /**
      Variable for the style of the progress ring.
-     
+
      Range: [1,5]
-     
+
      The four styles are
-     
+
      - 1: Radius of the inner ring is smaller (inner ring inside outer ring)
      - 2: Radius of inner ring is equal to outer ring (both at same location)
      - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
      - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
      - 5: Radius of inner ring is equal to outer ring, and inner ring has gradient
-     
+
      ## Important ##
      THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
+
      The reason for this is IB has no support for enumerations as of yet
-     
-     
+
+
      ## Author
      Luis Padron
      */
@@ -211,198 +230,243 @@ import UIKit
     @IBInspectable open var ibRingStyle: Int = 1 {
         willSet {
             let style = UICircularProgressRingStyle(rawValue: newValue)
-            self.ringStyle = style ?? .inside
+            ringStyle = style ?? .inside
         }
     }
-    
+
     /**
      The style of the progress ring.
-     
+
      Type: `UICircularProgressRingStyle`
-     
+
      The five styles include `inside`, `ontop`, `dashed`, `dotted`, and `gradient`
-     
+
      ## Important ##
      Default = UICircularProgressRingStyle.inside
-     
+
      ## Author
      Luis Padron
      */
     @objc open var ringStyle: UICircularProgressRingStyle = .inside {
         didSet {
-            self.ringLayer.ringStyle = self.ringStyle
+            ringLayer.ringStyle = ringStyle
         }
     }
-    
-    
+
+    /**
+     Whether or not the value knob is shown
+
+     ## Important ##
+     Default = false
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable open var showsValueKnob: Bool = false {
+        didSet {
+            ringLayer.showsValueKnob = showsValueKnob
+        }
+    }
+
+    /**
+     The size of the value knob (diameter)
+
+     ## Important ##
+     Default = 15
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable open var valueKnobSize: CGFloat = 15.0 {
+        didSet {
+            ringLayer.valueKnobSize = valueKnobSize
+        }
+    }
+
+    /**
+     The color of the value knob
+
+     ## Important ##
+     Default = UIColor.lightGray
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable open var valueKnobColor: UIColor = .lightGray {
+        didSet {
+            ringLayer.valueKnobColor = valueKnobColor
+        }
+    }
+
+
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
-     
+
      ## Important ##
      Default = [7.0, 7.0]
-     
+
      ## Author
      Luis Padron
      */
     @objc open var patternForDashes: [CGFloat] = [7.0, 7.0] {
         didSet {
-            self.ringLayer.patternForDashes = self.patternForDashes
+            ringLayer.patternForDashes = patternForDashes
         }
     }
-    
+
     /**
      The start angle for the entire progress ring view.
-     
+
      Please note that Cocoa Touch uses a clockwise rotating unit circle.
      I.e: 90 degrees is at the bottom and 270 degrees is at the top
-     
+
      ## Important ##
      Default = 0 (degrees)
-     
+
      Values should be in degrees (they're converted to radians internally)
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var startAngle: CGFloat = 0 {
         didSet {
-            self.ringLayer.startAngle = self.startAngle
+            ringLayer.startAngle = startAngle
         }
     }
-    
+
     /**
      The end angle for the entire progress ring
-     
+
      Please note that Cocoa Touch uses a clockwise rotating unit circle.
      I.e: 90 degrees is at the bottom and 270 degrees is at the top
-     
+
      ## Important ##
      Default = 360 (degrees)
-     
+
      Values should be in degrees (they're converted to radians internally)
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var endAngle: CGFloat = 360 {
         didSet {
-            self.ringLayer.endAngle = self.endAngle
+            ringLayer.endAngle = endAngle
         }
     }
-    
+
     /**
      The colors which will be used to create the gradient.
-     
+
      Only used when `ringStyle` is `.gradient`
-     
+
      The colors should be in the order they will be drawn in.
-     
+
      ## Important ##
      By default this property will be an empty array.
-     
+
      If this array is empty, no gradient will be drawn.
-     
+
      ## Author
      Luis Padron
      */
     @objc open var gradientColors: [UIColor] = [UIColor]() {
         didSet {
-            self.ringLayer.gradientColors = self.gradientColors
+            ringLayer.gradientColors = gradientColors
         }
     }
-    
+
     /**
      The location for each color provided in `gradientColors`; each location must be
      a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
      locations array, Quartz uses the colors provided that are closest to 0 and 1 for
      those locations.
-     
+
      If locations is nil, the first color in `gradientColors` is assigned to location 0,
      the last color in `gradientColors` is assigned to location 1, and intervening
      colors are assigned locations that are at equal intervals in between.
-     
+
      The locations array should contain the same number of items as the `gradientColors`
      array.
-     
+
      ## Important ##
      By default this property will be nil
-     
+
      ## Author
      Luis Padron
      */
     @objc open var gradientColorLocations: [CGFloat]? = nil {
         didSet {
-            self.ringLayer.gradientColorLocations = self.gradientColorLocations
+            ringLayer.gradientColorLocations = gradientColorLocations
         }
     }
-    
+
     /**
      The start location for the gradient.
      This property determines where the gradient will begin to draw,
      for all possible values see `UICircularProgressRingGradientPosition`.
-     
+
      ## Important ##
      By default this property is `.topRight`
-     
+
      ## Author
      Luis Padron
      */
     @objc open var gradientStartPosition: UICircularProgressRingGradientPosition = .topRight {
         didSet {
-            self.ringLayer.gradientStartPosition = self.gradientStartPosition
+            ringLayer.gradientStartPosition = gradientStartPosition
         }
     }
-    
+
     /**
      The end location for the gradient.
      This property determines where the gradient will end drawing,
      for all possible values see `UICircularProgressRingGradientPosition`.
-     
+
      ## Important ##
      By default this property is `.bottomLeft`
-     
+
      ## Author
      Luis Padron
      */
     @objc open var gradientEndPosition: UICircularProgressRingGradientPosition = .bottomLeft {
         didSet {
-            self.ringLayer.gradientEndPosition = self.gradientEndPosition
+            ringLayer.gradientEndPosition = gradientEndPosition
         }
     }
-    
-    
+
+
     // MARK: Outer Ring properties
-    
+
     /**
      The width of the outer ring for the progres bar
-     
+
      ## Important ##
      Default = 10.0
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var outerRingWidth: CGFloat = 10.0 {
         didSet {
-            self.ringLayer.outerRingWidth = self.outerRingWidth
+            ringLayer.outerRingWidth = outerRingWidth
         }
     }
-    
+
     /**
      The color for the outer ring
-     
+
      ## Important ##
      Default = UIColor.gray
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
         didSet {
-            self.ringLayer.outerRingColor = self.outerRingColor
+            ringLayer.outerRingColor = outerRingColor
         }
     }
-    
+
     /**
      The style for the outer ring end cap (how it is drawn on screen)
      Range [1,3]
@@ -410,12 +474,12 @@ import UIKit
      - 2: Line with a rounded off end
      - 3: Line with a square end
      - <1 & >3: Defaults to style 1
-     
+
      ## Important ##
      THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
+
      Default = 1
-     
+
      ## Author
      Luis Padron
      */
@@ -425,100 +489,100 @@ import UIKit
         willSet {
             switch newValue {
             case 1:
-                self.outerCapStyle = .butt
+                outerCapStyle = .butt
             case 2:
-                self.outerCapStyle = .round
+                outerCapStyle = .round
             case 3:
-                self.outerCapStyle = .square
+                outerCapStyle = .square
             default:
-                self.outerCapStyle = .butt
+                outerCapStyle = .butt
             }
         }
     }
-    
+
     /**
      The style for the tip/cap of the outer ring
-     
+
      Type: `CGLineCap`
-     
+
      ## Important ##
      Default = CGLineCap.butt
-     
+
      This is only noticible when ring is not a full circle.
-     
+
      ## Author
      Luis Padron
      */
     @objc open var outerCapStyle: CGLineCap = .butt {
         didSet {
-            self.ringLayer.outerCapStyle = self.outerCapStyle
+            ringLayer.outerCapStyle = outerCapStyle
         }
     }
-    
+
     // MARK: Inner Ring properties
-    
+
     /**
      The width of the inner ring for the progres bar
-     
+
      ## Important ##
      Default = 5.0
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingWidth: CGFloat = 5.0 {
         didSet {
-            self.ringLayer.innerRingWidth = self.innerRingWidth
+            ringLayer.innerRingWidth = innerRingWidth
         }
     }
-    
+
     /**
      The color of the inner ring for the progres bar
-     
+
      ## Important ##
      Default = UIColor.blue
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingColor: UIColor = UIColor.blue {
         didSet {
-            self.ringLayer.innerRingColor = self.innerRingColor
+            ringLayer.innerRingColor = innerRingColor
         }
     }
-    
+
     /**
      The spacing between the outer ring and inner ring
-     
+
      ## Important ##
      This only applies when using progressRingStyle = 1
-     
+
      Default = 1
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var innerRingSpacing: CGFloat = 1 {
         didSet {
-            self.ringLayer.innerRingSpacing = self.innerRingSpacing
+            ringLayer.innerRingSpacing = innerRingSpacing
         }
     }
-    
+
     /**
      The style for the inner ring end cap (how it is drawn on screen)
-     
+
      Range [1,3]
-     
+
      - 1: Line with a squared off end
      - 2: Line with a rounded off end
      - 3: Line with a square end
      - <1 & >3: Defaults to style 2
-     
+
      ## Important ##
      THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
+
      Default = 2
-     
+
      ## Author
      Luis Padron
      */
@@ -528,199 +592,220 @@ import UIKit
         willSet {
             switch newValue {
             case 1:
-                self.innerCapStyle = .butt
+                innerCapStyle = .butt
             case 2:
-                self.innerCapStyle = .round
+                innerCapStyle = .round
             case 3:
-                self.innerCapStyle = .square
+                innerCapStyle = .square
             default:
-                self.innerCapStyle = .round
+                innerCapStyle = .round
             }
         }
     }
-    
-    
+
+
     /**
      The style for the tip/cap of the inner ring
-     
+
      Type: `CGLineCap`
-     
+
      ## Important ##
      Default = CGLineCap.round
-     
+
      ## Author
      Luis Padron
      */
     @objc open var innerCapStyle: CGLineCap = .round {
         didSet {
-            self.ringLayer.innerCapStyle = self.innerCapStyle
+            ringLayer.innerCapStyle = innerCapStyle
         }
     }
-    
+
     // MARK: Label
-    
+
     /**
      A toggle for showing or hiding the value label.
      If false the current value will not be shown.
-     
+
      ## Important ##
      Default = true
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var shouldShowValueText: Bool = true {
         didSet {
-            self.ringLayer.shouldShowValueText = self.shouldShowValueText
+            ringLayer.shouldShowValueText = shouldShowValueText
         }
     }
-    
+
     /**
      The text color for the value label field
-     
+
      ## Important ##
      Default = UIColor.black
-     
-     
+
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var fontColor: UIColor = UIColor.black {
         didSet {
-            self.ringLayer.fontColor = self.fontColor
+            ringLayer.fontColor = fontColor
         }
     }
-    
+
     /**
      The font to be used for the progress indicator.
-     All font attributes are specified here except for font color, which is done 
+     All font attributes are specified here except for font color, which is done
      using `fontColor`.
-     
-     
+
+
      ## Important ##
      Default = UIFont.systemFont(ofSize: 18)
-     
-     
+
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
         didSet {
-            self.ringLayer.font = self.font
+            ringLayer.font = font
         }
     }
-    
+
     /**
      The name of the value indicator the value label will
      appened to the value
      Example: " GB" -> "100 GB"
-     
+
      ## Important ##
      Default = "%"
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var valueIndicator: String = "%" {
         didSet {
-            self.ringLayer.valueIndicator = self.valueIndicator
+            ringLayer.valueIndicator = valueIndicator
         }
     }
-    
+
     /**
      A toggle for either placing the value indicator right or left to the value
      Example: true -> "GB 100" (instead of 100 GB)
-     
+
      ## Important ##
      Default = false (place value indicator to the right)
-     
+
      ## Author
      Elad Hayun
      */
     @IBInspectable open var rightToLeft: Bool = false {
         didSet {
-            self.ringLayer.rightToLeft = self.rightToLeft
+            ringLayer.rightToLeft = rightToLeft
         }
     }
-    
+
     /**
      A toggle for showing or hiding floating points from
      the value in the value label
-     
+
      ## Important ##
      Default = false (dont show)
-     
+
      To customize number of decmial places to show, assign a value to decimalPlaces.
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var showFloatingPoint: Bool = false {
         didSet {
-            self.ringLayer.showFloatingPoint = self.showFloatingPoint
+            ringLayer.showFloatingPoint = showFloatingPoint
         }
     }
-    
+
     /**
      The amount of decimal places to show in the value label
-     
+
      ## Important ##
      Default = 2
-     
+
      Only used when showFloatingPoint = true
-     
+
      ## Author
      Luis Padron
      */
     @IBInspectable open var decimalPlaces: Int = 2 {
         didSet {
-            self.ringLayer.decimalPlaces = self.decimalPlaces
+            ringLayer.decimalPlaces = decimalPlaces
         }
     }
-    
+
     // MARK: Animation properties
-    
+
     /**
      The type of animation function the ring view will use
-     
+
      ## Important ##
      Default = kCAMediaTimingFunctionEaseIn
-     
+
      String should be from kCAMediaTimingFunction_____
-     
+
      Only used when calling .setValue(animated: true)
-     
+
      ## Author
      Luis Padron
      */
     @objc open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
         didSet {
-            self.ringLayer.animationStyle = self.animationStyle
+            ringLayer.animationStyle = animationStyle
         }
     }
-    
+
     /**
      This returns whether or not the ring is currently animating
-     
+
      ## Important ##
      Get only property
-     
+
      ## Author
      Luis Padron
      */
     @objc open var isAnimating: Bool {
-        get { return (self.layer.animation(forKey: "value") != nil) ? true : false }
+        get {
+            return (layer.animation(forKey: .value) != nil) ? true : false
+        }
     }
-    
+
+    /**
+     The direction the circle is drawn in
+     Example: true -> clockwise
+
+     ## Important ##
+     Default = true (draw the circle clockwise)
+
+     ## Author
+     Pete Walker
+     */
+    @IBInspectable open var isClockwise: Bool = true {
+        didSet {
+            ringLayer.isClockwise = isClockwise
+        }
+    }
+
+    /// Used to determine when the animation was paused
+    private var animationPauseTime: CFTimeInterval?
+
     // MARK: Layer
-    
+
     /**
      Set the ring layer to the default layer, cated as custom layer
      */
     internal var ringLayer: UICircularProgressRingLayer {
-        return self.layer as! UICircularProgressRingLayer
+        return layer as! UICircularProgressRingLayer
     }
-    
+
     /**
      Overrides the default layer with the custom UICircularProgressRingLayer class
      */
@@ -729,9 +814,31 @@ import UIKit
             return UICircularProgressRingLayer.self
         }
     }
-    
+
+    // MARK: Type aliases
+
+    /**
+     Typealias for the startProgress(:) method closure
+     */
+    public typealias ProgressCompletion = (() -> Void)
+
+    /**
+     Typealias for animateProperties(duration:animations:completion:) fucntion completion
+     */
+    public typealias PropertyAnimationCompletion = (() -> Void)
+
+    /**
+     Typealias for the value of the ring
+     */
+    public typealias ProgressValue = CGFloat
+
+    /**
+     Typealias for the duration of a ring animation
+     */
+    public typealias ProgressDuration = TimeInterval
+
     // MARK: Methods
-    
+
     /**
      Overriden public init to initialize the layer and view
      */
@@ -740,7 +847,7 @@ import UIKit
         // Call the internal initializer
         initialize()
     }
-    
+
     /**
      Overriden public init to initialize the layer and view
      */
@@ -749,118 +856,188 @@ import UIKit
         // Call the internal initializer
         initialize()
     }
-    
+
     /**
      This method initializes the custom CALayer to the default values
      */
     internal func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
-        self.ringLayer.valueDelegate = self
-        
-        // Helps with pixelation and blurriness on retina devices
-        self.layer.contentsScale = UIScreen.main.scale
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale * 2
-        self.layer.masksToBounds = false
-        
-        self.ringLayer.fullCircle = fullCircle
-        
-        self.ringLayer.value = value
-        self.ringLayer.maxValue = maxValue
-        self.ringLayer.minValue = minValue
-        
-        self.ringLayer.ringStyle = ringStyle
-        self.ringLayer.patternForDashes = patternForDashes
-        self.ringLayer.gradientColors = gradientColors
-        self.ringLayer.gradientColorLocations = gradientColorLocations
-        self.ringLayer.gradientStartPosition = gradientStartPosition
-        self.ringLayer.gradientEndPosition = gradientEndPosition
-        
-        self.ringLayer.startAngle = startAngle
-        self.ringLayer.endAngle = endAngle
-        
-        self.ringLayer.outerRingWidth = outerRingWidth
-        self.ringLayer.outerRingColor = outerRingColor
-        self.ringLayer.outerCapStyle = outerCapStyle
-        
-        self.ringLayer.innerRingWidth = innerRingWidth
-        self.ringLayer.innerRingColor = innerRingColor
-        self.ringLayer.innerCapStyle = innerCapStyle
-        self.ringLayer.innerRingSpacing = innerRingSpacing
-        
-        self.ringLayer.shouldShowValueText = shouldShowValueText
-        self.ringLayer.valueIndicator = valueIndicator
-        self.ringLayer.fontColor = fontColor
-        self.ringLayer.font = font
-        self.ringLayer.showFloatingPoint = showFloatingPoint
-        self.ringLayer.decimalPlaces = decimalPlaces
+        ringLayer.valueDelegate = self
 
-        self.backgroundColor = UIColor.clear
-        self.ringLayer.backgroundColor = UIColor.clear.cgColor
+        // Helps with pixelation and blurriness on retina devices
+        layer.contentsScale = UIScreen.main.scale
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale * 2
+        layer.masksToBounds = false
+
+        ringLayer.fullCircle = fullCircle
+        ringLayer.isClockwise = isClockwise
+
+        ringLayer.value = value
+        ringLayer.maxValue = maxValue
+        ringLayer.minValue = minValue
+
+        ringLayer.ringStyle = ringStyle
+        ringLayer.showsValueKnob = showsValueKnob
+        ringLayer.valueKnobSize = valueKnobSize
+        ringLayer.valueKnobColor = valueKnobColor
+        ringLayer.patternForDashes = patternForDashes
+        ringLayer.gradientColors = gradientColors
+        ringLayer.gradientColorLocations = gradientColorLocations
+        ringLayer.gradientStartPosition = gradientStartPosition
+        ringLayer.gradientEndPosition = gradientEndPosition
+
+        ringLayer.startAngle = startAngle
+        ringLayer.endAngle = endAngle
+
+        ringLayer.outerRingWidth = outerRingWidth
+        ringLayer.outerRingColor = outerRingColor
+        ringLayer.outerCapStyle = outerCapStyle
+
+        ringLayer.innerRingWidth = innerRingWidth
+        ringLayer.innerRingColor = innerRingColor
+        ringLayer.innerCapStyle = innerCapStyle
+        ringLayer.innerRingSpacing = innerRingSpacing
+
+        ringLayer.shouldShowValueText = shouldShowValueText
+        ringLayer.valueIndicator = valueIndicator
+        ringLayer.fontColor = fontColor
+        ringLayer.font = font
+        ringLayer.showFloatingPoint = showFloatingPoint
+        ringLayer.decimalPlaces = decimalPlaces
+
+        backgroundColor = UIColor.clear
+        ringLayer.backgroundColor = UIColor.clear.cgColor
     }
-    
+
     /**
      Overriden because of custom layer drawing in UICircularProgressRingLayer
      */
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
-    
+
     /**
      Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
      */
-    internal func didUpdateValue(newValue: CGFloat) {
+    internal func didUpdateValue(newValue: ProgressValue) {
         delegate?.didUpdateProgressValue?(for: self, to: newValue)
     }
-    
+
     internal func willDisplayLabel(label: UILabel) {
         delegate?.willDisplayLabel?(for: self, label)
     }
-    
+
+
     /**
-     Typealias for the setProgress(:) method closure
-    */
-    public typealias ProgressCompletion = (() -> Void)
-    
-    /**
-     Sets the current value for the progress ring, calling this method while ring is 
+     Sets the current value for the progress ring, calling this method while ring is
      animating will cancel the previously set animation and start a new one.
-     
-     - Parameter newVal: The value to be set for the progress ring
-     - Parameter animationDuration: The time interval duration for the animation
-     - Parameter completion: The completion closure block that will be called when 
+
+     - Parameter to: The value to be set for the progress ring
+     - Parameter duration: The time interval duration for the animation
+     - Parameter completion: The completion closure block that will be called when
      animtion is finished (also called when animationDuration = 0), default is nil
-     
+
      ## Important ##
-     Animatin duration = 0 will cause no animation to occur, and value will instantly 
-     be set
-     
+     Animation duration = 0 will cause no animation to occur, and value will instantly
+     be set.
+
+     Calling this method again while a current progress animation is in progress will **not**
+     cause the animation to be restarted. The old animation will be removed (calling the completion and delegate)
+     and a new animation will start from where the old one left off at. If you wish to instead reset an animation
+     consider `resetProgress`.
+
      ## Author
      Luis Padron
      */
-    @objc open func setProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
-        // Remove the current animation, so that new can be processed
-        if isAnimating { self.layer.removeAnimation(forKey: "value") }
-        // Only animate if duration sent is greater than zero
-        self.ringLayer.animated = duration > 0
-        self.ringLayer.animationDuration = duration
-        // Create a transaction to be notified when animation is complete
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            // Call the closure block
-            self.delegate?.finishedUpdatingProgress?(for: self)
-            completion?()
+    @objc open func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
+        if isAnimating {
+            animationPauseTime = nil
+            self.value = currentValue ?? value
+            ringLayer.removeAnimation(forKey: .value)
         }
 
+        ringLayer.timeOffset = 0.0
+        ringLayer.beginTime = 0.0
+        ringLayer.speed = 1.0
+        ringLayer.animated = duration > 0
+        ringLayer.animationDuration = duration
+
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+            self.delegate?.didFinishProgress?(for: self)
+            completion?()
+        }
         self.value = value
         CATransaction.commit()
     }
 
+
     /**
-     Typealias for animateProperties(duration:animations:completion:) fucntion completion
+     Pauses the currently running animation and halts all progress.
+
+     ## Important ##
+     This method should **only** be called when there is a currently running animation.
+     That is, after a call to `startProgress`.
+
+     ## Author
+     Luis Padron
      */
-    public typealias PropertyAnimationCompletion = (() -> Void)
+    @objc open func pauseProgress() {
+        guard isAnimating else {
+            fatalError("\(#file):\(#line) Attempt to pause progress with no currently running animation")
+        }
+
+        let pauseTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        animationPauseTime = pauseTime
+        ringLayer.timeOffset = pauseTime
+
+        ringLayer.speed = 0.0
+
+        delegate?.didPauseProgress?(for: self)
+    }
+
+    /**
+     Continues the animation with it's remaining time from where it left off before it was paused.
+
+     ## Important ##
+     This method should **only** be called when there is a currently paused animation.
+     That is, only call this method after you have called `pauseProgress`.
+
+     ## Author
+     Luis Padron
+     */
+    @objc open func continueProgress() {
+        guard let pauseTime = animationPauseTime else {
+            fatalError("\(#file):\(#line) Attempt to continue progress on a ring that was never paused")
+        }
+
+        ringLayer.timeOffset = 0.0
+        ringLayer.speed = 1.0
+        ringLayer.beginTime = 0.0
+
+        let currentTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        ringLayer.beginTime = currentTime - pauseTime
+
+        animationPauseTime = nil
+
+        delegate?.didContinueProgress?(for: self)
+    }
+
+    /**
+     Resets the progress back to the `minValue` of the progress ring.
+     Does **not** perform any animations
+
+     ## Author
+     Luis Padron
+     */
+    @objc open func resetProgress() {
+        ringLayer.animated = false
+        ringLayer.removeAnimation(forKey: .value)
+        value = minValue
+    }
+
 
     /**
      This function allows animation of the animatable properties of the `UICircularProgressRing`.
@@ -872,7 +1049,7 @@ import UIKit
      The completion block is called when all animations finish.
      */
     @objc open func animateProperties(duration: TimeInterval, animations: () -> Void) {
-        self.animateProperties(duration: duration, animations: animations, completion: nil)
+        animateProperties(duration: duration, animations: animations, completion: nil)
     }
 
     /**
@@ -886,8 +1063,8 @@ import UIKit
      */
     @objc open func animateProperties(duration: TimeInterval, animations: () -> Void,
                                       completion: PropertyAnimationCompletion? = nil) {
-        self.ringLayer.shouldAnimateProperties = true
-        self.ringLayer.propertyAnimationDuration = duration
+        ringLayer.shouldAnimateProperties = true
+        ringLayer.propertyAnimationDuration = duration
         CATransaction.begin()
         CATransaction.setCompletionBlock {
             // Reset and call completion

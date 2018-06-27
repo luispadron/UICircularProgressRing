@@ -26,14 +26,14 @@
 import Foundation
 
 /**
- 
+
  # UICircularProgressRingStyle
- 
+
  This is an enumeration which is used to determine the style of the progress ring.
- 
+
  ## Author
  Luis Padron
- 
+
  */
 @objc public enum UICircularProgressRingStyle: Int {
     /// Inner ring is inside the circle

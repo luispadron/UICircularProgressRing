@@ -1,3 +1,19 @@
+# Version 3.0.0
+
+### Tons of new features and improvements!
+
+- Add new properties `showsValueKnob`, `valueKnobColor`, and `valueKnobSize`
+  as requested by [#97](https://github.com/luispadron/UICircularProgressRing/issues/97)
+- Add new `continueProgress` and `pauseProgress` functions which allow fluid continuation
+  and pausing of progress animations.
+- Add new delegate functions `didPauseProgress`, and `didContinueProgress`
+- Tons of refactoring and renaming of properties/functionality
+
+### Breaking API Changes
+
+**Lots** please refer to the documentation to get your code up to spec with
+version 3.0.0
+
 # Version 2.2.0
 
 - Add new `isClockwise` property which allows users of the library to
