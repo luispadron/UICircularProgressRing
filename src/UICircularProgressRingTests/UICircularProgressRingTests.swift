@@ -11,11 +11,11 @@ import XCTest
 
 class UICircularProgressRingTests: XCTestCase {
     
-    var progressRing: UICircularProgressRingView!
+    var progressRing: UICircularProgressRing!
     
     override func setUp() {
         super.setUp()
-        progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
+        progressRing = UICircularProgressRing(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
     }
     
     override func tearDown() {
@@ -24,16 +24,16 @@ class UICircularProgressRingTests: XCTestCase {
     
     func testApiAndAnimations() {
         
-        progressRing.setProgress(to: 23.1, duration: 0)
+        progressRing.startProgress(to: 23.1, duration: 0)
         XCTAssertEqual(progressRing.value, 23.1)
         
-        progressRing.setProgress(to: 17.9, duration: 0, completion: nil)
+        progressRing.startProgress(to: 17.9, duration: 0, completion: nil)
         XCTAssertEqual(progressRing.value, 17.9)
         
-        progressRing.setProgress(to: 100, duration: 0.2) {
+        progressRing.startProgress(to: 100, duration: 0.2) {
             XCTAssertEqual(self.progressRing.value, 100)
             XCTAssertEqual(self.progressRing.isAnimating, false)
-            self.progressRing.setProgress(to: 25.32, duration: 0.3, completion: {
+            self.progressRing.startProgress(to: 25.32, duration: 0.3, completion: {
                 XCTAssertEqual(self.progressRing.value, 25.32)
                 XCTAssertEqual(self.progressRing.isAnimating, false)
             })
@@ -83,6 +83,18 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.endAngle = 180
         XCTAssertEqual(progressRing.endAngle, 180)
         XCTAssertEqual(progressRing.ringLayer.endAngle, 180)
+
+        progressRing.showsValueKnob = true
+        XCTAssertTrue(progressRing.showsValueKnob)
+        XCTAssertTrue(progressRing.ringLayer.showsValueKnob)
+
+        progressRing.valueKnobColor = .black
+        XCTAssertEqual(progressRing.valueKnobColor, .black)
+        XCTAssertEqual(progressRing.ringLayer.valueKnobColor, .black)
+
+        progressRing.valueKnobSize = 30
+        XCTAssertEqual(progressRing.valueKnobSize, 30)
+        XCTAssertEqual(progressRing.ringLayer.valueKnobSize, 30)
         
         progressRing.gradientColors = [UIColor.blue, UIColor.red]
         XCTAssertEqual(progressRing.gradientColors, [UIColor.blue, UIColor.red])
