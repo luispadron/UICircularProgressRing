@@ -65,7 +65,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ### Interface Builder
 
-Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRingView` and that the module points `UICircularProgressRing`.
+Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRing` and that the module points to `UICircularProgressRing`.
 
 Design your heart out
 
