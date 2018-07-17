@@ -1,3 +1,9 @@
+# Version 3.1.0
+
+- Adds three new properties for more fine grained control of the
+  progress knob. `valueKnobShadowBlur`, `valueKnobShadowOffset`, and `valueKnobShadowColor`.
+  Thanks to [@xismic](https://github.com/xismic) for the contribution!
+
 # Version 3.0.0
 
 ### Tons of new features and improvements!
