@@ -37,9 +37,9 @@
 	```ruby
 	target 'Example' do
 	    # IMPORTANT: Make sure use_frameworks! is included at the top of the file
-		use_frameworks!
+	    use_frameworks!
 	
-		pod 'UICircularProgressRing'
+	    pod 'UICircularProgressRing'
 	end
 	```
 3. Run `pod install`
@@ -61,18 +61,6 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 3. Install dependencies
 	`carthage update --platform iOS`
 
-##### Either Embed or Link the framework
-
-###### Embed:
-
-1. Drag the `UICircularProgressRing.framework` from `MyProjDir/Carthage/Builds/iOS/UICircularProgressRing` into the `General -> Embeded Binaries` section of your Xcode project.
-
-###### Link:
-
-1. Drag the `UICircularProgressRing.framework` from `MyProjDir/Carthage/Builds/iOS/UICircularProgressRing` into the `General -> Linked Frameworks and Binaries` section of your Xcode project.
-2. Add a run script phase, under `Build Phases -> +`, put this in the code for the run script: `/usr/local/bin/carthage copy-frameworks`
-3. Add a `Copy Files Phase` under `Build Phases -> +`, select `Frameworks` as destination and add `UICircularProgressRing.framework`, make sure `Code Sign On Copy` is enabled.
-
 ## Usage
 
 ### Interface Builder
@@ -88,7 +76,7 @@ Design your heart out
 ```swift
 override func viewDidLoad() {
   // Create the view
-  let progressRing = UICircularProgressRingView(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
+  let progressRing = UICircularProgressRing(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
   // Change any of the properties you'd like
   progressRing.maxValue = 50
   progressRing.innerRingColor = UIColor.blue
