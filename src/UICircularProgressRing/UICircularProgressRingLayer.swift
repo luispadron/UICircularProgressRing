@@ -87,6 +87,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var showsValueKnob: Bool
     @NSManaged var valueKnobSize: CGFloat
     @NSManaged var valueKnobColor: UIColor
+    @NSManaged var valueKnobShadowBlur: CGFloat
+    @NSManaged var valueKnobShadowOffset: CGSize
+    @NSManaged var valueKnobShadowColor: UIColor
     @NSManaged var patternForDashes: [CGFloat]
     
     @NSManaged var gradientColors: [UIColor]
@@ -360,7 +363,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         let rect = CGRect(origin: origin, size: CGSize(width: valueKnobSize, height: valueKnobSize))
         let knobPath = UIBezierPath(ovalIn: rect)
 
-        context.setShadow(offset: .zero, blur: 2.0, color: UIColor.black.withAlphaComponent(0.8).cgColor)
+        context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
         context.addPath(knobPath.cgPath)
         context.setFillColor(valueKnobColor.cgColor)
         context.setLineCap(.round)

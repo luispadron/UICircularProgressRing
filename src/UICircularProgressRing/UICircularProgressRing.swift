@@ -298,6 +298,51 @@ fileprivate extension CALayer {
         }
     }
 
+    /**
+     The blur (size) of the value knob's shadow
+     
+     ## Important ##
+     Default = 2
+     
+     ## Author
+     Makan Houston
+     */
+    @IBInspectable open var valueKnobShadowBlur: CGFloat = 2.0 {
+        didSet {
+            ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
+        }
+    }
+    
+    /**
+     The offset of the value knob's shadow
+     
+     ## Important ##
+     Default = CGSize.zero
+     
+     ## Author
+     Makan Houston
+     */
+    @IBInspectable open var valueKnobShadowOffset: CGSize = .zero {
+        didSet {
+            ringLayer.valueKnobShadowOffset = valueKnobShadowOffset
+        }
+    }
+    
+    /**
+     The color of the value knob's shadow
+     
+     ## Important ##
+     Default = UIColor.lightGray
+     
+     ## Author
+     Makan Houston
+     */
+    @IBInspectable open var valueKnobShadowColor: UIColor = UIColor.black.withAlphaComponent(0.8) {
+        didSet {
+            ringLayer.valueKnobShadowColor = valueKnobShadowColor
+        }
+    }
+
     
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
@@ -881,6 +926,9 @@ fileprivate extension CALayer {
         ringLayer.showsValueKnob = showsValueKnob
         ringLayer.valueKnobSize = valueKnobSize
         ringLayer.valueKnobColor = valueKnobColor
+        ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
+        ringLayer.valueKnobShadowOffset = valueKnobShadowOffset
+        ringLayer.valueKnobShadowColor = valueKnobShadowColor
         ringLayer.patternForDashes = patternForDashes
         ringLayer.gradientColors = gradientColors
         ringLayer.gradientColorLocations = gradientColorLocations
