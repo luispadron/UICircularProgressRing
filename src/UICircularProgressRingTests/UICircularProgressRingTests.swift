@@ -96,6 +96,18 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.valueKnobSize, 30)
         XCTAssertEqual(progressRing.ringLayer.valueKnobSize, 30)
         
+        progressRing.valueKnobShadowColor = .black
+        XCTAssertEqual(progressRing.valueKnobShadowColor, .black)
+        XCTAssertEqual(progressRing.ringLayer.valueKnobShadowColor, .black)
+        
+        progressRing.valueKnobShadowBlur = 30
+        XCTAssertEqual(progressRing.valueKnobShadowBlur, 30)
+        XCTAssertEqual(progressRing.ringLayer.valueKnobShadowBlur, 30)
+        
+        progressRing.valueKnobShadowOffset = CGSize(width: 10, height: 10)
+        XCTAssertEqual(progressRing.valueKnobShadowOffset, CGSize(width: 10, height: 10))
+        XCTAssertEqual(progressRing.ringLayer.valueKnobShadowOffset, CGSize(width: 10, height: 10))
+        
         progressRing.gradientColors = [UIColor.blue, UIColor.red]
         XCTAssertEqual(progressRing.gradientColors, [UIColor.blue, UIColor.red])
         XCTAssertEqual(progressRing.ringLayer.gradientColors, [UIColor.blue, UIColor.red])
