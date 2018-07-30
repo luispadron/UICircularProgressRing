@@ -233,9 +233,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
         switch ringStyle {
             
         case .dashed:
-            outerPath.setLineDash(patternForDashes,
-                                  count: patternForDashes.count,
-                                  phase: 0.0)
+            outerPath.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
             
         case .dotted:
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
@@ -243,11 +241,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
         
         case .bordered:
             let innerBorder = CAShapeLayer()
-            self.addSublayer(innerBorder)
+            addSublayer(innerBorder)
             
             let roundedRect1 = outerPath.bounds.insetBy(dx: outerRingWidth/2, dy: outerRingWidth/2)
-            let path1 =
-                UIBezierPath(roundedRect: roundedRect1, cornerRadius: outerRadius)
+            let path1 = UIBezierPath(roundedRect: roundedRect1, cornerRadius: outerRadius)
             innerBorder.path = path1.cgPath
             innerBorder.fillColor = UIColor.clear.cgColor
             
@@ -256,11 +253,10 @@ class UICircularProgressRingLayer: CAShapeLayer {
             
             
             let outerBorder = CAShapeLayer()
-            self.addSublayer(outerBorder)
+            addSublayer(outerBorder)
             
             let roundedRect2 = outerPath.bounds.insetBy(dx: -outerRingWidth/2, dy: -outerRingWidth/2)
-            let path2 =
-                UIBezierPath(roundedRect: roundedRect2, cornerRadius: outerRadius)
+            let path2 = UIBezierPath(roundedRect: roundedRect2, cornerRadius: outerRadius)
             outerBorder.path = path2.cgPath
             outerBorder.fillColor = UIColor.clear.cgColor
             

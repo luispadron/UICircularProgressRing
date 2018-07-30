@@ -1,3 +1,7 @@
+# Version 3.2.0
+
+- Add new ring style `bordered` thanks to [@abdulla-allaith](https://github.com/abdulla-allaith)!
+
 # Version 3.1.0
 
 - Adds three new properties for more fine grained control of the
