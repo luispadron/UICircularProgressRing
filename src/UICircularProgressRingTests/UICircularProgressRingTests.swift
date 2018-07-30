@@ -72,6 +72,10 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.ringStyle, .ontop)
         XCTAssertEqual(progressRing.ringLayer.ringStyle, .ontop)
         
+        progressRing.ringStyle = .bordered
+        XCTAssertEqual(progressRing.ringStyle, .bordered)
+        XCTAssertEqual(progressRing.ringLayer.ringStyle, .bordered)
+        
         progressRing.patternForDashes = [6.0, 5.0]
         XCTAssertEqual(progressRing.patternForDashes, [6.0, 5.0])
         XCTAssertEqual(progressRing.ringLayer.patternForDashes, [6.0, 5.0])
@@ -131,6 +135,14 @@ class UICircularProgressRingTests: XCTestCase {
         progressRing.outerRingColor = UIColor.red
         XCTAssertEqual(progressRing.outerRingColor, UIColor.red)
         XCTAssertEqual(progressRing.ringLayer.outerRingColor, UIColor.red)
+        
+        progressRing.outerBorderWidth = 5
+        XCTAssertEqual(progressRing.outerBorderWidth, 5)
+        XCTAssertEqual(progressRing.ringLayer.outerBorderWidth, 5)
+        
+        progressRing.outerBorderColor = UIColor.red
+        XCTAssertEqual(progressRing.outerBorderColor, UIColor.red)
+        XCTAssertEqual(progressRing.ringLayer.outerBorderColor, UIColor.red)
         
         progressRing.outerCapStyle = .round
         XCTAssertEqual(progressRing.outerCapStyle, .round)

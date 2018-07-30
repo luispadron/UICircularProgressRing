@@ -513,6 +513,36 @@ fileprivate extension CALayer {
     }
     
     /**
+     The color for the outer ring border
+     
+     ## Important ##
+     Default = UIColor.gray
+     
+     ## Author
+     Abdulla Allaith
+     */
+    @IBInspectable open var outerBorderColor: UIColor = UIColor.gray {
+        didSet {
+            ringLayer.outerBorderColor = outerBorderColor
+        }
+    }
+    
+    /**
+     The width for the outer ring border
+     
+     ## Important ##
+     Default = 2
+     
+     ## Author
+     Abdulla Allaith
+     */
+    @IBInspectable open var outerBorderWidth: CGFloat = 2 {
+        didSet {
+            ringLayer.outerBorderWidth = outerBorderWidth
+        }
+    }
+    
+    /**
      The style for the outer ring end cap (how it is drawn on screen)
      Range [1,3]
      - 1: Line with a squared off end
@@ -940,6 +970,8 @@ fileprivate extension CALayer {
         
         ringLayer.outerRingWidth = outerRingWidth
         ringLayer.outerRingColor = outerRingColor
+        ringLayer.outerBorderWidth = outerBorderWidth
+        ringLayer.outerBorderColor = outerBorderColor
         ringLayer.outerCapStyle = outerCapStyle
         
         ringLayer.innerRingWidth = innerRingWidth

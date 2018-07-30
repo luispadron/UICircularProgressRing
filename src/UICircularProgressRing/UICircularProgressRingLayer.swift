@@ -103,6 +103,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var outerRingWidth: CGFloat
     @NSManaged var outerRingColor: UIColor
     @NSManaged var outerCapStyle: CGLineCap
+    @NSManaged var outerBorderColor: UIColor
+    @NSManaged var outerBorderWidth: CGFloat
     
     @NSManaged var innerRingWidth: CGFloat
     @NSManaged var innerRingColor: UIColor
@@ -238,6 +240,32 @@ class UICircularProgressRingLayer: CAShapeLayer {
         case .dotted:
             outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
             outerPath.lineCapStyle = .round
+        
+        case .bordered:
+            let innerBorder = CAShapeLayer()
+            self.addSublayer(innerBorder)
+            
+            let roundedRect1 = outerPath.bounds.insetBy(dx: outerRingWidth/2, dy: outerRingWidth/2)
+            let path1 =
+                UIBezierPath(roundedRect: roundedRect1, cornerRadius: outerRadius)
+            innerBorder.path = path1.cgPath
+            innerBorder.fillColor = UIColor.clear.cgColor
+            
+            innerBorder.strokeColor = outerBorderColor.cgColor
+            innerBorder.lineWidth = outerBorderWidth
+            
+            
+            let outerBorder = CAShapeLayer()
+            self.addSublayer(outerBorder)
+            
+            let roundedRect2 = outerPath.bounds.insetBy(dx: -outerRingWidth/2, dy: -outerRingWidth/2)
+            let path2 =
+                UIBezierPath(roundedRect: roundedRect2, cornerRadius: outerRadius)
+            outerBorder.path = path2.cgPath
+            outerBorder.fillColor = UIColor.clear.cgColor
+            
+            outerBorder.strokeColor = outerBorderColor.cgColor
+            outerBorder.lineWidth = outerBorderWidth
             
         default: break
             
