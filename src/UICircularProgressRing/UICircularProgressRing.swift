@@ -873,10 +873,10 @@ fileprivate extension CALayer {
     private var animationPauseTime: CFTimeInterval?
     
     /// The completion timer, also indicates wether or not the view is animating
-    fileprivate var completionTimer: Timer?
+    private var completionTimer: Timer?
     
     /// The completion block to call after the animation is done
-    fileprivate var completion: ProgressCompletion?
+    private var completion: ProgressCompletion?
     
     // MARK: Layer
     
@@ -1099,11 +1099,9 @@ fileprivate extension CALayer {
         ringLayer.speed = 0.0
         
         //Cancel the timer, it will have to be re-created when we continue the progress
-        if let completionTimer = completionTimer {
-            completionTimer.invalidate()
-            self.completionTimer = nil
-        }
-
+        completionTimer?.invalidate()
+        self.completionTimer = nil
+        
         delegate?.didPauseProgress?(for: self)
     }
 
@@ -1154,10 +1152,8 @@ fileprivate extension CALayer {
         value = minValue
         
         //Stop the timer and thus make the completion method not get fired
-        if let completionTimer = completionTimer {
-            completionTimer.invalidate()
-            self.completionTimer = nil
-        }
+        completionTimer?.invalidate()
+        self.completionTimer = nil
     }
 
 
