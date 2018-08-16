@@ -1,0 +1,10 @@
+disabled_rules:
+  - valid_ibinspectable
+  - file_length
+  - type_body_length
+file_length: 500
+line_length: 150
+excluded:
+  - src/UICircularProgressRingTests
+  - UICircularProgressRingTests
+  - Example

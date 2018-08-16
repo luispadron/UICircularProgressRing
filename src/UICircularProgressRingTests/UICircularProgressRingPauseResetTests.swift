@@ -6,8 +6,9 @@
 //  Copyright © 2018 Luis Padron. All rights reserved.
 //
 
-//A seperate test case just for the completion block, since it's a timing based test it does not work will with the other regular tests
-//It does require the use of usleep (or a different sleep method) to ensure that the pauseProgress actually has any effect and isn't premeturely firing it's completion block
+// A seperate test case just for the completion block, since it's a timing based test it does not work will with the other regular tests
+// It does require the use of usleep (or a different sleep method) to ensure that the pauseProgress actually has any effect
+// and isn't premeturely firing it's completion block
 
 import Foundation
 
@@ -15,14 +16,14 @@ import XCTest
 @testable import UICircularProgressRing
 
 class UICircularProgressRingPauseResetTests: XCTestCase {
-    
+
     var progressRing: UICircularProgressRing!
-    
+
     override func setUp() {
         super.setUp()
         progressRing = UICircularProgressRing(frame: CGRect(x: 0, y: 0, width: 100, height: 200))
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -39,9 +40,9 @@ class UICircularProgressRingPauseResetTests: XCTestCase {
         })
 
         //Wait for the expactation to fulfill
-        waitForExpectations(timeout: 0.2, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
     }
-    
+
     func testResetProgress() {
         //* Test the resetProgress
         //Start the progress
@@ -83,7 +84,7 @@ class UICircularProgressRingPauseResetTests: XCTestCase {
         progressRing.continueProgress()
 
         //Wait for the excpectation
-        waitForExpectations(timeout: 0.11, handler: nil)
+        waitForExpectations(timeout: 0.5, handler: nil)
 
         //Check the time difference between the start and stop times
         let difference = stopTime! - startTime

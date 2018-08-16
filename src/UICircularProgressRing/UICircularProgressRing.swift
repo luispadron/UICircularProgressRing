@@ -26,8 +26,8 @@
 import UIKit
 
 /// Helper enum for animation key
-fileprivate enum AnimationKeys: String {
-    case value = "value"
+private enum AnimationKeys: String {
+    case value
 }
 
 /// Helper extension to allow removing layer animation based on AnimationKeys enum
@@ -66,7 +66,7 @@ fileprivate extension CALayer {
  
  */
 @IBDesignable open class UICircularProgressRing: UIView {
-    
+
     // MARK: Delegate
     /**
      The delegate for the UICircularProgressRing
@@ -81,10 +81,10 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open weak var delegate: UICircularProgressRingDelegate? = nil
-    
+    @objc open weak var delegate: UICircularProgressRingDelegate?
+
     // MARK: Circle Properties
-    
+
     /**
      Whether or not the progress ring should be a full circle.
      
@@ -105,9 +105,9 @@ fileprivate extension CALayer {
             ringLayer.fullCircle = fullCircle
         }
     }
-    
+
     // MARK: Value Properties
-    
+
     /**
      The value property for the progress ring.
      
@@ -136,7 +136,7 @@ fileprivate extension CALayer {
             ringLayer.value = value
         }
     }
-    
+
     /**
      The current value of the progress ring
      
@@ -149,12 +149,10 @@ fileprivate extension CALayer {
      Luis Padron
      */
     open var currentValue: ProgressValue? {
-        get {
-            if isAnimating {
-                return layer.presentation()?.value(forKey: .value) as? ProgressValue
-            } else {
-                return value
-            }
+        if isAnimating {
+            return layer.presentation()?.value(forKey: .value) as? ProgressValue
+        } else {
+            return value
         }
     }
 
@@ -179,7 +177,7 @@ fileprivate extension CALayer {
             ringLayer.minValue = abs(minValue)
         }
     }
-    
+
     /**
      The maximum value for the progress ring. ex: 0 -> (100)
      
@@ -200,9 +198,9 @@ fileprivate extension CALayer {
             ringLayer.maxValue = abs(maxValue)
         }
     }
-    
+
     // MARK: View Style
-    
+
     /**
      Variable for the style of the progress ring.
      
@@ -233,7 +231,7 @@ fileprivate extension CALayer {
             ringStyle = style ?? .inside
         }
     }
-    
+
     /**
      The style of the progress ring.
      
@@ -312,7 +310,7 @@ fileprivate extension CALayer {
             ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
         }
     }
-    
+
     /**
      The offset of the value knob's shadow
      
@@ -327,7 +325,7 @@ fileprivate extension CALayer {
             ringLayer.valueKnobShadowOffset = valueKnobShadowOffset
         }
     }
-    
+
     /**
      The color of the value knob's shadow
      
@@ -343,7 +341,6 @@ fileprivate extension CALayer {
         }
     }
 
-    
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
      
@@ -358,7 +355,7 @@ fileprivate extension CALayer {
             ringLayer.patternForDashes = patternForDashes
         }
     }
-    
+
     /**
      The start angle for the entire progress ring view.
      
@@ -378,7 +375,7 @@ fileprivate extension CALayer {
             ringLayer.startAngle = startAngle
         }
     }
-    
+
     /**
      The end angle for the entire progress ring
      
@@ -398,7 +395,7 @@ fileprivate extension CALayer {
             ringLayer.endAngle = endAngle
         }
     }
-    
+
     /**
      The colors which will be used to create the gradient.
      
@@ -419,7 +416,7 @@ fileprivate extension CALayer {
             ringLayer.gradientColors = gradientColors
         }
     }
-    
+
     /**
      The location for each color provided in `gradientColors`; each location must be
      a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
@@ -444,7 +441,7 @@ fileprivate extension CALayer {
             ringLayer.gradientColorLocations = gradientColorLocations
         }
     }
-    
+
     /**
      The start location for the gradient.
      This property determines where the gradient will begin to draw,
@@ -461,7 +458,7 @@ fileprivate extension CALayer {
             ringLayer.gradientStartPosition = gradientStartPosition
         }
     }
-    
+
     /**
      The end location for the gradient.
      This property determines where the gradient will end drawing,
@@ -478,10 +475,9 @@ fileprivate extension CALayer {
             ringLayer.gradientEndPosition = gradientEndPosition
         }
     }
-    
-    
+
     // MARK: Outer Ring properties
-    
+
     /**
      The width of the outer ring for the progres bar
      
@@ -496,7 +492,7 @@ fileprivate extension CALayer {
             ringLayer.outerRingWidth = outerRingWidth
         }
     }
-    
+
     /**
      The color for the outer ring
      
@@ -511,7 +507,7 @@ fileprivate extension CALayer {
             ringLayer.outerRingColor = outerRingColor
         }
     }
-    
+
     /**
      The color for the outer ring border
      
@@ -526,7 +522,7 @@ fileprivate extension CALayer {
             ringLayer.outerBorderColor = outerBorderColor
         }
     }
-    
+
     /**
      The width for the outer ring border
      
@@ -541,7 +537,7 @@ fileprivate extension CALayer {
             ringLayer.outerBorderWidth = outerBorderWidth
         }
     }
-    
+
     /**
      The style for the outer ring end cap (how it is drawn on screen)
      Range [1,3]
@@ -574,7 +570,7 @@ fileprivate extension CALayer {
             }
         }
     }
-    
+
     /**
      The style for the tip/cap of the outer ring
      
@@ -593,9 +589,9 @@ fileprivate extension CALayer {
             ringLayer.outerCapStyle = outerCapStyle
         }
     }
-    
+
     // MARK: Inner Ring properties
-    
+
     /**
      The width of the inner ring for the progres bar
      
@@ -610,7 +606,7 @@ fileprivate extension CALayer {
             ringLayer.innerRingWidth = innerRingWidth
         }
     }
-    
+
     /**
      The color of the inner ring for the progres bar
      
@@ -625,7 +621,7 @@ fileprivate extension CALayer {
             ringLayer.innerRingColor = innerRingColor
         }
     }
-    
+
     /**
      The spacing between the outer ring and inner ring
      
@@ -642,7 +638,7 @@ fileprivate extension CALayer {
             ringLayer.innerRingSpacing = innerRingSpacing
         }
     }
-    
+
     /**
      The style for the inner ring end cap (how it is drawn on screen)
      
@@ -677,8 +673,7 @@ fileprivate extension CALayer {
             }
         }
     }
-    
-    
+
     /**
      The style for the tip/cap of the inner ring
      
@@ -695,9 +690,9 @@ fileprivate extension CALayer {
             ringLayer.innerCapStyle = innerCapStyle
         }
     }
-    
+
     // MARK: Label
-    
+
     /**
      A toggle for showing or hiding the value label.
      If false the current value will not be shown.
@@ -713,7 +708,7 @@ fileprivate extension CALayer {
             ringLayer.shouldShowValueText = shouldShowValueText
         }
     }
-    
+
     /**
      The text color for the value label field
      
@@ -729,7 +724,7 @@ fileprivate extension CALayer {
             ringLayer.fontColor = fontColor
         }
     }
-    
+
     /**
      The font to be used for the progress indicator.
      All font attributes are specified here except for font color, which is done
@@ -748,7 +743,7 @@ fileprivate extension CALayer {
             ringLayer.font = font
         }
     }
-    
+
     /**
      The name of the value indicator the value label will
      appened to the value
@@ -765,7 +760,7 @@ fileprivate extension CALayer {
             ringLayer.valueIndicator = valueIndicator
         }
     }
-    
+
     /**
      A toggle for either placing the value indicator right or left to the value
      Example: true -> "GB 100" (instead of 100 GB)
@@ -781,7 +776,7 @@ fileprivate extension CALayer {
             ringLayer.rightToLeft = rightToLeft
         }
     }
-    
+
     /**
      A toggle for showing or hiding floating points from
      the value in the value label
@@ -799,7 +794,7 @@ fileprivate extension CALayer {
             ringLayer.showFloatingPoint = showFloatingPoint
         }
     }
-    
+
     /**
      The amount of decimal places to show in the value label
      
@@ -816,9 +811,9 @@ fileprivate extension CALayer {
             ringLayer.decimalPlaces = decimalPlaces
         }
     }
-    
+
     // MARK: Animation properties
-    
+
     /**
      The type of animation function the ring view will use
      
@@ -837,7 +832,7 @@ fileprivate extension CALayer {
             ringLayer.animationStyle = animationStyle
         }
     }
-    
+
     /**
      This returns whether or not the ring is currently animating
      
@@ -848,9 +843,7 @@ fileprivate extension CALayer {
      Luis Padron
      */
     @objc open var isAnimating: Bool {
-        get {
-            return completionTimer?.isValid ?? false
-        }
+        return completionTimer?.isValid ?? false
     }
 
     /**
@@ -871,29 +864,28 @@ fileprivate extension CALayer {
 
     /// Used to determine when the animation was paused
     private var animationPauseTime: CFTimeInterval?
-    
+
     /// The completion timer, also indicates wether or not the view is animating
     private var completionTimer: Timer?
-    
+
     /// The completion block to call after the animation is done
     private var completion: ProgressCompletion?
-    
+
     // MARK: Layer
-    
+
     /**
      Set the ring layer to the default layer, cated as custom layer
      */
     internal var ringLayer: UICircularProgressRingLayer {
+        // swiftlint:disable:next force_cast
         return layer as! UICircularProgressRingLayer
     }
-    
+
     /**
      Overrides the default layer with the custom UICircularProgressRingLayer class
      */
     override open class var layerClass: AnyClass {
-        get {
-            return UICircularProgressRingLayer.self
-        }
+        return UICircularProgressRingLayer.self
     }
 
     // MARK: Type aliases
@@ -917,9 +909,9 @@ fileprivate extension CALayer {
      Typealias for the duration of a ring animation
      */
     public typealias ProgressDuration = TimeInterval
-    
+
     // MARK: Methods
-    
+
     /**
      Overriden public init to initialize the layer and view
      */
@@ -928,7 +920,7 @@ fileprivate extension CALayer {
         // Call the internal initializer
         initialize()
     }
-    
+
     /**
      Overriden public init to initialize the layer and view
      */
@@ -937,27 +929,28 @@ fileprivate extension CALayer {
         // Call the internal initializer
         initialize()
     }
-    
+
     /**
      This method initializes the custom CALayer to the default values
      */
-    internal func initialize() {
+    // swiftlint:disable:next function_body_length
+    private func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
         ringLayer.valueDelegate = self
-        
+
         // Helps with pixelation and blurriness on retina devices
         layer.contentsScale = UIScreen.main.scale
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale * 2
         layer.masksToBounds = false
-        
+
         ringLayer.fullCircle = fullCircle
         ringLayer.isClockwise = isClockwise
-        
+
         ringLayer.value = value
         ringLayer.maxValue = maxValue
         ringLayer.minValue = minValue
-        
+
         ringLayer.ringStyle = ringStyle
         ringLayer.showsValueKnob = showsValueKnob
         ringLayer.valueKnobSize = valueKnobSize
@@ -970,21 +963,21 @@ fileprivate extension CALayer {
         ringLayer.gradientColorLocations = gradientColorLocations
         ringLayer.gradientStartPosition = gradientStartPosition
         ringLayer.gradientEndPosition = gradientEndPosition
-        
+
         ringLayer.startAngle = startAngle
         ringLayer.endAngle = endAngle
-        
+
         ringLayer.outerRingWidth = outerRingWidth
         ringLayer.outerRingColor = outerRingColor
         ringLayer.outerBorderWidth = outerBorderWidth
         ringLayer.outerBorderColor = outerBorderColor
         ringLayer.outerCapStyle = outerCapStyle
-        
+
         ringLayer.innerRingWidth = innerRingWidth
         ringLayer.innerRingColor = innerRingColor
         ringLayer.innerCapStyle = innerCapStyle
         ringLayer.innerRingSpacing = innerRingSpacing
-        
+
         ringLayer.shouldShowValueText = shouldShowValueText
         ringLayer.valueIndicator = valueIndicator
         ringLayer.fontColor = fontColor
@@ -995,14 +988,14 @@ fileprivate extension CALayer {
         backgroundColor = UIColor.clear
         ringLayer.backgroundColor = UIColor.clear.cgColor
     }
-    
+
     /**
      Overriden because of custom layer drawing in UICircularProgressRingLayer
      */
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
-    
+
     /**
      Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
@@ -1010,7 +1003,7 @@ fileprivate extension CALayer {
     internal func didUpdateValue(newValue: ProgressValue) {
         delegate?.didUpdateProgressValue?(for: self, to: newValue)
     }
-    
+
     internal func willDisplayLabel(label: UILabel) {
         delegate?.willDisplayLabel?(for: self, label)
     }
@@ -1048,26 +1041,26 @@ fileprivate extension CALayer {
         ringLayer.speed = 1.0
         ringLayer.animated = duration > 0
         ringLayer.animationDuration = duration
-        
+
         // Store the completion event locally
         self.completion = completion
-        
+
         // Check if a completion timer is still active and if so stop it
         completionTimer?.invalidate()
         completionTimer = nil
-        
+
         //Create a new completion timer
         completionTimer = Timer.scheduledTimer(timeInterval: duration,
                                                target: self,
                                                selector: #selector(self.animationDidComplete),
                                                userInfo: completion,
                                                repeats: false)
-        
+
         self.value = value
     }
 
     /// Called when the animation timer is complete
-    @objc func animationDidComplete(withTimer timer: Timer) {
+    @objc private func animationDidComplete(withTimer timer: Timer) {
         delegate?.didFinishProgress?(for: self)
         (timer.userInfo as? ProgressCompletion)?()
     }
@@ -1092,11 +1085,11 @@ fileprivate extension CALayer {
         ringLayer.timeOffset = pauseTime
 
         ringLayer.speed = 0.0
-        
+
         //Cancel the timer, it will have to be re-created when we continue the progress
         completionTimer?.invalidate()
         completionTimer = nil
-        
+
         delegate?.didPauseProgress?(for: self)
     }
 
@@ -1121,14 +1114,14 @@ fileprivate extension CALayer {
 
         let currentTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
         ringLayer.beginTime = currentTime - pauseTime
-        
+
         //Create a new completion timer
         completionTimer = Timer.scheduledTimer(timeInterval: currentTime - pauseTime,
                                                target: self,
                                                selector: #selector(animationDidComplete),
                                                userInfo: completion,
                                                repeats: false)
-        
+
         animationPauseTime = nil
 
         delegate?.didContinueProgress?(for: self)
@@ -1145,13 +1138,12 @@ fileprivate extension CALayer {
         ringLayer.animated = false
         ringLayer.removeAnimation(forKey: .value)
         value = minValue
-        
+
         // Stop the timer and thus make the completion method not get fired
         completionTimer?.invalidate()
         completionTimer = nil
         animationPauseTime = nil
     }
-
 
     /**
      This function allows animation of the animatable properties of the `UICircularProgressRing`.

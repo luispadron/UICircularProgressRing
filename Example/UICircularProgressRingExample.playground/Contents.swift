@@ -15,7 +15,6 @@ progressRing.innerRingWidth = 8
 progressRing.ringStyle = .ontop
 progressRing.font = UIFont.boldSystemFont(ofSize: 40)
 
-
 PlaygroundPage.current.liveView = progressRing
 
 //: Animate with a given duration
@@ -44,4 +43,3 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
 }
 
 //: For more information [read the docs](https://goo.gl/JJCHeo)
-
