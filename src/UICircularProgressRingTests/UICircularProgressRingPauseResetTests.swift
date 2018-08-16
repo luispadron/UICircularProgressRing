@@ -26,62 +26,65 @@ class UICircularProgressRingPauseResetTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func testStartProgress() {
+        //* Test the happy flow after the initial reset to ensure that nothing has been broken by the reset
+        //Create an expectation
+        let normalExpectation = self.expectation(description: "Completion on start")
+
+        //Start a new progress animation
+        progressRing.startProgress(to: 100, duration: 0.1, completion: {
+            //Should be called
+            normalExpectation.fulfill()
+        })
+
+        //Wait for the expactation to fulfill
+        waitForExpectations(timeout: 0.2, handler: nil)
+    }
     
-    func testProgressCompletionBlock() {
+    func testResetProgress() {
         //* Test the resetProgress
         //Start the progress
         progressRing.startProgress(to: 100, duration: 0.1, completion: {
             //Should not be called due to the resetProgress
             XCTAssert(false)
         })
-        
-        //Reset the progress
+
+        // Reset the progress
         progressRing.resetProgress()
-        
-        
-        
-        //* Test the happy flow after the initial reset to ensure that nothing has been broken by the reset
-        //Create an expectation
-        let normalExpectation = self.expectation(description: "Completion on reset")
-        
-        //Start a new progress animation
-        progressRing.startProgress(to: 100, duration: 0.1, completion: {
-            //Should be called
-            normalExpectation.fulfill()
-        })
-        
-        //Wait for the expactation to fulfill
-        waitForExpectations(timeout: 0.2, handler: nil)
-        
-        
-        
+
+        // Sleep for 0.2 seconds
+        usleep(20000)
+    }
+
+    func testPauseProgress() {
         //* Test the pauseProgress
         //Store the current time to compare later on
         let startTime = CACurrentMediaTime()
         var stopTime: CFTimeInterval?
-        
+
         //Create a new expectation
         let pauseExpectation = self.expectation(description: "Completion after pause")
-        
+
         //Start a new progress animation
         progressRing.startProgress(to: 100, duration: 0.1, completion: {
             //Should be called later than the 0.1 duration, this will be checked at the end of this test
             pauseExpectation.fulfill()
             stopTime = CACurrentMediaTime()
         })
-        
+
         //Pause the animation
         progressRing.pauseProgress()
-        
+
         //Sleep for 0.1 second
         usleep(100 * 1000)
-        
+
         //Restart the animation
         progressRing.continueProgress()
-        
+
         //Wait for the excpectation
         waitForExpectations(timeout: 0.11, handler: nil)
-        
+
         //Check the time difference between the start and stop times
         let difference = stopTime! - startTime
         XCTAssertGreaterThan(difference, 0.2)

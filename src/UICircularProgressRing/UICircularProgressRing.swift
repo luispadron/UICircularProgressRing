@@ -1048,31 +1048,28 @@ fileprivate extension CALayer {
         ringLayer.speed = 1.0
         ringLayer.animated = duration > 0
         ringLayer.animationDuration = duration
-
-        CATransaction.begin()
         
-        //Store the completion event locally
+        // Store the completion event locally
         self.completion = completion
         
-        //Check if a completion timer is still active and if so stop it
+        // Check if a completion timer is still active and if so stop it
         completionTimer?.invalidate()
-        self.completionTimer = nil
+        completionTimer = nil
         
         //Create a new completion timer
         completionTimer = Timer.scheduledTimer(timeInterval: duration,
                                                target: self,
-                                               selector: #selector(self.didCompleteWithCompletion),
+                                               selector: #selector(self.animationDidComplete),
                                                userInfo: completion,
                                                repeats: false)
         
         self.value = value
-        CATransaction.commit()
     }
-    
-    @objc func didCompleteWithCompletion(_ completion: Timer) {
-        //Call the completion event and block
-        self.delegate?.didFinishProgress?(for: self)
-        (completion.userInfo as? ProgressCompletion)?()
+
+    /// Called when the animation timer is complete
+    @objc func animationDidComplete(withTimer timer: Timer) {
+        delegate?.didFinishProgress?(for: self)
+        (timer.userInfo as? ProgressCompletion)?()
     }
 
     /**
@@ -1098,7 +1095,7 @@ fileprivate extension CALayer {
         
         //Cancel the timer, it will have to be re-created when we continue the progress
         completionTimer?.invalidate()
-        self.completionTimer = nil
+        completionTimer = nil
         
         delegate?.didPauseProgress?(for: self)
     }
@@ -1128,7 +1125,7 @@ fileprivate extension CALayer {
         //Create a new completion timer
         completionTimer = Timer.scheduledTimer(timeInterval: currentTime - pauseTime,
                                                target: self,
-                                               selector: #selector(self.didCompleteWithCompletion),
+                                               selector: #selector(animationDidComplete),
                                                userInfo: completion,
                                                repeats: false)
         
@@ -1149,9 +1146,10 @@ fileprivate extension CALayer {
         ringLayer.removeAnimation(forKey: .value)
         value = minValue
         
-        //Stop the timer and thus make the completion method not get fired
+        // Stop the timer and thus make the completion method not get fired
         completionTimer?.invalidate()
-        self.completionTimer = nil
+        completionTimer = nil
+        animationPauseTime = nil
     }
 
 
