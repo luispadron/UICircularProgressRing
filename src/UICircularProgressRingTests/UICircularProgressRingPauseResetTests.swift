@@ -46,11 +46,11 @@ class UICircularProgressRingPauseResetTests: XCTestCase {
         
         //Start a new progress animation
         progressRing.startProgress(to: 100, duration: 0.1, completion: {
-            //Should not be called due to the resetProgress
+            //Should be called
             normalExpectation.fulfill()
         })
         
-        //Wait for the expactation to fulfill or not
+        //Wait for the expactation to fulfill
         waitForExpectations(timeout: 0.2, handler: nil)
         
         
