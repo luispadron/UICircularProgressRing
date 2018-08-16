@@ -849,7 +849,7 @@ fileprivate extension CALayer {
      */
     @objc open var isAnimating: Bool {
         get {
-            return (layer.animation(forKey: .value) != nil) ? true : false
+            return completionTimer?.isValid ?? false
         }
     }
 
@@ -871,6 +871,12 @@ fileprivate extension CALayer {
 
     /// Used to determine when the animation was paused
     private var animationPauseTime: CFTimeInterval?
+    
+    /// The completion timer, also indicates wether or not the view is animating
+    private var completionTimer: Timer?
+    
+    /// The completion block to call after the animation is done
+    private var completion: ProgressCompletion?
     
     // MARK: Layer
     
@@ -1009,7 +1015,6 @@ fileprivate extension CALayer {
         delegate?.willDisplayLabel?(for: self, label)
     }
 
-    
     /**
      Sets the current value for the progress ring, calling this method while ring is
      animating will cancel the previously set animation and start a new one.
@@ -1045,14 +1050,30 @@ fileprivate extension CALayer {
         ringLayer.animationDuration = duration
 
         CATransaction.begin()
-        CATransaction.setCompletionBlock {
-            self.delegate?.didFinishProgress?(for: self)
-            completion?()
-        }
+        
+        //Store the completion event locally
+        self.completion = completion
+        
+        //Check if a completion timer is still active and if so stop it
+        completionTimer?.invalidate()
+        self.completionTimer = nil
+        
+        //Create a new completion timer
+        completionTimer = Timer.scheduledTimer(timeInterval: duration,
+                                               target: self,
+                                               selector: #selector(self.didCompleteWithCompletion),
+                                               userInfo: completion,
+                                               repeats: false)
+        
         self.value = value
         CATransaction.commit()
     }
     
+    @objc func didCompleteWithCompletion(_ completion: Timer) {
+        //Call the completion event and block
+        self.delegate?.didFinishProgress?(for: self)
+        (completion.userInfo as? ProgressCompletion)?()
+    }
 
     /**
      Pauses the currently running animation and halts all progress.
@@ -1074,7 +1095,11 @@ fileprivate extension CALayer {
         ringLayer.timeOffset = pauseTime
 
         ringLayer.speed = 0.0
-
+        
+        //Cancel the timer, it will have to be re-created when we continue the progress
+        completionTimer?.invalidate()
+        self.completionTimer = nil
+        
         delegate?.didPauseProgress?(for: self)
     }
 
@@ -1099,7 +1124,14 @@ fileprivate extension CALayer {
 
         let currentTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
         ringLayer.beginTime = currentTime - pauseTime
-
+        
+        //Create a new completion timer
+        completionTimer = Timer.scheduledTimer(timeInterval: currentTime - pauseTime,
+                                               target: self,
+                                               selector: #selector(self.didCompleteWithCompletion),
+                                               userInfo: completion,
+                                               repeats: false)
+        
         animationPauseTime = nil
 
         delegate?.didContinueProgress?(for: self)
@@ -1116,6 +1148,10 @@ fileprivate extension CALayer {
         ringLayer.animated = false
         ringLayer.removeAnimation(forKey: .value)
         value = minValue
+        
+        //Stop the timer and thus make the completion method not get fired
+        completionTimer?.invalidate()
+        self.completionTimer = nil
     }
 
 
