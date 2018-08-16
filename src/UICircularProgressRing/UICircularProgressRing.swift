@@ -849,7 +849,6 @@ fileprivate extension CALayer {
      */
     @objc open var isAnimating: Bool {
         get {
-//            return (layer.animation(forKey: .value) != nil) ? true : false
             return completionTimer?.isValid ?? false
         }
     }
@@ -872,6 +871,12 @@ fileprivate extension CALayer {
 
     /// Used to determine when the animation was paused
     private var animationPauseTime: CFTimeInterval?
+    
+    /// The completion timer, also indicates wether or not the view is animating
+    fileprivate var completionTimer: Timer?
+    
+    /// The completion block to call after the animation is done
+    fileprivate var completion: ProgressCompletion?
     
     // MARK: Layer
     
@@ -1010,9 +1015,6 @@ fileprivate extension CALayer {
         delegate?.willDisplayLabel?(for: self, label)
     }
 
-    fileprivate var completionTimer: Timer?
-    fileprivate var completion: ProgressCompletion?
-    
     /**
      Sets the current value for the progress ring, calling this method while ring is
      animating will cancel the previously set animation and start a new one.
@@ -1070,6 +1072,7 @@ fileprivate extension CALayer {
     }
     
     @objc func didCompleteWithCompletion(_ completion: Timer) {
+        //Call the completion event and block
         self.delegate?.didFinishProgress?(for: self)
         (completion.userInfo as? ProgressCompletion)?()
     }
