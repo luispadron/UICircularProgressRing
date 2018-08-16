@@ -1055,10 +1055,8 @@ fileprivate extension CALayer {
         self.completion = completion
         
         //Check if a completion timer is still active and if so stop it
-        if let completionTimer = completionTimer {
-            completionTimer.invalidate()
-            self.completionTimer = nil
-        }
+        completionTimer?.invalidate()
+        self.completionTimer = nil
         
         //Create a new completion timer
         completionTimer = Timer.scheduledTimer(timeInterval: duration,
