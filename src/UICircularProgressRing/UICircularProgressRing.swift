@@ -133,6 +133,9 @@ fileprivate extension CALayer {
                 print("Attempted to set a value less than minValue, value has been set to minValue.\n")
                 value = minValue
             }
+            if value > maxValue {
+                value = maxValue
+            }
             ringLayer.value = value
         }
     }
