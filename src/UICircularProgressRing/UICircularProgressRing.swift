@@ -832,7 +832,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
+    @objc open var animationStyle: String = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeIn) {
         didSet {
             ringLayer.animationStyle = animationStyle
         }
@@ -1156,4 +1156,9 @@ fileprivate extension CALayer {
         animations()
         CATransaction.commit()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
+	return input.rawValue
 }
