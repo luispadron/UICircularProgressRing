@@ -1,3 +1,8 @@
+# Version 3.3.1
+
+- Fixes more issues with pause/continue progress logic.
+  Thanks to [@nickdnk](https://github.com/nickdnk) for the PR!
+
 # Version 3.3.0
 
 - Fixes issues with inconsisten API. The `pauseProgress()` and `resetProgress()`
