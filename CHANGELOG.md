@@ -1,3 +1,8 @@
+# Version 3.3.2
+
+- Add check for `value` being set greater than `maxValue`
+  Thanks to [@byronsalty](https://github.com/byronsalty) for the PR!
+
 # Version 3.3.1
 
 - Fixes more issues with pause/continue progress logic.
