@@ -129,9 +129,18 @@ fileprivate extension CALayer {
     @IBInspectable open var value: ProgressValue = 0 {
         didSet {
             if value < minValue {
-                print("Warning in: \(#file):\(#line)")
-                print("Attempted to set a value less than minValue, value has been set to minValue.\n")
+                #if DEBUG
+                    print("Warning in: \(#file):\(#line)")
+                    print("Attempted to set a value less than minValue, value has been set to minValue.\n")
+                #endif
                 value = minValue
+            }
+            if value > maxValue {
+                #if DEBUG
+                    print("Warning in: \(#file):\(#line)")
+                    print("Attempted to set a value greater than maxValue, value has been set to maxValue.\n")
+                #endif
+                value = maxValue
             }
             ringLayer.value = value
         }
