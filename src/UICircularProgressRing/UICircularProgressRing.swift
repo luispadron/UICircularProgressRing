@@ -765,7 +765,39 @@ fileprivate extension CALayer {
             ringLayer.valueIndicator = valueIndicator
         }
     }
-    
+
+    /**
+     The attributes of the attributed text of the value indicator
+
+     ## Important ##
+     Default = nil (use normal string)
+
+     ## Author
+     Aite
+     */
+    @IBInspectable open var indicatorTextAttributes: [NSAttributedStringKey: Any]? {
+        didSet{
+            self.ringLayer.indicatorTextAttributes = self.indicatorTextAttributes
+        }
+
+    }
+
+    /**
+     The attributes of the attributed text of the value
+
+     ## Important ##
+     Default = nil (use normal string)
+
+     ## Author
+     Aite
+     */
+    @IBInspectable open var valueTextAttributes: [NSAttributedStringKey: Any]? {
+        didSet{
+            self.ringLayer.valueTextAttributes = self.valueTextAttributes
+        }
+
+    }
+
     /**
      A toggle for either placing the value indicator right or left to the value
      Example: true -> "GB 100" (instead of 100 GB)
