@@ -766,6 +766,39 @@ fileprivate extension CALayer {
         }
     }
 
+    /**
+     The attributes of the attributed text of the value indicator
+
+     ## Important ##
+     Default = nil (use normal string)
+
+     ## Author
+     Aite
+     */
+    @IBInspectable open var indicatorTextAttributes: [NSAttributedStringKey: Any]? {
+        didSet{
+            self.ringLayer.indicatorTextAttributes = self.indicatorTextAttributes
+        }
+
+    }
+
+    /**
+     The attributes of the attributed text of the value
+
+     ## Important ##
+     Default = nil (use normal string)
+
+     ## Author
+     Aite
+     */
+    @IBInspectable open var valueTextAttributes: [NSAttributedStringKey: Any]? {
+        didSet{
+            self.ringLayer.valueTextAttributes = self.valueTextAttributes
+        }
+
+    }
+
+
     @IBInspectable open var valueIndicatorInNewLine: Bool = false {
         didSet {
             ringLayer.valueIndicatorInNewLine = valueIndicatorInNewLine

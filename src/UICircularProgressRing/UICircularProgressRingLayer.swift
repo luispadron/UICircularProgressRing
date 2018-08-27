@@ -42,6 +42,8 @@ private extension CGFloat {
 private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String, inNewLine: Bool, rightToLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
+
+        self.attributedText = nil
         let formattedValue: String
         if showsDecimal {
             formattedValue = String(format: "%.\(decimalPlaces)f", value)
@@ -60,6 +62,41 @@ private extension UILabel {
         }
         valueDelegate?.willDisplayLabel(label: self)
         sizeToFit()
+    }
+
+    func update(withValue value: CGFloat, valueAttributes: [NSAttributedStringKey: Any]?, valueIndicator: String, indicatorAttributes: [NSAttributedStringKey: Any]?, inNewLine: Bool, rightToLeft: Bool,
+                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
+
+        let valueAttributedText: NSAttributedString
+        if showsDecimal {
+            valueAttributedText = NSAttributedString(string:String(format: "%.\(decimalPlaces)f", value) , attributes: valueAttributes)
+        }
+        else {
+            valueAttributedText = NSAttributedString(string:"\(Int(value))" , attributes: valueAttributes)
+        }
+
+        let indicatorAttributedText = NSAttributedString(string: valueIndicator, attributes: indicatorAttributes)
+
+        var attributedText = NSMutableAttributedString(string: "")
+        if inNewLine {
+            attributedText.append(valueAttributedText)
+            attributedText.append(NSAttributedString(string: "\n", attributes: nil))
+            attributedText.append(indicatorAttributedText)
+        }
+        else if rightToLeft {
+            attributedText.append(indicatorAttributedText)
+            attributedText.append(valueAttributedText)
+        }
+        else {
+            attributedText.append(valueAttributedText)
+            attributedText.append(indicatorAttributedText)
+        }
+
+        self.text = nil
+        self.attributedText = attributedText
+
+        valueDelegate?.willDisplayLabel(label: self)
+        self.sizeToFit()
     }
 }
 
@@ -116,6 +153,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var shouldShowValueText: Bool
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
+    @NSManaged var valueTextAttributes: [NSAttributedStringKey: Any]?
+    @NSManaged var indicatorTextAttributes: [NSAttributedStringKey: Any]?
     @NSManaged var valueIndicator: String
     @NSManaged var valueIndicatorInNewLine: Bool
     @NSManaged var rightToLeft: Bool
@@ -424,14 +463,27 @@ class UICircularProgressRingLayer: CAShapeLayer {
             textBound = bounds
         }
 
-        valueLabel.update(withValue: value,
-                          valueIndicator: valueIndicator,
-                          inNewLine: valueIndicatorInNewLine,
-                          rightToLeft: rightToLeft,
-                          showsDecimal: showFloatingPoint,
-                          decimalPlaces: decimalPlaces,
-                          valueDelegate: valueDelegate)
-
+        if (valueTextAttributes != nil) || (indicatorTextAttributes != nil) {
+            valueLabel.update(withValue: value,
+                              valueAttributes: valueTextAttributes,
+                              valueIndicator: valueIndicator,
+                              indicatorAttributes: indicatorTextAttributes,
+                              inNewLine: valueIndicatorInNewLine,
+                              rightToLeft: rightToLeft,
+                              showsDecimal: showFloatingPoint,
+                              decimalPlaces: decimalPlaces,
+                              valueDelegate: valueDelegate)
+        }
+        else {
+            valueLabel.update(withValue: value,
+                              valueIndicator: valueIndicator,
+                              inNewLine: valueIndicatorInNewLine,
+                              rightToLeft: rightToLeft,
+                              showsDecimal: showFloatingPoint,
+                              decimalPlaces: decimalPlaces,
+                              valueDelegate: valueDelegate)
+        }
+        
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: textBound.midX, y: textBound.midY)
 
