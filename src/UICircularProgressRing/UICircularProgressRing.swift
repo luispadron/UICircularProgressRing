@@ -765,6 +765,12 @@ fileprivate extension CALayer {
             ringLayer.valueIndicator = valueIndicator
         }
     }
+
+    @IBInspectable open var valueIndicatorInNewLine: Bool = false {
+        didSet {
+            ringLayer.valueIndicatorInNewLine = valueIndicatorInNewLine
+        }
+    }
     
     /**
      A toggle for either placing the value indicator right or left to the value

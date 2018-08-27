@@ -40,21 +40,23 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
+    func update(withValue value: CGFloat, valueIndicator: String, inNewLine: Bool, rightToLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
-        if rightToLeft {
-            if showsDecimal {
-                text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            } else {
-                text = "\(valueIndicator)\(Int(value))"
-            }
-            
+        let formattedValue: String
+        if showsDecimal {
+            formattedValue = String(format: "%.\(decimalPlaces)f", value)
         } else {
-            if showsDecimal {
-                text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            } else {
-                text = "\(Int(value))\(valueIndicator)"
-            }
+            formattedValue = "\(Int(value))"
+        }
+
+        if inNewLine {
+            text = formattedValue + "\n\(valueIndicator)"
+        }
+        else if rightToLeft {
+            text = "\(valueIndicator)" + formattedValue
+        }
+        else {
+            text = formattedValue + "\(valueIndicator)"
         }
         valueDelegate?.willDisplayLabel(label: self)
         sizeToFit()
@@ -115,6 +117,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
     @NSManaged var valueIndicator: String
+    @NSManaged var valueIndicatorInNewLine: Bool
     @NSManaged var rightToLeft: Bool
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
@@ -411,16 +414,27 @@ class UICircularProgressRingLayer: CAShapeLayer {
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
 
+        let textBound : CGRect
+        if valueIndicatorInNewLine {
+            valueLabel.numberOfLines = 2
+            textBound = bounds.insetBy(dx: bounds.width / 7, dy: 0)
+        }
+        else {
+            valueLabel.numberOfLines = 1
+            textBound = bounds
+        }
+
         valueLabel.update(withValue: value,
                           valueIndicator: valueIndicator,
+                          inNewLine: valueIndicatorInNewLine,
                           rightToLeft: rightToLeft,
                           showsDecimal: showFloatingPoint,
                           decimalPlaces: decimalPlaces,
                           valueDelegate: valueDelegate)
-        
+
         // Deterime what should be the center for the label
-        valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        
-        valueLabel.drawText(in: bounds)
+        valueLabel.center = CGPoint(x: textBound.midX, y: textBound.midY)
+
+        valueLabel.drawText(in: textBound)
     }
 }
