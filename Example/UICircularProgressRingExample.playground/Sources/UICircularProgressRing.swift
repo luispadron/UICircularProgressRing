@@ -26,7 +26,7 @@
 import UIKit
 
 /// Helper enum for animation key
-fileprivate enum AnimationKeys: String {
+private enum AnimationKeys: String {
     case value = "value"
 }
 
@@ -81,7 +81,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open weak var delegate: UICircularProgressRingDelegate? = nil
+    @objc open weak var delegate: UICircularProgressRingDelegate?
 
     // MARK: Circle Properties
 
@@ -298,7 +298,6 @@ fileprivate extension CALayer {
         }
     }
 
-
     /**
      An array of CGFloats, used to calculate the dash length for viewStyle = 3
 
@@ -433,7 +432,6 @@ fileprivate extension CALayer {
             ringLayer.gradientEndPosition = gradientEndPosition
         }
     }
-
 
     // MARK: Outer Ring properties
 
@@ -602,7 +600,6 @@ fileprivate extension CALayer {
             }
         }
     }
-
 
     /**
      The style for the tip/cap of the inner ring
@@ -929,7 +926,6 @@ fileprivate extension CALayer {
         delegate?.willDisplayLabel?(for: self, label)
     }
 
-
     /**
      Sets the current value for the progress ring, calling this method while ring is
      animating will cancel the previously set animation and start a new one.
@@ -972,7 +968,6 @@ fileprivate extension CALayer {
         self.value = value
         CATransaction.commit()
     }
-
 
     /**
      Pauses the currently running animation and halts all progress.
@@ -1037,7 +1032,6 @@ fileprivate extension CALayer {
         ringLayer.removeAnimation(forKey: .value)
         value = minValue
     }
-
 
     /**
      This function allows animation of the animatable properties of the `UICircularProgressRing`.

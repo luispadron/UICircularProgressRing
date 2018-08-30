@@ -1,3 +1,10 @@
+<p align="center">
+	<img src="https://img.shields.io/github/license/luispadron/UICircularProgressRing.svg">
+	<img src="https://img.shields.io/cocoapods/dt/UICircularProgressRing.svg">
+	<img src="https://travis-ci.org/luispadron/UICircularProgressRing.svg?branch=master">
+	<img src="https://img.shields.io/github/issues/luispadron/UICircularProgressRing.svg">
+</p>
+
 ![Banner](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png)
 
 <h3 align="center">A circular progress bar for iOS written in Swift</h3>

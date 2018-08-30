@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='UICircularProgressRingTests.xctest' tests='5' failures='0'>
+  <testsuite name='UICircularProgressRingTests.UICircularProgressRingPauseResetTests' tests='3' failures='0'>
+    <testcase classname='UICircularProgressRingTests.UICircularProgressRingPauseResetTests' name='testPauseProgress' time='0.251'/>
+    <testcase classname='UICircularProgressRingTests.UICircularProgressRingPauseResetTests' name='testResetProgress' time='0.023'/>
+    <testcase classname='UICircularProgressRingTests.UICircularProgressRingPauseResetTests' name='testStartProgress' time='0.111'/>
+  </testsuite>
+  <testsuite name='UICircularProgressRingTests.UICircularProgressRingTests' tests='2' failures='0'>
+    <testcase classname='UICircularProgressRingTests.UICircularProgressRingTests' name='testApiAndAnimations' time='0.002'/>
+    <testcase classname='UICircularProgressRingTests.UICircularProgressRingTests' name='testSettersAndLayer' time='0.004'/>
+  </testsuite>
+</testsuites>

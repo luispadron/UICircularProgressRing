@@ -1,3 +1,23 @@
+# Version 3.3.2
+
+- Add check for `value` being set greater than `maxValue`
+  Thanks to [@byronsalty](https://github.com/byronsalty) for the PR!
+
+# Version 3.3.1
+
+- Fixes more issues with pause/continue progress logic.
+  Thanks to [@nickdnk](https://github.com/nickdnk) for the PR!
+
+# Version 3.3.0
+
+- Fixes issues with inconsisten API. The `pauseProgress()` and `resetProgress()`
+  now work as expeted/intended. When calling `pauseProgress()`, the completion
+  on the `startProgress` function wont be called until it's actually been completed.
+  When calling `resetProgress` the completion for `startProgress` is discarded and
+  will no longer be called, since the ring has not actually completed (same with delegate).
+
+  Thanks a lot to [@MileyHollenberg](https://github.com/MileyHollenberg) for these fixes!
+
 # Version 3.2.0
 
 - Add new ring style `bordered` thanks to [@abdulla-allaith](https://github.com/abdulla-allaith)!
