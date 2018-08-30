@@ -40,28 +40,6 @@ private extension CGFloat {
  At the end sizeToFit() is called in order to ensure text gets drawn correctly
  */
 private extension UILabel {
-    func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
-
-        attributedText = nil
-        if rightToLeft {
-            if showsDecimal {
-                text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            } else {
-                text = "\(valueIndicator)\(Int(value))"
-            }
-            
-        } else {
-            if showsDecimal {
-                text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            } else {
-                text = "\(Int(value))\(valueIndicator)"
-            }
-        }
-        valueDelegate?.willDisplayLabel(label: self)
-        sizeToFit()
-    }
-
     func update(withValue value: CGFloat, valueAttributes: [NSAttributedStringKey: Any]?, valueIndicator: String, indicatorAttributes: [NSAttributedStringKey: Any]?, rightToLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
 
@@ -85,7 +63,6 @@ private extension UILabel {
             attributedTextString.append(indicatorAttributedText)
         }
 
-        text = nil
         attributedText = attributedTextString
 
         valueDelegate?.willDisplayLabel(label: self)
@@ -445,24 +422,14 @@ class UICircularProgressRingLayer: CAShapeLayer {
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
 
-        if (valueTextAttributes != nil) || (indicatorTextAttributes != nil) {
-            valueLabel.update(withValue: value,
-                              valueAttributes: valueTextAttributes,
-                              valueIndicator: valueIndicator,
-                              indicatorAttributes: indicatorTextAttributes,
-                              rightToLeft: rightToLeft,
-                              showsDecimal: showFloatingPoint,
-                              decimalPlaces: decimalPlaces,
-                              valueDelegate: valueDelegate)
-        }
-        else {
-            valueLabel.update(withValue: value,
-                              valueIndicator: valueIndicator,
-                              rightToLeft: rightToLeft,
-                              showsDecimal: showFloatingPoint,
-                              decimalPlaces: decimalPlaces,
-                              valueDelegate: valueDelegate)
-        }
+        valueLabel.update(withValue: value,
+                          valueAttributes: valueTextAttributes,
+                          valueIndicator: valueIndicator,
+                          indicatorAttributes: indicatorTextAttributes,
+                          rightToLeft: rightToLeft,
+                          showsDecimal: showFloatingPoint,
+                          decimalPlaces: decimalPlaces,
+                          valueDelegate: valueDelegate)
         
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
