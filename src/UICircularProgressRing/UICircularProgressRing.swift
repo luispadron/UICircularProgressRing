@@ -766,6 +766,17 @@ fileprivate extension CALayer {
         }
     }
 
+    /**
+     Add the value indicator in a new line
+     Example: true -> "100     instead of 100 km/s
+                       km/s"
+
+     ## Important ##
+     Default = false
+
+     ## Author
+     Alaa Al-Zaibak
+     */
     @IBInspectable open var valueIndicatorInNewLine: Bool = false {
         didSet {
             ringLayer.valueIndicatorInNewLine = valueIndicatorInNewLine
