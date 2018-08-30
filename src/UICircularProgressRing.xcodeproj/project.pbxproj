@@ -15,6 +15,7 @@
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0E0ED771EE782620034062A /* UICircularProgressRingGradientPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED751EE782490034062A /* UICircularProgressRingGradientPosition.swift */; };
 		A0E0ED781EE782650034062A /* UICircularProgressRingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED761EE782490034062A /* UICircularProgressRingStyle.swift */; };
+		AB8F17E5212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		A0C6DE8C1D88CBE2008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E0ED751EE782490034062A /* UICircularProgressRingGradientPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingGradientPosition.swift; sourceTree = "<group>"; };
 		A0E0ED761EE782490034062A /* UICircularProgressRingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingStyle.swift; sourceTree = "<group>"; };
+		AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingPauseResetTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		A0C6DE891D88CBE2008AE742 /* UICircularProgressRingTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */,
 				A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */,
 				A0C6DE8C1D88CBE2008AE742 /* Info.plist */,
 			);
@@ -123,6 +126,7 @@
 				A0C6DE781D88CBE1008AE742 /* Frameworks */,
 				A0C6DE791D88CBE1008AE742 /* Headers */,
 				A0C6DE7A1D88CBE1008AE742 /* Resources */,
+				A049006121263FA000C0C8EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -210,6 +214,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A049006121263FA000C0C8EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A0C6DE771D88CBE1008AE742 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -227,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8F17E5212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift in Sources */,
 				A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

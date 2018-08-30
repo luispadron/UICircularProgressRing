@@ -197,7 +197,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
         }
     }
 
-
     // MARK: Helpers
 
     /**
@@ -369,7 +368,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         context.restoreGState()
     }
-
 
     /**
      Draws the value label for the view.

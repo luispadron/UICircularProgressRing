@@ -71,20 +71,20 @@ private extension UILabel {
  
  */
 class UICircularProgressRingLayer: CAShapeLayer {
-    
+
     // MARK: Properties
-    
+
     /**
      The NSManaged properties for the layer.
      These properties are initialized in UICircularProgressRing.
      They're also assigned by mutating UICircularProgressRing properties.
      */
     @NSManaged var fullCircle: Bool
-    
+
     @NSManaged var value: CGFloat
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
-    
+
     @NSManaged var ringStyle: UICircularProgressRingStyle
     @NSManaged var showsValueKnob: Bool
     @NSManaged var valueKnobSize: CGFloat
@@ -93,26 +93,26 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var valueKnobShadowOffset: CGSize
     @NSManaged var valueKnobShadowColor: UIColor
     @NSManaged var patternForDashes: [CGFloat]
-    
+
     @NSManaged var gradientColors: [UIColor]
     @NSManaged var gradientColorLocations: [CGFloat]?
     @NSManaged var gradientStartPosition: UICircularProgressRingGradientPosition
     @NSManaged var gradientEndPosition: UICircularProgressRingGradientPosition
-    
+
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
-    
+
     @NSManaged var outerRingWidth: CGFloat
     @NSManaged var outerRingColor: UIColor
     @NSManaged var outerCapStyle: CGLineCap
     @NSManaged var outerBorderColor: UIColor
     @NSManaged var outerBorderWidth: CGFloat
-    
+
     @NSManaged var innerRingWidth: CGFloat
     @NSManaged var innerRingColor: UIColor
     @NSManaged var innerCapStyle: CGLineCap
     @NSManaged var innerRingSpacing: CGFloat
-    
+
     @NSManaged var shouldShowValueText: Bool
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
@@ -122,12 +122,12 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
     @NSManaged var isClockwise: Bool
-    
+
     var animationDuration: TimeInterval = 1.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
-    
+
     // The value label which draws the text for the current value
     lazy private var valueLabel: UILabel = UILabel(frame: .zero)
 
@@ -150,7 +150,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     }
 
     // MARK: Draw
-    
+
     /**
      Overriden for custom drawing.
      Draws the outer ring, inner ring and value label.
@@ -168,11 +168,11 @@ class UICircularProgressRingLayer: CAShapeLayer {
             valueDelegate?.didUpdateValue(newValue: updatedValue)
         }
         UIGraphicsPopContext()
-        
+
     }
-    
+
     // MARK: Animation methods
-    
+
     /**
      Watches for changes in the value property, and setNeedsDisplay accordingly
      */
@@ -183,7 +183,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             return super.needsDisplay(forKey: key)
         }
     }
-    
+
     /**
      Creates animation when value property is changed
      */
@@ -204,10 +204,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
             return super.action(forKey: event)
         }
     }
-    
-    
+
     // MARK: Helpers
-    
+
     /**
      Draws the outer ring for the view.
      Sets path properties according to how the user has decided to customize the view.
@@ -215,61 +214,24 @@ class UICircularProgressRingLayer: CAShapeLayer {
     private func drawOuterRing() {
         guard outerRingWidth > 0 else { return }
 
-        let width: CGFloat = bounds.width
-        let height: CGFloat = bounds.width
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-        let offSet = max(outerRingWidth, innerRingWidth)/2 + (showsValueKnob ? valueKnobSize/4 : 0)
-        let outerRadius: CGFloat = min(width, height)/2 - offSet
+        let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0)
+        let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
         let start: CGFloat = fullCircle ? 0 : startAngle.toRads
-        let end: CGFloat = fullCircle ? CGFloat.pi * 2 : endAngle.toRads
-        
+        let end: CGFloat = fullCircle ? .pi * 2 : endAngle.toRads
+
         let outerPath = UIBezierPath(arcCenter: center,
                                      radius: outerRadius,
                                      startAngle: start,
                                      endAngle: end,
                                      clockwise: true)
-        
+
         outerPath.lineWidth = outerRingWidth
         outerPath.lineCapStyle = outerCapStyle
-        
+
         // Update path depending on style of the ring
-        switch ringStyle {
-            
-        case .dashed:
-            outerPath.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
-            
-        case .dotted:
-            outerPath.setLineDash([0, outerPath.lineWidth * 2], count: 2, phase: 0)
-            outerPath.lineCapStyle = .round
-        
-        case .bordered:
-            let innerBorder = CAShapeLayer()
-            addSublayer(innerBorder)
-            
-            let roundedRect1 = outerPath.bounds.insetBy(dx: outerRingWidth/2, dy: outerRingWidth/2)
-            let path1 = UIBezierPath(roundedRect: roundedRect1, cornerRadius: outerRadius)
-            innerBorder.path = path1.cgPath
-            innerBorder.fillColor = UIColor.clear.cgColor
-            
-            innerBorder.strokeColor = outerBorderColor.cgColor
-            innerBorder.lineWidth = outerBorderWidth
-            
-            
-            let outerBorder = CAShapeLayer()
-            addSublayer(outerBorder)
-            
-            let roundedRect2 = outerPath.bounds.insetBy(dx: -outerRingWidth/2, dy: -outerRingWidth/2)
-            let path2 = UIBezierPath(roundedRect: roundedRect2, cornerRadius: outerRadius)
-            outerBorder.path = path2.cgPath
-            outerBorder.fillColor = UIColor.clear.cgColor
-            
-            outerBorder.strokeColor = outerBorderColor.cgColor
-            outerBorder.lineWidth = outerBorderWidth
-            
-        default: break
-            
-        }
-        
+        updateOuterRingPath(outerPath, radius: outerRadius, style: ringStyle)
+
         outerRingColor.setStroke()
         outerPath.stroke()
     }
@@ -280,52 +242,19 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     private func drawInnerRing(in ctx: CGContext) {
         guard innerRingWidth > 0 else { return }
-        
+
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-        
-        let innerEndAngle: CGFloat
-        
-        if fullCircle {
-            if (!isClockwise) {
-                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * 360.0)
-            } else {
-                innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
-            }
-        } else {
-            // Calculate the center difference between the end and start angle
-            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle)
-            // Calculate how much we should draw depending on the value set
-            if (!isClockwise) {
-                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * angleDiff)
-            } else {
-                innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
-            }
-        }
-        
-        // The radius for style 1 is set below
-        // The radius for style 1 is a bit less than the outer,
-        // this way it looks like its inside the circle
-        
-        let radiusIn: CGFloat
-        
-        switch ringStyle {
-            
-        case .inside:
-            let difference = outerRingWidth*2 + innerRingSpacing + (showsValueKnob ? valueKnobSize/2 : 0)
-            let offSet = innerRingWidth/2 + (showsValueKnob ? valueKnobSize/2 : 0)
-            radiusIn = (min(bounds.width - difference, bounds.height - difference)/2) - offSet
-        default:
-            let offSet = (max(outerRingWidth, innerRingWidth)/2) + (showsValueKnob ? valueKnobSize/4 : 0)
-            radiusIn = (min(bounds.width, bounds.height)/2) - offSet
-        }
-        
+
+        let innerEndAngle = calculateInnerEndAngle()
+        let radiusIn = calculateInnerRadius()
+
         // Start drawing
         let innerPath: UIBezierPath = UIBezierPath(arcCenter: center,
                                                    radius: radiusIn,
                                                    startAngle: startAngle.toRads,
                                                    endAngle: innerEndAngle.toRads,
                                                    clockwise: isClockwise)
-        
+
         // Draw path
         ctx.setLineWidth(innerRingWidth)
         ctx.setLineJoin(.round)
@@ -333,14 +262,14 @@ class UICircularProgressRingLayer: CAShapeLayer {
         ctx.setStrokeColor(innerRingColor.cgColor)
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
-        
+
         if ringStyle == .gradient && gradientColors.count > 1 {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
             for color: UIColor in gradientColors {
                 cgColors.append(color.cgColor)
             }
-            
+
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
                                                         locations: gradientColorLocations)
@@ -348,15 +277,15 @@ class UICircularProgressRingLayer: CAShapeLayer {
                 fatalError("\nUnable to create gradient for progress ring.\n" +
                     "Check values of gradientColors and gradientLocations.\n")
             }
-            
+
             ctx.saveGState()
             ctx.addPath(innerPath.cgPath)
             ctx.replacePathWithStrokedPath()
             ctx.clip()
-            
+
             drawGradient(gradient, start: gradientStartPosition,
                          end: gradientEndPosition, in: ctx)
-            
+
             ctx.restoreGState()
         }
 
@@ -367,6 +296,86 @@ class UICircularProgressRingLayer: CAShapeLayer {
         }
     }
 
+    /// Updates the outer ring path depending on the ring's style
+    private func updateOuterRingPath(_ path: UIBezierPath, radius: CGFloat, style: UICircularProgressRingStyle) {
+        switch style {
+        case .dashed:
+            path.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
+
+        case .dotted:
+            path.setLineDash([0, path.lineWidth * 2], count: 2, phase: 0)
+            path.lineCapStyle = .round
+
+        case .bordered:
+            let innerBorder = CAShapeLayer()
+            addSublayer(innerBorder)
+
+            let roundedRect1 = path.bounds.insetBy(dx: outerRingWidth / 2, dy: outerRingWidth / 2)
+            let path1 = UIBezierPath(roundedRect: roundedRect1, cornerRadius: radius)
+            innerBorder.path = path1.cgPath
+            innerBorder.fillColor = UIColor.clear.cgColor
+            innerBorder.strokeColor = outerBorderColor.cgColor
+            innerBorder.lineWidth = outerBorderWidth
+
+            let outerBorder = CAShapeLayer()
+            addSublayer(outerBorder)
+
+            let roundedRect2 = path.bounds.insetBy(dx: -outerRingWidth / 2, dy: -outerRingWidth / 2)
+            let path2 = UIBezierPath(roundedRect: roundedRect2, cornerRadius: radius)
+            outerBorder.path = path2.cgPath
+            outerBorder.fillColor = UIColor.clear.cgColor
+            outerBorder.strokeColor = outerBorderColor.cgColor
+            outerBorder.lineWidth = outerBorderWidth
+
+        default:
+            break
+        }
+    }
+
+    /// Returns the end angle of the inner ring
+    private func calculateInnerEndAngle() -> CGFloat {
+        let innerEndAngle: CGFloat
+
+        if fullCircle {
+            if !isClockwise {
+                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * 360.0)
+            } else {
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
+            }
+        } else {
+            // Calculate the center difference between the end and start angle
+            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle)
+            // Calculate how much we should draw depending on the value set
+            if !isClockwise {
+                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * angleDiff)
+            } else {
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
+            }
+        }
+
+        return innerEndAngle
+    }
+
+    /// Returns the raidus of the inner ring
+    private func calculateInnerRadius() -> CGFloat {
+        // The radius for style 1 is set below
+        // The radius for style 1 is a bit less than the outer,
+        // this way it looks like its inside the circle
+        let radiusIn: CGFloat
+
+        switch ringStyle {
+        case .inside:
+            let difference = outerRingWidth * 2 + innerRingSpacing + (showsValueKnob ? valueKnobSize / 2 : 0)
+            let offSet = innerRingWidth / 2 + (showsValueKnob ? valueKnobSize / 2 : 0)
+            radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
+        default:
+            let offSet = (max(outerRingWidth, innerRingWidth) / 2) + (showsValueKnob ? valueKnobSize / 4 : 0)
+            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
+        }
+
+        return radiusIn
+    }
+
     /**
      Draws a gradient with a start and end position inside the provided context
      */
@@ -374,7 +383,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
                               start: UICircularProgressRingGradientPosition,
                               end: UICircularProgressRingGradientPosition,
                               in context: CGContext) {
-        
+
         context.drawLinearGradient(gradient,
                                    start: start.pointForPosition(in: bounds),
                                    end: end.pointForPosition(in: bounds),
@@ -400,14 +409,13 @@ class UICircularProgressRingLayer: CAShapeLayer {
         context.restoreGState()
     }
 
-    
     /**
      Draws the value label for the view.
      Only drawn if shouldShowValueText = true
      */
     private func drawValueLabel() {
         guard shouldShowValueText else { return }
-        
+
         // Draws the text field
         // Some basic label properties are set
         valueLabel.font = font

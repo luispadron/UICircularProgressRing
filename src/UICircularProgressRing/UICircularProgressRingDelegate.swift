@@ -79,7 +79,7 @@ import UIKit
         - newValue: The value which the ring has updated to
      */
     @objc optional func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: UICircularProgressRing.ProgressValue)
-    
+
     /**
      This method is called whenever the label is about to be drawn.
      This can be used to modify the label looks e.g. NSAttributedString for text kerning
