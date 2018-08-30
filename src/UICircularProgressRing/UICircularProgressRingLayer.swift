@@ -43,7 +43,7 @@ private extension UILabel {
     func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
                 showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
 
-        self.attributedText = nil
+        attributedText = nil
         if rightToLeft {
             if showsDecimal {
                 text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
@@ -75,18 +75,18 @@ private extension UILabel {
 
         let indicatorAttributedText = NSAttributedString(string: valueIndicator, attributes: indicatorAttributes)
 
-        var attributedText = NSMutableAttributedString(string: "")
+        let attributedTextString = NSMutableAttributedString(string: "")
         if rightToLeft {
-            attributedText.append(indicatorAttributedText)
-            attributedText.append(valueAttributedText)
+            attributedTextString.append(indicatorAttributedText)
+            attributedTextString.append(valueAttributedText)
         }
         else {
-            attributedText.append(valueAttributedText)
-            attributedText.append(indicatorAttributedText)
+            attributedTextString.append(valueAttributedText)
+            attributedTextString.append(indicatorAttributedText)
         }
 
-        self.text = nil
-        self.attributedText = attributedText
+        text = nil
+        attributedText = attributedTextString
 
         valueDelegate?.willDisplayLabel(label: self)
         self.sizeToFit()

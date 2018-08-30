@@ -777,7 +777,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var indicatorTextAttributes: [NSAttributedStringKey: Any]? {
         didSet{
-            self.ringLayer.indicatorTextAttributes = self.indicatorTextAttributes
+            ringLayer.indicatorTextAttributes = self.indicatorTextAttributes
         }
 
     }
@@ -793,7 +793,7 @@ fileprivate extension CALayer {
      */
     @IBInspectable open var valueTextAttributes: [NSAttributedStringKey: Any]? {
         didSet{
-            self.ringLayer.valueTextAttributes = self.valueTextAttributes
+            ringLayer.valueTextAttributes = self.valueTextAttributes
         }
 
     }
