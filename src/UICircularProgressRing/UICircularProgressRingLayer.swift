@@ -122,7 +122,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var isClockwise: Bool
 
     var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
 
@@ -189,13 +189,13 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if event == "value" && animated {
             let animation = CABasicAnimation(keyPath: "value")
             animation.fromValue = presentation()?.value(forKey: "value")
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = animationDuration
             return animation
         } else if UICircularProgressRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
             animation.fromValue = presentation()?.value(forKey: event)
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = propertyAnimationDuration
             return animation
         } else {
