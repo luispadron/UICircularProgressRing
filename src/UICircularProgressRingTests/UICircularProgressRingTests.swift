@@ -188,8 +188,8 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.decimalPlaces, 1)
         XCTAssertEqual(progressRing.ringLayer.decimalPlaces, 1)
 
-        progressRing.animationTimingFunction = CAMediaTimingFunctionName.linear.rawValue
-        XCTAssertEqual(progressRing.animationTimingFunction, CAMediaTimingFunctionName.linear.rawValue)
-        XCTAssertEqual(progressRing.ringLayer.animationStyle, CAMediaTimingFunctionName.linear.rawValue)
+        progressRing.animationTimingFunction = .linear
+        XCTAssertEqual(progressRing.animationTimingFunction, .linear)
+        XCTAssertEqual(progressRing.ringLayer.animationTimingFunction, .linear)
     }
 }
