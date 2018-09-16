@@ -1,3 +1,11 @@
+# Version 4.0.0
+
+- Migrate to Swift 4.2, thanks to [@chirs-redbeed](https://github.com/chris-redbeed) for initial migration
+
+## Breaking API Changes:
+
+- Rename `animationStyle` to `animationTimingFunction`. Now uses new `CAMediaTimingFunctionName` enum instead of unsafe String.
+
 # Version 3.3.2
 
 - Add check for `value` being set greater than `maxValue`
