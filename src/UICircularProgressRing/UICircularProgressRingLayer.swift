@@ -42,9 +42,9 @@ private extension CGFloat {
 private extension UILabel {
     func update(
             withValue value: CGFloat,
-            valueAttributes: [NSAttributedStringKey: Any]?,
+            valueAttributes: [NSAttributedString.Key: Any]?,
             valueIndicator: String,
-            indicatorAttributes: [NSAttributedStringKey: Any]?,
+            indicatorAttributes: [NSAttributedString.Key: Any]?,
             rightToLeft: Bool,
             showsDecimal: Bool,
             decimalPlaces: Int,
@@ -131,8 +131,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var shouldShowValueText: Bool
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
-    @NSManaged var valueTextAttributes: [NSAttributedStringKey: Any]?
-    @NSManaged var indicatorTextAttributes: [NSAttributedStringKey: Any]?
+    @NSManaged var valueTextAttributes: [NSAttributedString.Key: Any]?
+    @NSManaged var indicatorTextAttributes: [NSAttributedString.Key: Any]?
     @NSManaged var valueIndicator: String
     @NSManaged var rightToLeft: Bool
     @NSManaged var showFloatingPoint: Bool
@@ -140,7 +140,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var isClockwise: Bool
 
     var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animationStyle: String = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
 
@@ -207,13 +207,13 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if event == "value" && animated {
             let animation = CABasicAnimation(keyPath: "value")
             animation.fromValue = presentation()?.value(forKey: "value")
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.timingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(animationStyle))
             animation.duration = animationDuration
             return animation
         } else if UICircularProgressRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
             animation.fromValue = presentation()?.value(forKey: event)
-            animation.timingFunction = CAMediaTimingFunction(name: animationStyle)
+            animation.timingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(animationStyle))
             animation.duration = propertyAnimationDuration
             return animation
         } else {
@@ -452,4 +452,14 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         valueLabel.drawText(in: bounds)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
+	return CAMediaTimingFunctionName(rawValue: input)
 }
