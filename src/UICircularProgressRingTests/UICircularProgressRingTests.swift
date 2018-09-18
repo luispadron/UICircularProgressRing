@@ -188,13 +188,8 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.decimalPlaces, 1)
         XCTAssertEqual(progressRing.ringLayer.decimalPlaces, 1)
 
-        progressRing.animationStyle = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.linear)
-        XCTAssertEqual(progressRing.animationStyle, convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.linear))
-        XCTAssertEqual(progressRing.ringLayer.animationStyle, convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.linear))
+        progressRing.animationTimingFunction = .linear
+        XCTAssertEqual(progressRing.animationTimingFunction, .linear)
+        XCTAssertEqual(progressRing.ringLayer.animationTimingFunction, .linear)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
-	return input.rawValue
 }

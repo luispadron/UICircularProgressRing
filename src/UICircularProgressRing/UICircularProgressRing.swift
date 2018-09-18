@@ -859,18 +859,14 @@ fileprivate extension CALayer {
      The type of animation function the ring view will use
      
      ## Important ##
-     Default = kCAMediaTimingFunctionEaseIn
-     
-     String should be from kCAMediaTimingFunction_____
-     
-     Only used when calling .setValue(animated: true)
+     Default = .easeInEaseOut
      
      ## Author
      Luis Padron
      */
-    @objc open var animationStyle: String = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeIn) {
+    @objc open var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
         didSet {
-            ringLayer.animationStyle = animationStyle
+            ringLayer.animationTimingFunction = animationTimingFunction
         }
     }
 
@@ -1298,9 +1294,4 @@ extension UICircularProgressRing {
         guard let animation = snapshottedAnimation else { return }
         ringLayer.add(animation, forKey: AnimationKeys.value.rawValue)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
-	return input.rawValue
 }

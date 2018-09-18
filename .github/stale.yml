@@ -12,6 +12,7 @@ exemptLabels:
   - pinned
   - security
   - "feature request"
+  - bug
 
 # Set to true to ignore issues in a project (defaults to false)
 exemptProjects: false

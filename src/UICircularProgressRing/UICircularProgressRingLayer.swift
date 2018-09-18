@@ -140,7 +140,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var isClockwise: Bool
 
     var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)
+    var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
 
@@ -207,13 +207,13 @@ class UICircularProgressRingLayer: CAShapeLayer {
         if event == "value" && animated {
             let animation = CABasicAnimation(keyPath: "value")
             animation.fromValue = presentation()?.value(forKey: "value")
-            animation.timingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(animationStyle))
+            animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = animationDuration
             return animation
         } else if UICircularProgressRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
             animation.fromValue = presentation()?.value(forKey: event)
-            animation.timingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(animationStyle))
+            animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = propertyAnimationDuration
             return animation
         } else {
@@ -452,14 +452,4 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
         valueLabel.drawText(in: bounds)
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
-	return input.rawValue
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
-	return CAMediaTimingFunctionName(rawValue: input)
 }
