@@ -211,27 +211,21 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     private func drawOuterRing() {
         guard outerRingWidth > 0 else { return }
-
-        
-        if (ringStyle != .bordered) {
+        if ringStyle != .bordered {
             outerBorderWidth = 0
         }
-        
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
         let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
         let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
         let start: CGFloat = fullCircle ? 0 : startAngle.toRads
         let end: CGFloat = fullCircle ? .pi * 2 : endAngle.toRads
-
         let outerPath = UIBezierPath(arcCenter: center,
                                      radius: outerRadius,
                                      startAngle: start,
                                      endAngle: end,
                                      clockwise: true)
-
         outerPath.lineWidth = outerRingWidth
         outerPath.lineCapStyle = outerCapStyle
-
         // Update path depending on style of the ring
         updateOuterRingPath(outerPath, radius: outerRadius, style: ringStyle)
 
@@ -310,7 +304,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             path.lineCapStyle = .round
 
         case .bordered:
-
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
             let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
             let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
@@ -318,7 +311,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             let borderEndAngle = outerCapStyle == .butt ? endAngle+outerBorderWidth : endAngle
             let start: CGFloat = fullCircle ? 0 : borderStartAngle.toRads
             let end: CGFloat = fullCircle ? .pi * 2 : borderEndAngle.toRads
-            
             let borderPath = UIBezierPath(arcCenter: center,
                                           radius: outerRadius,
                                           startAngle: start,
@@ -330,6 +322,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             borderPath.lineCapStyle = outerCapStyle
             outerBorderColor.setStroke()
             borderPath.stroke()
+            
         default:
             break
         }
