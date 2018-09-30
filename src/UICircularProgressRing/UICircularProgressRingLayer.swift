@@ -322,7 +322,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
             borderPath.lineCapStyle = outerCapStyle
             outerBorderColor.setStroke()
             borderPath.stroke()
-            
         default:
             break
         }
