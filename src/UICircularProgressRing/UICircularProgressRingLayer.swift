@@ -211,9 +211,6 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     private func drawOuterRing() {
         guard outerRingWidth > 0 else { return }
-        if ringStyle != .bordered {
-            outerBorderWidth = 0
-        }
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
         let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
         let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
