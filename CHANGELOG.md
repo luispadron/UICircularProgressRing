@@ -1,3 +1,8 @@
+# Version 4.1.0
+
+- Fix issues with border drawing and crashes related to it.
+  Thanks to [@abdulla-allaith](https://github.com/abdulla-allaith) for the PR!
+
 # Version 4.0.0
 
 - Migrate to Swift 4.2, thanks to [@chirs-redbeed](https://github.com/chris-redbeed) for initial migration
