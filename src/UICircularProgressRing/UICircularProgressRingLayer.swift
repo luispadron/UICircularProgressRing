@@ -211,22 +211,18 @@ class UICircularProgressRingLayer: CAShapeLayer {
      */
     private func drawOuterRing() {
         guard outerRingWidth > 0 else { return }
-
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-        let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0)
+        let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
         let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
         let start: CGFloat = fullCircle ? 0 : startAngle.toRads
         let end: CGFloat = fullCircle ? .pi * 2 : endAngle.toRads
-
         let outerPath = UIBezierPath(arcCenter: center,
                                      radius: outerRadius,
                                      startAngle: start,
                                      endAngle: end,
                                      clockwise: true)
-
         outerPath.lineWidth = outerRingWidth
         outerPath.lineCapStyle = outerCapStyle
-
         // Update path depending on style of the ring
         updateOuterRingPath(outerPath, radius: outerRadius, style: ringStyle)
 
@@ -305,26 +301,24 @@ class UICircularProgressRingLayer: CAShapeLayer {
             path.lineCapStyle = .round
 
         case .bordered:
-            let innerBorder = CAShapeLayer()
-            addSublayer(innerBorder)
-
-            let roundedRect1 = path.bounds.insetBy(dx: outerRingWidth / 2, dy: outerRingWidth / 2)
-            let path1 = UIBezierPath(roundedRect: roundedRect1, cornerRadius: radius)
-            innerBorder.path = path1.cgPath
-            innerBorder.fillColor = UIColor.clear.cgColor
-            innerBorder.strokeColor = outerBorderColor.cgColor
-            innerBorder.lineWidth = outerBorderWidth
-
-            let outerBorder = CAShapeLayer()
-            addSublayer(outerBorder)
-
-            let roundedRect2 = path.bounds.insetBy(dx: -outerRingWidth / 2, dy: -outerRingWidth / 2)
-            let path2 = UIBezierPath(roundedRect: roundedRect2, cornerRadius: radius)
-            outerBorder.path = path2.cgPath
-            outerBorder.fillColor = UIColor.clear.cgColor
-            outerBorder.strokeColor = outerBorderColor.cgColor
-            outerBorder.lineWidth = outerBorderWidth
-
+            let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
+            let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
+            let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
+            let borderStartAngle = outerCapStyle == .butt ? startAngle-outerBorderWidth : startAngle
+            let borderEndAngle = outerCapStyle == .butt ? endAngle+outerBorderWidth : endAngle
+            let start: CGFloat = fullCircle ? 0 : borderStartAngle.toRads
+            let end: CGFloat = fullCircle ? .pi * 2 : borderEndAngle.toRads
+            let borderPath = UIBezierPath(arcCenter: center,
+                                          radius: outerRadius,
+                                          startAngle: start,
+                                          endAngle: end,
+                                          clockwise: true)
+            UIColor.clear.setFill()
+            borderPath.fill()
+            borderPath.lineWidth = (outerBorderWidth*2) + outerRingWidth
+            borderPath.lineCapStyle = outerCapStyle
+            outerBorderColor.setStroke()
+            borderPath.stroke()
         default:
             break
         }
@@ -366,6 +360,9 @@ class UICircularProgressRingLayer: CAShapeLayer {
             let difference = outerRingWidth * 2 + innerRingSpacing + (showsValueKnob ? valueKnobSize / 2 : 0)
             let offSet = innerRingWidth / 2 + (showsValueKnob ? valueKnobSize / 2 : 0)
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
+        case .bordered:
+            let offSet = (max(outerRingWidth, innerRingWidth) / 2) + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
+            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
         default:
             let offSet = (max(outerRingWidth, innerRingWidth) / 2) + (showsValueKnob ? valueKnobSize / 4 : 0)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet

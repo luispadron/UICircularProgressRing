@@ -257,6 +257,9 @@ fileprivate extension CALayer {
     @objc open var ringStyle: UICircularProgressRingStyle = .inside {
         didSet {
             ringLayer.ringStyle = ringStyle
+            if ringStyle != .bordered {
+                outerBorderWidth = 0
+            }
         }
     }
 
