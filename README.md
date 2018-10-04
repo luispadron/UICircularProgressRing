@@ -34,6 +34,8 @@
 
 - [הנתיב המהיר](https://itunes.apple.com/us/app/הנתיב-המהיר/id1320456872?mt=8) by Elad Hayun
 
+- [Nyx Nightclub Management](https://itunes.apple.com/dk/app/nyx-nightclub-management-ipad/id954874082?mt=8) by Nyx Systems IVS
+
 ## Installation
 
 ### CocoaPods (Recommended)
