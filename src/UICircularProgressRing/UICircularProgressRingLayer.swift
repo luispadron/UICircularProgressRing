@@ -122,7 +122,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var isClockwise: Bool
 
     var animationDuration: TimeInterval = 1.0
-    var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
+    var animationTimingFunction: CAMediaTimingFunctionName = CAMediaTimingFunctionName.easeInEaseOut
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
 
