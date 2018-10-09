@@ -68,7 +68,6 @@ class ViewController: UIViewController {
             }
         }
         
-        
 //        //: Pause and continue animations dynamically
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
 //            progressRing.pauseProgress()
@@ -95,6 +94,18 @@ class ViewController: UIViewController {
             timer.invalidate()
             return
         }
+        
+        switch self.tiempoRestante {
+        case 10:
+            self.progressRing.innerRingColor = .red
+        case 30:
+            self.progressRing.innerRingColor = .orange
+        case 45:
+            self.progressRing.innerRingColor = .yellow
+        default:
+            print("nothing to do..")
+        }
+        
         tiempoRestante = tiempoRestante - 1
         progressRing.startProgress(to: UICircularProgressRing.ProgressValue(tiempoRestante), duration: 1)
     }
@@ -102,7 +113,6 @@ class ViewController: UIViewController {
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.restarUno), userInfo: nil, repeats: true)
     }
-
 
 }
 
