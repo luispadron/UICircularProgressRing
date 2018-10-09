@@ -1,0 +1,6 @@
+framework module UICircularProgressRing {
+  umbrella header "UICircularProgressRing-umbrella.h"
+
+  export *
+  module * { export * }
+}

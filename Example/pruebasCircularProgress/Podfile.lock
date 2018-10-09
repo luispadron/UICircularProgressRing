@@ -1,0 +1,16 @@
+PODS:
+  - UICircularProgressRing (4.0.0)
+
+DEPENDENCIES:
+  - UICircularProgressRing
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - UICircularProgressRing
+
+SPEC CHECKSUMS:
+  UICircularProgressRing: dd448c3ff2176e3b2ba3f100f329c489a5389571
+
+PODFILE CHECKSUM: e022d4414ed4c0a50ff6f9f0dbb9ceafa831bdd1
+
+COCOAPODS: 1.5.3
