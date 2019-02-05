@@ -25,8 +25,31 @@
 
 import UIKit
 
-final class UICircularProgressRing: UICircularRing {
+final public class UICircularProgressRing: UICircularRing {
     // MARK: Members
+
+    /**
+     The delegate for the UICircularRing
+
+     ## Important ##
+     When progress is done updating via UICircularRing.setValue(_:), the
+     finishedUpdatingProgressFor(_ ring: UICircularRing) will be called.
+
+     The ring will be passed to the delegate in order to keep track of
+     multiple ring updates if needed.
+
+     ## Author
+     Luis Padron
+     */
+    @objc public weak var delegate: UICircularProgressRingDelegate?
+
+    /**
+     Typealias for the startProgress(:) method closure
+     */
+    public typealias ProgressCompletion = (() -> Void)
+
+    /// The completion block to call after the animation is done
+    private var completion: ProgressCompletion?
 
     /// This variable stores how long remains on the timer when it's paused
     private var pausedTimeRemaining: TimeInterval = 0
@@ -57,7 +80,7 @@ final class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public func startProgress(to value: ProgressValue, duration: ProgressDuration, completion: ProgressCompletion? = nil) {
+    @objc public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
         if isAnimating {
             animationPauseTime = nil
             self.value = currentValue ?? value
@@ -189,6 +212,18 @@ final class UICircularProgressRing: UICircularRing {
 
         // Remove reference to the completion block
         completion = nil
+    }
+
+    // MARK: Overrides
+
+    override func didUpdateValue(newValue: CGFloat) {
+        super.didUpdateValue(newValue: newValue)
+        delegate?.didUpdateProgressValue?(for: self, to: newValue)
+    }
+
+    override func willDisplayLabel(label: UILabel) {
+        super.willDisplayLabel(label: label)
+        delegate?.willDisplayLabel?(for: self, label)
     }
 }
 

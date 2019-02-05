@@ -1,8 +1,8 @@
 //
-//  UICircularProgressRingLayer.swift
+//  UICircularRingLayer.swift
 //  UICircularProgressRing
 //
-//  Copyright (c) 2016 Luis Padron
+//  Copyright (c) 2019 Luis Padron
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -127,23 +127,23 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged weak var valueDelegate: UICircularRing?
 
     // The value label which draws the text for the current value
-    lazy private var valueLabel: UILabel = UILabel(frame: .zero)
+    lazy var valueLabel: UILabel = UILabel(frame: .zero)
 
     // MARK: Animatable properties
 
     // Whether or not animatable properties should be animated when changed
-    internal var shouldAnimateProperties: Bool = false
+    var shouldAnimateProperties: Bool = false
 
     // The animation duration for a animatable property animation
-    internal var propertyAnimationDuration: TimeInterval = 0.0
+    var propertyAnimationDuration: TimeInterval = 0.0
 
     // The properties which are animatable
-    private static let animatableProperties: [String] = ["innerRingWidth", "innerRingColor",
+    static let animatableProperties: [String] = ["innerRingWidth", "innerRingColor",
                                                          "outerRingWidth", "outerRingColor",
                                                          "fontColor", "innerRingSpacing"]
 
     // Returns whether or not a given property key is animatable
-    private static func isAnimatableProperty(_ key: String) -> Bool {
+    static func isAnimatableProperty(_ key: String) -> Bool {
         return animatableProperties.index(of: key) != nil
     }
 

@@ -2,7 +2,7 @@
 //  UICircularRingGradientPosition.swift
 //  UICircularProgressRing
 //
-//  Copyright (c) 2016 Luis Padron
+//  Copyright (c) 2019 Luis Padron
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),

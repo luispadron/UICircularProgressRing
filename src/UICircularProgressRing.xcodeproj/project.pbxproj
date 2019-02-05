@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0094D341DA4473B0074805C /* UICircularRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularRingDelegate.swift */; };
+		A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */; };
 		A01A67581D8F55D700AC8CAD /* UICircularRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */; };
 		A05EDE10220A15FD006FCF1E /* UICircularProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */; };
 		A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0801C1620E3185D009DC236 /* UICircularRing.swift */; };
@@ -30,7 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A0094D331DA4473B0074805C /* UICircularRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRingDelegate.swift; sourceTree = "<group>"; };
+		A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRingLayer.swift; sourceTree = "<group>"; };
 		A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRing.swift; sourceTree = "<group>"; };
 		A0801C1620E3185D009DC236 /* UICircularRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRing.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				A0C6DE801D88CBE1008AE742 /* Info.plist */,
 				A0801C1620E3185D009DC236 /* UICircularRing.swift */,
 				A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */,
-				A0094D331DA4473B0074805C /* UICircularRingDelegate.swift */,
+				A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */,
 				A0E0ED751EE782490034062A /* UICircularRingGradientPosition.swift */,
 				A0E0ED761EE782490034062A /* UICircularRingStyle.swift */,
 				A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */,
@@ -242,7 +242,7 @@
 				A0E0ED771EE782620034062A /* UICircularRingGradientPosition.swift in Sources */,
 				A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */,
 				A05EDE10220A15FD006FCF1E /* UICircularProgressRing.swift in Sources */,
-				A0094D341DA4473B0074805C /* UICircularRingDelegate.swift in Sources */,
+				A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */,
 				A01A67581D8F55D700AC8CAD /* UICircularRingLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

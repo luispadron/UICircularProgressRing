@@ -2,7 +2,7 @@
 //  UICircularRing.swift
 //  UICircularProgressRing
 //
-//  Copyright (c) 2016 Luis Padron
+//  Copyright (c) 2019 Luis Padron
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a
 //  copy of this software and associated documentation files (the "Software"),
@@ -47,22 +47,6 @@ import UIKit
  */
 @IBDesignable open class UICircularRing: UIView {
 
-    // MARK: Delegate
-    /**
-     The delegate for the UICircularRing
-     
-     ## Important ##
-     When progress is done updating via UICircularRing.setValue(_:), the
-     finishedUpdatingProgressFor(_ ring: UICircularRing) will be called.
-     
-     The ring will be passed to the delegate in order to keep track of
-     multiple ring updates if needed.
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open weak var delegate: UICircularRingDelegate?
-
     // MARK: Circle Properties
 
     /**
@@ -106,7 +90,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var value: ProgressValue = 0 {
+    @IBInspectable open var value: CGFloat = 0 {
         didSet {
             if value < minValue {
                 #if DEBUG
@@ -137,9 +121,9 @@ import UIKit
      ## Author
      Luis Padron
      */
-    open var currentValue: ProgressValue? {
+    open var currentValue: CGFloat? {
         if isAnimating {
-            return layer.presentation()?.value(forKey: .value) as? ProgressValue
+            return layer.presentation()?.value(forKey: .value) as? CGFloat
         } else {
             return value
         }
@@ -161,7 +145,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var minValue: ProgressValue = 0.0 {
+    @IBInspectable open var minValue: CGFloat = 0.0 {
         didSet {
             ringLayer.minValue = abs(minValue)
         }
@@ -182,7 +166,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @IBInspectable open var maxValue: ProgressValue = 100.0 {
+    @IBInspectable open var maxValue: CGFloat = 100.0 {
         didSet {
             ringLayer.maxValue = abs(maxValue)
         }
@@ -857,9 +841,6 @@ import UIKit
     /// The completion timer, also indicates wether or not the view is animating
     var completionTimer: Timer?
 
-    /// The completion block to call after the animation is done
-    var completion: ProgressCompletion?
-
     // MARK: Layer
 
     /**
@@ -880,24 +861,9 @@ import UIKit
     // MARK: Type aliases
 
     /**
-     Typealias for the startProgress(:) method closure
-     */
-    public typealias ProgressCompletion = (() -> Void)
-
-    /**
      Typealias for animateProperties(duration:animations:completion:) fucntion completion
      */
     public typealias PropertyAnimationCompletion = (() -> Void)
-
-    /**
-     Typealias for the value of the ring
-     */
-    public typealias ProgressValue = CGFloat
-
-    /**
-     Typealias for the duration of a ring animation
-     */
-    public typealias ProgressDuration = TimeInterval
 
     // MARK: Methods
 
@@ -999,13 +965,9 @@ import UIKit
      Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
      the `newValue` so that it notifies any delegates who may need to know about value updates in real time
      */
-    internal func didUpdateValue(newValue: ProgressValue) {
-        delegate?.didUpdateProgressValue?(for: self, to: newValue)
-    }
+    func didUpdateValue(newValue: CGFloat) { }
 
-    internal func willDisplayLabel(label: UILabel) {
-        delegate?.willDisplayLabel?(for: self, label)
-    }
+    func willDisplayLabel(label: UILabel) { }
 
     /**
      This function allows animation of the animatable properties of the `UICircularRing`.
