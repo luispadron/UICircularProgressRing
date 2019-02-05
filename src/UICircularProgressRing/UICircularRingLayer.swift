@@ -371,7 +371,7 @@ class UICircularRingLayer: CAShapeLayer {
      Draws the value label for the view.
      Only drawn if shouldShowValueText = true
      */
-    private func drawValueLabel() {
+    func drawValueLabel() {
         guard shouldShowValueText else { return }
 
         // Draws the text field

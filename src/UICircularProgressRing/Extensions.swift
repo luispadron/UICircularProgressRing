@@ -61,3 +61,13 @@ internal extension UILabel {
         sizeToFit()
     }
 }
+
+/// adds simple conversion to CGFloat
+internal extension TimeInterval {
+    var float: CGFloat { return CGFloat(self) }
+}
+
+/// adds simple conversion to TimeInterval
+internal extension CGFloat {
+    var interval: TimeInterval { return TimeInterval(self) }
+}

@@ -10,6 +10,7 @@
 		A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */; };
 		A01A67581D8F55D700AC8CAD /* UICircularRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */; };
 		A024AE91220A37C600D3DE5D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024AE90220A37C600D3DE5D /* Extensions.swift */; };
+		A024AE93220A395200D3DE5D /* UICircularTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */; };
 		A05EDE10220A15FD006FCF1E /* UICircularProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */; };
 		A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0801C1620E3185D009DC236 /* UICircularRing.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
@@ -34,6 +35,7 @@
 		A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRingLayer.swift; sourceTree = "<group>"; };
 		A024AE90220A37C600D3DE5D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularTimerRing.swift; sourceTree = "<group>"; };
 		A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRing.swift; sourceTree = "<group>"; };
 		A0801C1620E3185D009DC236 /* UICircularRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRing.swift; sourceTree = "<group>"; };
 		A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 				A0E0ED761EE782490034062A /* UICircularRingStyle.swift */,
 				A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */,
 				A024AE90220A37C600D3DE5D /* Extensions.swift */,
+				A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */,
 			);
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A024AE93220A395200D3DE5D /* UICircularTimerRing.swift in Sources */,
 				A0E0ED781EE782650034062A /* UICircularRingStyle.swift in Sources */,
 				A0E0ED771EE782620034062A /* UICircularRingGradientPosition.swift in Sources */,
 				A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */,

@@ -645,7 +645,7 @@ import UIKit
     /**
      Set the ring layer to the default layer, cated as custom layer
      */
-    internal var ringLayer: UICircularRingLayer {
+    var ringLayer: UICircularRingLayer {
         // swiftlint:disable:next force_cast
         return layer as! UICircularRingLayer
     }
