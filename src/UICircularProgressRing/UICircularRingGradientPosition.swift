@@ -1,5 +1,5 @@
 //
-//  UICircularProgressRingGradientPosition.swift
+//  UICircularRingGradientPosition.swift
 //  UICircularProgressRing
 //
 //  Copyright (c) 2016 Luis Padron
@@ -25,17 +25,17 @@
 
 /**
  
- # UICircularProgressRingGradientPosition
+ # UICircularRingGradientPosition
  
  This is an enumeration which is used to determine the position for a
- gradient. Used inside the `UICircularProgressRingLayer` to allow customization
+ gradient. Used inside the `UICircularRingLayer` to allow customization
  for the gradient.
  
  ## Author
  Luis Padron
  
  */
-@objc public enum UICircularProgressRingGradientPosition: Int {
+@objc public enum UICircularRingGradientPosition: Int {
     /// Gradient positioned at the top
     case top = 1
     /// Gradient positioned at the bottom

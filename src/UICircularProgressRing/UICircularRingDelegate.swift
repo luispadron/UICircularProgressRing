@@ -1,5 +1,5 @@
 //
-//  UICircularProgressRingDelegate.swift
+//  UICircularRingDelegate.swift
 //  UICircularProgressRing
 //
 //  Copyright (c) 2016 Luis Padron
@@ -26,11 +26,11 @@
 import UIKit
 
 /**
- This is the protocol declaration for the UICircularProgressRing delegate property
+ This is the protocol declaration for the UICircularRing delegate property
  
  ## Important ##
- When progress is done updating via UICircularProgressRing.setValue(_:), the
- finishedUpdatingProgress(forRing: UICircularProgressRing) will be called.
+ When progress is done updating via UICircularRing.setValue(_:), the
+ finishedUpdatingProgress(forRing: UICircularRing) will be called.
  
  The ring will be passed to the delegate in order to keep 
  track of multiple ring updates if needed.
@@ -38,7 +38,7 @@ import UIKit
  ## Author
  Luis Padron
  */
-@objc public protocol UICircularProgressRingDelegate: class {
+@objc public protocol UICircularRingDelegate: class {
     /**
      Called when progress ring is done animating for current value
      
@@ -46,7 +46,7 @@ import UIKit
         - ring: The ring which finished animating
      
     */
-    @objc optional func didFinishProgress(for ring: UICircularProgressRing)
+    @objc optional func didFinishProgress(for ring: UICircularRing)
 
     /**
      Called when progress has paused
@@ -54,7 +54,7 @@ import UIKit
      - Parameter:
        - ring: The ring which has paused
      */
-    @objc optional func didPauseProgress(for ring: UICircularProgressRing)
+    @objc optional func didPauseProgress(for ring: UICircularRing)
 
     /**
      Called when the progress has continued after a pause
@@ -62,7 +62,7 @@ import UIKit
      - Parameter:
        - ring: The ring which has continued
      */
-    @objc optional func didContinueProgress(for ring: UICircularProgressRing)
+    @objc optional func didContinueProgress(for ring: UICircularRing)
 
     /**
      This method is called whenever the value is updated, this means during animation this method will be called in real time.
@@ -78,7 +78,7 @@ import UIKit
         - ring: The ring which updated the progress
         - newValue: The value which the ring has updated to
      */
-    @objc optional func didUpdateProgressValue(for ring: UICircularProgressRing, to newValue: UICircularProgressRing.ProgressValue)
+    @objc optional func didUpdateProgressValue(for ring: UICircularRing, to newValue: UICircularRing.ProgressValue)
 
     /**
      This method is called whenever the label is about to be drawn.
@@ -88,5 +88,5 @@ import UIKit
         - ring: The ring which the label will be displayed in
         - label: The label which will be displayed
     */
-    @objc optional func willDisplayLabel(for ring: UICircularProgressRing, _ label: UILabel)
+    @objc optional func willDisplayLabel(for ring: UICircularRing, _ label: UILabel)
 }

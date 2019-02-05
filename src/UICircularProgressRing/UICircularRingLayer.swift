@@ -42,7 +42,7 @@ private extension CGFloat {
 private extension UILabel {
     // swiftlint:disable function_parameter_count next_line
     func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularProgressRing?) {
+                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularRing?) {
         if rightToLeft {
             if showsDecimal {
                 text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
@@ -66,17 +66,17 @@ private extension UILabel {
  The internal subclass for CAShapeLayer.
  This is the class that handles all the drawing and animation.
  This class is not interacted with, instead
- properties are set in UICircularProgressRing and those are delegated to here.
+ properties are set in UICircularRing and those are delegated to here.
  
  */
-class UICircularProgressRingLayer: CAShapeLayer {
+class UICircularRingLayer: CAShapeLayer {
 
     // MARK: Properties
 
     /**
      The NSManaged properties for the layer.
-     These properties are initialized in UICircularProgressRing.
-     They're also assigned by mutating UICircularProgressRing properties.
+     These properties are initialized in UICircularRing.
+     They're also assigned by mutating UICircularRing properties.
      */
     @NSManaged var fullCircle: Bool
 
@@ -84,7 +84,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
 
-    @NSManaged var ringStyle: UICircularProgressRingStyle
+    @NSManaged var ringStyle: UICircularRingStyle
     @NSManaged var showsValueKnob: Bool
     @NSManaged var valueKnobSize: CGFloat
     @NSManaged var valueKnobColor: UIColor
@@ -95,8 +95,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
     @NSManaged var gradientColors: [UIColor]
     @NSManaged var gradientColorLocations: [CGFloat]?
-    @NSManaged var gradientStartPosition: UICircularProgressRingGradientPosition
-    @NSManaged var gradientEndPosition: UICircularProgressRingGradientPosition
+    @NSManaged var gradientStartPosition: UICircularRingGradientPosition
+    @NSManaged var gradientEndPosition: UICircularRingGradientPosition
 
     @NSManaged var startAngle: CGFloat
     @NSManaged var endAngle: CGFloat
@@ -124,7 +124,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     var animationDuration: TimeInterval = 1.0
     var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
     var animated = false
-    @NSManaged weak var valueDelegate: UICircularProgressRing?
+    @NSManaged weak var valueDelegate: UICircularRing?
 
     // The value label which draws the text for the current value
     lazy private var valueLabel: UILabel = UILabel(frame: .zero)
@@ -192,7 +192,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
             animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = animationDuration
             return animation
-        } else if UICircularProgressRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
+        } else if UICircularRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
             animation.fromValue = presentation()?.value(forKey: event)
             animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
@@ -291,7 +291,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     }
 
     /// Updates the outer ring path depending on the ring's style
-    private func updateOuterRingPath(_ path: UIBezierPath, radius: CGFloat, style: UICircularProgressRingStyle) {
+    private func updateOuterRingPath(_ path: UIBezierPath, radius: CGFloat, style: UICircularRingStyle) {
         switch style {
         case .dashed:
             path.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
@@ -375,8 +375,8 @@ class UICircularProgressRingLayer: CAShapeLayer {
      Draws a gradient with a start and end position inside the provided context
      */
     private func drawGradient(_ gradient: CGGradient,
-                              start: UICircularProgressRingGradientPosition,
-                              end: UICircularProgressRingGradientPosition,
+                              start: UICircularRingGradientPosition,
+                              end: UICircularRingGradientPosition,
                               in context: CGContext) {
 
         context.drawLinearGradient(gradient,

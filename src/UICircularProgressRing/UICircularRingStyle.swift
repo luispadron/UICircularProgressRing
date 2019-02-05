@@ -1,5 +1,5 @@
 //
-//  UICircularProgressRingStyle.swift
+//  UICircularRingStyle.swift
 //  UICircularProgressRing
 //
 //  Copyright (c) 2016 Luis Padron
@@ -25,7 +25,7 @@
 
 /**
  
- # UICircularProgressRingStyle
+ # UICircularRingStyle
  
  This is an enumeration which is used to determine the style of the progress ring.
  
@@ -33,7 +33,7 @@
  Luis Padron
  
  */
-@objc public enum UICircularProgressRingStyle: Int {
+@objc public enum UICircularRingStyle: Int {
     /// Inner ring is inside the circle
     case inside = 1
     /// Inner ring is placed ontop of the outer ring
