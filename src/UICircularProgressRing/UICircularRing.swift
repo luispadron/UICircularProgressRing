@@ -28,9 +28,11 @@ import UIKit
 /**
  
  # UICircularRing
- 
+
+ This is the base class of `UICircularProgressRing` and `UICircularTimerRing`.
+
  This is the UIView subclass that creates and handles everything
- to do with the progress ring
+ to do with the circular ring.
  
  This class has a custom CAShapeLayer (UICircularRingLayer) which
  handels the drawing and animating of the view
@@ -67,108 +69,6 @@ import UIKit
     @IBInspectable open var fullCircle: Bool = true {
         didSet {
             ringLayer.fullCircle = fullCircle
-        }
-    }
-
-    // MARK: Value Properties
-
-    /**
-     The value property for the progress ring.
-     
-     ## Important ##
-     Default = 0
-     
-     Must be a non-negative value. If this value falls below `minValue` it will be
-     clamped and set equal to `minValue`.
-     
-     This cannot be used to get the value while the ring is animating, to get
-     current value while animating use `currentValue`.
-     
-     The current value of the progress ring after animating, use startProgress(value:)
-     to alter the value with the option to animate and have a completion handler.
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var value: CGFloat = 0 {
-        didSet {
-            if value < minValue {
-                #if DEBUG
-                    print("Warning in: \(#file):\(#line)")
-                    print("Attempted to set a value less than minValue, value has been set to minValue.\n")
-                #endif
-                value = minValue
-            }
-            if value > maxValue {
-                #if DEBUG
-                    print("Warning in: \(#file):\(#line)")
-                    print("Attempted to set a value greater than maxValue, value has been set to maxValue.\n")
-                #endif
-                value = maxValue
-            }
-            ringLayer.value = value
-        }
-    }
-
-    /**
-     The current value of the progress ring
-     
-     This will return the current value of the progress ring,
-     if the ring is animating it will be updated in real time.
-     If the ring is not currently animating then the value returned
-     will be the `value` property of the ring
-     
-     ## Author
-     Luis Padron
-     */
-    open var currentValue: CGFloat? {
-        if isAnimating {
-            return layer.presentation()?.value(forKey: .value) as? CGFloat
-        } else {
-            return value
-        }
-    }
-
-    /**
-     The minimum value for the progress ring. ex: (0) -> 100.
-     
-     ## Important ##
-     Default = 100
-     
-     Must be a non-negative value, the absolute value is taken when setting this property.
-     
-     The `value` of the progress ring must NOT fall below `minValue` if it does the `value` property is clamped
-     and will be set equal to `value`, you will receive a warning message in the console.
-     
-     Making this value greater than
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var minValue: CGFloat = 0.0 {
-        didSet {
-            ringLayer.minValue = abs(minValue)
-        }
-    }
-
-    /**
-     The maximum value for the progress ring. ex: 0 -> (100)
-     
-     ## Important ##
-     Default = 100
-     
-     Must be a non-negative value, the absolute value is taken when setting this property.
-     
-     Unlike the `minValue` member `value` can extend beyond `maxValue`. What happens in this case
-     is the inner ring will do an extra loop through the outer ring, this is not noticible however.
-     
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var maxValue: CGFloat = 100.0 {
-        didSet {
-            ringLayer.maxValue = abs(maxValue)
         }
     }
 
@@ -670,22 +570,6 @@ import UIKit
     // MARK: Label
 
     /**
-     A toggle for showing or hiding the value label.
-     If false the current value will not be shown.
-     
-     ## Important ##
-     Default = true
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var shouldShowValueText: Bool = true {
-        didSet {
-            ringLayer.shouldShowValueText = shouldShowValueText
-        }
-    }
-
-    /**
      The text color for the value label field
      
      ## Important ##
@@ -717,91 +601,6 @@ import UIKit
     @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
         didSet {
             ringLayer.font = font
-        }
-    }
-
-    /**
-     The name of the value indicator the value label will
-     appened to the value
-     Example: " GB" -> "100 GB"
-     
-     ## Important ##
-     Default = "%"
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var valueIndicator: String = "%" {
-        didSet {
-            ringLayer.valueIndicator = valueIndicator
-        }
-    }
-
-    /**
-     A toggle for either placing the value indicator right or left to the value
-     Example: true -> "GB 100" (instead of 100 GB)
-     
-     ## Important ##
-     Default = false (place value indicator to the right)
-     
-     ## Author
-     Elad Hayun
-     */
-    @IBInspectable open var rightToLeft: Bool = false {
-        didSet {
-            ringLayer.rightToLeft = rightToLeft
-        }
-    }
-
-    /**
-     A toggle for showing or hiding floating points from
-     the value in the value label
-     
-     ## Important ##
-     Default = false (dont show)
-     
-     To customize number of decmial places to show, assign a value to decimalPlaces.
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var showFloatingPoint: Bool = false {
-        didSet {
-            ringLayer.showFloatingPoint = showFloatingPoint
-        }
-    }
-
-    /**
-     The amount of decimal places to show in the value label
-     
-     ## Important ##
-     Default = 2
-     
-     Only used when showFloatingPoint = true
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var decimalPlaces: Int = 2 {
-        didSet {
-            ringLayer.decimalPlaces = decimalPlaces
-        }
-    }
-
-    // MARK: Animation properties
-
-    /**
-     The type of animation function the ring view will use
-     
-     ## Important ##
-     Default = .easeInEaseOut
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
-        didSet {
-            ringLayer.animationTimingFunction = animationTimingFunction
         }
     }
 
@@ -889,7 +688,7 @@ import UIKit
      This method initializes the custom CALayer to the default values
      */
     // swiftlint:disable:next function_body_length
-    private func initialize() {
+    func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
         ringLayer.valueDelegate = self
 
@@ -901,10 +700,6 @@ import UIKit
 
         ringLayer.fullCircle = fullCircle
         ringLayer.isClockwise = isClockwise
-
-        ringLayer.value = value
-        ringLayer.maxValue = maxValue
-        ringLayer.minValue = minValue
 
         ringLayer.ringStyle = ringStyle
         ringLayer.showsValueKnob = showsValueKnob
@@ -932,13 +727,8 @@ import UIKit
         ringLayer.innerRingColor = innerRingColor
         ringLayer.innerCapStyle = innerCapStyle
         ringLayer.innerRingSpacing = innerRingSpacing
-
-        ringLayer.shouldShowValueText = shouldShowValueText
-        ringLayer.valueIndicator = valueIndicator
         ringLayer.fontColor = fontColor
         ringLayer.font = font
-        ringLayer.showFloatingPoint = showFloatingPoint
-        ringLayer.decimalPlaces = decimalPlaces
 
         backgroundColor = UIColor.clear
         ringLayer.backgroundColor = UIColor.clear.cgColor
@@ -1040,22 +830,9 @@ extension UICircularRing {
     }
 }
 
-/// Helper enum for animation key
-enum AnimationKeys: String {
-    case value
-}
-
-/// Helper extension to allow removing layer animation based on AnimationKeys enum
-extension CALayer {
-    func removeAnimation(forKey key: AnimationKeys) {
-        removeAnimation(forKey: key.rawValue)
-    }
-
-    func animation(forKey key: AnimationKeys) -> CAAnimation? {
-        return animation(forKey: key.rawValue)
-    }
-
-    func value(forKey key: AnimationKeys) -> Any? {
-        return value(forKey: key.rawValue)
+extension UICircularRing {
+    /// Helper enum for animation key
+    enum AnimationKeys: String {
+        case value
     }
 }

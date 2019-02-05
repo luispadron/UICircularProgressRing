@@ -44,6 +44,205 @@ final public class UICircularProgressRing: UICircularRing {
     @objc public weak var delegate: UICircularProgressRingDelegate?
 
     /**
+     The value property for the progress ring.
+
+     ## Important ##
+     Default = 0
+
+     Must be a non-negative value. If this value falls below `minValue` it will be
+     clamped and set equal to `minValue`.
+
+     This cannot be used to get the value while the ring is animating, to get
+     current value while animating use `currentValue`.
+
+     The current value of the progress ring after animating, use startProgress(value:)
+     to alter the value with the option to animate and have a completion handler.
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var value: CGFloat = 0 {
+        didSet {
+            if value < minValue {
+                #if DEBUG
+                print("Warning in: \(#file):\(#line)")
+                print("Attempted to set a value less than minValue, value has been set to minValue.\n")
+                #endif
+                value = minValue
+            }
+            if value > maxValue {
+                #if DEBUG
+                print("Warning in: \(#file):\(#line)")
+                print("Attempted to set a value greater than maxValue, value has been set to maxValue.\n")
+                #endif
+                value = maxValue
+            }
+            ringLayer.value = value
+        }
+    }
+
+    /**
+     The current value of the progress ring
+
+     This will return the current value of the progress ring,
+     if the ring is animating it will be updated in real time.
+     If the ring is not currently animating then the value returned
+     will be the `value` property of the ring
+
+     ## Author
+     Luis Padron
+     */
+    public var currentValue: CGFloat? {
+        if isAnimating {
+            return layer.presentation()?.value(forKey: .value) as? CGFloat
+        } else {
+            return value
+        }
+    }
+
+    /**
+     The minimum value for the progress ring. ex: (0) -> 100.
+
+     ## Important ##
+     Default = 100
+
+     Must be a non-negative value, the absolute value is taken when setting this property.
+
+     The `value` of the progress ring must NOT fall below `minValue` if it does the `value` property is clamped
+     and will be set equal to `value`, you will receive a warning message in the console.
+
+     Making this value greater than
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var minValue: CGFloat = 0.0 {
+        didSet {
+            ringLayer.minValue = abs(minValue)
+        }
+    }
+
+    /**
+     The maximum value for the progress ring. ex: 0 -> (100)
+
+     ## Important ##
+     Default = 100
+
+     Must be a non-negative value, the absolute value is taken when setting this property.
+
+     Unlike the `minValue` member `value` can extend beyond `maxValue`. What happens in this case
+     is the inner ring will do an extra loop through the outer ring, this is not noticible however.
+
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var maxValue: CGFloat = 100.0 {
+        didSet {
+            ringLayer.maxValue = abs(maxValue)
+        }
+    }
+
+    /**
+     The name of the value indicator the value label will
+     appened to the value
+     Example: " GB" -> "100 GB"
+
+     ## Important ##
+     Default = "%"
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var valueIndicator: String = "%" {
+        didSet {
+            ringLayer.valueIndicator = valueIndicator
+        }
+    }
+
+    /**
+     A toggle for either placing the value indicator right or left to the value
+     Example: true -> "GB 100" (instead of 100 GB)
+
+     ## Important ##
+     Default = false (place value indicator to the right)
+
+     ## Author
+     Elad Hayun
+     */
+    @IBInspectable public var rightToLeft: Bool = false {
+        didSet {
+            ringLayer.rightToLeft = rightToLeft
+        }
+    }
+
+    /**
+     A toggle for showing or hiding floating points from
+     the value in the value label
+
+     ## Important ##
+     Default = false (dont show)
+
+     To customize number of decmial places to show, assign a value to decimalPlaces.
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var showFloatingPoint: Bool = false {
+        didSet {
+            ringLayer.showFloatingPoint = showFloatingPoint
+        }
+    }
+
+    /**
+     The amount of decimal places to show in the value label
+
+     ## Important ##
+     Default = 2
+
+     Only used when showFloatingPoint = true
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var decimalPlaces: Int = 2 {
+        didSet {
+            ringLayer.decimalPlaces = decimalPlaces
+        }
+    }
+
+    /**
+     The type of animation function the ring view will use
+
+     ## Important ##
+     Default = .easeInEaseOut
+
+     ## Author
+     Luis Padron
+     */
+    @objc public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
+        didSet {
+            ringLayer.animationTimingFunction = animationTimingFunction
+        }
+    }
+
+    /**
+     A toggle for showing or hiding the value label.
+     If false the current value will not be shown.
+
+     ## Important ##
+     Default = true
+
+     ## Author
+     Luis Padron
+     */
+    @IBInspectable public var shouldShowValueText: Bool = true {
+        didSet {
+            ringLayer.shouldShowValueText = shouldShowValueText
+        }
+    }
+
+    /**
      Typealias for the startProgress(:) method closure
      */
     public typealias ProgressCompletion = (() -> Void)
@@ -215,6 +414,17 @@ final public class UICircularProgressRing: UICircularRing {
     }
 
     // MARK: Overrides
+
+    override func initialize() {
+        super.initialize()
+        ringLayer.value = value
+        ringLayer.maxValue = maxValue
+        ringLayer.minValue = minValue
+        ringLayer.valueIndicator = valueIndicator
+        ringLayer.showFloatingPoint = showFloatingPoint
+        ringLayer.decimalPlaces = decimalPlaces
+        ringLayer.shouldShowValueText = shouldShowValueText
+    }
 
     override func didUpdateValue(newValue: CGFloat) {
         super.didUpdateValue(newValue: newValue)
