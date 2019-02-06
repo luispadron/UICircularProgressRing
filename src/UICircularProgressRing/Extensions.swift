@@ -33,35 +33,6 @@ internal extension CGFloat {
     var toRads: CGFloat { return self * CGFloat.pi / 180 }
 }
 
-/**
- A private extension to UILabel, in order to cut down on code repeation.
- This function will update the value of the progress label, depending on the
- parameters sent.
- At the end sizeToFit() is called in order to ensure text gets drawn correctly
- */
-internal extension UILabel {
-    // swiftlint:disable function_parameter_count next_line
-    func update(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularRing?) {
-        if rightToLeft {
-            if showsDecimal {
-                text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            } else {
-                text = "\(valueIndicator)\(Int(value))"
-            }
-
-        } else {
-            if showsDecimal {
-                text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            } else {
-                text = "\(Int(value))\(valueIndicator)"
-            }
-        }
-        valueDelegate?.willDisplayLabel(label: self)
-        sizeToFit()
-    }
-}
-
 /// adds simple conversion to CGFloat
 internal extension TimeInterval {
     var float: CGFloat { return CGFloat(self) }

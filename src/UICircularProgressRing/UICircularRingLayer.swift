@@ -380,16 +380,43 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
 
-        valueLabel.update(withValue: value,
-                          valueIndicator: valueIndicator,
-                          rightToLeft: rightToLeft,
-                          showsDecimal: showFloatingPoint,
-                          decimalPlaces: decimalPlaces,
-                          valueDelegate: valueDelegate)
+        updateValueLabel(withValue: value,
+                         valueIndicator: valueIndicator,
+                         rightToLeft: rightToLeft,
+                         showsDecimal: showFloatingPoint,
+                         decimalPlaces: decimalPlaces,
+                         valueDelegate: valueDelegate)
 
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
 
         valueLabel.drawText(in: bounds)
+    }
+
+    /**
+     This function is called whenever the value label's text property should be updated.
+     By default this sets thte text to be the current value of the layer (with some formatting).
+     It also calls the value delegate.
+     */
+    // swiftlint:disable function_parameter_count next_line
+    func updateValueLabel(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
+                          showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularRing?) {
+        if rightToLeft {
+            if showsDecimal {
+                valueLabel.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
+            } else {
+                valueLabel.text = "\(valueIndicator)\(Int(value))"
+            }
+
+        } else {
+            if showsDecimal {
+                valueLabel.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+            } else {
+                valueLabel.text = "\(Int(value))\(valueIndicator)"
+            }
+        }
+
+        valueDelegate?.willDisplayLabel(label: valueLabel)
+        valueLabel.sizeToFit()
     }
 }

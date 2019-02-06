@@ -32,12 +32,13 @@ final public class UICircularTimerRing: UICircularRing {
     /// to the time that was set for the timer
     private var time: TimeInterval = 60 {
         didSet {
+            ringLayer.value = time.float
             ringLayer.maxValue = time.float
         }
     }
 
     /// type-alias for the handler that should be called when needed
-    public typealias TimerHandler = () -> Void
+    public typealias TimerHandler = (Bool) -> Void
 
     /// the completion for over all timer
     private var timerHandler: TimerHandler?
@@ -45,6 +46,10 @@ final public class UICircularTimerRing: UICircularRing {
     // MARK: API
 
     public func startTimer(to time: TimeInterval, handler: TimerHandler?) {
+        startAnimation(duration: time) {
+            self.timerHandler?(true)
+        }
+
         self.time = time
         self.timerHandler = handler
     }
@@ -82,7 +87,22 @@ final public class UICircularTimerRing: UICircularRing {
 // MARK: UICircularTimerRingLayer
 
 final class UICircularTimerRingLayer: UICircularRingLayer {
-    override func drawValueLabel() {
-        super.drawValueLabel()
+    /// formatter which formats the time string of the ring label
+    private let formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .short
+        return formatter
+    }()
+
+    override func updateValueLabel(withValue value: CGFloat,
+                                   valueIndicator: String,
+                                   rightToLeft: Bool,
+                                   showsDecimal: Bool,
+                                   decimalPlaces: Int,
+                                   valueDelegate: UICircularRing?) {
+        valueLabel.text = formatter.string(from: value.interval)
+        valueLabel.sizeToFit()
+        valueDelegate?.willDisplayLabel(label: valueLabel)
     }
 }
