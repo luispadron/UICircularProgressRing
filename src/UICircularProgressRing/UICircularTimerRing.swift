@@ -28,6 +28,17 @@ import UIKit
 final public class UICircularTimerRing: UICircularRing {
     // MARK: Members
 
+    /**
+     The handler for the timer.
+
+     The handler is called whenever the timer finishes or is paused.
+     If the timer is paused handler will be called with (false, elapsedTime)
+     Otherwise the handler will be called with (true, finalTime)
+     */
+    public typealias TimerHandler = (Bool, TimeInterval?) -> Void
+
+    // MARK: Private Members
+
     /// This is the max value for the layer, which corresponds
     /// to the time that was set for the timer
     private var time: TimeInterval = 60 {
@@ -37,12 +48,10 @@ final public class UICircularTimerRing: UICircularRing {
         }
     }
 
+    /// the elapsed time since calling `startTimer`
     private var elapsedTime: TimeInterval? {
         return layer.presentation()?.value(forKey: .value) as? TimeInterval
     }
-
-    /// type-alias for the handler that should be called when needed
-    public typealias TimerHandler = (Bool, TimeInterval?) -> Void
 
     /// the completion for over all timer
     private var timerHandler: TimerHandler?
@@ -51,10 +60,6 @@ final public class UICircularTimerRing: UICircularRing {
 
     /**
      Starts the timer until the given time is elapsed.
-
-     The handler is called whenever the timer finishes or is paused.
-     If the timer is paused handler will be called with (false, elapsed time)
-     Otherwise the handler will be called with (true, finaltime)
      */
     public func startTimer(to time: TimeInterval, handler: TimerHandler?) {
         startAnimation(duration: time) {
@@ -68,7 +73,7 @@ final public class UICircularTimerRing: UICircularRing {
     /**
      Pauses the timer.
 
-     Handler will be called with (false, elapsed time)
+     Handler will be called with (false, elapsedTime)
      */
     public func pauseTimer() {
         timerHandler?(false, self.elapsedTime)
@@ -111,6 +116,7 @@ final public class UICircularTimerRing: UICircularRing {
         return layer as! UICircularTimerRingLayer
     }
 
+    /// initialize with some defaults relevant to this timer ring
     override func initialize() {
         super.initialize()
         ringLayer.minValue = 0
@@ -135,6 +141,7 @@ final class UICircularTimerRingLayer: UICircularRingLayer {
         return formatter
     }()
 
+    /// custom handling of value label update as want to format as time string
     override func updateValueLabel(withValue value: CGFloat,
                                    valueIndicator: String,
                                    rightToLeft: Bool,
