@@ -17,6 +17,7 @@
 
 ## Features
 
+* 2 views, progress or timer
 * Interface builder designable
 * Highly customizable and flexible
 * Easy to use
@@ -80,12 +81,12 @@ Design your heart out
 
 ![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
 
-### Code
+### UICircularProgressRing Example
 
 ```swift
 override func viewDidLoad() {
   // Create the view
-  let progressRing = UICircularProgressRing(frame: CGRect(x: 0, y: 0, width: 240, height: 240))
+  let progressRing = UICircularProgressRing()
   // Change any of the properties you'd like
   progressRing.maxValue = 50
   progressRing.innerRingColor = UIColor.blue
@@ -110,18 +111,39 @@ progressRing.pauseProgress()
 progressRing.continueProgress()
 ```
 
+### UICircularTimerRing Example
+
+```swift
+override func viewDidLoad() {
+	// create the view
+	let timerRing = UICircularTimerRing()
+}
+```
+
+Animate and set time
+
+```swift
+						// seconds
+timerRing.startTimer(to: 60) { finished, elapsedTime in
+	if finished {
+		// finished timer!
+	} else {
+		// paused timer, access current time using elapsedTime
+	}
+}
+
+timerRing.pauseTimer() // pauses the timer
+
+timerRing.continueTimer() // continues from where we paused
+
+timerRing.resetTimer() // resets and cancels animations previously running
+```
+
 ## Documentation
 
 Please read this before creating an issue about how to use the package:
 
 [DOCUMENTATION](https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRing.html)
-
-## Example project
-
-Take a look at the example playground over [here](Example/)
-
-1. Download it
-2. Mess around and experiment!
 
 ## Misc.
 

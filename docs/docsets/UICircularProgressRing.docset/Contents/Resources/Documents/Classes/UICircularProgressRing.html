@@ -14,7 +14,7 @@
     <a title="UICircularProgressRing Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">UICircularProgressRing Docs</a> (100% documented)</p>
+        <p><a href="../index.html">UICircularProgressRing Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/luispadron/UICircularProgressRing"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -34,16 +34,22 @@
               <li class="nav-group-task">
                 <a href="../Classes/UICircularProgressRing.html">UICircularProgressRing</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularRing.html">UICircularRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularTimerRing.html">UICircularTimerRing</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a>
+                <a href="../Enums/UICircularRingGradientPosition.html">UICircularRingGradientPosition</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a>
+                <a href="../Enums/UICircularRingStyle.html">UICircularRingStyle</a>
               </li>
             </ul>
           </li>
@@ -63,36 +69,20 @@
             <h1>UICircularProgressRing</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">@IBDesignable</span>
-<span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICircularProgressRing</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">UICircularProgressRing</span> <span class="p">:</span> <span class="kt"><a href="../Classes/UICircularRing.html">UICircularRing</a></span></code></pre>
 
                 </div>
               </div>
-            <h1 id='uicircularprogressring' class='heading'>UICircularProgressRing</h1>
-
-<p>This is the UIView subclass that creates and handles everything
-to do with the progress ring</p>
-
-<p>This class has a custom CAShapeLayer (UICircularProgressRingLayer) which
-handels the drawing and animating of the view</p>
-
-<p>The properties in this class correspond with the
-properties in UICircularProgressRingLayer.
-When they are set in here, they are also set for the layer and drawn accordingly</p>
-
-<p>Read the docs for what each property does and what can be customized.</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
+            <p>Undocumented</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/Delegate"></a>
-                <a name="//apple_ref/swift/Section/Delegate" class="dashAnchor"></a>
-                <a href="#/Delegate">
-                  <h3 class="section-name">Delegate</h3>
+                <a name="/Members"></a>
+                <a name="//apple_ref/swift/Section/Members" class="dashAnchor"></a>
+                <a href="#/Members">
+                  <h3 class="section-name">Members</h3>
                 </a>
               </div>
               <ul>
@@ -109,11 +99,11 @@ When they are set in here, they are also set for the layer and drawn accordingly
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The delegate for the UICircularProgressRing</p>
+                        <p>The delegate for the UICircularRing</p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>When progress is done updating via UICircularProgressRing.setValue(<em>:), the
-finishedUpdatingProgressFor(</em> ring: UICircularProgressRing) will be called.</p>
+<p>When progress is done updating via UICircularRing.setValue(<em>:), the
+finishedUpdatingProgressFor(</em> ring: UICircularRing) will be called.</p>
 
 <p>The ring will be passed to the delegate in order to keep track of
 multiple ring updates if needed.</p>
@@ -127,74 +117,13 @@ multiple ring updates if needed.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a></span><span class="p">?</span></code></pre>
+<span class="kd">public</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Circle%20Properties"></a>
-                <a name="//apple_ref/swift/Section/Circle Properties" class="dashAnchor"></a>
-                <a href="#/Circle%20Properties">
-                  <h3 class="section-name">Circle Properties</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)fullCircle"></a>
-                    <a name="//apple_ref/swift/Property/fullCircle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)fullCircle">fullCircle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether or not the progress ring should be a full circle.</p>
-
-<p>What this means is that the outer ring will always go from 0 - 360 degrees and
-the inner ring will be calculated accordingly depending on current value.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = true</p>
-
-<p>When this property is true any value set for <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)endAngle">endAngle</a></code> will be ignored.</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">fullCircle</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Value%20Properties"></a>
-                <a name="//apple_ref/swift/Section/Value Properties" class="dashAnchor"></a>
-                <a href="#/Value%20Properties">
-                  <h3 class="section-name">Value Properties</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -231,7 +160,7 @@ to alter the value with the option to animate and have a completion handler.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">UICircularProgressRing</span><span class="o">.</span><span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -266,7 +195,7 @@ will be the <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircul
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">currentValue</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentValue</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -307,7 +236,7 @@ and will be set equal to <code><a href="../Classes/UICircularProgressRing.html#/
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">minValue</span><span class="p">:</span> <span class="kt">UICircularProgressRing</span><span class="o">.</span><span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">minValue</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -346,980 +275,7 @@ is the inner ring will do an extra loop through the outer ring, this is not noti
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">maxValue</span><span class="p">:</span> <span class="kt">UICircularProgressRing</span><span class="o">.</span><span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/View%20Style"></a>
-                <a name="//apple_ref/swift/Section/View Style" class="dashAnchor"></a>
-                <a href="#/View%20Style">
-                  <h3 class="section-name">View Style</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)ringStyle"></a>
-                    <a name="//apple_ref/swift/Property/ringStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)ringStyle">ringStyle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The style of the progress ring.</p>
-
-<p>Type: <code><a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a></code></p>
-
-<p>The five styles include <code>inside</code>, <code>ontop</code>, <code>dashed</code>, <code>dotted</code>, and <code>gradient</code></p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UICircularProgressRingStyle.inside</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">ringStyle</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingStyle.html">UICircularProgressRingStyle</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)showsValueKnob"></a>
-                    <a name="//apple_ref/swift/Property/showsValueKnob" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)showsValueKnob">showsValueKnob</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Whether or not the value knob is shown</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = false</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">showsValueKnob</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobSize"></a>
-                    <a name="//apple_ref/swift/Property/valueKnobSize" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobSize">valueKnobSize</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The size of the value knob (diameter)</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 15</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueKnobSize</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobColor"></a>
-                    <a name="//apple_ref/swift/Property/valueKnobColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobColor">valueKnobColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color of the value knob</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.lightGray</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueKnobColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowBlur"></a>
-                    <a name="//apple_ref/swift/Property/valueKnobShadowBlur" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowBlur">valueKnobShadowBlur</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The blur (size) of the value knob&rsquo;s shadow</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 2</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Makan Houston</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueKnobShadowBlur</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowOffset"></a>
-                    <a name="//apple_ref/swift/Property/valueKnobShadowOffset" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowOffset">valueKnobShadowOffset</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The offset of the value knob&rsquo;s shadow</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = CGSize.zero</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Makan Houston</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueKnobShadowOffset</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowColor"></a>
-                    <a name="//apple_ref/swift/Property/valueKnobShadowColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)valueKnobShadowColor">valueKnobShadowColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color of the value knob&rsquo;s shadow</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.lightGray</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Makan Houston</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueKnobShadowColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)patternForDashes"></a>
-                    <a name="//apple_ref/swift/Property/patternForDashes" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)patternForDashes">patternForDashes</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An array of CGFloats, used to calculate the dash length for viewStyle = 3</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = [7.0, 7.0]</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">patternForDashes</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)startAngle"></a>
-                    <a name="//apple_ref/swift/Property/startAngle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)startAngle">startAngle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The start angle for the entire progress ring view.</p>
-
-<p>Please note that Cocoa Touch uses a clockwise rotating unit circle.
-I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 0 (degrees)</p>
-
-<p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">startAngle</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)endAngle"></a>
-                    <a name="//apple_ref/swift/Property/endAngle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)endAngle">endAngle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The end angle for the entire progress ring</p>
-
-<p>Please note that Cocoa Touch uses a clockwise rotating unit circle.
-I.e: 90 degrees is at the bottom and 270 degrees is at the top</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 360 (degrees)</p>
-
-<p>Values should be in degrees (they&rsquo;re converted to radians internally)</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors"></a>
-                    <a name="//apple_ref/swift/Property/gradientColors" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors">gradientColors</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The colors which will be used to create the gradient.</p>
-
-<p>Only used when <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)ringStyle">ringStyle</a></code> is <code>.gradient</code></p>
-
-<p>The colors should be in the order they will be drawn in.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>By default this property will be an empty array.</p>
-
-<p>If this array is empty, no gradient will be drawn.</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">gradientColors</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIColor</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColorLocations"></a>
-                    <a name="//apple_ref/swift/Property/gradientColorLocations" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColorLocations">gradientColorLocations</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The location for each color provided in <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors">gradientColors</a></code>; each location must be
-a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
-locations array, Quartz uses the colors provided that are closest to 0 and 1 for
-those locations.</p>
-
-<p>If locations is nil, the first color in <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors">gradientColors</a></code> is assigned to location 0,
-the last color in <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors">gradientColors</a></code> is assigned to location 1, and intervening
-colors are assigned locations that are at equal intervals in between.</p>
-
-<p>The locations array should contain the same number of items as the <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientColors">gradientColors</a></code>
-array.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>By default this property will be nil</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">gradientColorLocations</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientStartPosition"></a>
-                    <a name="//apple_ref/swift/Property/gradientStartPosition" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientStartPosition">gradientStartPosition</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The start location for the gradient.
-This property determines where the gradient will begin to draw,
-for all possible values see <code><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></code>.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>By default this property is <code>.topRight</code></p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">gradientStartPosition</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientEndPosition"></a>
-                    <a name="//apple_ref/swift/Property/gradientEndPosition" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)gradientEndPosition">gradientEndPosition</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The end location for the gradient.
-This property determines where the gradient will end drawing,
-for all possible values see <code><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></code>.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>By default this property is <code>.bottomLeft</code></p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">gradientEndPosition</span><span class="p">:</span> <span class="kt"><a href="../Enums/UICircularProgressRingGradientPosition.html">UICircularProgressRingGradientPosition</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Outer%20Ring%20properties"></a>
-                <a name="//apple_ref/swift/Section/Outer Ring properties" class="dashAnchor"></a>
-                <a href="#/Outer%20Ring%20properties">
-                  <h3 class="section-name">Outer Ring properties</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerRingWidth"></a>
-                    <a name="//apple_ref/swift/Property/outerRingWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerRingWidth">outerRingWidth</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The width of the outer ring for the progres bar</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 10.0</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">outerRingWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerRingColor"></a>
-                    <a name="//apple_ref/swift/Property/outerRingColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerRingColor">outerRingColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color for the outer ring</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.gray</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">outerRingColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerBorderColor"></a>
-                    <a name="//apple_ref/swift/Property/outerBorderColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerBorderColor">outerBorderColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color for the outer ring border</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.gray</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Abdulla Allaith</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">outerBorderColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerBorderWidth"></a>
-                    <a name="//apple_ref/swift/Property/outerBorderWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerBorderWidth">outerBorderWidth</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The width for the outer ring border</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 2</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Abdulla Allaith</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">outerBorderWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerCapStyle"></a>
-                    <a name="//apple_ref/swift/Property/outerCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)outerCapStyle">outerCapStyle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The style for the tip/cap of the outer ring</p>
-
-<p>Type: <code>CGLineCap</code></p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = CGLineCap.butt</p>
-
-<p>This is only noticible when ring is not a full circle.</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">outerCapStyle</span><span class="p">:</span> <span class="kt">CGLineCap</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Inner%20Ring%20properties"></a>
-                <a name="//apple_ref/swift/Section/Inner Ring properties" class="dashAnchor"></a>
-                <a href="#/Inner%20Ring%20properties">
-                  <h3 class="section-name">Inner Ring properties</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingWidth"></a>
-                    <a name="//apple_ref/swift/Property/innerRingWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingWidth">innerRingWidth</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The width of the inner ring for the progres bar</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = 5.0</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">innerRingWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingColor"></a>
-                    <a name="//apple_ref/swift/Property/innerRingColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingColor">innerRingColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The color of the inner ring for the progres bar</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.blue</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">innerRingColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingSpacing"></a>
-                    <a name="//apple_ref/swift/Property/innerRingSpacing" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerRingSpacing">innerRingSpacing</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The spacing between the outer ring and inner ring</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>This only applies when using progressRingStyle = 1</p>
-
-<p>Default = 1</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">innerRingSpacing</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerCapStyle"></a>
-                    <a name="//apple_ref/swift/Property/innerCapStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)innerCapStyle">innerCapStyle</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The style for the tip/cap of the inner ring</p>
-
-<p>Type: <code>CGLineCap</code></p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = CGLineCap.round</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">innerCapStyle</span><span class="p">:</span> <span class="kt">CGLineCap</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Label"></a>
-                <a name="//apple_ref/swift/Section/Label" class="dashAnchor"></a>
-                <a href="#/Label">
-                  <h3 class="section-name">Label</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)shouldShowValueText"></a>
-                    <a name="//apple_ref/swift/Property/shouldShowValueText" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)shouldShowValueText">shouldShowValueText</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A toggle for showing or hiding the value label.
-If false the current value will not be shown.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = true</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">shouldShowValueText</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)fontColor"></a>
-                    <a name="//apple_ref/swift/Property/fontColor" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)fontColor">fontColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The text color for the value label field</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIColor.black</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">fontColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)font"></a>
-                    <a name="//apple_ref/swift/Property/font" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)font">font</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The font to be used for the progress indicator.
-All font attributes are specified here except for font color, which is done
-using <code><a href="../Classes/UICircularProgressRing.html#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)fontColor">fontColor</a></code>.</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = UIFont.systemFont(ofSize: 18)</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">font</span><span class="p">:</span> <span class="kt">UIFont</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValue</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1355,7 +311,7 @@ Example: <q>GB</q> -&gt; <q>100 GB</q></p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">valueIndicator</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">valueIndicator</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1390,7 +346,7 @@ Example: true -&gt; <q>GB 100</q> (instead of 100 GB)</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">rightToLeft</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">rightToLeft</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1427,7 +383,7 @@ the value in the value label</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">showFloatingPoint</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">showFloatingPoint</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1463,30 +419,19 @@ the value in the value label</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">decimalPlaces</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">decimalPlaces</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Animation%20properties"></a>
-                <a name="//apple_ref/swift/Section/Animation properties" class="dashAnchor"></a>
-                <a href="#/Animation%20properties">
-                  <h3 class="section-name">Animation properties</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)animationStyle"></a>
-                    <a name="//apple_ref/swift/Property/animationStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)animationStyle">animationStyle</a>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)animationTimingFunction"></a>
+                    <a name="//apple_ref/swift/Property/animationTimingFunction" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)animationTimingFunction">animationTimingFunction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1497,11 +442,7 @@ the value in the value label</p>
                         <p>The type of animation function the ring view will use</p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>Default = kCAMediaTimingFunctionEaseIn</p>
-
-<p>String should be from kCAMediaTimingFunction_____</p>
-
-<p>Only used when calling .setValue(animated: true)</p>
+<p>Default = .easeInEaseOut</p>
 <h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
@@ -1512,7 +453,7 @@ the value in the value label</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">animationStyle</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">animationTimingFunction</span><span class="p">:</span> <span class="kt">CAMediaTimingFunctionName</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1522,9 +463,9 @@ the value in the value label</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)isAnimating"></a>
-                    <a name="//apple_ref/swift/Property/isAnimating" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)isAnimating">isAnimating</a>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)shouldShowValueText"></a>
+                    <a name="//apple_ref/swift/Property/shouldShowValueText" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)shouldShowValueText">shouldShowValueText</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1532,48 +473,14 @@ the value in the value label</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This returns whether or not the ring is currently animating</p>
+                        <p>A toggle for showing or hiding the value label.
+If false the current value will not be shown.</p>
 <h2 id='important' class='heading'>Important</h2>
 
-<p>Get only property</p>
+<p>Default = true</p>
 <h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">isAnimating</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)isClockwise"></a>
-                    <a name="//apple_ref/swift/Property/isClockwise" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(py)isClockwise">isClockwise</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The direction the circle is drawn in
-Example: true -&gt; clockwise</p>
-<h2 id='important' class='heading'>Important</h2>
-
-<p>Default = true (draw the circle clockwise)</p>
-<h2 id='author' class='heading'>Author</h2>
-
-<p>Pete Walker</p>
 
                       </div>
                       <div class="declaration">
@@ -1581,62 +488,13 @@ Example: true -&gt; clockwise</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
-<span class="kd">open</span> <span class="k">var</span> <span class="nv">isClockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">shouldShowValueText</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Layer"></a>
-                <a name="//apple_ref/swift/Section/Layer" class="dashAnchor"></a>
-                <a href="#/Layer">
-                  <h3 class="section-name">Layer</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(cpy)layerClass"></a>
-                    <a name="//apple_ref/swift/Variable/layerClass" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(cpy)layerClass">layerClass</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Overrides the default layer with the custom UICircularProgressRingLayer class</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">open</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">layerClass</span><span class="p">:</span> <span class="kt">AnyClass</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Type%20aliases"></a>
-                <a name="//apple_ref/swift/Section/Type aliases" class="dashAnchor"></a>
-                <a href="#/Type%20aliases">
-                  <h3 class="section-name">Type aliases</h3>
-                </a>
-              </div>
-              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -1658,179 +516,6 @@ Example: true -&gt; clockwise</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressCompletion</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRingAAC27PropertyAnimationCompletiona"></a>
-                    <a name="//apple_ref/swift/Alias/PropertyAnimationCompletion" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRingAAC27PropertyAnimationCompletiona">PropertyAnimationCompletion</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Typealias for animateProperties(duration:animations:completion:) fucntion completion</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">PropertyAnimationCompletion</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRingAAC0B5Valuea"></a>
-                    <a name="//apple_ref/swift/Alias/ProgressValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Typealias for the value of the ring</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressValue</span> <span class="o">=</span> <span class="kt">CGFloat</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRingAAC0B8Durationa"></a>
-                    <a name="//apple_ref/swift/Alias/ProgressDuration" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRingAAC0B8Durationa">ProgressDuration</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Typealias for the duration of a ring animation</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ProgressDuration</span> <span class="o">=</span> <span class="kt">TimeInterval</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Methods"></a>
-                <a name="//apple_ref/swift/Section/Methods" class="dashAnchor"></a>
-                <a href="#/Methods">
-                  <h3 class="section-name">Methods</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)initWithFrame:"></a>
-                    <a name="//apple_ref/swift/Method/init(frame:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)initWithFrame:">init(frame:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Overriden public init to initialize the layer and view</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)initWithCoder:"></a>
-                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)initWithCoder:">init(coder:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Overriden public init to initialize the layer and view</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">required</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)drawRect:"></a>
-                    <a name="//apple_ref/swift/Method/draw(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)drawRect:">draw(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Overriden because of custom layer drawing in UICircularProgressRingLayer</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1867,11 +552,6 @@ animating will cancel the previously set animation and start a new one.</p>
 
 <p>Animation duration = 0 will cause no animation to occur, and value will instantly
 be set.</p>
-
-<p>Calling this method again while a current progress animation is in progress will <strong>not</strong>
-cause the animation to be restarted. The old animation will be removed (calling the completion and delegate)
-and a new animation will start from where the old one left off at. If you wish to instead reset an animation
-consider <code>resetProgress</code>.</p>
 <h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
@@ -1882,7 +562,7 @@ consider <code>resetProgress</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">startProgress</span><span class="p">(</span><span class="n">to</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B5Valuea">ProgressValue</a></span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B8Durationa">ProgressDuration</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B10Completiona">ProgressCompletion</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">startProgress</span><span class="p">(</span><span class="n">to</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC0B10Completiona">ProgressCompletion</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1962,7 +642,7 @@ for example in <code>viewWillDisappear</code> in a parent view controller.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">pauseProgress</span><span class="p">()</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">pauseProgress</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -1995,7 +675,7 @@ You should call this method when you wish to resume a paused animation.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">continueProgress</span><span class="p">()</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">continueProgress</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -2027,76 +707,7 @@ Does <strong>not</strong> perform any animations</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">resetProgress</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)animatePropertiesWithDuration:animations:"></a>
-                    <a name="//apple_ref/swift/Method/animateProperties(duration:animations:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)animatePropertiesWithDuration:animations:">animateProperties(duration:animations:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This function allows animation of the animatable properties of the <code>UICircularProgressRing</code>.
-These properties include <code>innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor</code>.</p>
-
-<p>Simply call this function and inside of the animation block change the animatable properties as you would in any <code>UView</code>
-animation block.</p>
-
-<p>The completion block is called when all animations finish.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">animateProperties</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">animations</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)animatePropertiesWithDuration:animations:completion:"></a>
-                    <a name="//apple_ref/swift/Method/animateProperties(duration:animations:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRing(im)animatePropertiesWithDuration:animations:completion:">animateProperties(duration:animations:completion:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This function allows animation of the animatable properties of the <code>UICircularProgressRing</code>.
-These properties include <code>innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor</code>.</p>
-
-<p>Simply call this function and inside of the animation block change the animatable properties as you would in any <code>UView</code>
-animation block.</p>
-
-<p>The completion block is called when all animations finish.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">animateProperties</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">animations</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">,</span>
-                            <span class="nv">completion</span><span class="p">:</span> <span class="kt"><a href="../Classes/UICircularProgressRing.html#/s:22UICircularProgressRingAAC27PropertyAnimationCompletiona">PropertyAnimationCompletion</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">resetProgress</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -2108,8 +719,8 @@ animation block.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2018-08-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2019-02-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
