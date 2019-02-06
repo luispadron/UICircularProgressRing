@@ -37,21 +37,61 @@ final public class UICircularTimerRing: UICircularRing {
         }
     }
 
+    private var elapsedTime: TimeInterval? {
+        return layer.presentation()?.value(forKey: .value) as? TimeInterval
+    }
+
     /// type-alias for the handler that should be called when needed
-    public typealias TimerHandler = (Bool) -> Void
+    public typealias TimerHandler = (Bool, TimeInterval?) -> Void
 
     /// the completion for over all timer
     private var timerHandler: TimerHandler?
 
     // MARK: API
 
+    /**
+     Starts the timer until the given time is elapsed.
+
+     The handler is called whenever the timer finishes or is paused.
+     If the timer is paused handler will be called with (false, elapsed time)
+     Otherwise the handler will be called with (true, finaltime)
+     */
     public func startTimer(to time: TimeInterval, handler: TimerHandler?) {
         startAnimation(duration: time) {
-            self.timerHandler?(true)
+            self.timerHandler?(true, self.time)
         }
 
         self.time = time
         self.timerHandler = handler
+    }
+
+    /**
+     Pauses the timer.
+
+     Handler will be called with (false, elapsed time)
+     */
+    public func pauseTimer() {
+        timerHandler?(false, self.elapsedTime)
+        pauseAnimation()
+    }
+
+    /**
+     Continues the timer from a previously paused time.
+     */
+    public func continueTimer() {
+        continueAnimation {
+            self.timerHandler?(true, self.time)
+        }
+    }
+
+    /**
+     Resets the timer, this means the time is reset and
+     previously set handler will no longer be used.
+     */
+    public func resetTimer() {
+        resetAnimation()
+        ringLayer.value = 0
+        timerHandler = nil
     }
 
     // MARK: Overrides
