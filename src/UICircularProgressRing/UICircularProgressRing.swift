@@ -77,6 +77,7 @@ final public class UICircularProgressRing: UICircularRing {
                 #endif
                 value = maxValue
             }
+
             ringLayer.value = value
         }
     }
@@ -93,11 +94,7 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     public var currentValue: CGFloat? {
-        if isAnimating {
-            return layer.presentation()?.value(forKey: .value) as? CGFloat
-        } else {
-            return value
-        }
+        return isAnimating ? layer.presentation()?.value(forKey: .value) as? CGFloat : value
     }
 
     /**
@@ -250,12 +247,6 @@ final public class UICircularProgressRing: UICircularRing {
     /// The completion block to call after the animation is done
     private var completion: ProgressCompletion?
 
-    /// This variable stores how long remains on the timer when it's paused
-    private var pausedTimeRemaining: TimeInterval = 0
-
-    /// Used to determine when the animation was paused
-    private var animationPauseTime: CFTimeInterval?
-
     // MARK: API
 
     /**
@@ -280,31 +271,14 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     @objc public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
-        if isAnimating {
-            animationPauseTime = nil
-            self.value = currentValue ?? value
-            ringLayer.removeAnimation(forKey: .value)
-        }
-
-        ringLayer.timeOffset = 0.0
-        ringLayer.beginTime = 0.0
-        ringLayer.speed = 1.0
-        ringLayer.animated = duration > 0
-        ringLayer.animationDuration = duration
-
         // Store the completion event locally
         self.completion = completion
 
-        // Check if a completion timer is still active and if so stop it
-        completionTimer?.invalidate()
-        completionTimer = nil
-
-        //Create a new completion timer
-        completionTimer = Timer.scheduledTimer(timeInterval: duration,
-                                               target: self,
-                                               selector: #selector(self.animationDidComplete),
-                                               userInfo: completion,
-                                               repeats: false)
+        // call super class helper function to begin animating layer
+        startAnimation(to: value, duration: duration) {
+            self.delegate?.didFinishProgress?(for: self)
+            self.completion?()
+        }
 
         self.value = value
     }
@@ -321,33 +295,8 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron & Nicolai Cornelis
      */
     @objc public func pauseProgress() {
-        guard isAnimating else {
-            #if DEBUG
-            print("""
-                    UICircularRing: Progress was paused without having been started.
-                    This has no effect but may indicate that you're unnecessarily calling this method.
-                    """)
-            #endif
-            return
-        }
-
-        snapshotProgress()
-
-        let pauseTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
-        animationPauseTime = pauseTime
-
-        ringLayer.speed = 0.0
-        ringLayer.timeOffset = pauseTime
-
-        if let fireTime = completionTimer?.fireDate {
-            pausedTimeRemaining = fireTime.timeIntervalSince(Date())
-        } else {
-            pausedTimeRemaining = 0
-        }
-
-        completionTimer?.invalidate()
-        completionTimer = nil
-
+        // call super class helper to stop layer animation
+        pauseAnimation()
         delegate?.didPauseProgress?(for: self)
     }
 
@@ -360,33 +309,11 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron & Nicolai Cornelis
      */
     @objc public func continueProgress() {
-        guard let pauseTime = animationPauseTime else {
-            #if DEBUG
-            print("""
-                    UICircularRing: Progress was continued without having been paused.
-                    This has no effect but may indicate that you're unnecessarily calling this method.
-                    """)
-            #endif
-            return
+        // call super class helper to continue layer animation
+        continueAnimation {
+            self.delegate?.didFinishProgress?(for: self)
+            self.completion?()
         }
-
-        restoreProgress()
-
-        ringLayer.speed = 1.0
-        ringLayer.timeOffset = 0.0
-        ringLayer.beginTime = 0.0
-
-        let timeSincePause = ringLayer.convertTime(CACurrentMediaTime(), from: nil) - pauseTime
-
-        ringLayer.beginTime = timeSincePause
-
-        completionTimer = Timer.scheduledTimer(timeInterval: pausedTimeRemaining,
-                                               target: self,
-                                               selector: #selector(animationDidComplete),
-                                               userInfo: completion,
-                                               repeats: false)
-
-        animationPauseTime = nil
 
         delegate?.didContinueProgress?(for: self)
     }
@@ -399,16 +326,9 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     @objc public func resetProgress() {
-        ringLayer.animated = false
-        ringLayer.removeAnimation(forKey: .value)
-        snapshottedAnimation = nil
+        // call super class helper to reset animation layer
+        resetAnimation()
         value = minValue
-
-        // Stop the timer and thus make the completion method not get fired
-        completionTimer?.invalidate()
-        completionTimer = nil
-        animationPauseTime = nil
-
         // Remove reference to the completion block
         completion = nil
     }
@@ -434,15 +354,5 @@ final public class UICircularProgressRing: UICircularRing {
     override func willDisplayLabel(label: UILabel) {
         super.willDisplayLabel(label: label)
         delegate?.willDisplayLabel?(for: self, label)
-    }
-}
-
-// MARK: Helpers
-
-private extension UICircularProgressRing {
-    /// Called when the animation timer is complete
-    @objc func animationDidComplete(withTimer timer: Timer) {
-        delegate?.didFinishProgress?(for: self)
-        (timer.userInfo as? ProgressCompletion)?()
     }
 }

@@ -59,34 +59,34 @@ class UICircularProgressRingPauseResetTests: XCTestCase {
     }
 
     func testPauseProgress() {
-        //* Test the pauseProgress
-        //Store the current time to compare later on
+        // * Test the pauseProgress
+        // Store the current time to compare later on
         let startTime = CACurrentMediaTime()
         var stopTime: CFTimeInterval?
 
-        //Create a new expectation
+        // Create a new expectation
         let pauseExpectation = self.expectation(description: "Completion after pause")
 
-        //Start a new progress animation
+        // Start a new progress animation
         progressRing.startProgress(to: 100, duration: 0.1, completion: {
-            //Should be called later than the 0.1 duration, this will be checked at the end of this test
+            // Should be called later than the 0.1 duration, this will be checked at the end of this test
             pauseExpectation.fulfill()
             stopTime = CACurrentMediaTime()
         })
 
-        //Pause the animation
+        // Pause the animation
         progressRing.pauseProgress()
 
-        //Sleep for 0.1 second
+        // Sleep for 0.1 second
         usleep(100 * 1000)
 
-        //Restart the animation
+        // Restart the animation
         progressRing.continueProgress()
 
-        //Wait for the excpectation
+        // Wait for the excpectation
         waitForExpectations(timeout: 0.5, handler: nil)
 
-        //Check the time difference between the start and stop times
+        // Check the time difference between the start and stop times
         let difference = stopTime! - startTime
         XCTAssertGreaterThan(difference, 0.2)
     }

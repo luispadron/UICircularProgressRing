@@ -614,7 +614,7 @@ import UIKit
      Luis Padron
      */
     @objc open var isAnimating: Bool {
-        return completionTimer?.isValid ?? false
+        return animationCompletionTimer?.isValid ?? false
     }
 
     /**
@@ -637,8 +637,10 @@ import UIKit
     /// See https://stackoverflow.com/questions/7568567/restoring-animation-where-it-left-off-when-app-resumes-from-background
     var snapshottedAnimation: CAAnimation?
 
-    /// The completion timer, also indicates wether or not the view is animating
-    var completionTimer: Timer?
+    /// The completion timer, also indicates whether or not the view is animating
+    var animationCompletionTimer: Timer?
+
+    typealias AnimationCompletion = () -> Void
 
     // MARK: Layer
 
@@ -663,6 +665,12 @@ import UIKit
      Typealias for animateProperties(duration:animations:completion:) fucntion completion
      */
     public typealias PropertyAnimationCompletion = (() -> Void)
+
+    /// This variable stores how long remains on the timer when it's paused
+    private var pausedTimeRemaining: TimeInterval = 0
+
+    /// Used to determine when the animation was paused
+    private var animationPauseTime: CFTimeInterval?
 
     // MARK: Methods
 
@@ -734,12 +742,12 @@ import UIKit
         ringLayer.backgroundColor = UIColor.clear.cgColor
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(restoreProgress),
+                                               selector: #selector(restoreAnimation),
                                                name: UIApplication.willEnterForegroundNotification,
                                                object: nil)
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(snapshotProgress),
+                                               selector: #selector(snapshotAnimation),
                                                name: UIApplication.willResignActiveNotification,
                                                object: nil)
     }
@@ -758,6 +766,110 @@ import UIKit
     func didUpdateValue(newValue: CGFloat) { }
 
     func willDisplayLabel(label: UILabel) { }
+
+    // MARK: Internal API
+
+    /**
+     These functions are here to allow reuse between subclasses.
+     They handle starting, pausing and resetting an animation of the ring.
+    */
+
+    func startAnimation(to value: CGFloat, duration: TimeInterval, completion: @escaping AnimationCompletion) {
+        if isAnimating {
+            animationPauseTime = nil
+            ringLayer.removeAnimation(forKey: .value)
+        }
+
+        ringLayer.timeOffset = 0
+        ringLayer.beginTime = 0
+        ringLayer.speed = 1
+        ringLayer.animated = duration > 0
+        ringLayer.animationDuration = duration
+
+        // Check if a completion timer is still active and if so stop it
+        animationCompletionTimer?.invalidate()
+        animationCompletionTimer = nil
+
+        // Create a new completion timer
+        animationCompletionTimer = Timer.scheduledTimer(timeInterval: duration,
+                                                        target: self,
+                                                        selector: #selector(self.animationDidComplete),
+                                                        userInfo: completion,
+                                                        repeats: false)
+    }
+
+    func pauseAnimation() {
+        guard isAnimating else {
+            #if DEBUG
+            print("""
+                    UICircularProgressRing: Progress was paused without having been started.
+                    This has no effect but may indicate that you're unnecessarily calling this method.
+                    """)
+            #endif
+            return
+        }
+
+        snapshotAnimation()
+
+        let pauseTime = ringLayer.convertTime(CACurrentMediaTime(), from: nil)
+        animationPauseTime = pauseTime
+
+        ringLayer.speed = 0.0
+        ringLayer.timeOffset = pauseTime
+
+        if let fireTime = animationCompletionTimer?.fireDate {
+            pausedTimeRemaining = fireTime.timeIntervalSince(Date())
+        } else {
+            pausedTimeRemaining = 0
+        }
+
+        animationCompletionTimer?.invalidate()
+        animationCompletionTimer = nil
+    }
+
+    func continueAnimation(completion: @escaping AnimationCompletion) {
+        guard let pauseTime = animationPauseTime else {
+            #if DEBUG
+            print("""
+                    UICircularRing: Progress was continued without having been paused.
+                    This has no effect but may indicate that you're unnecessarily calling this method.
+                    """)
+            #endif
+            return
+        }
+
+        restoreAnimation()
+
+        ringLayer.speed = 1.0
+        ringLayer.timeOffset = 0.0
+        ringLayer.beginTime = 0.0
+
+        let timeSincePause = ringLayer.convertTime(CACurrentMediaTime(), from: nil) - pauseTime
+
+        ringLayer.beginTime = timeSincePause
+
+        animationCompletionTimer = Timer.scheduledTimer(timeInterval: pausedTimeRemaining,
+                                               target: self,
+                                               selector: #selector(animationDidComplete),
+                                               userInfo: completion,
+                                               repeats: false)
+
+        animationPauseTime = nil
+    }
+
+    func resetAnimation() {
+        ringLayer.animated = false
+        ringLayer.removeAnimation(forKey: .value)
+        snapshottedAnimation = nil
+
+        // Stop the timer and thus make the completion method not get fired
+        animationCompletionTimer?.invalidate()
+        animationCompletionTimer = nil
+        animationPauseTime = nil
+
+    }
+
+    // MARK: API
 
     /**
      This function allows animation of the animatable properties of the `UICircularRing`.
@@ -810,7 +922,7 @@ extension UICircularRing {
      ## Author
      Nicolai Cornelis
      */
-    @objc func snapshotProgress() {
+    @objc func snapshotAnimation() {
         guard let animation = ringLayer.animation(forKey: .value) else { return }
         snapshottedAnimation = animation
     }
@@ -824,9 +936,14 @@ extension UICircularRing {
      ## Author
      Nicolai Cornelis
      */
-    @objc func restoreProgress() {
+    @objc func restoreAnimation() {
         guard let animation = snapshottedAnimation else { return }
         ringLayer.add(animation, forKey: AnimationKeys.value.rawValue)
+    }
+
+    /// Called when the animation timer is complete
+    @objc func animationDidComplete(withTimer timer: Timer) {
+        (timer.userInfo as? AnimationCompletion)?()
     }
 }
 
