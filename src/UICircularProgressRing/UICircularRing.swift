@@ -614,7 +614,7 @@ import UIKit
      Luis Padron
      */
     @objc open var isAnimating: Bool {
-        return animationCompletionTimer?.isValid ?? false
+        return ringLayer.animation(forKey: .value) != nil
     }
 
     /**
@@ -632,15 +632,6 @@ import UIKit
             ringLayer.isClockwise = isClockwise
         }
     }
-
-    /// This stores the animation when the timer is paused. We use this variable to continue the animation where it left off.
-    /// See https://stackoverflow.com/questions/7568567/restoring-animation-where-it-left-off-when-app-resumes-from-background
-    var snapshottedAnimation: CAAnimation?
-
-    /// The completion timer, also indicates whether or not the view is animating
-    var animationCompletionTimer: Timer?
-
-    typealias AnimationCompletion = () -> Void
 
     // MARK: Layer
 
@@ -671,6 +662,15 @@ import UIKit
 
     /// Used to determine when the animation was paused
     private var animationPauseTime: CFTimeInterval?
+
+    /// This stores the animation when the timer is paused. We use this variable to continue the animation where it left off.
+    /// See https://stackoverflow.com/questions/7568567/restoring-animation-where-it-left-off-when-app-resumes-from-background
+    var snapshottedAnimation: CAAnimation?
+
+    /// The completion timer, also indicates whether or not the view is animating
+    var animationCompletionTimer: Timer?
+
+    typealias AnimationCompletion = () -> Void
 
     // MARK: Methods
 
@@ -774,10 +774,9 @@ import UIKit
      They handle starting, pausing and resetting an animation of the ring.
     */
 
-    func startAnimation(to value: CGFloat, duration: TimeInterval, completion: @escaping AnimationCompletion) {
+    func startAnimation(duration: TimeInterval, completion: @escaping AnimationCompletion) {
         if isAnimating {
             animationPauseTime = nil
-            ringLayer.removeAnimation(forKey: .value)
         }
 
         ringLayer.timeOffset = 0
@@ -788,9 +787,6 @@ import UIKit
 
         // Check if a completion timer is still active and if so stop it
         animationCompletionTimer?.invalidate()
-        animationCompletionTimer = nil
-
-        // Create a new completion timer
         animationCompletionTimer = Timer.scheduledTimer(timeInterval: duration,
                                                         target: self,
                                                         selector: #selector(self.animationDidComplete),
@@ -848,6 +844,7 @@ import UIKit
 
         ringLayer.beginTime = timeSincePause
 
+        animationCompletionTimer?.invalidate()
         animationCompletionTimer = Timer.scheduledTimer(timeInterval: pausedTimeRemaining,
                                                target: self,
                                                selector: #selector(animationDidComplete),

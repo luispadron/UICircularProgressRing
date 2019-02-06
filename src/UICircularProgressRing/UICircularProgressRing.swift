@@ -262,11 +262,6 @@ final public class UICircularProgressRing: UICircularRing {
      Animation duration = 0 will cause no animation to occur, and value will instantly
      be set.
 
-     Calling this method again while a current progress animation is in progress will **not**
-     cause the animation to be restarted. The old animation will be removed (calling the completion and delegate)
-     and a new animation will start from where the old one left off at. If you wish to instead reset an animation
-     consider `resetProgress`.
-
      ## Author
      Luis Padron
      */
@@ -275,7 +270,7 @@ final public class UICircularProgressRing: UICircularRing {
         self.completion = completion
 
         // call super class helper function to begin animating layer
-        startAnimation(to: value, duration: duration) {
+        startAnimation(duration: duration) {
             self.delegate?.didFinishProgress?(for: self)
             self.completion?()
         }
