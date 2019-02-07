@@ -141,74 +141,6 @@ final public class UICircularProgressRing: UICircularRing {
     }
 
     /**
-     The name of the value indicator the value label will
-     appened to the value
-     Example: " GB" -> "100 GB"
-
-     ## Important ##
-     Default = "%"
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var valueIndicator: String = "%" {
-        didSet {
-            ringLayer.valueIndicator = valueIndicator
-        }
-    }
-
-    /**
-     A toggle for either placing the value indicator right or left to the value
-     Example: true -> "GB 100" (instead of 100 GB)
-
-     ## Important ##
-     Default = false (place value indicator to the right)
-
-     ## Author
-     Elad Hayun
-     */
-    @IBInspectable public var rightToLeft: Bool = false {
-        didSet {
-            ringLayer.rightToLeft = rightToLeft
-        }
-    }
-
-    /**
-     A toggle for showing or hiding floating points from
-     the value in the value label
-
-     ## Important ##
-     Default = false (dont show)
-
-     To customize number of decmial places to show, assign a value to decimalPlaces.
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var showFloatingPoint: Bool = false {
-        didSet {
-            ringLayer.showFloatingPoint = showFloatingPoint
-        }
-    }
-
-    /**
-     The amount of decimal places to show in the value label
-
-     ## Important ##
-     Default = 2
-
-     Only used when showFloatingPoint = true
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var decimalPlaces: Int = 2 {
-        didSet {
-            ringLayer.decimalPlaces = decimalPlaces
-        }
-    }
-
-    /**
      The type of animation function the ring view will use
 
      ## Important ##
@@ -222,6 +154,16 @@ final public class UICircularProgressRing: UICircularRing {
             ringLayer.animationTimingFunction = animationTimingFunction
         }
     }
+
+    /**
+     The formatter responsible for formatting the
+     value of the progress ring into a readable text string
+     which is then displayed in the label of the ring.
+
+     ## Author
+     Luis Padron
+     */
+    public let valueFormatter = UICircularProgressRingFormatter()
 
     /**
      A toggle for showing or hiding the value label.
@@ -335,10 +277,8 @@ final public class UICircularProgressRing: UICircularRing {
         ringLayer.value = value
         ringLayer.maxValue = maxValue
         ringLayer.minValue = minValue
-        ringLayer.valueIndicator = valueIndicator
-        ringLayer.showFloatingPoint = showFloatingPoint
-        ringLayer.decimalPlaces = decimalPlaces
         ringLayer.shouldShowValueText = shouldShowValueText
+        ringLayer.valueFormatter = valueFormatter
     }
 
     override func didUpdateValue(newValue: CGFloat) {

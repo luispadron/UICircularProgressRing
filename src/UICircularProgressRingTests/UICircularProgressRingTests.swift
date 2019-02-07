@@ -176,17 +176,14 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.font, UIFont.italicSystemFont(ofSize: 12.0))
         XCTAssertEqual(progressRing.ringLayer.font, UIFont.italicSystemFont(ofSize: 12.0))
 
-        progressRing.valueIndicator = " GB"
-        XCTAssertEqual(progressRing.valueIndicator, " GB")
-        XCTAssertEqual(progressRing.ringLayer.valueIndicator, " GB")
+        progressRing.valueFormatter.valueIndicator = " GB"
+        XCTAssertEqual(progressRing.valueFormatter.valueIndicator, " GB")
 
-        progressRing.showFloatingPoint = true
-        XCTAssertEqual(progressRing.showFloatingPoint, true)
-        XCTAssertEqual(progressRing.ringLayer.showFloatingPoint, true)
+        progressRing.valueFormatter.showFloatingPoint = true
+        XCTAssertEqual(progressRing.valueFormatter.showFloatingPoint, true)
 
-        progressRing.decimalPlaces = 1
-        XCTAssertEqual(progressRing.decimalPlaces, 1)
-        XCTAssertEqual(progressRing.ringLayer.decimalPlaces, 1)
+        progressRing.valueFormatter.decimalPlaces = 1
+        XCTAssertEqual(progressRing.valueFormatter.decimalPlaces, 1)
 
         progressRing.animationTimingFunction = .linear
         XCTAssertEqual(progressRing.animationTimingFunction, .linear)

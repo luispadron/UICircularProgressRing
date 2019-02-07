@@ -78,29 +78,30 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged var shouldShowValueText: Bool
     @NSManaged var fontColor: UIColor
     @NSManaged var font: UIFont
-    @NSManaged var valueIndicator: String
-    @NSManaged var rightToLeft: Bool
-    @NSManaged var showFloatingPoint: Bool
-    @NSManaged var decimalPlaces: Int
     @NSManaged var isClockwise: Bool
+
+    /// the formatter used when formatting the value into the label text
+    @NSManaged var valueFormatter: UICircularRingValueFormatter
+
+    /// the de
+    @NSManaged weak var valueDelegate: UICircularRing?
 
     var animationDuration: TimeInterval = 1.0
     var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
     var animated = false
-    @NSManaged weak var valueDelegate: UICircularRing?
 
-    // The value label which draws the text for the current value
+    /// the value label which draws the text for the current value
     lazy var valueLabel: UILabel = UILabel(frame: .zero)
 
     // MARK: Animatable properties
 
-    // Whether or not animatable properties should be animated when changed
+    /// whether or not animatable properties should be animated when changed
     var shouldAnimateProperties: Bool = false
 
-    // The animation duration for a animatable property animation
+    /// the animation duration for a animatable property animation
     var propertyAnimationDuration: TimeInterval = 0.0
 
-    // The properties which are animatable
+    /// the properties which are animatable
     static let animatableProperties: [String] = ["innerRingWidth", "innerRingColor",
                                                          "outerRingWidth", "outerRingColor",
                                                          "fontColor", "innerRingSpacing"]
@@ -379,44 +380,13 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = font
         valueLabel.textAlignment = .center
         valueLabel.textColor = fontColor
-
-        updateValueLabel(withValue: value,
-                         valueIndicator: valueIndicator,
-                         rightToLeft: rightToLeft,
-                         showsDecimal: showFloatingPoint,
-                         decimalPlaces: decimalPlaces,
-                         valueDelegate: valueDelegate)
+        valueLabel.text = valueFormatter.string(forValue: value)
+        valueDelegate?.willDisplayLabel(label: valueLabel)
+        valueLabel.sizeToFit()
 
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
 
         valueLabel.drawText(in: bounds)
-    }
-
-    /**
-     This function is called whenever the value label's text property should be updated.
-     By default this sets thte text to be the current value of the layer (with some formatting).
-     It also calls the value delegate.
-     */
-    // swiftlint:disable function_parameter_count next_line
-    func updateValueLabel(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                          showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularRing?) {
-        if rightToLeft {
-            if showsDecimal {
-                valueLabel.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            } else {
-                valueLabel.text = "\(valueIndicator)\(Int(value))"
-            }
-
-        } else {
-            if showsDecimal {
-                valueLabel.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            } else {
-                valueLabel.text = "\(Int(value))\(valueIndicator)"
-            }
-        }
-
-        valueDelegate?.willDisplayLabel(label: valueLabel)
-        valueLabel.sizeToFit()
     }
 }
