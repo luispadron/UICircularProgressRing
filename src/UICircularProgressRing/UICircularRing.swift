@@ -89,7 +89,7 @@ import UIKit
         didSet {
             switch style {
             case .bordered: break
-            default: outerRingWidth = 0
+            default: outerBorderWidth = 0
             }
             ringLayer.setNeedsDisplay()
         }

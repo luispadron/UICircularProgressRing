@@ -294,8 +294,8 @@ class UICircularRingLayer: CAShapeLayer {
 
         switch ring.style {
         case .inside, .gradient:
-            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + (knobSize / 2)
-            let offSet = ring.innerRingWidth / 2 + (knobSize / 2)
+            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + knobSize * 0.75
+            let offSet = ring.innerRingWidth / 2 + knobSize * 0.75
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
         case .bordered:
             let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4) + (ring.outerBorderWidth * 2)
