@@ -113,11 +113,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var minValue: CGFloat = 0.0 {
-        didSet {
-            ringLayer.minValue = abs(minValue)
-        }
-    }
+    @IBInspectable public var minValue: CGFloat = 0.0
 
     /**
      The maximum value for the progress ring. ex: 0 -> (100)
@@ -134,11 +130,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var maxValue: CGFloat = 100.0 {
-        didSet {
-            ringLayer.maxValue = abs(maxValue)
-        }
-    }
+    @IBInspectable public var maxValue: CGFloat = 100.0
 
     /**
      The type of animation function the ring view will use
@@ -150,9 +142,7 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     @objc public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
-        didSet {
-            ringLayer.animationTimingFunction = animationTimingFunction
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -163,22 +153,8 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public let valueFormatter = UICircularProgressRingFormatter()
-
-    /**
-     A toggle for showing or hiding the value label.
-     If false the current value will not be shown.
-
-     ## Important ##
-     Default = true
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var shouldShowValueText: Bool = true {
-        didSet {
-            ringLayer.shouldShowValueText = shouldShowValueText
-        }
+    public var valueFormatter = UICircularProgressRingFormatter() {
+        didSet { ringLayer.valueFormatter = valueFormatter }
     }
 
     /**
@@ -274,10 +250,10 @@ final public class UICircularProgressRing: UICircularRing {
 
     override func initialize() {
         super.initialize()
+        ringLayer.ring = self
         ringLayer.value = value
         ringLayer.maxValue = maxValue
         ringLayer.minValue = minValue
-        ringLayer.shouldShowValueText = shouldShowValueText
         ringLayer.valueFormatter = valueFormatter
     }
 

@@ -31,7 +31,9 @@ final public class UICircularTimerRing: UICircularRing {
     /**
      The formatter used when formatting the value into a string for the ring.
      */
-    public let valueFormatter = UICircularTimerRingFormatter()
+    public var valueFormatter = UICircularTimerRingFormatter() {
+        didSet { ringLayer.valueFormatter = valueFormatter }
+    }
 
     /**
      The handler for the timer.
@@ -109,11 +111,10 @@ final public class UICircularTimerRing: UICircularRing {
     /// initialize with some defaults relevant to this timer ring
     override func initialize() {
         super.initialize()
+        ringLayer.ring = self
         ringLayer.minValue = 0
         ringLayer.value = 0
         ringLayer.maxValue = time.float
-        ringLayer.shouldShowValueText = true
-        ringLayer.animationTimingFunction = .linear
         ringLayer.valueFormatter = valueFormatter
     }
 }

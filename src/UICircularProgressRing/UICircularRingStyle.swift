@@ -23,6 +23,10 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import UIKit.UIColor
+
+// MARK: UICircularRingStyle
+
 /**
  
  # UICircularRingStyle
@@ -46,4 +50,40 @@
     case gradient = 5
     /// Inner ring is placed ontop of the outer ring and outer ring has border
     case bordered = 6
+}
+
+// MARK: UICircularRingValueKnobStyle
+
+/**
+
+ # UICircularRingValueKnobStyle
+
+ Struct for setting the style of the value knob
+
+ ## Author
+ Luis Padron
+
+ */
+public struct UICircularRingValueKnobStyle {
+
+    /// default implmementation of the knob style
+    public static let `default` = UICircularRingValueKnobStyle(size: 15.0, color: .lightGray)
+
+    public let size: CGFloat
+    public let color: UIColor
+    public let shadowBlur: CGFloat
+    public let shadowOffset: CGSize
+    public let shadowColor: UIColor
+
+    public init(size: CGFloat,
+                color: UIColor,
+                shadowBlur: CGFloat = 2.0,
+                shadowOffset: CGSize = .zero,
+                shadowColor: UIColor = UIColor.black.withAlphaComponent(0.8)) {
+        self.size = size
+        self.color = color
+        self.shadowBlur = shadowBlur
+        self.shadowOffset = shadowOffset
+        self.shadowColor = shadowColor
+    }
 }
