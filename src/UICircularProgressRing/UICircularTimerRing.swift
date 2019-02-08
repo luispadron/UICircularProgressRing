@@ -33,7 +33,7 @@ final public class UICircularTimerRing: UICircularRing {
 
      Default formatter is of type `UICircularTimerRingFormatter`.
      */
-    public var valueFormatter: UICircularRingValueFormatter = UICircularTimerRingFormatter() {
+    public var valueFormatter = UICircularTimerRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 

@@ -113,7 +113,9 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var minValue: CGFloat = 0.0
+    @IBInspectable public var minValue: CGFloat = 0.0 {
+        didSet { ringLayer.minValue = minValue }
+    }
 
     /**
      The maximum value for the progress ring. ex: 0 -> (100)
@@ -130,7 +132,9 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @IBInspectable public var maxValue: CGFloat = 100.0
+    @IBInspectable public var maxValue: CGFloat = 100.0 {
+        didSet { ringLayer.maxValue = maxValue }
+    }
 
     /**
      The type of animation function the ring view will use
@@ -142,7 +146,7 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
-        didSet { ringLayer.setNeedsDisplay() }
+        didSet { ringLayer.animationTimingFunction = animationTimingFunction }
     }
 
     /**
@@ -155,7 +159,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public var valueFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter() {
+    public var valueFormatter = UICircularProgressRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 
