@@ -16,6 +16,9 @@ import Foundation
  The base class for all the UICircularRing formatters.
  Subclasses should implement `string(forValue:)` as this is used
  to format the value into a string in the base class
+
+ Two concrete implementations are provided, refer to `UICircularTimerRingFormatter`
+ and `UICircularProgressRingFormatter`
  */
 open class UICircularRingValueFormatter: Formatter {
     /// returns result of `string(forValue:)`
@@ -68,6 +71,7 @@ final public class UICircularTimerRingFormatter: UICircularRingValueFormatter {
 
     // MARK: API
 
+    /// formats the value of the ring using the date components formatter with given units/style
     public override func string(forValue value: CGFloat) -> String? {
         return formatter.string(from: value.interval)
     }
@@ -137,6 +141,7 @@ final public class UICircularProgressRingFormatter: UICircularRingValueFormatter
      */
     public var decimalPlaces: Int = 2
 
+    /// formats the value of the progress ring using the given properties
     public override func string(forValue value: CGFloat) -> String? {
         if rightToLeft {
             if showFloatingPoint {

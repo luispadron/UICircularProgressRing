@@ -41,7 +41,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public weak var delegate: UICircularProgressRingDelegate?
+    public weak var delegate: UICircularProgressRingDelegate?
 
     /**
      The value property for the progress ring.
@@ -141,7 +141,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
+    public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -183,13 +183,13 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
+    public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
         // Store the completion event locally
         self.completion = completion
 
         // call super class helper function to begin animating layer
         startAnimation(duration: duration) {
-            self.delegate?.didFinishProgress?(for: self)
+            self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }
 
@@ -207,10 +207,10 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron & Nicolai Cornelis
      */
-    @objc public func pauseProgress() {
+    public func pauseProgress() {
         // call super class helper to stop layer animation
         pauseAnimation()
-        delegate?.didPauseProgress?(for: self)
+        delegate?.didPauseProgress(for: self)
     }
 
     /**
@@ -221,14 +221,14 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron & Nicolai Cornelis
      */
-    @objc public func continueProgress() {
+    public func continueProgress() {
         // call super class helper to continue layer animation
         continueAnimation {
-            self.delegate?.didFinishProgress?(for: self)
+            self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }
 
-        delegate?.didContinueProgress?(for: self)
+        delegate?.didContinueProgress(for: self)
     }
 
     /**
@@ -238,7 +238,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public func resetProgress() {
+    public func resetProgress() {
         // call super class helper to reset animation layer
         resetAnimation()
         value = minValue
@@ -259,11 +259,11 @@ final public class UICircularProgressRing: UICircularRing {
 
     override func didUpdateValue(newValue: CGFloat) {
         super.didUpdateValue(newValue: newValue)
-        delegate?.didUpdateProgressValue?(for: self, to: newValue)
+        delegate?.didUpdateProgressValue(for: self, to: newValue)
     }
 
     override func willDisplayLabel(label: UILabel) {
         super.willDisplayLabel(label: label)
-        delegate?.willDisplayLabel?(for: self, label)
+        delegate?.willDisplayLabel(for: self, label)
     }
 }

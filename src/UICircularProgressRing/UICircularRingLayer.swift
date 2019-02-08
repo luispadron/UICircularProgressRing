@@ -188,16 +188,16 @@ class UICircularRingLayer: CAShapeLayer {
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
 
-        if ring.ringStyle == .gradient && ring.gradientColors.count > 1 {
+        if case let UICircularRingStyle.gradient(options) = ring.ringStyle {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
-            for color: UIColor in ring.gradientColors {
+            for color: UIColor in options.colors {
                 cgColors.append(color.cgColor)
             }
 
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: ring.gradientColorLocations)
+                                                        locations: options.colorLocations)
             else {
                 fatalError("\nUnable to create gradient for progress ring.\n" +
                     "Check values of gradientColors and gradientLocations.\n")
@@ -208,8 +208,10 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.replacePathWithStrokedPath()
             ctx.clip()
 
-            drawGradient(gradient, start: ring.gradientStartPosition,
-                         end: ring.gradientEndPosition, in: ctx)
+            drawGradient(gradient,
+                         start: options.startPosition,
+                         end: options.endPosition,
+                         in: ctx)
 
             ctx.restoreGState()
         }
@@ -224,8 +226,8 @@ class UICircularRingLayer: CAShapeLayer {
     /// Updates the outer ring path depending on the ring's style
     private func updateOuterRingPath(_ path: UIBezierPath, radius: CGFloat, style: UICircularRingStyle) {
         switch style {
-        case .dashed:
-            path.setLineDash(ring.patternForDashes, count: ring.patternForDashes.count, phase: 0.0)
+        case .dashed(let pattern):
+            path.setLineDash(pattern, count: pattern.count, phase: 0.0)
 
         case .dotted:
             path.setLineDash([0, path.lineWidth * 2], count: 2, phase: 0)

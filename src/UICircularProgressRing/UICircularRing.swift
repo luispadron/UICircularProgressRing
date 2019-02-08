@@ -73,37 +73,6 @@ import UIKit
     // MARK: View Style
 
     /**
-     Variable for the style of the progress ring.
-     
-     Range: [1,5]
-     
-     The four styles are
-     
-     - 1: Radius of the inner ring is smaller (inner ring inside outer ring)
-     - 2: Radius of inner ring is equal to outer ring (both at same location)
-     - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
-     - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
-     - 5: Radius of inner ring is equal to outer ring, and inner ring has gradient
-     
-     ## Important ##
-     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
-     The reason for this is IB has no support for enumerations as of yet
-     
-     
-     ## Author
-     Luis Padron
-     */
-    @available(*, unavailable,
-    message: "This property is reserved for Interface Builder, use 'ringStyle' instead")
-    @IBInspectable open var ibRingStyle: Int = 1 {
-        willSet {
-            let style = UICircularRingStyle(rawValue: newValue)
-            ringStyle = style ?? .inside
-        }
-    }
-
-    /**
      The style of the progress ring.
      
      Type: `UICircularRingStyle`
@@ -116,10 +85,11 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var ringStyle: UICircularRingStyle = .inside {
+    open var ringStyle: UICircularRingStyle = .inside {
         didSet {
-            if ringStyle != .bordered {
-                outerBorderWidth = 0
+            switch ringStyle {
+            case .bordered: break
+            default: outerRingWidth = 0
             }
             ringLayer.setNeedsDisplay()
         }
@@ -147,19 +117,6 @@ import UIKit
 
     */
     open var valueKnobStyle: UICircularRingValueKnobStyle? {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     An array of CGFloats, used to calculate the dash length for viewStyle = 3
-     
-     ## Important ##
-     Default = [7.0, 7.0]
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var patternForDashes: [CGFloat] = [7.0, 7.0] {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -196,78 +153,6 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var endAngle: CGFloat = 360 {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The colors which will be used to create the gradient.
-     
-     Only used when `ringStyle` is `.gradient`
-     
-     The colors should be in the order they will be drawn in.
-     
-     ## Important ##
-     By default this property will be an empty array.
-     
-     If this array is empty, no gradient will be drawn.
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientColors: [UIColor] = [UIColor]() {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The location for each color provided in `gradientColors`; each location must be
-     a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
-     locations array, Quartz uses the colors provided that are closest to 0 and 1 for
-     those locations.
-     
-     If locations is nil, the first color in `gradientColors` is assigned to location 0,
-     the last color in `gradientColors` is assigned to location 1, and intervening
-     colors are assigned locations that are at equal intervals in between.
-     
-     The locations array should contain the same number of items as the `gradientColors`
-     array.
-     
-     ## Important ##
-     By default this property will be nil
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientColorLocations: [CGFloat]? = nil {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The start location for the gradient.
-     This property determines where the gradient will begin to draw,
-     for all possible values see `UICircularProgressRingGradientPosition`.
-     
-     ## Important ##
-     By default this property is `.topRight`
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientStartPosition: UICircularRingGradientPosition = .topRight {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The end location for the gradient.
-     This property determines where the gradient will end drawing,
-     for all possible values see `UICircularProgressRingGradientPosition`.
-     
-     ## Important ##
-     By default this property is `.bottomLeft`
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientEndPosition: UICircularRingGradientPosition = .bottomLeft {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -338,7 +223,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var outerCapStyle: CGLineCap = .butt {
+    open var outerCapStyle: CGLineCap = .butt {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -396,7 +281,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var innerCapStyle: CGLineCap = .round {
+    open var innerCapStyle: CGLineCap = .round {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -442,7 +327,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var isAnimating: Bool {
+    open var isAnimating: Bool {
         return ringLayer.animation(forKey: .value) != nil
     }
 
@@ -669,7 +554,7 @@ import UIKit
      
      The completion block is called when all animations finish.
      */
-    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void) {
+    open func animateProperties(duration: TimeInterval, animations: () -> Void) {
         animateProperties(duration: duration, animations: animations, completion: nil)
     }
 
@@ -682,7 +567,7 @@ import UIKit
      
      The completion block is called when all animations finish.
      */
-    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void,
+    open func animateProperties(duration: TimeInterval, animations: () -> Void,
                                       completion: PropertyAnimationCompletion? = nil) {
         ringLayer.shouldAnimateProperties = true
         ringLayer.propertyAnimationDuration = duration
