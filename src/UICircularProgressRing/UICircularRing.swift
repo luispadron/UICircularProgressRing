@@ -85,9 +85,9 @@ import UIKit
      ## Author
      Luis Padron
      */
-    open var ringStyle: UICircularRingStyle = .inside {
+    open var style: UICircularRingStyle = .inside {
         didSet {
-            switch ringStyle {
+            switch style {
             case .bordered: break
             default: outerRingWidth = 0
             }

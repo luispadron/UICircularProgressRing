@@ -155,7 +155,7 @@ class UICircularRingLayer: CAShapeLayer {
         outerPath.lineWidth = ring.outerRingWidth
         outerPath.lineCapStyle = ring.outerCapStyle
         // Update path depending on style of the ring
-        updateOuterRingPath(outerPath, radius: outerRadius, style: ring.ringStyle)
+        updateOuterRingPath(outerPath, radius: outerRadius, style: ring.style)
 
         ring.outerRingColor.setStroke()
         outerPath.stroke()
@@ -188,7 +188,7 @@ class UICircularRingLayer: CAShapeLayer {
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
 
-        if case let UICircularRingStyle.gradient(options) = ring.ringStyle {
+        if case let UICircularRingStyle.gradient(options) = ring.style {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
             for color: UIColor in options.colors {
@@ -290,18 +290,18 @@ class UICircularRingLayer: CAShapeLayer {
         // this way it looks like its inside the circle
         let radiusIn: CGFloat
 
-        switch ring.ringStyle {
-        case .inside:
-            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + (ring.valueKnobStyle?.size ?? 0) / 2
-            let offSet = ring.innerRingWidth / 2 + (ring.valueKnobStyle?.size ?? 0) / 2
+        let knobSize = ring.valueKnobStyle?.size ?? 0
+
+        switch ring.style {
+        case .inside, .gradient:
+            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + (knobSize / 2)
+            let offSet = ring.innerRingWidth / 2 + (knobSize / 2)
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
         case .bordered:
-            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2)
-                            + ((ring.valueKnobStyle?.size ?? 0) / 4)
-                            + (ring.outerBorderWidth * 2)
+            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4) + (ring.outerBorderWidth * 2)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
         default:
-            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + ((ring.valueKnobStyle?.size ?? 0) / 4)
+            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
         }
 
