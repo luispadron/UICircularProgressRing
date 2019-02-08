@@ -1,6 +1,5 @@
 <p align="center">
 	<img src="https://img.shields.io/github/license/luispadron/UICircularProgressRing.svg">
-	<img src="https://img.shields.io/cocoapods/dt/UICircularProgressRing.svg">
 	<img src="https://travis-ci.org/luispadron/UICircularProgressRing.svg?branch=master">
 	<img src="https://img.shields.io/github/issues/luispadron/UICircularProgressRing.svg">
 </p>
@@ -39,6 +38,8 @@
 
 ## Installation
 
+*NOTE: Objective-C support: Support for Objective-C has been dropped in version 5.0.0, use version 4 or lower if you are using Objective-C.*
+
 ### CocoaPods (Recommended)
 
 1. Install [CocoaPods](https://cocoapods.org)
@@ -73,6 +74,7 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ## Usage
 
+
 ### Interface Builder
 
 Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRing` and that the module points to `UICircularProgressRing`.
@@ -89,7 +91,7 @@ override func viewDidLoad() {
   let progressRing = UICircularProgressRing()
   // Change any of the properties you'd like
   progressRing.maxValue = 50
-  progressRing.innerRingColor = UIColor.blue
+  progressRing.style = .dashed(pattern: [7.0, 7.0])
   // etc ...
 }
 ```
@@ -141,7 +143,7 @@ timerRing.resetTimer() // resets and cancels animations previously running
 
 ## Documentation
 
-Please read this before creating an issue about how to use the package:
+Please **read** this before creating an issue about how to use the library:
 
 [DOCUMENTATION](https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRing.html)
 
