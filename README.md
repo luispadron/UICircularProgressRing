@@ -49,7 +49,7 @@
 	target 'Example' do
 	    # IMPORTANT: Make sure use_frameworks! is included at the top of the file
 	    use_frameworks!
-	
+
 	    pod 'UICircularProgressRing'
 	end
 	```
@@ -126,12 +126,15 @@ Animate and set time
 
 ```swift
 						// seconds
-timerRing.startTimer(to: 60) { finished, elapsedTime in
-	if finished {
-		// finished timer!
-	} else {
-		// paused timer, access current time using elapsedTime
-	}
+timerRing.startTimer(to: 60) { state in
+    switch state {
+    case .finished:
+        print("finished")
+    case .continued(let time):
+        print("continued: \(time)")
+    case .paused(let time):
+        print("paused: \(time)")
+    }
 }
 
 timerRing.pauseTimer() // pauses the timer

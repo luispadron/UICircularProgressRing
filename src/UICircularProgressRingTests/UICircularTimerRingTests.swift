@@ -20,9 +20,13 @@ class UICircularTimerRingTests: XCTestCase {
     func testStartTimer() {
         let normalExpectation = self.expectation(description: "Completion on start")
 
-        timerRing.startTimer(to: 0.1) { (finished, _) in
-            XCTAssertTrue(finished)
-            normalExpectation.fulfill()
+        timerRing.startTimer(to: 0.1) { state in
+            switch state {
+            case .finished:
+                normalExpectation.fulfill()
+            default:
+                XCTFail()
+            }
         }
 
         waitForExpectations(timeout: 0.5, handler: nil)
@@ -31,9 +35,13 @@ class UICircularTimerRingTests: XCTestCase {
     func testPauseTimer() {
         let pauseExpectation = self.expectation(description: "pauses and gives elapsed time")
 
-        timerRing.startTimer(to: 0.2) { (finished, elapsedTime) in
-            XCTAssertFalse(finished)
-            pauseExpectation.fulfill()
+        timerRing.startTimer(to: 0.2) { state in
+            switch state {
+            case .finished, .continued:
+                XCTFail()
+            case .paused:
+                pauseExpectation.fulfill()
+            }
         }
 
         // wait 0.1 seconds
@@ -50,11 +58,11 @@ class UICircularTimerRingTests: XCTestCase {
 
         var expectedFinish = false
 
-        timerRing.startTimer(to: 0.3) { (finished, elapsedTime) in
-            print("finished: \(finished)")
-            XCTAssertEqual(expectedFinish, finished)
-            if expectedFinish {
-                continueExpectation.fulfill()
+        timerRing.startTimer(to: 0.3) { state in
+            switch state {
+            case .finished:
+                if expectedFinish { continueExpectation.fulfill() }
+            default: break
             }
         }
 

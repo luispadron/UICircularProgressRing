@@ -1,3 +1,11 @@
+# Version 5.1.0
+
+*wow bug fixes already?*
+
+- Fixed issue with timing function for timer ring not being set properly
+- Rethink how the timer handler notifies about state, checkout `UICircularTimerRing.State`
+
+
 # Version 5.0.0
 
 #### Major changes

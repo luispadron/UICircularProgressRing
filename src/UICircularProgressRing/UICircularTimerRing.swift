@@ -44,7 +44,7 @@ final public class UICircularTimerRing: UICircularRing {
      If the timer is paused handler will be called with (false, elapsedTime)
      Otherwise the handler will be called with (true, finalTime)
      */
-    public typealias TimerHandler = (Bool, TimeInterval?) -> Void
+    public typealias TimerHandler = (State) -> Void
 
     // MARK: Private Members
 
@@ -72,7 +72,7 @@ final public class UICircularTimerRing: UICircularRing {
      */
     public func startTimer(to time: TimeInterval, handler: TimerHandler?) {
         startAnimation(duration: time) {
-            self.timerHandler?(true, self.time)
+            self.timerHandler?(.finished)
         }
 
         self.time = time
@@ -85,7 +85,7 @@ final public class UICircularTimerRing: UICircularRing {
      Handler will be called with (false, elapsedTime)
      */
     public func pauseTimer() {
-        timerHandler?(false, self.elapsedTime)
+        timerHandler?(.paused(elpasedTime: elapsedTime))
         pauseAnimation()
     }
 
@@ -93,8 +93,9 @@ final public class UICircularTimerRing: UICircularRing {
      Continues the timer from a previously paused time.
      */
     public func continueTimer() {
+        self.timerHandler?(.continued(elapsedTime: elapsedTime))
         continueAnimation {
-            self.timerHandler?(true, self.time)
+            self.timerHandler?(.finished)
         }
     }
 
@@ -118,5 +119,22 @@ final public class UICircularTimerRing: UICircularRing {
         ringLayer.value = 0
         ringLayer.maxValue = time.float
         ringLayer.valueFormatter = valueFormatter
+        ringLayer.animationTimingFunction = .linear
+    }
+}
+
+// MARK: UICircularTimerRing.State
+
+public extension UICircularTimerRing {
+    /// state of the timer ring, used in handler
+    enum State {
+        /// the timer has finished
+        case finished
+
+        /// the timer was continued called `continueTimer`
+        case continued(elapsedTime: TimeInterval?)
+
+        /// the timer was paused called `pauseTimer`
+        case paused(elpasedTime: TimeInterval?)
     }
 }
