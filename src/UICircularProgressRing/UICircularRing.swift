@@ -30,18 +30,14 @@ import UIKit
  # UICircularRing
 
  This is the base class of `UICircularProgressRing` and `UICircularTimerRing`.
+ You should not instantiate this class, instead use one of the concrete classes provided
+ or subclass and make your own.
 
  This is the UIView subclass that creates and handles everything
  to do with the circular ring.
  
- This class has a custom CAShapeLayer (UICircularRingLayer) which
+ This class has a custom CAShapeLayer (`UICircularRingLayer`) which
  handels the drawing and animating of the view
- 
- The properties in this class correspond with the
- properties in UICircularRingLayer.
- When they are set in here, they are also set for the layer and drawn accordingly
- 
- Read the docs for what each property does and what can be customized.
  
  ## Author
  Luis Padron
@@ -86,13 +82,7 @@ import UIKit
      Luis Padron
      */
     open var style: UICircularRingStyle = .inside {
-        didSet {
-            switch style {
-            case .bordered: break
-            default: outerBorderWidth = 0
-            }
-            ringLayer.setNeedsDisplay()
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -181,32 +171,6 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The color for the outer ring border
-     
-     ## Important ##
-     Default = UIColor.gray
-     
-     ## Author
-     Abdulla Allaith
-     */
-    @IBInspectable open var outerBorderColor: UIColor = UIColor.gray {
-        didSet { ringLayer.setNeedsDisplay() }
-    }
-
-    /**
-     The width for the outer ring border
-     
-     ## Important ##
-     Default = 2
-     
-     ## Author
-     Abdulla Allaith
-     */
-    @IBInspectable open var outerBorderWidth: CGFloat = 2 {
         didSet { ringLayer.setNeedsDisplay() }
     }
 
@@ -436,15 +400,18 @@ import UIKit
         super.draw(rect)
     }
 
+    // MARK: Internal API
+
     /**
-     Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
-     the `newValue` so that it notifies any delegates who may need to know about value updates in real time
+     These methods are called from the layer class in order to notify
+     this class about changes to the value and label display.
+
+     In this base class they do nothing.
      */
+
     func didUpdateValue(newValue: CGFloat) { }
 
     func willDisplayLabel(label: UILabel) { }
-
-    // MARK: Internal API
 
     /**
      These functions are here to allow reuse between subclasses.
@@ -568,7 +535,7 @@ import UIKit
      The completion block is called when all animations finish.
      */
     open func animateProperties(duration: TimeInterval, animations: () -> Void,
-                                      completion: PropertyAnimationCompletion? = nil) {
+                                completion: PropertyAnimationCompletion? = nil) {
         ringLayer.shouldAnimateProperties = true
         ringLayer.propertyAnimationDuration = duration
         CATransaction.begin()

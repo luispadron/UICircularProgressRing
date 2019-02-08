@@ -30,8 +30,10 @@ final public class UICircularTimerRing: UICircularRing {
 
     /**
      The formatter used when formatting the value into a string for the ring.
+
+     Default formatter is of type `UICircularTimerRingFormatter`.
      */
-    public var valueFormatter = UICircularTimerRingFormatter() {
+    public var valueFormatter: UICircularRingValueFormatter = UICircularTimerRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 

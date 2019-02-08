@@ -150,10 +150,12 @@ final public class UICircularProgressRing: UICircularRing {
      value of the progress ring into a readable text string
      which is then displayed in the label of the ring.
 
+     Default formatter is of type `UICircularProgressRingFormatter`.
+
      ## Author
      Luis Padron
      */
-    public var valueFormatter = UICircularProgressRingFormatter() {
+    public var valueFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 

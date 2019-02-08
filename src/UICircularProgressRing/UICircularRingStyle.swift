@@ -54,7 +54,7 @@ public enum UICircularRingStyle {
     case gradient(options: UICircularGradientOptions)
 
     /// inner ring is placed ontop of the outer ring and outer ring has border
-    case bordered
+    case bordered(width: CGFloat, color: UIColor)
 }
 
 // MARK: UICircularRingValueKnobStyle
