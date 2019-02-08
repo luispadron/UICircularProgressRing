@@ -35,10 +35,19 @@
                 <a href="Classes/UICircularProgressRing.html">UICircularProgressRing</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/UICircularProgressRingFormatter.html">UICircularProgressRingFormatter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/UICircularRing.html">UICircularRing</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/UICircularTimerRing.html">UICircularTimerRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/UICircularTimerRingFormatter.html">UICircularTimerRingFormatter</a>
               </li>
             </ul>
           </li>
@@ -58,6 +67,17 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/UICircularGradientOptions.html">UICircularGradientOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/UICircularRingValueKnobStyle.html">UICircularRingValueKnobStyle</a>
               </li>
             </ul>
           </li>
@@ -120,19 +140,15 @@
                       <div class="abstract">
                         <h1 id='uicircularring' class='heading'>UICircularRing</h1>
 
-<p>This is the base class of <code><a href="Classes/UICircularProgressRing.html">UICircularProgressRing</a></code> and <code><a href="Classes/UICircularTimerRing.html">UICircularTimerRing</a></code>.</p>
+<p>This is the base class of <code><a href="Classes/UICircularProgressRing.html">UICircularProgressRing</a></code> and <code><a href="Classes/UICircularTimerRing.html">UICircularTimerRing</a></code>.
+You should not instantiate this class, instead use one of the concrete classes provided
+or subclass and make your own.</p>
 
 <p>This is the UIView subclass that creates and handles everything
 to do with the circular ring.</p>
 
-<p>This class has a custom CAShapeLayer (UICircularRingLayer) which
+<p>This class has a custom CAShapeLayer (<code>UICircularRingLayer</code>) which
 handels the drawing and animating of the view</p>
-
-<p>The properties in this class correspond with the
-properties in UICircularRingLayer.
-When they are set in here, they are also set for the layer and drawn accordingly</p>
-
-<p>Read the docs for what each property does and what can be customized.</p>
 <h2 id='author' class='heading'>Author</h2>
 
 <p>Luis Padron</p>
@@ -145,6 +161,136 @@ When they are set in here, they are also set for the layer and drawn accordingly
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@IBDesignable</span>
 <span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICircularRing</span> <span class="p">:</span> <span class="kt">UIView</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UICircularRingValueFormatter"></a>
+                <a name="//apple_ref/swift/Section/UICircularRingValueFormatter" class="dashAnchor"></a>
+                <a href="#/UICircularRingValueFormatter">
+                  <h3 class="section-name">UICircularRingValueFormatter</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter"></a>
+                    <a name="//apple_ref/swift/Class/UICircularRingValueFormatter" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter">UICircularRingValueFormatter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>UICricularRingValueFormatter</p>
+
+<p>The base class for all the UICircularRing formatters.
+Subclasses should implement <code>string(forValue:)</code> as this is used
+to format the value into a string in the base class</p>
+
+<p>Two concrete implementations are provided, refer to <code><a href="Classes/UICircularTimerRingFormatter.html">UICircularTimerRingFormatter</a></code>
+and <code><a href="Classes/UICircularProgressRingFormatter.html">UICircularProgressRingFormatter</a></code></p>
+
+                        <a href="Classes/UICircularRingValueFormatter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICircularRingValueFormatter</span> <span class="p">:</span> <span class="kt">Formatter</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UICircularTimerRingFormatter"></a>
+                <a name="//apple_ref/swift/Section/UICircularTimerRingFormatter" class="dashAnchor"></a>
+                <a href="#/UICircularTimerRingFormatter">
+                  <h3 class="section-name">UICircularTimerRingFormatter</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularTimerRingFormatter"></a>
+                    <a name="//apple_ref/swift/Class/UICircularTimerRingFormatter" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularTimerRingFormatter">UICircularTimerRingFormatter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>UICircularTimerRingFormatter</p>
+
+<p>The formatter used in UICircularTimerRing class, formats
+the ring value into a time string.</p>
+
+                        <a href="Classes/UICircularTimerRingFormatter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">UICircularTimerRingFormatter</span> <span class="p">:</span> <span class="kt"><a href="Classes/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UICircularProgressRingFormatter"></a>
+                <a name="//apple_ref/swift/Section/UICircularProgressRingFormatter" class="dashAnchor"></a>
+                <a href="#/UICircularProgressRingFormatter">
+                  <h3 class="section-name">UICircularProgressRingFormatter</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingFormatter"></a>
+                    <a name="//apple_ref/swift/Class/UICircularProgressRingFormatter" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularProgressRingFormatter">UICircularProgressRingFormatter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>UICircularProgressRingFormatter</p>
+
+<p>The formatter used in UICircularProgressRing class,
+responsible for formatting the value of the ring into a readable string</p>
+
+                        <a href="Classes/UICircularProgressRingFormatter.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">UICircularProgressRingFormatter</span> <span class="p">:</span> <span class="kt"><a href="Classes/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a></span></code></pre>
 
                         </div>
                       </div>
@@ -188,7 +334,7 @@ When they are set in here, they are also set for the layer and drawn accordingly
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2019 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2019-02-06)</p>
+          <p>&copy; 2019 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2019-02-08)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

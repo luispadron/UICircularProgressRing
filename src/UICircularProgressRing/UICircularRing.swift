@@ -30,18 +30,14 @@ import UIKit
  # UICircularRing
 
  This is the base class of `UICircularProgressRing` and `UICircularTimerRing`.
+ You should not instantiate this class, instead use one of the concrete classes provided
+ or subclass and make your own.
 
  This is the UIView subclass that creates and handles everything
  to do with the circular ring.
  
- This class has a custom CAShapeLayer (UICircularRingLayer) which
+ This class has a custom CAShapeLayer (`UICircularRingLayer`) which
  handels the drawing and animating of the view
- 
- The properties in this class correspond with the
- properties in UICircularRingLayer.
- When they are set in here, they are also set for the layer and drawn accordingly
- 
- Read the docs for what each property does and what can be customized.
  
  ## Author
  Luis Padron
@@ -67,43 +63,10 @@ import UIKit
      
      */
     @IBInspectable open var fullCircle: Bool = true {
-        didSet {
-            ringLayer.fullCircle = fullCircle
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     // MARK: View Style
-
-    /**
-     Variable for the style of the progress ring.
-     
-     Range: [1,5]
-     
-     The four styles are
-     
-     - 1: Radius of the inner ring is smaller (inner ring inside outer ring)
-     - 2: Radius of inner ring is equal to outer ring (both at same location)
-     - 3: Radius of inner ring is equal to outer ring, and the outer ring is dashed
-     - 4: Radius of inner ring is equal to outer ring, and the outer ring is dotted
-     - 5: Radius of inner ring is equal to outer ring, and inner ring has gradient
-     
-     ## Important ##
-     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
-     The reason for this is IB has no support for enumerations as of yet
-     
-     
-     ## Author
-     Luis Padron
-     */
-    @available(*, unavailable,
-    message: "This property is reserved for Interface Builder, use 'ringStyle' instead")
-    @IBInspectable open var ibRingStyle: Int = 1 {
-        willSet {
-            let style = UICircularRingStyle(rawValue: newValue)
-            ringStyle = style ?? .inside
-        }
-    }
 
     /**
      The style of the progress ring.
@@ -118,118 +81,33 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var ringStyle: UICircularRingStyle = .inside {
-        didSet {
-            ringLayer.ringStyle = ringStyle
-            if ringStyle != .bordered {
-                outerBorderWidth = 0
-            }
-        }
+    open var style: UICircularRingStyle = .inside {
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
-     Whether or not the value knob is shown
-     
+     A toggle for showing or hiding the value label.
+     If false the current value will not be shown.
+
      ## Important ##
-     Default = false
-     
+     Default = true
+
      ## Author
      Luis Padron
      */
-    @IBInspectable open var showsValueKnob: Bool = false {
-        didSet {
-            ringLayer.showsValueKnob = showsValueKnob
-        }
+    @IBInspectable public var shouldShowValueText: Bool = true {
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
-     The size of the value knob (diameter)
-     
-     ## Important ##
-     Default = 15
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var valueKnobSize: CGFloat = 15.0 {
-        didSet {
-            ringLayer.valueKnobSize = valueKnobSize
-        }
-    }
+     Style for the value knob, default is `nil`.
 
-    /**
-     The color of the value knob
-     
      ## Important ##
-     Default = UIColor.lightGray
-     
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable open var valueKnobColor: UIColor = .lightGray {
-        didSet {
-            ringLayer.valueKnobColor = valueKnobColor
-        }
-    }
+     If this is `nil`, no value knob is shown.
 
-    /**
-     The blur (size) of the value knob's shadow
-     
-     ## Important ##
-     Default = 2
-     
-     ## Author
-     Makan Houston
-     */
-    @IBInspectable open var valueKnobShadowBlur: CGFloat = 2.0 {
-        didSet {
-            ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
-        }
-    }
-
-    /**
-     The offset of the value knob's shadow
-     
-     ## Important ##
-     Default = CGSize.zero
-     
-     ## Author
-     Makan Houston
-     */
-    @IBInspectable open var valueKnobShadowOffset: CGSize = .zero {
-        didSet {
-            ringLayer.valueKnobShadowOffset = valueKnobShadowOffset
-        }
-    }
-
-    /**
-     The color of the value knob's shadow
-     
-     ## Important ##
-     Default = UIColor.lightGray
-     
-     ## Author
-     Makan Houston
-     */
-    @IBInspectable open var valueKnobShadowColor: UIColor = UIColor.black.withAlphaComponent(0.8) {
-        didSet {
-            ringLayer.valueKnobShadowColor = valueKnobShadowColor
-        }
-    }
-
-    /**
-     An array of CGFloats, used to calculate the dash length for viewStyle = 3
-     
-     ## Important ##
-     Default = [7.0, 7.0]
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var patternForDashes: [CGFloat] = [7.0, 7.0] {
-        didSet {
-            ringLayer.patternForDashes = patternForDashes
-        }
+    */
+    open var valueKnobStyle: UICircularRingValueKnobStyle? {
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -247,9 +125,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var startAngle: CGFloat = 0 {
-        didSet {
-            ringLayer.startAngle = startAngle
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -267,89 +143,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var endAngle: CGFloat = 360 {
-        didSet {
-            ringLayer.endAngle = endAngle
-        }
-    }
-
-    /**
-     The colors which will be used to create the gradient.
-     
-     Only used when `ringStyle` is `.gradient`
-     
-     The colors should be in the order they will be drawn in.
-     
-     ## Important ##
-     By default this property will be an empty array.
-     
-     If this array is empty, no gradient will be drawn.
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientColors: [UIColor] = [UIColor]() {
-        didSet {
-            ringLayer.gradientColors = gradientColors
-        }
-    }
-
-    /**
-     The location for each color provided in `gradientColors`; each location must be
-     a CGFloat value in the range of 0 to 1, inclusive. If 0 and 1 are not in the
-     locations array, Quartz uses the colors provided that are closest to 0 and 1 for
-     those locations.
-     
-     If locations is nil, the first color in `gradientColors` is assigned to location 0,
-     the last color in `gradientColors` is assigned to location 1, and intervening
-     colors are assigned locations that are at equal intervals in between.
-     
-     The locations array should contain the same number of items as the `gradientColors`
-     array.
-     
-     ## Important ##
-     By default this property will be nil
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientColorLocations: [CGFloat]? = nil {
-        didSet {
-            ringLayer.gradientColorLocations = gradientColorLocations
-        }
-    }
-
-    /**
-     The start location for the gradient.
-     This property determines where the gradient will begin to draw,
-     for all possible values see `UICircularProgressRingGradientPosition`.
-     
-     ## Important ##
-     By default this property is `.topRight`
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientStartPosition: UICircularRingGradientPosition = .topRight {
-        didSet {
-            ringLayer.gradientStartPosition = gradientStartPosition
-        }
-    }
-
-    /**
-     The end location for the gradient.
-     This property determines where the gradient will end drawing,
-     for all possible values see `UICircularProgressRingGradientPosition`.
-     
-     ## Important ##
-     By default this property is `.bottomLeft`
-     
-     ## Author
-     Luis Padron
-     */
-    @objc open var gradientEndPosition: UICircularRingGradientPosition = .bottomLeft {
-        didSet {
-            ringLayer.gradientEndPosition = gradientEndPosition
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     // MARK: Outer Ring properties
@@ -364,9 +158,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var outerRingWidth: CGFloat = 10.0 {
-        didSet {
-            ringLayer.outerRingWidth = outerRingWidth
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -379,72 +171,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var outerRingColor: UIColor = UIColor.gray {
-        didSet {
-            ringLayer.outerRingColor = outerRingColor
-        }
-    }
-
-    /**
-     The color for the outer ring border
-     
-     ## Important ##
-     Default = UIColor.gray
-     
-     ## Author
-     Abdulla Allaith
-     */
-    @IBInspectable open var outerBorderColor: UIColor = UIColor.gray {
-        didSet {
-            ringLayer.outerBorderColor = outerBorderColor
-        }
-    }
-
-    /**
-     The width for the outer ring border
-     
-     ## Important ##
-     Default = 2
-     
-     ## Author
-     Abdulla Allaith
-     */
-    @IBInspectable open var outerBorderWidth: CGFloat = 2 {
-        didSet {
-            ringLayer.outerBorderWidth = outerBorderWidth
-        }
-    }
-
-    /**
-     The style for the outer ring end cap (how it is drawn on screen)
-     Range [1,3]
-     - 1: Line with a squared off end
-     - 2: Line with a rounded off end
-     - 3: Line with a square end
-     - <1 & >3: Defaults to style 1
-     
-     ## Important ##
-     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
-     Default = 1
-     
-     ## Author
-     Luis Padron
-     */
-    @available(*, unavailable,
-    message: "This property is reserved for Interface Builder, use 'outerCapStyle' instead")
-    @IBInspectable open var outerRingCapStyle: Int32 = 1 {
-        willSet {
-            switch newValue {
-            case 1:
-                outerCapStyle = .butt
-            case 2:
-                outerCapStyle = .round
-            case 3:
-                outerCapStyle = .square
-            default:
-                outerCapStyle = .butt
-            }
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -460,10 +187,8 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var outerCapStyle: CGLineCap = .butt {
-        didSet {
-            ringLayer.outerCapStyle = outerCapStyle
-        }
+    open var outerCapStyle: CGLineCap = .butt {
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     // MARK: Inner Ring properties
@@ -478,9 +203,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var innerRingWidth: CGFloat = 5.0 {
-        didSet {
-            ringLayer.innerRingWidth = innerRingWidth
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -493,9 +216,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var innerRingColor: UIColor = UIColor.blue {
-        didSet {
-            ringLayer.innerRingColor = innerRingColor
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -510,44 +231,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var innerRingSpacing: CGFloat = 1 {
-        didSet {
-            ringLayer.innerRingSpacing = innerRingSpacing
-        }
-    }
-
-    /**
-     The style for the inner ring end cap (how it is drawn on screen)
-     
-     Range [1,3]
-     
-     - 1: Line with a squared off end
-     - 2: Line with a rounded off end
-     - 3: Line with a square end
-     - <1 & >3: Defaults to style 2
-     
-     ## Important ##
-     THIS IS ONLY TO BE USED WITH INTERFACE BUILDER
-     
-     Default = 2
-     
-     ## Author
-     Luis Padron
-     */
-    @available(*, unavailable,
-    message: "This property is reserved for Interface Builder, use 'innerCapStyle' instead")
-    @IBInspectable open var innerRingCapStyle: Int32 = 2 {
-        willSet {
-            switch newValue {
-            case 1:
-                innerCapStyle = .butt
-            case 2:
-                innerCapStyle = .round
-            case 3:
-                innerCapStyle = .square
-            default:
-                innerCapStyle = .round
-            }
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -561,10 +245,8 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var innerCapStyle: CGLineCap = .round {
-        didSet {
-            ringLayer.innerCapStyle = innerCapStyle
-        }
+    open var innerCapStyle: CGLineCap = .round {
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     // MARK: Label
@@ -580,9 +262,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var fontColor: UIColor = UIColor.black {
-        didSet {
-            ringLayer.fontColor = fontColor
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -599,9 +279,7 @@ import UIKit
      Luis Padron
      */
     @IBInspectable open var font: UIFont = UIFont.systemFont(ofSize: 18) {
-        didSet {
-            ringLayer.font = font
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
     /**
@@ -613,7 +291,7 @@ import UIKit
      ## Author
      Luis Padron
      */
-    @objc open var isAnimating: Bool {
+    open var isAnimating: Bool {
         return ringLayer.animation(forKey: .value) != nil
     }
 
@@ -628,12 +306,15 @@ import UIKit
      Pete Walker
      */
     @IBInspectable open var isClockwise: Bool = true {
-        didSet {
-            ringLayer.isClockwise = isClockwise
-        }
+        didSet { ringLayer.setNeedsDisplay() }
     }
 
-    // MARK: Layer
+    /**
+     Typealias for animateProperties(duration:animations:completion:) fucntion completion
+     */
+    public typealias PropertyAnimationCompletion = (() -> Void)
+
+    // MARK: Private / internal
 
     /**
      Set the ring layer to the default layer, cated as custom layer
@@ -642,20 +323,6 @@ import UIKit
         // swiftlint:disable:next force_cast
         return layer as! UICircularRingLayer
     }
-
-    /**
-     Overrides the default layer with the custom UICircularRingLayer class
-     */
-    override open class var layerClass: AnyClass {
-        return UICircularRingLayer.self
-    }
-
-    // MARK: Type aliases
-
-    /**
-     Typealias for animateProperties(duration:animations:completion:) fucntion completion
-     */
-    public typealias PropertyAnimationCompletion = (() -> Void)
 
     /// This variable stores how long remains on the timer when it's paused
     private var pausedTimeRemaining: TimeInterval = 0
@@ -673,6 +340,13 @@ import UIKit
     typealias AnimationCompletion = () -> Void
 
     // MARK: Methods
+
+    /**
+     Overrides the default layer with the custom UICircularRingLayer class
+     */
+    override open class var layerClass: AnyClass {
+        return UICircularRingLayer.self
+    }
 
     /**
      Overriden public init to initialize the layer and view
@@ -695,48 +369,15 @@ import UIKit
     /**
      This method initializes the custom CALayer to the default values
      */
-    // swiftlint:disable:next function_body_length
     func initialize() {
         // This view will become the value delegate of the layer, which will call the updateValue method when needed
-        ringLayer.valueDelegate = self
+        ringLayer.ring = self
 
         // Helps with pixelation and blurriness on retina devices
-        layer.contentsScale = UIScreen.main.scale
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale * 2
-        layer.masksToBounds = false
-
-        ringLayer.fullCircle = fullCircle
-        ringLayer.isClockwise = isClockwise
-
-        ringLayer.ringStyle = ringStyle
-        ringLayer.showsValueKnob = showsValueKnob
-        ringLayer.valueKnobSize = valueKnobSize
-        ringLayer.valueKnobColor = valueKnobColor
-        ringLayer.valueKnobShadowBlur = valueKnobShadowBlur
-        ringLayer.valueKnobShadowOffset = valueKnobShadowOffset
-        ringLayer.valueKnobShadowColor = valueKnobShadowColor
-        ringLayer.patternForDashes = patternForDashes
-        ringLayer.gradientColors = gradientColors
-        ringLayer.gradientColorLocations = gradientColorLocations
-        ringLayer.gradientStartPosition = gradientStartPosition
-        ringLayer.gradientEndPosition = gradientEndPosition
-
-        ringLayer.startAngle = startAngle
-        ringLayer.endAngle = endAngle
-
-        ringLayer.outerRingWidth = outerRingWidth
-        ringLayer.outerRingColor = outerRingColor
-        ringLayer.outerBorderWidth = outerBorderWidth
-        ringLayer.outerBorderColor = outerBorderColor
-        ringLayer.outerCapStyle = outerCapStyle
-
-        ringLayer.innerRingWidth = innerRingWidth
-        ringLayer.innerRingColor = innerRingColor
-        ringLayer.innerCapStyle = innerCapStyle
-        ringLayer.innerRingSpacing = innerRingSpacing
-        ringLayer.fontColor = fontColor
-        ringLayer.font = font
+        ringLayer.contentsScale = UIScreen.main.scale
+        ringLayer.shouldRasterize = true
+        ringLayer.rasterizationScale = UIScreen.main.scale * 2
+        ringLayer.masksToBounds = false
 
         backgroundColor = UIColor.clear
         ringLayer.backgroundColor = UIColor.clear.cgColor
@@ -759,15 +400,18 @@ import UIKit
         super.draw(rect)
     }
 
+    // MARK: Internal API
+
     /**
-     Called whenever the layer updates its `value` keypath, this method will then simply call its delegate with
-     the `newValue` so that it notifies any delegates who may need to know about value updates in real time
+     These methods are called from the layer class in order to notify
+     this class about changes to the value and label display.
+
+     In this base class they do nothing.
      */
+
     func didUpdateValue(newValue: CGFloat) { }
 
     func willDisplayLabel(label: UILabel) { }
-
-    // MARK: Internal API
 
     /**
      These functions are here to allow reuse between subclasses.
@@ -877,7 +521,7 @@ import UIKit
      
      The completion block is called when all animations finish.
      */
-    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void) {
+    open func animateProperties(duration: TimeInterval, animations: () -> Void) {
         animateProperties(duration: duration, animations: animations, completion: nil)
     }
 
@@ -890,8 +534,8 @@ import UIKit
      
      The completion block is called when all animations finish.
      */
-    @objc open func animateProperties(duration: TimeInterval, animations: () -> Void,
-                                      completion: PropertyAnimationCompletion? = nil) {
+    open func animateProperties(duration: TimeInterval, animations: () -> Void,
+                                completion: PropertyAnimationCompletion? = nil) {
         ringLayer.shouldAnimateProperties = true
         ringLayer.propertyAnimationDuration = duration
         CATransaction.begin()

@@ -29,6 +29,15 @@ final public class UICircularTimerRing: UICircularRing {
     // MARK: Members
 
     /**
+     The formatter used when formatting the value into a string for the ring.
+
+     Default formatter is of type `UICircularTimerRingFormatter`.
+     */
+    public var valueFormatter = UICircularTimerRingFormatter() {
+        didSet { ringLayer.valueFormatter = valueFormatter }
+    }
+
+    /**
      The handler for the timer.
 
      The handler is called whenever the timer finishes or is paused.
@@ -101,55 +110,13 @@ final public class UICircularTimerRing: UICircularRing {
 
     // MARK: Overrides
 
-    /**
-     Overrides the default layer with the custom UICircularTimerRingLayer class
-     */
-    override public class var layerClass: AnyClass {
-        return UICircularTimerRingLayer.self
-    }
-
-    /**
-     Set the ring layer to the default layer, cated as custom layer
-     */
-    override var ringLayer: UICircularTimerRingLayer {
-        // swiftlint:disable:next force_cast
-        return layer as! UICircularTimerRingLayer
-    }
-
     /// initialize with some defaults relevant to this timer ring
     override func initialize() {
         super.initialize()
+        ringLayer.ring = self
         ringLayer.minValue = 0
         ringLayer.value = 0
         ringLayer.maxValue = time.float
-        ringLayer.valueIndicator = ""
-        ringLayer.showFloatingPoint = false
-        ringLayer.decimalPlaces = 0
-        ringLayer.shouldShowValueText = true
-        ringLayer.animationTimingFunction = .linear
-    }
-}
-
-// MARK: UICircularTimerRingLayer
-
-final class UICircularTimerRingLayer: UICircularRingLayer {
-    /// formatter which formats the time string of the ring label
-    private let formatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.minute, .second]
-        formatter.unitsStyle = .short
-        return formatter
-    }()
-
-    /// custom handling of value label update as want to format as time string
-    override func updateValueLabel(withValue value: CGFloat,
-                                   valueIndicator: String,
-                                   rightToLeft: Bool,
-                                   showsDecimal: Bool,
-                                   decimalPlaces: Int,
-                                   valueDelegate: UICircularRing?) {
-        valueLabel.text = formatter.string(from: value.interval)
-        valueLabel.sizeToFit()
-        valueDelegate?.willDisplayLabel(label: valueLabel)
+        ringLayer.valueFormatter = valueFormatter
     }
 }

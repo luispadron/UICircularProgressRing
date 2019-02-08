@@ -8,6 +8,7 @@ set -e
 
 # Install gems
 cd src
+gem install bundler -v 2.0.1
 bundle install
 cd ..
 

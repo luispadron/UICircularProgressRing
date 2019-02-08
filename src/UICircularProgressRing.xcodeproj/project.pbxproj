@@ -11,12 +11,13 @@
 		A01A67581D8F55D700AC8CAD /* UICircularRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */; };
 		A024AE91220A37C600D3DE5D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024AE90220A37C600D3DE5D /* Extensions.swift */; };
 		A024AE93220A395200D3DE5D /* UICircularTimerRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */; };
+		A034CFFD220D53D5007273AA /* UICircularTimerRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A034CFFC220D53D5007273AA /* UICircularTimerRingTests.swift */; };
 		A05EDE10220A15FD006FCF1E /* UICircularProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */; };
 		A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0801C1620E3185D009DC236 /* UICircularRing.swift */; };
+		A0A9E37C220CE33F00EB0861 /* UICircularRingValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A9E37B220CE33F00EB0861 /* UICircularRingValueFormatter.swift */; };
 		A0C6DE861D88CBE2008AE742 /* UICircularProgressRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */; };
 		A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */; };
 		A0C6DE8D1D88CBE2008AE742 /* UICircularProgressRing.h in Headers */ = {isa = PBXBuildFile; fileRef = A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0E0ED771EE782620034062A /* UICircularRingGradientPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED751EE782490034062A /* UICircularRingGradientPosition.swift */; };
 		A0E0ED781EE782650034062A /* UICircularRingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E0ED761EE782490034062A /* UICircularRingStyle.swift */; };
 		AB8F17E5212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */; };
 /* End PBXBuildFile section */
@@ -36,15 +37,16 @@
 		A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRingLayer.swift; sourceTree = "<group>"; };
 		A024AE90220A37C600D3DE5D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularTimerRing.swift; sourceTree = "<group>"; };
+		A034CFFC220D53D5007273AA /* UICircularTimerRingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularTimerRingTests.swift; sourceTree = "<group>"; };
 		A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRing.swift; sourceTree = "<group>"; };
 		A0801C1620E3185D009DC236 /* UICircularRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularRing.swift; sourceTree = "<group>"; };
+		A0A9E37B220CE33F00EB0861 /* UICircularRingValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularRingValueFormatter.swift; sourceTree = "<group>"; };
 		A0C6DE7C1D88CBE1008AE742 /* UICircularProgressRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICircularProgressRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE7F1D88CBE1008AE742 /* UICircularProgressRing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICircularProgressRing.h; sourceTree = "<group>"; };
 		A0C6DE801D88CBE1008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C6DE851D88CBE2008AE742 /* UICircularProgressRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UICircularProgressRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingTests.swift; sourceTree = "<group>"; };
 		A0C6DE8C1D88CBE2008AE742 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0E0ED751EE782490034062A /* UICircularRingGradientPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularRingGradientPosition.swift; sourceTree = "<group>"; };
 		A0E0ED761EE782490034062A /* UICircularRingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICircularRingStyle.swift; sourceTree = "<group>"; };
 		AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingPauseResetTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,11 +96,11 @@
 				A0801C1620E3185D009DC236 /* UICircularRing.swift */,
 				A01A67571D8F55D700AC8CAD /* UICircularRingLayer.swift */,
 				A0094D331DA4473B0074805C /* UICircularProgressRingDelegate.swift */,
-				A0E0ED751EE782490034062A /* UICircularRingGradientPosition.swift */,
 				A0E0ED761EE782490034062A /* UICircularRingStyle.swift */,
 				A05EDE0F220A15FD006FCF1E /* UICircularProgressRing.swift */,
 				A024AE90220A37C600D3DE5D /* Extensions.swift */,
 				A024AE92220A395200D3DE5D /* UICircularTimerRing.swift */,
+				A0A9E37B220CE33F00EB0861 /* UICircularRingValueFormatter.swift */,
 			);
 			path = UICircularProgressRing;
 			sourceTree = "<group>";
@@ -108,6 +110,7 @@
 			children = (
 				AB8F17E4212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift */,
 				A0C6DE8A1D88CBE2008AE742 /* UICircularProgressRingTests.swift */,
+				A034CFFC220D53D5007273AA /* UICircularTimerRingTests.swift */,
 				A0C6DE8C1D88CBE2008AE742 /* Info.plist */,
 			);
 			path = UICircularProgressRingTests;
@@ -246,9 +249,9 @@
 			files = (
 				A024AE93220A395200D3DE5D /* UICircularTimerRing.swift in Sources */,
 				A0E0ED781EE782650034062A /* UICircularRingStyle.swift in Sources */,
-				A0E0ED771EE782620034062A /* UICircularRingGradientPosition.swift in Sources */,
 				A0801C1720E3185D009DC236 /* UICircularRing.swift in Sources */,
 				A05EDE10220A15FD006FCF1E /* UICircularProgressRing.swift in Sources */,
+				A0A9E37C220CE33F00EB0861 /* UICircularRingValueFormatter.swift in Sources */,
 				A0094D341DA4473B0074805C /* UICircularProgressRingDelegate.swift in Sources */,
 				A01A67581D8F55D700AC8CAD /* UICircularRingLayer.swift in Sources */,
 				A024AE91220A37C600D3DE5D /* Extensions.swift in Sources */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A034CFFD220D53D5007273AA /* UICircularTimerRingTests.swift in Sources */,
 				AB8F17E5212522C100CFB95E /* UICircularProgressRingPauseResetTests.swift in Sources */,
 				A0C6DE8B1D88CBE2008AE742 /* UICircularProgressRingTests.swift in Sources */,
 			);
@@ -410,6 +414,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luispadron.UICircularProgressRing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

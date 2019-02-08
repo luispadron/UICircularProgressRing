@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UICircularRingGradientPosition Enumeration Reference</title>
+    <title>UICircularProgressRingFormatter Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/UICircularRingGradientPosition" class="dashAnchor"></a>
-    <a title="UICircularRingGradientPosition Enumeration Reference"></a>
+    <a name="//apple_ref/swift/Class/UICircularProgressRingFormatter" class="dashAnchor"></a>
+    <a title="UICircularProgressRingFormatter Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">UICircularProgressRing Docs</a> (97% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">UICircularProgressRing Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UICircularRingGradientPosition Enumeration Reference
+        UICircularProgressRingFormatter Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -86,29 +86,35 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UICircularRingGradientPosition</h1>
+            <h1>UICircularProgressRingFormatter</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">UICircularRingGradientPosition</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">UICircularProgressRingFormatter</span> <span class="p">:</span> <span class="kt"><a href="../Classes/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a></span></code></pre>
 
                 </div>
               </div>
-            <p>UICircularRingGradientPosition</p>
+            <p>UICircularProgressRingFormatter</p>
 
-<p>This is an enumeration which is used to determine the position for a
-gradient. Used inside the <code>UICircularRingLayer</code> to allow customization
-for the gradient.</p>
+<p>The formatter used in UICircularProgressRing class,
+responsible for formatting the value of the ring into a readable string</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Members"></a>
+                <a name="//apple_ref/swift/Section/Members" class="dashAnchor"></a>
+                <a href="#/Members">
+                  <h3 class="section-name">Members</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO3topyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/top" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO3topyA2CmF">top</a>
+                    <a name="/s:22UICircularProgressRing0abC9FormatterC14valueIndicatorSSvp"></a>
+                    <a name="//apple_ref/swift/Property/valueIndicator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC9FormatterC14valueIndicatorSSvp">valueIndicator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -116,14 +122,22 @@ for the gradient.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient positioned at the top</p>
+                        <p>The name of the value indicator the value label will
+appened to the value
+Example: <q>GB</q> -&gt; <q>100 GB</q></p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>Default = <q>%</q></p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">top</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">valueIndicator</span><span class="p">:</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -133,9 +147,9 @@ for the gradient.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO6bottomyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/bottom" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO6bottomyA2CmF">bottom</a>
+                    <a name="/s:22UICircularProgressRing0abC9FormatterC11rightToLeftSbvp"></a>
+                    <a name="//apple_ref/swift/Property/rightToLeft" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC9FormatterC11rightToLeftSbvp">rightToLeft</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -143,14 +157,21 @@ for the gradient.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient positioned at the bottom</p>
+                        <p>A toggle for either placing the value indicator right or left to the value
+Example: true -&gt; <q>GB 100</q> (instead of 100 GB)</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>Default = false (place value indicator to the right)</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Elad Hayun</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">bottom</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rightToLeft</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -160,9 +181,9 @@ for the gradient.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO4leftyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/left" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO4leftyA2CmF">left</a>
+                    <a name="/s:22UICircularProgressRing0abC9FormatterC17showFloatingPointSbvp"></a>
+                    <a name="//apple_ref/swift/Property/showFloatingPoint" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC9FormatterC17showFloatingPointSbvp">showFloatingPoint</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -170,14 +191,23 @@ for the gradient.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient positioned to the left</p>
+                        <p>A toggle for showing or hiding floating points from
+the value in the value label</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>Default = false (dont show)</p>
+
+<p>To customize number of decmial places to show, assign a value to decimalPlaces.</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">left</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">showFloatingPoint</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -187,9 +217,9 @@ for the gradient.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO5rightyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/right" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO5rightyA2CmF">right</a>
+                    <a name="/s:22UICircularProgressRing0abC9FormatterC13decimalPlacesSivp"></a>
+                    <a name="//apple_ref/swift/Property/decimalPlaces" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC9FormatterC13decimalPlacesSivp">decimalPlaces</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -197,14 +227,22 @@ for the gradient.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient positioned to the right</p>
+                        <p>The amount of decimal places to show in the value label</p>
+<h2 id='important' class='heading'>Important</h2>
+
+<p>Default = 2</p>
+
+<p>Only used when showFloatingPoint = true</p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Luis Padron</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">right</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">decimalPlaces</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -214,9 +252,9 @@ for the gradient.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO7topLeftyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/topLeft" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO7topLeftyA2CmF">topLeft</a>
+                    <a name="/s:22UICircularProgressRing0abC9FormatterC6string8forValueSSSg12CoreGraphics7CGFloatV_tF"></a>
+                    <a name="//apple_ref/swift/Method/string(forValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0abC9FormatterC6string8forValueSSSg12CoreGraphics7CGFloatV_tF">string(forValue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,95 +262,14 @@ for the gradient.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Gradient positioned in the top left corner</p>
+                        <p>formats the value of the progress ring using the given properties</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">topLeft</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO8topRightyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/topRight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO8topRightyA2CmF">topRight</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Gradient positioned in the top right corner</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">topRight</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO10bottomLeftyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/bottomLeft" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO10bottomLeftyA2CmF">bottomLeft</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Gradient positioned in the bottom left corner</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">bottomLeft</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:22UICircularProgressRing0aC16GradientPositionO11bottomRightyA2CmF"></a>
-                    <a name="//apple_ref/swift/Element/bottomRight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC16GradientPositionO11bottomRightyA2CmF">bottomRight</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Gradient positioned in the bottom right corner</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">bottomRight</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">string</span><span class="p">(</span><span class="n">forValue</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>

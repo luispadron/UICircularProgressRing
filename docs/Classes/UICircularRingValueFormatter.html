@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>UICircularRingValueFormatter Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/UICircularRingValueFormatter" class="dashAnchor"></a>
+    <a title="UICircularRingValueFormatter Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">UICircularProgressRing Docs</a> (97% documented)</p>
+        <p class="header-right"><a href="https://github.com/luispadron/UICircularProgressRing"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">UICircularProgressRing Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        UICircularRingValueFormatter Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularProgressRing.html">UICircularProgressRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularProgressRingFormatter.html">UICircularProgressRingFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularRing.html">UICircularRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularTimerRing.html">UICircularTimerRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UICircularTimerRingFormatter.html">UICircularTimerRingFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/UICircularRingGradientPosition.html">UICircularRingGradientPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/UICircularRingStyle.html">UICircularRingStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/UICircularGradientOptions.html">UICircularGradientOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/UICircularRingValueKnobStyle.html">UICircularRingValueKnobStyle</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>UICircularRingValueFormatter</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICircularRingValueFormatter</span> <span class="p">:</span> <span class="kt">Formatter</span></code></pre>
+
+                </div>
+              </div>
+            <p>UICricularRingValueFormatter</p>
+
+<p>The base class for all the UICircularRing formatters.
+Subclasses should implement <code>string(forValue:)</code> as this is used
+to format the value into a string in the base class</p>
+
+<p>Two concrete implementations are provided, refer to <code><a href="../Classes/UICircularTimerRingFormatter.html">UICircularTimerRingFormatter</a></code>
+and <code><a href="../Classes/UICircularProgressRingFormatter.html">UICircularProgressRingFormatter</a></code></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter(im)stringForObjectValue:"></a>
+                    <a name="//apple_ref/swift/Method/string(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter(im)stringForObjectValue:">string(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>returns result of <code><a href="../Classes/UICircularRingValueFormatter.html#/s:22UICircularProgressRing0aC14ValueFormatterC6string03forD0SSSg12CoreGraphics7CGFloatV_tF">string(forValue:)</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">string</span><span class="p">(</span><span class="k">for</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter(im)getObjectValue:forString:errorDescription:"></a>
+                    <a name="//apple_ref/swift/Method/getObjectValue(_:for:errorDescription:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@UICircularProgressRing@objc(cs)UICircularRingValueFormatter(im)getObjectValue:forString:errorDescription:">getObjectValue(_:for:errorDescription:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>always returns false</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">getObjectValue</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">AnyObject</span><span class="p">?</span><span class="o">&gt;</span><span class="p">?,</span>
+                                  <span class="k">for</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                                  <span class="n">errorDescription</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">AutoreleasingUnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">NSString</span><span class="p">?</span><span class="o">&gt;</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0aC14ValueFormatterC6string03forD0SSSg12CoreGraphics7CGFloatV_tF"></a>
+                    <a name="//apple_ref/swift/Method/string(forValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0aC14ValueFormatterC6string03forD0SSSg12CoreGraphics7CGFloatV_tF">string(forValue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>not implemented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">string</span><span class="p">(</span><span class="n">forValue</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2019-02-08)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

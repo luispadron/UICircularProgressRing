@@ -41,7 +41,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public weak var delegate: UICircularProgressRingDelegate?
+    public weak var delegate: UICircularProgressRingDelegate?
 
     /**
      The value property for the progress ring.
@@ -114,9 +114,7 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     @IBInspectable public var minValue: CGFloat = 0.0 {
-        didSet {
-            ringLayer.minValue = abs(minValue)
-        }
+        didSet { ringLayer.minValue = minValue }
     }
 
     /**
@@ -135,77 +133,7 @@ final public class UICircularProgressRing: UICircularRing {
      Luis Padron
      */
     @IBInspectable public var maxValue: CGFloat = 100.0 {
-        didSet {
-            ringLayer.maxValue = abs(maxValue)
-        }
-    }
-
-    /**
-     The name of the value indicator the value label will
-     appened to the value
-     Example: " GB" -> "100 GB"
-
-     ## Important ##
-     Default = "%"
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var valueIndicator: String = "%" {
-        didSet {
-            ringLayer.valueIndicator = valueIndicator
-        }
-    }
-
-    /**
-     A toggle for either placing the value indicator right or left to the value
-     Example: true -> "GB 100" (instead of 100 GB)
-
-     ## Important ##
-     Default = false (place value indicator to the right)
-
-     ## Author
-     Elad Hayun
-     */
-    @IBInspectable public var rightToLeft: Bool = false {
-        didSet {
-            ringLayer.rightToLeft = rightToLeft
-        }
-    }
-
-    /**
-     A toggle for showing or hiding floating points from
-     the value in the value label
-
-     ## Important ##
-     Default = false (dont show)
-
-     To customize number of decmial places to show, assign a value to decimalPlaces.
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var showFloatingPoint: Bool = false {
-        didSet {
-            ringLayer.showFloatingPoint = showFloatingPoint
-        }
-    }
-
-    /**
-     The amount of decimal places to show in the value label
-
-     ## Important ##
-     Default = 2
-
-     Only used when showFloatingPoint = true
-
-     ## Author
-     Luis Padron
-     */
-    @IBInspectable public var decimalPlaces: Int = 2 {
-        didSet {
-            ringLayer.decimalPlaces = decimalPlaces
-        }
+        didSet { ringLayer.maxValue = maxValue }
     }
 
     /**
@@ -217,26 +145,22 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
-        didSet {
-            ringLayer.animationTimingFunction = animationTimingFunction
-        }
+    public var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut {
+        didSet { ringLayer.animationTimingFunction = animationTimingFunction }
     }
 
     /**
-     A toggle for showing or hiding the value label.
-     If false the current value will not be shown.
+     The formatter responsible for formatting the
+     value of the progress ring into a readable text string
+     which is then displayed in the label of the ring.
 
-     ## Important ##
-     Default = true
+     Default formatter is of type `UICircularProgressRingFormatter`.
 
      ## Author
      Luis Padron
      */
-    @IBInspectable public var shouldShowValueText: Bool = true {
-        didSet {
-            ringLayer.shouldShowValueText = shouldShowValueText
-        }
+    public var valueFormatter = UICircularProgressRingFormatter() {
+        didSet { ringLayer.valueFormatter = valueFormatter }
     }
 
     /**
@@ -265,13 +189,13 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
+    public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
         // Store the completion event locally
         self.completion = completion
 
         // call super class helper function to begin animating layer
         startAnimation(duration: duration) {
-            self.delegate?.didFinishProgress?(for: self)
+            self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }
 
@@ -289,10 +213,10 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron & Nicolai Cornelis
      */
-    @objc public func pauseProgress() {
+    public func pauseProgress() {
         // call super class helper to stop layer animation
         pauseAnimation()
-        delegate?.didPauseProgress?(for: self)
+        delegate?.didPauseProgress(for: self)
     }
 
     /**
@@ -303,14 +227,14 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron & Nicolai Cornelis
      */
-    @objc public func continueProgress() {
+    public func continueProgress() {
         // call super class helper to continue layer animation
         continueAnimation {
-            self.delegate?.didFinishProgress?(for: self)
+            self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }
 
-        delegate?.didContinueProgress?(for: self)
+        delegate?.didContinueProgress(for: self)
     }
 
     /**
@@ -320,7 +244,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    @objc public func resetProgress() {
+    public func resetProgress() {
         // call super class helper to reset animation layer
         resetAnimation()
         value = minValue
@@ -332,22 +256,20 @@ final public class UICircularProgressRing: UICircularRing {
 
     override func initialize() {
         super.initialize()
+        ringLayer.ring = self
         ringLayer.value = value
         ringLayer.maxValue = maxValue
         ringLayer.minValue = minValue
-        ringLayer.valueIndicator = valueIndicator
-        ringLayer.showFloatingPoint = showFloatingPoint
-        ringLayer.decimalPlaces = decimalPlaces
-        ringLayer.shouldShowValueText = shouldShowValueText
+        ringLayer.valueFormatter = valueFormatter
     }
 
     override func didUpdateValue(newValue: CGFloat) {
         super.didUpdateValue(newValue: newValue)
-        delegate?.didUpdateProgressValue?(for: self, to: newValue)
+        delegate?.didUpdateProgressValue(for: self, to: newValue)
     }
 
     override func willDisplayLabel(label: UILabel) {
         super.willDisplayLabel(label: label)
-        delegate?.willDisplayLabel?(for: self, label)
+        delegate?.willDisplayLabel(for: self, label)
     }
 }

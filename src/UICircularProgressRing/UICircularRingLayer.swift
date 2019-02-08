@@ -36,71 +36,37 @@ class UICircularRingLayer: CAShapeLayer {
 
     // MARK: Properties
 
-    /**
-     The NSManaged properties for the layer.
-     These properties are initialized in UICircularRing.
-     They're also assigned by mutating UICircularRing properties.
-     */
-    @NSManaged var fullCircle: Bool
-
     @NSManaged var value: CGFloat
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
 
-    @NSManaged var ringStyle: UICircularRingStyle
-    @NSManaged var showsValueKnob: Bool
-    @NSManaged var valueKnobSize: CGFloat
-    @NSManaged var valueKnobColor: UIColor
-    @NSManaged var valueKnobShadowBlur: CGFloat
-    @NSManaged var valueKnobShadowOffset: CGSize
-    @NSManaged var valueKnobShadowColor: UIColor
-    @NSManaged var patternForDashes: [CGFloat]
+    /// the delegate for the value, is notified when value changes
+    @NSManaged weak var ring: UICircularRing!
 
-    @NSManaged var gradientColors: [UIColor]
-    @NSManaged var gradientColorLocations: [CGFloat]?
-    @NSManaged var gradientStartPosition: UICircularRingGradientPosition
-    @NSManaged var gradientEndPosition: UICircularRingGradientPosition
+    /// formatter for the text of the value label
+    @NSManaged var valueFormatter: UICircularRingValueFormatter?
 
-    @NSManaged var startAngle: CGFloat
-    @NSManaged var endAngle: CGFloat
+    /// the style for the value knob
+    var valueKnobStyle: UICircularRingValueKnobStyle?
 
-    @NSManaged var outerRingWidth: CGFloat
-    @NSManaged var outerRingColor: UIColor
-    @NSManaged var outerCapStyle: CGLineCap
-    @NSManaged var outerBorderColor: UIColor
-    @NSManaged var outerBorderWidth: CGFloat
-
-    @NSManaged var innerRingWidth: CGFloat
-    @NSManaged var innerRingColor: UIColor
-    @NSManaged var innerCapStyle: CGLineCap
-    @NSManaged var innerRingSpacing: CGFloat
-
-    @NSManaged var shouldShowValueText: Bool
-    @NSManaged var fontColor: UIColor
-    @NSManaged var font: UIFont
-    @NSManaged var valueIndicator: String
-    @NSManaged var rightToLeft: Bool
-    @NSManaged var showFloatingPoint: Bool
-    @NSManaged var decimalPlaces: Int
-    @NSManaged var isClockwise: Bool
+    // MARK: Animation members
 
     var animationDuration: TimeInterval = 1.0
     var animationTimingFunction: CAMediaTimingFunctionName = .easeInEaseOut
     var animated = false
-    @NSManaged weak var valueDelegate: UICircularRing?
 
-    // The value label which draws the text for the current value
+    /// the value label which draws the text for the current value
     lazy var valueLabel: UILabel = UILabel(frame: .zero)
 
     // MARK: Animatable properties
 
-    // Whether or not animatable properties should be animated when changed
+    /// whether or not animatable properties should be animated when changed
     var shouldAnimateProperties: Bool = false
 
-    // The animation duration for a animatable property animation
+    /// the animation duration for a animatable property animation
     var propertyAnimationDuration: TimeInterval = 0.0
 
-    // The properties which are animatable
+    /// the properties which are animatable
     static let animatableProperties: [String] = ["innerRingWidth", "innerRingColor",
                                                          "outerRingWidth", "outerRingColor",
                                                          "fontColor", "innerRingSpacing"]
@@ -126,7 +92,7 @@ class UICircularRingLayer: CAShapeLayer {
         drawValueLabel()
         // Call the delegate and notifiy of updated value
         if let updatedValue = value(forKey: "value") as? CGFloat {
-            valueDelegate?.didUpdateValue(newValue: updatedValue)
+            ring.didUpdateValue(newValue: updatedValue)
         }
         UIGraphicsPopContext()
 
@@ -173,23 +139,34 @@ class UICircularRingLayer: CAShapeLayer {
      Sets path properties according to how the user has decided to customize the view.
      */
     private func drawOuterRing() {
-        guard outerRingWidth > 0 else { return }
+        guard ring.outerRingWidth > 0 else { return }
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-        let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
+
+        let knobSize = ring.valueKnobStyle?.size ?? 0
+        let borderWidth: CGFloat
+        if case let UICircularRingStyle.bordered(width, _) = ring.style {
+            borderWidth = width
+        } else {
+            borderWidth = 0
+        }
+
+        let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
+                        + (knobSize / 4)
+                        + (borderWidth * 2)
         let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
-        let start: CGFloat = fullCircle ? 0 : startAngle.toRads
-        let end: CGFloat = fullCircle ? .pi * 2 : endAngle.toRads
+        let start: CGFloat = ring.fullCircle ? 0 : ring.startAngle.rads
+        let end: CGFloat = ring.fullCircle ? .pi * 2 : ring.endAngle.rads
         let outerPath = UIBezierPath(arcCenter: center,
                                      radius: outerRadius,
                                      startAngle: start,
                                      endAngle: end,
                                      clockwise: true)
-        outerPath.lineWidth = outerRingWidth
-        outerPath.lineCapStyle = outerCapStyle
+        outerPath.lineWidth = ring.outerRingWidth
+        outerPath.lineCapStyle = ring.outerCapStyle
         // Update path depending on style of the ring
-        updateOuterRingPath(outerPath, radius: outerRadius, style: ringStyle)
+        updateOuterRingPath(outerPath, radius: outerRadius, style: ring.style)
 
-        outerRingColor.setStroke()
+        ring.outerRingColor.setStroke()
         outerPath.stroke()
     }
 
@@ -198,7 +175,7 @@ class UICircularRingLayer: CAShapeLayer {
      Sets path properties according to how the user has decided to customize the view.
      */
     private func drawInnerRing(in ctx: CGContext) {
-        guard innerRingWidth > 0 else { return }
+        guard ring.innerRingWidth > 0 else { return }
 
         let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
 
@@ -208,28 +185,28 @@ class UICircularRingLayer: CAShapeLayer {
         // Start drawing
         let innerPath: UIBezierPath = UIBezierPath(arcCenter: center,
                                                    radius: radiusIn,
-                                                   startAngle: startAngle.toRads,
-                                                   endAngle: innerEndAngle.toRads,
-                                                   clockwise: isClockwise)
+                                                   startAngle: ring.startAngle.rads,
+                                                   endAngle: innerEndAngle.rads,
+                                                   clockwise: ring.isClockwise)
 
         // Draw path
-        ctx.setLineWidth(innerRingWidth)
+        ctx.setLineWidth(ring.innerRingWidth)
         ctx.setLineJoin(.round)
-        ctx.setLineCap(innerCapStyle)
-        ctx.setStrokeColor(innerRingColor.cgColor)
+        ctx.setLineCap(ring.innerCapStyle)
+        ctx.setStrokeColor(ring.innerRingColor.cgColor)
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
 
-        if ringStyle == .gradient && gradientColors.count > 1 {
+        if case let UICircularRingStyle.gradient(options) = ring.style {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
-            for color: UIColor in gradientColors {
+            for color: UIColor in options.colors {
                 cgColors.append(color.cgColor)
             }
 
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: gradientColorLocations)
+                                                        locations: options.colorLocations)
             else {
                 fatalError("\nUnable to create gradient for progress ring.\n" +
                     "Check values of gradientColors and gradientLocations.\n")
@@ -240,14 +217,16 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.replacePathWithStrokedPath()
             ctx.clip()
 
-            drawGradient(gradient, start: gradientStartPosition,
-                         end: gradientEndPosition, in: ctx)
+            drawGradient(gradient,
+                         start: options.startPosition,
+                         end: options.endPosition,
+                         in: ctx)
 
             ctx.restoreGState()
         }
 
-        if showsValueKnob && value > minValue {
-            let knobOffset = valueKnobSize / 2
+        if let knobStyle = ring.valueKnobStyle, value > minValue {
+            let knobOffset = knobStyle.size / 2
             drawValueKnob(in: ctx, origin: CGPoint(x: innerPath.currentPoint.x - knobOffset,
                                                    y: innerPath.currentPoint.y - knobOffset))
         }
@@ -256,21 +235,23 @@ class UICircularRingLayer: CAShapeLayer {
     /// Updates the outer ring path depending on the ring's style
     private func updateOuterRingPath(_ path: UIBezierPath, radius: CGFloat, style: UICircularRingStyle) {
         switch style {
-        case .dashed:
-            path.setLineDash(patternForDashes, count: patternForDashes.count, phase: 0.0)
+        case .dashed(let pattern):
+            path.setLineDash(pattern, count: pattern.count, phase: 0.0)
 
         case .dotted:
             path.setLineDash([0, path.lineWidth * 2], count: 2, phase: 0)
             path.lineCapStyle = .round
 
-        case .bordered:
+        case .bordered(let borderWidth, let borderColor):
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-            let offSet = max(outerRingWidth, innerRingWidth) / 2 + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
+            let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
+                            + ((valueKnobStyle?.size ?? 0) / 4)
+                            + (borderWidth * 2)
             let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
-            let borderStartAngle = outerCapStyle == .butt ? startAngle-outerBorderWidth : startAngle
-            let borderEndAngle = outerCapStyle == .butt ? endAngle+outerBorderWidth : endAngle
-            let start: CGFloat = fullCircle ? 0 : borderStartAngle.toRads
-            let end: CGFloat = fullCircle ? .pi * 2 : borderEndAngle.toRads
+            let borderStartAngle = ring.outerCapStyle == .butt ? ring.startAngle - borderWidth : ring.startAngle
+            let borderEndAngle = ring.outerCapStyle == .butt ? ring.endAngle + borderWidth : ring.endAngle
+            let start: CGFloat = ring.fullCircle ? 0 : borderStartAngle.rads
+            let end: CGFloat = ring.fullCircle ? .pi * 2 : borderEndAngle.rads
             let borderPath = UIBezierPath(arcCenter: center,
                                           radius: outerRadius,
                                           startAngle: start,
@@ -278,9 +259,9 @@ class UICircularRingLayer: CAShapeLayer {
                                           clockwise: true)
             UIColor.clear.setFill()
             borderPath.fill()
-            borderPath.lineWidth = (outerBorderWidth*2) + outerRingWidth
-            borderPath.lineCapStyle = outerCapStyle
-            outerBorderColor.setStroke()
+            borderPath.lineWidth = (borderWidth * 2) + ring.outerRingWidth
+            borderPath.lineCapStyle = ring.outerCapStyle
+            borderColor.setStroke()
             borderPath.stroke()
         default:
             break
@@ -291,20 +272,20 @@ class UICircularRingLayer: CAShapeLayer {
     private func calculateInnerEndAngle() -> CGFloat {
         let innerEndAngle: CGFloat
 
-        if fullCircle {
-            if !isClockwise {
-                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * 360.0)
+        if ring.fullCircle {
+            if !ring.isClockwise {
+                innerEndAngle = ring.startAngle - ((value - minValue) / (maxValue - minValue) * 360.0)
             } else {
-                innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + startAngle
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * 360.0 + ring.startAngle
             }
         } else {
             // Calculate the center difference between the end and start angle
-            let angleDiff: CGFloat = (startAngle > endAngle) ? (360.0 - startAngle + endAngle) : (endAngle - startAngle)
+            let angleDiff: CGFloat = (ring.startAngle > ring.endAngle) ? (360.0 - ring.startAngle + ring.endAngle) : (ring.endAngle - ring.startAngle)
             // Calculate how much we should draw depending on the value set
-            if !isClockwise {
-                innerEndAngle = startAngle - ((value - minValue) / (maxValue - minValue) * angleDiff)
+            if !ring.isClockwise {
+                innerEndAngle = ring.startAngle - ((value - minValue) / (maxValue - minValue) * angleDiff)
             } else {
-                innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + startAngle
+                innerEndAngle = (value - minValue) / (maxValue - minValue) * angleDiff + ring.startAngle
             }
         }
 
@@ -318,16 +299,18 @@ class UICircularRingLayer: CAShapeLayer {
         // this way it looks like its inside the circle
         let radiusIn: CGFloat
 
-        switch ringStyle {
-        case .inside:
-            let difference = outerRingWidth * 2 + innerRingSpacing + (showsValueKnob ? valueKnobSize / 2 : 0)
-            let offSet = innerRingWidth / 2 + (showsValueKnob ? valueKnobSize / 2 : 0)
+        let knobSize = ring.valueKnobStyle?.size ?? 0
+
+        switch ring.style {
+        case .inside, .gradient:
+            let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + knobSize / 2
+            let offSet = ring.innerRingWidth / 2 + knobSize / 2
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
-        case .bordered:
-            let offSet = (max(outerRingWidth, innerRingWidth) / 2) + (showsValueKnob ? valueKnobSize / 4 : 0) + (outerBorderWidth*2)
+        case .bordered(let borderWidth, _):
+            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4) + (borderWidth * 2)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
         default:
-            let offSet = (max(outerRingWidth, innerRingWidth) / 2) + (showsValueKnob ? valueKnobSize / 4 : 0)
+            let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
         }
 
@@ -352,14 +335,18 @@ class UICircularRingLayer: CAShapeLayer {
      Draws the value knob inside the provided context
      */
     private func drawValueKnob(in context: CGContext, origin: CGPoint) {
+        guard let knobStyle = ring.valueKnobStyle else { return }
+
         context.saveGState()
 
-        let rect = CGRect(origin: origin, size: CGSize(width: valueKnobSize, height: valueKnobSize))
+        let rect = CGRect(origin: origin, size: CGSize(width: knobStyle.size, height: knobStyle.size))
         let knobPath = UIBezierPath(ovalIn: rect)
 
-        context.setShadow(offset: valueKnobShadowOffset, blur: valueKnobShadowBlur, color: valueKnobShadowColor.cgColor)
+        context.setShadow(offset: knobStyle.shadowOffset,
+                          blur: knobStyle.shadowBlur,
+                          color: knobStyle.shadowColor.cgColor)
         context.addPath(knobPath.cgPath)
-        context.setFillColor(valueKnobColor.cgColor)
+        context.setFillColor(knobStyle.color.cgColor)
         context.setLineCap(.round)
         context.setLineWidth(12)
         context.drawPath(using: .fill)
@@ -372,51 +359,20 @@ class UICircularRingLayer: CAShapeLayer {
      Only drawn if shouldShowValueText = true
      */
     func drawValueLabel() {
-        guard shouldShowValueText else { return }
+        guard ring.shouldShowValueText else { return }
 
         // Draws the text field
         // Some basic label properties are set
-        valueLabel.font = font
+        valueLabel.font = ring.font
         valueLabel.textAlignment = .center
-        valueLabel.textColor = fontColor
-
-        updateValueLabel(withValue: value,
-                         valueIndicator: valueIndicator,
-                         rightToLeft: rightToLeft,
-                         showsDecimal: showFloatingPoint,
-                         decimalPlaces: decimalPlaces,
-                         valueDelegate: valueDelegate)
+        valueLabel.textColor = ring.fontColor
+        valueLabel.text = valueFormatter?.string(forValue: value)
+        ring.willDisplayLabel(label: valueLabel)
+        valueLabel.sizeToFit()
 
         // Deterime what should be the center for the label
         valueLabel.center = CGPoint(x: bounds.midX, y: bounds.midY)
 
         valueLabel.drawText(in: bounds)
-    }
-
-    /**
-     This function is called whenever the value label's text property should be updated.
-     By default this sets thte text to be the current value of the layer (with some formatting).
-     It also calls the value delegate.
-     */
-    // swiftlint:disable function_parameter_count next_line
-    func updateValueLabel(withValue value: CGFloat, valueIndicator: String, rightToLeft: Bool,
-                          showsDecimal: Bool, decimalPlaces: Int, valueDelegate: UICircularRing?) {
-        if rightToLeft {
-            if showsDecimal {
-                valueLabel.text = "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
-            } else {
-                valueLabel.text = "\(valueIndicator)\(Int(value))"
-            }
-
-        } else {
-            if showsDecimal {
-                valueLabel.text = String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
-            } else {
-                valueLabel.text = "\(Int(value))\(valueIndicator)"
-            }
-        }
-
-        valueDelegate?.willDisplayLabel(label: valueLabel)
-        valueLabel.sizeToFit()
     }
 }
