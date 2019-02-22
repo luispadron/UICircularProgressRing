@@ -197,16 +197,16 @@ class UICircularRingLayer: CAShapeLayer {
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
 
-        if case let UICircularRingStyle.gradient(options) = ring.style {
+        if let gradientOptions = ring.gradientOptions {
             // Create gradient and draw it
             var cgColors: [CGColor] = [CGColor]()
-            for color: UIColor in options.colors {
+            for color: UIColor in gradientOptions.colors {
                 cgColors.append(color.cgColor)
             }
 
             guard let gradient: CGGradient = CGGradient(colorsSpace: nil,
                                                         colors: cgColors as CFArray,
-                                                        locations: options.colorLocations)
+                                                        locations: gradientOptions.colorLocations)
             else {
                 fatalError("\nUnable to create gradient for progress ring.\n" +
                     "Check values of gradientColors and gradientLocations.\n")
@@ -218,8 +218,8 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.clip()
 
             drawGradient(gradient,
-                         start: options.startPosition,
-                         end: options.endPosition,
+                         start: gradientOptions.startPosition,
+                         end: gradientOptions.endPosition,
                          in: ctx)
 
             ctx.restoreGState()
@@ -302,7 +302,7 @@ class UICircularRingLayer: CAShapeLayer {
         let knobSize = ring.valueKnobStyle?.size ?? 0
 
         switch ring.style {
-        case .inside, .gradient:
+        case .inside:
             let difference = ring.outerRingWidth * 2 + ring.innerRingSpacing + knobSize / 2
             let offSet = ring.innerRingWidth / 2 + knobSize / 2
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
