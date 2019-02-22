@@ -1,3 +1,13 @@
+# Version 6.0.0
+
+- Fixed issue with API of `UICircularRingStyle` which made it impossible to have both a gradient and outer ring style, etc.
+- Refactor way that `UICircularRingValueFormatter` works. It's now a simple protocol which anyone can conform to. There are two concrete implementations from 5.0.0 which can still be used, however, they're now `struct`s so cannot be mutated.
+
+### Breaking Changes
+
+- Due to the fact that both the `.style` property now doesnt allow setting `.gradient`, this API has been broken. Instead, use the new `.gradientOptions` property to set a gradient, and `.style` if you need extra styling on top of gradient
+- Because the value formatter are now structs, they cannot be modified with `.` syntax. Instead create a brand new formatter and assign to the `.valueFormatter` property. This will be over all much better in the future, less state and structs are cool!
+
 # Version 5.1.0
 
 *wow bug fixes already?*
