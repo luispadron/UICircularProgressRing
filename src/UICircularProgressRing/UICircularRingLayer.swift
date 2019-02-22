@@ -44,7 +44,7 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged weak var ring: UICircularRing!
 
     /// formatter for the text of the value label
-    @NSManaged var valueFormatter: UICircularRingValueFormatter?
+    var valueFormatter: UICircularRingValueFormatter?
 
     /// the style for the value knob
     var valueKnobStyle: UICircularRingValueKnobStyle?
@@ -366,7 +366,7 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
-        valueLabel.text = valueFormatter?.string(forValue: value)
+        valueLabel.text = valueFormatter?.string(for: value)
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
 

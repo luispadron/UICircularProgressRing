@@ -67,14 +67,15 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.maxValue, 200)
         XCTAssertEqual(progressRing.ringLayer.maxValue, 200)
 
+        var formatter = UICircularProgressRingFormatter()
+        formatter.valueIndicator = " GB"
+        formatter.showFloatingPoint = true
+        formatter.decimalPlaces = 1
+        progressRing.valueFormatter = formatter
+
         let layerFormatter = progressRing.ringLayer.valueFormatter as! UICircularProgressRingFormatter
-        progressRing.valueFormatter.valueIndicator = " GB"
         XCTAssertEqual(layerFormatter.valueIndicator, " GB")
-
-        progressRing.valueFormatter.showFloatingPoint = true
         XCTAssertEqual(layerFormatter.showFloatingPoint, true)
-
-        progressRing.valueFormatter.decimalPlaces = 1
         XCTAssertEqual(layerFormatter.decimalPlaces, 1)
 
         progressRing.animationTimingFunction = .linear

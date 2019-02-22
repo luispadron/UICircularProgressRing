@@ -11,33 +11,14 @@ import Foundation
 // MARK: UICircularRingValueFormatter
 
 /**
- UICricularRingValueFormatter
+ UICircularRingValueFormatter
 
- The base class for all the UICircularRing formatters.
- Subclasses should implement `string(forValue:)` as this is used
- to format the value into a string in the base class
+ Any custom formatter must conform to this protocol.
 
- Two concrete implementations are provided, refer to `UICircularTimerRingFormatter`
- and `UICircularProgressRingFormatter`
  */
-open class UICircularRingValueFormatter: Formatter {
-    /// returns result of `string(forValue:)`
-    open override func string(for obj: Any?) -> String? {
-        guard let value = obj as? CGFloat else { return nil }
-        return string(forValue: value)
-    }
-
-    /// always returns false
-    open override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?,
-                                      for string: String,
-                                      errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
-        return false
-    }
-
-    /// not implemented
-    open func string(forValue value: CGFloat) -> String? {
-        fatalError("UICircularRingValueFormatter: string(forValue:) should be implemented when subclassing")
-    }
+public protocol UICircularRingValueFormatter {
+    /// returns a string for the given object
+    func string(for value: Any) -> String?
 }
 
 // MARK: UICircularTimerRingFormatter
@@ -48,7 +29,7 @@ open class UICircularRingValueFormatter: Formatter {
  The formatter used in UICircularTimerRing class, formats
  the ring value into a time string.
  */
-final public class UICircularTimerRingFormatter: UICircularRingValueFormatter {
+public struct UICircularTimerRingFormatter: UICircularRingValueFormatter {
     // MARK: Members
 
     /// defines the units allowed to be used when converting string, by default `[.minute, .second]`
@@ -62,17 +43,18 @@ final public class UICircularTimerRingFormatter: UICircularRingValueFormatter {
     }
 
     /// formatter which formats the time string of the ring label
-    private lazy var formatter: DateComponentsFormatter = {
+    private var formatter: DateComponentsFormatter {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = units
         formatter.unitsStyle = style
         return formatter
-    }()
+    }
 
     // MARK: API
 
     /// formats the value of the ring using the date components formatter with given units/style
-    public override func string(forValue value: CGFloat) -> String? {
+    public func string(for value: Any) -> String? {
+        guard let value = value as? CGFloat else { return nil }
         return formatter.string(from: value.interval)
     }
 }
@@ -85,7 +67,7 @@ final public class UICircularTimerRingFormatter: UICircularRingValueFormatter {
  The formatter used in UICircularProgressRing class,
  responsible for formatting the value of the ring into a readable string
  */
-final public class UICircularProgressRingFormatter: UICircularRingValueFormatter {
+public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
 
     // MARK: Members
 
@@ -142,7 +124,9 @@ final public class UICircularProgressRingFormatter: UICircularRingValueFormatter
     public var decimalPlaces: Int = 2
 
     /// formats the value of the progress ring using the given properties
-    public override func string(forValue value: CGFloat) -> String? {
+    public func string(for value: Any) -> String? {
+        guard let value = value as? CGFloat else { return nil }
+
         if rightToLeft {
             if showFloatingPoint {
                 return "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
