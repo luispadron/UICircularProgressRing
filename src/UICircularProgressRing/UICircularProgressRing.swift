@@ -159,7 +159,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public var valueFormatter = UICircularProgressRingFormatter() {
+    public var valueFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter() {
         didSet { ringLayer.valueFormatter = valueFormatter }
     }
 
