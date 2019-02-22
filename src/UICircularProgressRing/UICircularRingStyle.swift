@@ -50,9 +50,6 @@ public enum UICircularRingStyle {
     /// outer ring is dotted
     case dotted
 
-    /// inner ring is placed ontop of the outer ring and it has a gradient, look at `UICircularGradientOptions`
-    case gradient(options: UICircularGradientOptions)
-
     /// inner ring is placed ontop of the outer ring and outer ring has border
     case bordered(width: CGFloat, color: UIColor)
 }
@@ -157,20 +154,20 @@ public enum UICircularRingGradientPosition {
     }
 }
 
-// MARK: UICircularGradientOptions
+// MARK: UICircularRingGradientOptions
 
 /**
- UICircularGradientOptions
+ UICircularRingGradientOptions
 
  Struct for defining the options for the UICircularRingStyle.gradient case.
 
  ## Important ##
  Make sure the number of `colors` is equal to the number of `colorLocations`
  */
-public struct UICircularGradientOptions {
+public struct UICircularRingGradientOptions {
 
     /// a default styling option for the gradient style
-    public static let `default` = UICircularGradientOptions(startPosition: .topRight,
+    public static let `default` = UICircularRingGradientOptions(startPosition: .topRight,
                                                             endPosition: .bottomLeft,
                                                             colors: [.red, .blue],
                                                             colorLocations: [0, 1])
@@ -187,7 +184,7 @@ public struct UICircularGradientOptions {
     /// the locations of where to place the colors, valid numbers are from 0.0 - 1.0
     public let colorLocations: [CGFloat]
 
-    /// create a new UICircularGradientOptions
+    /// create a new UICircularRingGradientOptions
     public init(startPosition: UICircularRingGradientPosition,
                 endPosition: UICircularRingGradientPosition,
                 colors: [UIColor],

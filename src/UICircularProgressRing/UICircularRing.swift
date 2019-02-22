@@ -86,6 +86,18 @@ import UIKit
     }
 
     /**
+     The options for a gradient ring.
+
+     If this is non-`nil` then a gradient style will be applied.
+
+     ## Important ##
+    Default = `nil`
+    */
+    open var gradientOptions: UICircularRingGradientOptions? = nil {
+        didSet { ringLayer.setNeedsDisplay() }
+    }
+
+    /**
      A toggle for showing or hiding the value label.
      If false the current value will not be shown.
 
