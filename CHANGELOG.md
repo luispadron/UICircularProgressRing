@@ -1,3 +1,7 @@
+# Version 6.0.1
+
+- Fix bug relating to label for rings being removed during animation ([#171](https://github.com/luispadron/UICircularProgressRing/issues/171))
+
 # Version 6.0.0
 
 - Fixed issue with API of `UICircularRingStyle` which made it impossible to have both a gradient and outer ring style, etc.

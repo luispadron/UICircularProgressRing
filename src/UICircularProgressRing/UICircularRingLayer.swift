@@ -30,7 +30,7 @@ import UIKit
  This is the class that handles all the drawing and animation.
  This class is not interacted with, instead
  properties are set in UICircularRing and those are delegated to here.
- 
+
  */
 class UICircularRingLayer: CAShapeLayer {
 
@@ -75,6 +75,27 @@ class UICircularRingLayer: CAShapeLayer {
     static func isAnimatableProperty(_ key: String) -> Bool {
         return animatableProperties.index(of: key) != nil
     }
+
+    // MARK: Init
+
+    override init() {
+        super.init()
+    }
+
+    override init(layer: Any) {
+        // copy our properties to this layer which will be used for animation
+        guard let layer = layer as? UICircularRingLayer else { fatalError("unable to copy layer") }
+        valueFormatter = layer.valueFormatter
+        valueKnobStyle = layer.valueKnobStyle
+        animationDuration = layer.animationDuration
+        animationTimingFunction = layer.animationTimingFunction
+        animated = layer.animated
+        shouldAnimateProperties = layer.shouldAnimateProperties
+        propertyAnimationDuration = layer.propertyAnimationDuration
+        super.init(layer: layer)
+    }
+
+    required init?(coder aDecoder: NSCoder) { return nil }
 
     // MARK: Draw
 
