@@ -30,7 +30,7 @@ import UIKit
  This is the class that handles all the drawing and animation.
  This class is not interacted with, instead
  properties are set in UICircularRing and those are delegated to here.
- 
+
  */
 class UICircularRingLayer: CAShapeLayer {
 
@@ -387,7 +387,6 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
-        print("is nil: \(valueFormatter == nil)")
         valueLabel.text = valueFormatter?.string(for: value)
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
