@@ -76,6 +76,27 @@ class UICircularRingLayer: CAShapeLayer {
         return animatableProperties.index(of: key) != nil
     }
 
+    // MARK: Init
+
+    override init() {
+        super.init()
+    }
+
+    override init(layer: Any) {
+        // copy our properties to this layer which will be used for animation
+        guard let layer = layer as? UICircularRingLayer else { fatalError("unable to copy layer") }
+        valueFormatter = layer.valueFormatter
+        valueKnobStyle = layer.valueKnobStyle
+        animationDuration = layer.animationDuration
+        animationTimingFunction = layer.animationTimingFunction
+        animated = layer.animated
+        shouldAnimateProperties = layer.shouldAnimateProperties
+        propertyAnimationDuration = layer.propertyAnimationDuration
+        super.init(layer: layer)
+    }
+
+    required init?(coder aDecoder: NSCoder) { return nil }
+
     // MARK: Draw
 
     /**
@@ -366,6 +387,7 @@ class UICircularRingLayer: CAShapeLayer {
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
+        print("is nil: \(valueFormatter == nil)")
         valueLabel.text = valueFormatter?.string(for: value)
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
