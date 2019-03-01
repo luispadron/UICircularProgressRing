@@ -24,7 +24,7 @@
 * Written in Swift
 * RTL language support
 
-## Apps Usig UICircularProgressRing
+## Apps Using UICircularProgressRing
 
 - [GradePoint](http://gradepoint.luispadron.com) by Luis Padron.
 
@@ -102,7 +102,7 @@ To set a value and animate the view
 
 ```swift
 // Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
-// Remember to use unowned or weak self if refrencing self to avoid retain cycle
+// Remember to use unowned or weak self if referencing self to avoid retain cycle
 progressRing.startProgress(to: 49, duration: 2.0) {
   print("Done animating!")
   // Do anything your heart desires...
