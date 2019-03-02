@@ -33,12 +33,12 @@ public struct UICircularTimerRingFormatter: UICircularRingValueFormatter {
     // MARK: Members
 
     /// defines the units allowed to be used when converting string, by default `[.minute, .second]`
-    public var units: NSCalendar.Unit = [.minute, .second] {
+    public var units: NSCalendar.Unit {
         didSet { formatter.allowedUnits = units }
     }
 
     /// the style of the formatted string, by default `.short`
-    public var style: DateComponentsFormatter.UnitsStyle = .short {
+    public var style: DateComponentsFormatter.UnitsStyle {
         didSet { formatter.unitsStyle = style }
     }
 
@@ -48,6 +48,14 @@ public struct UICircularTimerRingFormatter: UICircularRingValueFormatter {
         formatter.allowedUnits = units
         formatter.unitsStyle = style
         return formatter
+    }
+
+    // MARK: Init
+
+    public init(units: NSCalendar.Unit = [.minute, .second],
+                style: DateComponentsFormatter.UnitsStyle = .short) {
+        self.units = units
+        self.style = style
     }
 
     // MARK: API
@@ -82,7 +90,7 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
      ## Author
      Luis Padron
      */
-    public var valueIndicator: String = "%"
+    public var valueIndicator: String
 
     /**
      A toggle for either placing the value indicator right or left to the value
@@ -94,7 +102,7 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
      ## Author
      Elad Hayun
      */
-    public var rightToLeft: Bool = false
+    public var rightToLeft: Bool
 
     /**
      A toggle for showing or hiding floating points from
@@ -108,7 +116,7 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
      ## Author
      Luis Padron
      */
-    public var showFloatingPoint: Bool = false
+    public var showFloatingPoint: Bool
 
     /**
      The amount of decimal places to show in the value label
@@ -121,7 +129,21 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
      ## Author
      Luis Padron
      */
-    public var decimalPlaces: Int = 2
+    public var decimalPlaces: Int
+
+    // MARK: Init
+
+    public init(valueIndicator: String = "%",
+                rightToLeft: Bool = false,
+                showFloatingPoint: Bool = false,
+                decimalPlaces: Int = 2) {
+        self.valueIndicator = valueIndicator
+        self.rightToLeft = rightToLeft
+        self.showFloatingPoint = showFloatingPoint
+        self.decimalPlaces = decimalPlaces
+    }
+
+    // MARK: API
 
     /// formats the value of the progress ring using the given properties
     public func string(for value: Any) -> String? {

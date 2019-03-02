@@ -8,6 +8,20 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingValueFormatter.swift",
+      "line": 55,
+      "symbol": "UICircularTimerRingFormatter.init(units:style:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingValueFormatter.swift",
+      "line": 136,
+      "symbol": "UICircularProgressRingFormatter.init(valueIndicator:rightToLeft:showFloatingPoint:decimalPlaces:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularTimerRing.swift",
       "line": null,
       "symbol": "UICircularTimerRing",

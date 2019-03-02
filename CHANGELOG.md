@@ -1,3 +1,7 @@
+# Version 6.0.2
+
+- Fix issue with formatter initializers being interal, they're now public as intended.
+
 # Version 6.0.1
 
 - Fix bug relating to label for rings being removed during animation ([#171](https://github.com/luispadron/UICircularProgressRing/issues/171))
