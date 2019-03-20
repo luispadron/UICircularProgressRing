@@ -38,6 +38,8 @@
 
 - [Barstool Sports](https://itunes.apple.com/us/app/barstool-sports/id456805313) by Barstool Sports
 
+- [88 Days](http://88-days.com) by Stijn Kramer
+
 ## Installation
 
 *NOTE: Objective-C support: Support for Objective-C has been dropped in version 5.0.0, use version 4 or lower if you are using Objective-C.*
