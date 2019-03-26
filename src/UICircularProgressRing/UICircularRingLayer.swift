@@ -73,7 +73,7 @@ class UICircularRingLayer: CAShapeLayer {
 
     // Returns whether or not a given property key is animatable
     static func isAnimatableProperty(_ key: String) -> Bool {
-        return animatableProperties.index(of: key) != nil
+        return animatableProperties.firstIndex(of: key) != nil
     }
 
     // MARK: Init
@@ -265,9 +265,10 @@ class UICircularRingLayer: CAShapeLayer {
 
         case .bordered(let borderWidth, let borderColor):
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
+            let knobSize = valueKnobStyle?.size ?? 0
             let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
-                            + ((valueKnobStyle?.size ?? 0) / 4)
-                            + (borderWidth * 2)
+                            + knobSize / 4
+                            + borderWidth * 2
             let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
             let borderStartAngle = ring.outerCapStyle == .butt ? ring.startAngle - borderWidth : ring.startAngle
             let borderEndAngle = ring.outerCapStyle == .butt ? ring.endAngle + borderWidth : ring.endAngle
