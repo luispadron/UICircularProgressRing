@@ -28,14 +28,14 @@ import UIKit.UIColor
 // MARK: UICircularRingStyle
 
 /**
- 
+
  # UICircularRingStyle
- 
+
  This is an enumeration which is used to determine the style of the progress ring.
- 
+
  ## Author
  Luis Padron
- 
+
  */
 public enum UICircularRingStyle {
     /// inner ring is inside the circle
@@ -86,17 +86,32 @@ public struct UICircularRingValueKnobStyle {
     /// the color for the shadow
     public let shadowColor: UIColor
 
+    // the image of the knob
+    public let image: UIImage?
+
+    // the tint color of the knob image
+    public let imageTintColor: UIColor?
+
+    // the inset of the thumb image
+    public let imageInsets: UIEdgeInsets
+
     /// creates a new `UICircularRingValueKnobStyle`
     public init(size: CGFloat,
                 color: UIColor,
                 shadowBlur: CGFloat = 2.0,
                 shadowOffset: CGSize = .zero,
-                shadowColor: UIColor = UIColor.black.withAlphaComponent(0.8)) {
+                shadowColor: UIColor = UIColor.black.withAlphaComponent(0.8),
+                image: UIImage? = nil,
+                imageTintColor: UIColor? = nil,
+                imageInsets: UIEdgeInsets = .zero) {
         self.size = size
         self.color = color
         self.shadowBlur = shadowBlur
         self.shadowOffset = shadowOffset
         self.shadowColor = shadowColor
+        self.image = image
+        self.imageTintColor = imageTintColor
+        self.imageInsets = imageInsets
     }
 }
 

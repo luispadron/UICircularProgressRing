@@ -374,6 +374,20 @@ class UICircularRingLayer: CAShapeLayer {
         context.drawPath(using: .fill)
 
         context.restoreGState()
+
+        if let image = knobStyle.image {
+            context.saveGState()
+
+            let imageRect = rect.inset(by: knobStyle.imageInsets)
+            if let tintColor = knobStyle.imageTintColor {
+                tintColor.setFill()
+                image.withRenderingMode(.alwaysTemplate).draw(in: imageRect)
+            } else {
+                image.draw(in: imageRect)
+            }
+
+            context.restoreGState()
+        }
     }
 
     /**
