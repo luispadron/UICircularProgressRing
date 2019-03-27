@@ -1,3 +1,7 @@
+# Version 6.1.0
+
+- Migrate to Swift 5.0, thanks to [darecki](https://github.com/darecki) for the PR!
+
 # Version 6.0.2
 
 - Fix issue with formatter initializers being interal, they're now public as intended.
