@@ -754,7 +754,7 @@ fileprivate extension CALayer {
      ## Author
      Luis Padron
      */
-    @objc open var animationStyle: String = kCAMediaTimingFunctionEaseIn {
+    @objc open var animationStyle: CAMediaTimingFunctionName = CAMediaTimingFunctionName.easeIn {
         didSet {
             ringLayer.animationStyle = animationStyle
         }

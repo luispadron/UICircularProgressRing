@@ -116,7 +116,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var isClockwise: Bool
 
     var animationDuration: TimeInterval = 1.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animationStyle: CAMediaTimingFunctionName = CAMediaTimingFunctionName.easeOut
     var animated = false
     @NSManaged weak var valueDelegate: UICircularProgressRing?
 
@@ -138,7 +138,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
 
     // Returns whether or not a given property key is animatable
     private static func isAnimatableProperty(_ key: String) -> Bool {
-        return animatableProperties.index(of: key) != nil
+        return animatableProperties.firstIndex(of: key) != nil
     }
 
     // MARK: Draw
