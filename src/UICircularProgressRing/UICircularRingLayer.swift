@@ -265,10 +265,11 @@ class UICircularRingLayer: CAShapeLayer {
 
         case .bordered(let borderWidth, let borderColor):
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-            let knobSize = valueKnobStyle?.size ?? 0
-            let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
-                            + knobSize / 4
-                            + borderWidth * 2
+            let offSet: CGFloat = {
+                let offset = max(ring.outerRingWidth, ring.innerRingWidth) / 2
+                let size = valueKnobStyle?.size ?? 0
+                return offset + (size / 4) + (borderWidth * 2)
+            }()
             let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
             let borderStartAngle = ring.outerCapStyle == .butt ? ring.startAngle - borderWidth : ring.startAngle
             let borderEndAngle = ring.outerCapStyle == .butt ? ring.endAngle + borderWidth : ring.endAngle
