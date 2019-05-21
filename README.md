@@ -80,15 +80,6 @@ To use with [Carthage](https://github.com/Carthage/Carthage)
 
 ## Usage
 
-
-### Interface Builder
-
-Simply drag a `UIView` into your storyboard. Make sure to subclass `UICircularProgressRing` and that the module points to `UICircularProgressRing`.
-
-Design your heart out
-
-![ib-demo.gif](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/ib-demo.gif)
-
 ### UICircularProgressRing Example
 
 ```swift
