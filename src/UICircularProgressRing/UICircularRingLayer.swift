@@ -363,7 +363,7 @@ class UICircularRingLayer: CAShapeLayer {
         context.saveGState()
 
         let rect = CGRect(origin: origin, size: CGSize(width: knobStyle.size, height: knobStyle.size))
-        let knobPath = UIBezierPath(ovalIn: rect)
+        let knobPath = knobStyle.path.from(rect)
 
         context.setShadow(offset: knobStyle.shadowOffset,
                           blur: knobStyle.shadowBlur,
