@@ -50,12 +50,7 @@ final public class UICircularTimerRing: UICircularRing {
 
     /// This is the max value for the layer, which corresponds
     /// to the time that was set for the timer
-    private var time: TimeInterval = 60 {
-        didSet {
-            ringLayer.value = time.float
-            ringLayer.maxValue = time.float
-        }
-    }
+    private var time: TimeInterval = 60
 
     /// the elapsed time since calling `startTimer`
     private var elapsedTime: TimeInterval? {
@@ -69,14 +64,32 @@ final public class UICircularTimerRing: UICircularRing {
 
     /**
      Starts the timer until the given time is elapsed.
+
+     Parameters:
+        - startTime: the time at which the timer will begin, default is 0.
+        - endtime: the time at which the timer will end, the animation duration will be `endTime - startTime`.
+        - handler: the handler which is called and updated depending on the state of the timer.
      */
-    public func startTimer(to time: TimeInterval, handler: TimerHandler?) {
-        startAnimation(duration: time) {
-            self.timerHandler?(.finished)
+    public func startTimer(from startTime: TimeInterval = 0.0, to endTime: TimeInterval, handler: TimerHandler?) {
+        // begin animation to start time, this should be done instantly thus 0 duration
+        startAnimation(duration: 0) {
+            // begin animation to end time, this is done with difference in endTime and startTime
+            self.startAnimation(duration: endTime - startTime) {
+                self.timerHandler?(.finished)
+            }
+
+            // this will cause the animation to the end time value
+            self.ringLayer.value = endTime.float
+            self.ringLayer.maxValue = endTime.float
         }
 
-        self.time = time
-        self.timerHandler = handler
+        // this causes the animation to the start time
+        ringLayer.value = startTime.float
+        ringLayer.maxValue = endTime.float
+
+        // store time and handler
+        time = endTime
+        timerHandler = handler
     }
 
     /**
