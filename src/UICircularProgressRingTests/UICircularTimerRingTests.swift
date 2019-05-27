@@ -97,6 +97,6 @@ class UICircularTimerRingTests: XCTestCase {
         usleep(1000000)
         expectedFinish = true
 
-        waitForExpectations(timeout: 1.5, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
     }
 }
