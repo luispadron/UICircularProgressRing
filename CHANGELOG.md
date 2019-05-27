@@ -1,3 +1,7 @@
+# Version 6.2.0
+
+- Adds ability to start the timer ring from a value other than 0.
+
 # Version 6.1.0
 
 - Migrate to Swift 5.0, thanks to [darecki](https://github.com/darecki) for the PR!
