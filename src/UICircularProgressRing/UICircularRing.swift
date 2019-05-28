@@ -112,6 +112,20 @@ import UIKit
     }
 
     /**
+     A toggle for showing or hiding the value knob when current value == minimum value.
+     If false the value knob will not be shown when current value == minimum value.
+
+     ## Important ##
+     Default = false
+
+     ## Author
+     Tom Knapen
+     */
+    @IBInspectable public var shouldDrawMinValueKnob: Bool = false {
+        didSet { ringLayer.setNeedsDisplay() }
+    }
+
+    /**
      Style for the value knob, default is `nil`.
 
      ## Important ##
