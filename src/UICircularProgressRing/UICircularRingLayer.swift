@@ -246,7 +246,7 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.restoreGState()
         }
 
-        if let knobStyle = ring.valueKnobStyle, value > minValue {
+        if let knobStyle = ring.valueKnobStyle, ((value > minValue) || (ring?.shouldDrawMinValueKnob ?? false)) {
             let knobOffset = knobStyle.size / 2
             drawValueKnob(in: ctx, origin: CGPoint(x: innerPath.currentPoint.x - knobOffset,
                                                    y: innerPath.currentPoint.y - knobOffset))
