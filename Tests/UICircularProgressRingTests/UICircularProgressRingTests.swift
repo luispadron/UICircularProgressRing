@@ -54,7 +54,7 @@ class UICircularProgressRingTests: XCTestCase {
         XCTAssertEqual(progressRing.ringLayer.value, 50)
 
         XCTAssertEqual(progressRing.currentValue, 50)
-        XCTAssertEqual(progressRing.ringLayer.value(forKey: "value") as CGFloat, 50)
+        XCTAssertEqual(progressRing.ringLayer.value(forKey: "value") as! CGFloat, 50)
 
         progressRing.minValue = 10
         XCTAssertEqual(progressRing.minValue, 10)
@@ -73,7 +73,7 @@ class UICircularProgressRingTests: XCTestCase {
         formatter.decimalPlaces = 1
         progressRing.valueFormatter = formatter
 
-        let layerFormatter = progressRing.ringLayer.valueFormatter as UICircularProgressRingFormatter
+        let layerFormatter = progressRing.ringLayer.valueFormatter as! UICircularProgressRingFormatter
         XCTAssertEqual(layerFormatter.valueIndicator, " GB")
         XCTAssertEqual(layerFormatter.showFloatingPoint, true)
         XCTAssertEqual(layerFormatter.decimalPlaces, 1)

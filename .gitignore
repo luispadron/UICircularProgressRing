@@ -24,3 +24,4 @@ xcuserdata/
 *.xcscmblueprint
 .DS_Store
 UICircularProgressRing.framework.zip
+UICircularProgressRing.xcodeproj
