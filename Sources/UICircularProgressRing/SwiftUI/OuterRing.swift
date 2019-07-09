@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  OuterRing.swift
 //  
 //
 //  Created by Luis on 7/7/19.
@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-public struct OuterRing: Shape {
-    let style: StrokeStyle
+struct OuterRing: Ring {    
+    var width: Length = 10
+    var capStyle: CGLineCap = .round
+    var ringOffset: Length = 0
     
-    public init(style: StrokeStyle) {
-        self.style = style
-    }
+    init() { }
     
-    public func path(in rect: CGRect) -> Path {
+    func path(in rect: CGRect) -> Path {
         let minSize = min(rect.width, rect.height)
         let center: CGPoint = CGPoint(x: minSize / 2, y: minSize / 2)
-        let offSet = style.lineWidth / 2
-        let outerRadius: CGFloat = min(rect.width, rect.height) / 2 - offSet
+        let outerRadius: CGFloat = min(rect.width, rect.height) / 2 - ringOffset
         
         var path = Path()
         path.addArc(center: center,
@@ -27,6 +26,6 @@ public struct OuterRing: Shape {
                     endAngle: Angle(degrees: 360),
                     clockwise: true)
         
-        return path.strokedPath(style)
+        return path.strokedPath(.init(lineWidth: width, lineCap: capStyle))
     }
 }
