@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct InnerRing: Ring {
-    var width: Length = 8
-    var capStyle: CGLineCap = .round
+    var width: Length = RingDefaults.innerRingWidth
+    var capStyle: CGLineCap = RingDefaults.ringCapStyle
     var ringOffset: Length = 0
+    
     var value: Double = 0
-    var minValue: Double = 0
-    var maxValue: Double = 100
+    var minValue: Double = RingDefaults.innerRingMinValue
+    var maxValue: Double = RingDefaults.innerRingMaxValue
     
     func path(in rect: CGRect) -> Path {
         let minSize = min(rect.width, rect.height)
@@ -40,15 +41,16 @@ struct InnerRing: Ring {
 // MARK: Modifiers
 
 extension InnerRing {
-    func values(min: Double, max: Double) -> Self {
+    /// returns a copy of `InnerRing` after modifying `minValue` and `maxValue`
+    func values(min: Double = RingDefaults.innerRingMinValue,
+                max: Double = RingDefaults.innerRingMaxValue) -> Self {
         return self
             .modifying(\.minValue, value: min)
             .modifying(\.maxValue, value: max)
     }
     
-    // TODO: Remove this, this shouldn't be set as a constant
+    /// returns a copy of `InnerRing` after modifying `value`
     func value(_ value: Double) -> Self {
-        return self
-            .modifying(\.value, value: value)
+        return modifying(\.value, value: value)
     }
 }

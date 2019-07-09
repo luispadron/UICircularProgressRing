@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct OuterRing: Ring {    
-    var width: Length = 10
-    var capStyle: CGLineCap = .round
+    var width: Length = RingDefaults.outerRingWidth
+    var capStyle: CGLineCap = RingDefaults.ringCapStyle
     var ringOffset: Length = 0
-    
-    init() { }
     
     func path(in rect: CGRect) -> Path {
         let minSize = min(rect.width, rect.height)
