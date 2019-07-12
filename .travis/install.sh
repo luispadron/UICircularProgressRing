@@ -6,10 +6,6 @@
 
 set -e
 
-# Install gems
-gem install bundler -v 2.0.1
-bundle install
-
 # Install swiftlint
 SWIFTLINT_PKG_PATH="/tmp/SwiftLint.pkg"
 SWIFTLINT_PKG_URL="https://github.com/realm/SwiftLint/releases/download/0.33.1/SwiftLint.pkg"
