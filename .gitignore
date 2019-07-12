@@ -25,3 +25,5 @@ xcuserdata/
 .DS_Store
 UICircularProgressRing.framework.zip
 UICircularProgressRing.xcodeproj
+fastlane/report.xml
+fastlane/test_output

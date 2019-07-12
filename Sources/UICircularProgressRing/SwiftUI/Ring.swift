@@ -35,4 +35,3 @@ extension Ring {
         return modifying(\.ringOffset, value: ringOffset)
     }
 }
-

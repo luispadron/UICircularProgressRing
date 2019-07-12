@@ -7,23 +7,21 @@
 
 import SwiftUI
 
-struct OuterRing: Ring {    
+struct OuterRing: Ring {
     var width: Length = RingDefaults.outerRingWidth
     var capStyle: CGLineCap = RingDefaults.ringCapStyle
     var ringOffset: Length = 0
-    
+
     func path(in rect: CGRect) -> Path {
-        let minSize = min(rect.width, rect.height)
-        let center: CGPoint = CGPoint(x: minSize / 2, y: minSize / 2)
-        let outerRadius: CGFloat = min(rect.width, rect.height) / 2 - ringOffset
-        
+        let outerRadius = min(rect.width, rect.height) / 2 - ringOffset
+
         var path = Path()
-        path.addArc(center: center,
+        path.addArc(center: .init(x: rect.midX, y: rect.midY),
                     radius: outerRadius,
                     startAngle: Angle(degrees: 0),
                     endAngle: Angle(degrees: 360),
                     clockwise: true)
-        
+
         return path.strokedPath(.init(lineWidth: width, lineCap: capStyle))
     }
 }

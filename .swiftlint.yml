@@ -1,2 +1,9 @@
-file_length:
-  - 1000
+disabled_rules:
+  - valid_ibinspectable
+  - file_length
+  - type_body_length
+  - type_name
+file_length: 500
+line_length: 150
+excluded:
+  - Tests

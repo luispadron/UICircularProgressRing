@@ -56,7 +56,6 @@ class UICircularTimerRingTests: XCTestCase {
     func testContinueTimer() {
         let continueExpectation = self.expectation(description: "should pause then continue and finish")
 
-
         var expectedFinish = false
 
         timerRing.startTimer(to: 0.3) { state in

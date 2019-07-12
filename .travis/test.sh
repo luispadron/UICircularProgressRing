@@ -6,6 +6,6 @@
 
 set -e
 
-cd src
+swift package generate-xcodeproj
+swiftlint
 bundle exec fastlane ios test
-cd ..
