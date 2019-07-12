@@ -26,3 +26,6 @@ else
   git submodule update --init --recursive &&
   sudo make install
 fi
+
+# Create xcode project
+swift package generate-xcodeproj
