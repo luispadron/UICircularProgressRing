@@ -178,7 +178,7 @@ class UICircularRingLayer: CAShapeLayer {
         let start: CGFloat = ring.fullCircle ? 0 : ring.startAngle.rads
         let end: CGFloat = ring.fullCircle ? .pi * 2 : ring.endAngle.rads
         let outerPath = UIBezierPath(arcCenter: center,
-                                     radius: outerRadius,
+                                     radius: outerRadius + borderWidth,
                                      startAngle: start,
                                      endAngle: end,
                                      clockwise: true)
@@ -275,7 +275,7 @@ class UICircularRingLayer: CAShapeLayer {
             let start: CGFloat = ring.fullCircle ? 0 : borderStartAngle.rads
             let end: CGFloat = ring.fullCircle ? .pi * 2 : borderEndAngle.rads
             let borderPath = UIBezierPath(arcCenter: center,
-                                          radius: outerRadius,
+                                          radius: outerRadius + borderWidth,
                                           startAngle: start,
                                           endAngle: end,
                                           clockwise: true)
@@ -330,7 +330,7 @@ class UICircularRingLayer: CAShapeLayer {
             radiusIn = (min(bounds.width - difference, bounds.height - difference) / 2) - offSet
         case .bordered(let borderWidth, _):
             let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4) + (borderWidth * 2)
-            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
+            radiusIn = (min(bounds.width, bounds.height) / 2) - offSet + borderWidth
         default:
             let offSet = (max(ring.outerRingWidth, ring.innerRingWidth) / 2) + (knobSize / 4)
             radiusIn = (min(bounds.width, bounds.height) / 2) - offSet
