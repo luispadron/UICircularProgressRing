@@ -1,3 +1,7 @@
+# Version 6.2.1
+
+- Fix border width calculation to allow proper fitting of view within given bounds. Thanks to [@zulkis](https://github.com/zulkis) for the PR.
+
 # Version 6.2.0
 
 - Adds ability to start the timer ring from a value other than 0.

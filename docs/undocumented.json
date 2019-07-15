@@ -23,16 +23,16 @@
     },
     {
       "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularTimerRing.swift",
-      "line": null,
+      "line": 28,
       "symbol": "UICircularTimerRing",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularTimerRing.swift",
-      "line": 28,
+      "line": 141,
       "symbol": "UICircularTimerRing",
-      "symbol_kind": "source.lang.swift.decl.class",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     }
   ],
