@@ -9,13 +9,13 @@
  This file defines library wide defaults for values
  */
 
-import Foundation
 import SwiftUI
 
 /// Defines library wide defaults for values relating to `InnerRing`, `OuterRing` and `ProgressRing`
+@available(OSX 10.15, iOS 13.0, *)
 public enum RingDefaults {
-    public static let outerRingWidth: Length = 10
-    public static let innerRingWidth: Length = 8
+    public static let outerRingWidth: CGFloat = 10
+    public static let innerRingWidth: CGFloat = 8
 
     public static let innerRingMinValue: Double = 0
     public static let innerRingMaxValue: Double = 100

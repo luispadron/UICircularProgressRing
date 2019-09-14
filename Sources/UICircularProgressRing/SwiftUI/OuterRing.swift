@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+@available(OSX 10.15, iOS 13.0, *)
 struct OuterRing: Ring {
-    var width: Length = RingDefaults.outerRingWidth
+    var width: CGFloat = RingDefaults.outerRingWidth
     var capStyle: CGLineCap = RingDefaults.ringCapStyle
-    var ringOffset: Length = 0
+    var ringOffset: CGFloat = 0
 
     func path(in rect: CGRect) -> Path {
         let outerRadius = min(rect.width, rect.height) / 2 - ringOffset

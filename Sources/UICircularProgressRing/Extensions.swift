@@ -6,11 +6,14 @@
 //  Copyright © 2019 Luis Padron. All rights reserved.
 //
 
+import CoreGraphics
+import Foundation
+#if !os(macOS)
+import UIKit
+
 /**
  * This file includes internal extensions.
  */
-
-import UIKit
 
 /// Helper extension to allow removing layer animation based on AnimationKeys enum
 extension CALayer {
@@ -26,6 +29,7 @@ extension CALayer {
         return value(forKey: key.rawValue)
     }
 }
+#endif
 
 /**
  A private extension to CGFloat in order to provide simple

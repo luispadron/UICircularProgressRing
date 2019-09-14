@@ -7,23 +7,25 @@
 
 import SwiftUI
 
+@available(OSX 10.15, iOS 13.0, *)
 public enum ProgressRingStyle {
     /// inner ring is placed ontop of the outer ring
     case ontop
 
     /// inner ring is inside the circle with given amount of padding between inner and outer rings
-    case inside(padding: Length)
+    case inside(padding: CGFloat)
 }
 
+@available(OSX 10.15, iOS 13.0, *)
 extension ProgressRingStyle {
-    func outerRingOffset(widths: (outer: Length, inner: Length)) -> Length {
+    func outerRingOffset(widths: (outer: CGFloat, inner: CGFloat)) -> CGFloat {
         switch self {
         case .ontop, .inside:
             return max(widths.outer, widths.inner) / 2
         }
     }
 
-    func innerRingOffset(widths: (outer: Length, inner: Length)) -> Length {
+    func innerRingOffset(widths: (outer: CGFloat, inner: CGFloat)) -> CGFloat {
         switch self {
         case .ontop:
             return max(widths.outer, widths.inner) / 2

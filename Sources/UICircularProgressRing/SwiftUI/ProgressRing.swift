@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+@available(OSX 10.15, iOS 13.0, *)
 public struct ProgressRing: View {
     // MARK: Properties
 
     var style: ProgressRingStyle = RingDefaults.ringStyle
 
-    var ringWidths: (outer: Length, inner: Length) = (outer: RingDefaults.outerRingWidth,
+    var ringWidths: (outer: CGFloat, inner: CGFloat) = (outer: RingDefaults.outerRingWidth,
                                                       inner: RingDefaults.innerRingWidth)
 
     var ringColors: (outer: Color, inner: Color) = (outer: RingDefaults.outerRingColor,
@@ -45,6 +46,7 @@ public struct ProgressRing: View {
 
 // MARK: Modifiers
 
+@available(OSX 10.15, iOS 13.0, *)
 public extension ProgressRing {
     /// returns a modified copy of `ProgressRing` by modifying `value` of `InnerRing`
     func value(_ value: Double) -> Self {
@@ -52,8 +54,8 @@ public extension ProgressRing {
     }
 
     /// returns a modified copy of `ProgressRing` by modifying `ringWidths`
-    func ringWidths(outer: Length = RingDefaults.outerRingWidth,
-                    inner: Length = RingDefaults.innerRingWidth) -> Self {
+    func ringWidths(outer: CGFloat = RingDefaults.outerRingWidth,
+                    inner: CGFloat = RingDefaults.innerRingWidth) -> Self {
         return modifying(\.ringWidths, value: (outer: outer, inner: inner))
     }
 
@@ -72,6 +74,7 @@ public extension ProgressRing {
 // MARK: Preview
 
 #if DEBUG
+@available(OSX 10.15, iOS 13.0, *)
 struct ProgressRing_Previews: PreviewProvider {
     static var previews: some View {
         ProgressRing()

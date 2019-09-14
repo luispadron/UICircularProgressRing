@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+@available(OSX 10.15, iOS 13.0, *)
 struct InnerRing: Ring {
-    var width: Length = RingDefaults.innerRingWidth
+    var width: CGFloat = RingDefaults.innerRingWidth
     var capStyle: CGLineCap = RingDefaults.ringCapStyle
-    var ringOffset: Length = 0
+    var ringOffset: CGFloat = 0
 
     var value: Double = 0
     var minValue: Double = RingDefaults.innerRingMinValue
@@ -38,6 +39,7 @@ struct InnerRing: Ring {
 
 // MARK: Modifiers
 
+@available(OSX 10.15, iOS 13.0, *)
 extension InnerRing {
     /// returns a copy of `InnerRing` after modifying `minValue` and `maxValue`
     func values(min: Double = RingDefaults.innerRingMinValue,
