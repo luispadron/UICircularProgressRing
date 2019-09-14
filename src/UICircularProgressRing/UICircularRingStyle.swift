@@ -55,13 +55,13 @@ public enum UICircularRingStyle {
 }
 
 public struct UICircularRingValueKnobPath {
-	let from: (CGRect) -> UIBezierPath
+    let from: (CGRect) -> UIBezierPath
 
-	public init(_ from: @escaping (CGRect) -> UIBezierPath) {
-		self.from = from
-	}
+    public init(_ from: @escaping (CGRect) -> UIBezierPath) {
+        self.from = from
+    }
 
-	public static let oval: UICircularRingValueKnobPath = .init { UIBezierPath(ovalIn: $0) }
+    public static let oval: UICircularRingValueKnobPath = .init { UIBezierPath(ovalIn: $0) }
 }
 
 // MARK: UICircularRingValueKnobStyle
@@ -87,8 +87,8 @@ public struct UICircularRingValueKnobStyle {
     /// the color of the knob
     public let color: UIColor
 
-	/// the path of the knob
-	public let path: UICircularRingValueKnobPath
+    /// the path of the knob
+    public let path: UICircularRingValueKnobPath
 
     /// the amount of blur to give the shadow
     public let shadowBlur: CGFloat
@@ -111,7 +111,7 @@ public struct UICircularRingValueKnobStyle {
     /// creates a new `UICircularRingValueKnobStyle`
     public init(size: CGFloat,
                 color: UIColor,
-				path: UICircularRingValueKnobPath = .oval,
+                path: UICircularRingValueKnobPath = .oval,
                 shadowBlur: CGFloat = 2.0,
                 shadowOffset: CGSize = .zero,
                 shadowColor: UIColor = UIColor.black.withAlphaComponent(0.8),
@@ -120,7 +120,7 @@ public struct UICircularRingValueKnobStyle {
                 imageInsets: UIEdgeInsets = .zero) {
         self.size = size
         self.color = color
-		self.path = path
+        self.path = path
         self.shadowBlur = shadowBlur
         self.shadowOffset = shadowOffset
         self.shadowColor = shadowColor
