@@ -246,7 +246,7 @@ class UICircularRingLayer: CAShapeLayer {
             ctx.restoreGState()
         }
 
-        if let knobStyle = ring.valueKnobStyle, value > minValue {
+        if let knobStyle = ring.valueKnobStyle, ((value > minValue) || (ring?.shouldDrawMinValueKnob ?? false)) {
             let knobOffset = knobStyle.size / 2
             drawValueKnob(in: ctx, origin: CGPoint(x: innerPath.currentPoint.x - knobOffset,
                                                    y: innerPath.currentPoint.y - knobOffset))
@@ -265,10 +265,11 @@ class UICircularRingLayer: CAShapeLayer {
 
         case .bordered(let borderWidth, let borderColor):
             let center: CGPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-            let knobSize = valueKnobStyle?.size ?? 0
-            let offSet = max(ring.outerRingWidth, ring.innerRingWidth) / 2
-                            + knobSize / 4
-                            + borderWidth * 2
+            let offSet: CGFloat = {
+                let offset = max(ring.outerRingWidth, ring.innerRingWidth) / 2
+                let size = valueKnobStyle?.size ?? 0
+                return offset + (size / 4) + (borderWidth * 2)
+            }()
             let outerRadius: CGFloat = min(bounds.width, bounds.height) / 2 - offSet
             let borderStartAngle = ring.outerCapStyle == .butt ? ring.startAngle - borderWidth : ring.startAngle
             let borderEndAngle = ring.outerCapStyle == .butt ? ring.endAngle + borderWidth : ring.endAngle
@@ -362,7 +363,7 @@ class UICircularRingLayer: CAShapeLayer {
         context.saveGState()
 
         let rect = CGRect(origin: origin, size: CGSize(width: knobStyle.size, height: knobStyle.size))
-        let knobPath = UIBezierPath(ovalIn: rect)
+        let knobPath = knobStyle.path.from(rect)
 
         context.setShadow(offset: knobStyle.shadowOffset,
                           blur: knobStyle.shadowBlur,
@@ -374,6 +375,20 @@ class UICircularRingLayer: CAShapeLayer {
         context.drawPath(using: .fill)
 
         context.restoreGState()
+
+        if let image = knobStyle.image {
+            context.saveGState()
+
+            let imageRect = rect.inset(by: knobStyle.imageInsets)
+            if let tintColor = knobStyle.imageTintColor {
+                tintColor.setFill()
+                image.withRenderingMode(.alwaysTemplate).draw(in: imageRect)
+            } else {
+                image.draw(in: imageRect)
+            }
+
+            context.restoreGState()
+        }
     }
 
     /**

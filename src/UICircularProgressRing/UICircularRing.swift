@@ -26,7 +26,7 @@
 import UIKit
 
 /**
- 
+
  # UICircularRing
 
  This is the base class of `UICircularProgressRing` and `UICircularTimerRing`.
@@ -35,13 +35,13 @@ import UIKit
 
  This is the UIView subclass that creates and handles everything
  to do with the circular ring.
- 
+
  This class has a custom CAShapeLayer (`UICircularRingLayer`) which
  handels the drawing and animating of the view
- 
+
  ## Author
  Luis Padron
- 
+
  */
 @IBDesignable open class UICircularRing: UIView {
 
@@ -49,18 +49,18 @@ import UIKit
 
     /**
      Whether or not the progress ring should be a full circle.
-     
+
      What this means is that the outer ring will always go from 0 - 360 degrees and
      the inner ring will be calculated accordingly depending on current value.
-     
+
      ## Important ##
      Default = true
-     
+
      When this property is true any value set for `endAngle` will be ignored.
-     
+
      ## Author
      Luis Padron
-     
+
      */
     @IBInspectable open var fullCircle: Bool = true {
         didSet { ringLayer.setNeedsDisplay() }
@@ -70,14 +70,14 @@ import UIKit
 
     /**
      The style of the progress ring.
-     
+
      Type: `UICircularRingStyle`
-     
+
      The five styles include `inside`, `ontop`, `dashed`, `dotted`, and `gradient`
-     
+
      ## Important ##
      Default = UICircularRingStyle.inside
-     
+
      ## Author
      Luis Padron
      */
@@ -112,6 +112,20 @@ import UIKit
     }
 
     /**
+     A toggle for showing or hiding the value knob when current value == minimum value.
+     If false the value knob will not be shown when current value == minimum value.
+
+     ## Important ##
+     Default = false
+
+     ## Author
+     Tom Knapen
+     */
+    @IBInspectable public var shouldDrawMinValueKnob: Bool = false {
+        didSet { ringLayer.setNeedsDisplay() }
+    }
+
+    /**
      Style for the value knob, default is `nil`.
 
      ## Important ##
@@ -124,15 +138,15 @@ import UIKit
 
     /**
      The start angle for the entire progress ring view.
-     
+
      Please note that Cocoa Touch uses a clockwise rotating unit circle.
      I.e: 90 degrees is at the bottom and 270 degrees is at the top
-     
+
      ## Important ##
      Default = 0 (degrees)
-     
+
      Values should be in degrees (they're converted to radians internally)
-     
+
      ## Author
      Luis Padron
      */
@@ -142,15 +156,15 @@ import UIKit
 
     /**
      The end angle for the entire progress ring
-     
+
      Please note that Cocoa Touch uses a clockwise rotating unit circle.
      I.e: 90 degrees is at the bottom and 270 degrees is at the top
-     
+
      ## Important ##
      Default = 360 (degrees)
-     
+
      Values should be in degrees (they're converted to radians internally)
-     
+
      ## Author
      Luis Padron
      */
@@ -162,10 +176,10 @@ import UIKit
 
     /**
      The width of the outer ring for the progres bar
-     
+
      ## Important ##
      Default = 10.0
-     
+
      ## Author
      Luis Padron
      */
@@ -175,10 +189,10 @@ import UIKit
 
     /**
      The color for the outer ring
-     
+
      ## Important ##
      Default = UIColor.gray
-     
+
      ## Author
      Luis Padron
      */
@@ -188,14 +202,14 @@ import UIKit
 
     /**
      The style for the tip/cap of the outer ring
-     
+
      Type: `CGLineCap`
-     
+
      ## Important ##
      Default = CGLineCap.butt
-     
+
      This is only noticible when ring is not a full circle.
-     
+
      ## Author
      Luis Padron
      */
@@ -207,10 +221,10 @@ import UIKit
 
     /**
      The width of the inner ring for the progres bar
-     
+
      ## Important ##
      Default = 5.0
-     
+
      ## Author
      Luis Padron
      */
@@ -220,10 +234,10 @@ import UIKit
 
     /**
      The color of the inner ring for the progres bar
-     
+
      ## Important ##
      Default = UIColor.blue
-     
+
      ## Author
      Luis Padron
      */
@@ -233,12 +247,12 @@ import UIKit
 
     /**
      The spacing between the outer ring and inner ring
-     
+
      ## Important ##
      This only applies when using progressRingStyle = 1
-     
+
      Default = 1
-     
+
      ## Author
      Luis Padron
      */
@@ -248,12 +262,12 @@ import UIKit
 
     /**
      The style for the tip/cap of the inner ring
-     
+
      Type: `CGLineCap`
-     
+
      ## Important ##
      Default = CGLineCap.round
-     
+
      ## Author
      Luis Padron
      */
@@ -265,11 +279,11 @@ import UIKit
 
     /**
      The text color for the value label field
-     
+
      ## Important ##
      Default = UIColor.black
-     
-     
+
+
      ## Author
      Luis Padron
      */
@@ -281,12 +295,12 @@ import UIKit
      The font to be used for the progress indicator.
      All font attributes are specified here except for font color, which is done
      using `fontColor`.
-     
-     
+
+
      ## Important ##
      Default = UIFont.systemFont(ofSize: 18)
-     
-     
+
+
      ## Author
      Luis Padron
      */
@@ -296,10 +310,10 @@ import UIKit
 
     /**
      This returns whether or not the ring is currently animating
-     
+
      ## Important ##
      Get only property
-     
+
      ## Author
      Luis Padron
      */
@@ -310,10 +324,10 @@ import UIKit
     /**
      The direction the circle is drawn in
      Example: true -> clockwise
-     
+
      ## Important ##
      Default = true (draw the circle clockwise)
-     
+
      ## Author
      Pete Walker
      */
@@ -527,10 +541,10 @@ import UIKit
     /**
      This function allows animation of the animatable properties of the `UICircularRing`.
      These properties include `innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor`.
-     
+
      Simply call this function and inside of the animation block change the animatable properties as you would in any `UView`
      animation block.
-     
+
      The completion block is called when all animations finish.
      */
     open func animateProperties(duration: TimeInterval, animations: () -> Void) {
@@ -540,10 +554,10 @@ import UIKit
     /**
      This function allows animation of the animatable properties of the `UICircularRing`.
      These properties include `innerRingColor, innerRingWidth, outerRingColor, outerRingWidth, innerRingSpacing, fontColor`.
-     
+
      Simply call this function and inside of the animation block change the animatable properties as you would in any `UView`
      animation block.
-     
+
      The completion block is called when all animations finish.
      */
     open func animateProperties(duration: TimeInterval, animations: () -> Void,
