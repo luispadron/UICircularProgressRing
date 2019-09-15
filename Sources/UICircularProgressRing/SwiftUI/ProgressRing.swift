@@ -39,6 +39,11 @@ public struct ProgressRing: View {
                 .width(ringWidths.inner)
                 .value(progress)
                 .fill(ringColors.inner)
+
+            // TODO: Look into why the `Color.clear.overlay` is required
+            // this seems to be a beta bug, as without this the view is broken
+            Color.clear
+                .overlay(ProgressRingLabel(progress: progress))
         }
         .aspectRatio(1, contentMode: .fit)
     }
