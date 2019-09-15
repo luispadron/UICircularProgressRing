@@ -11,13 +11,11 @@ import SwiftUI
 public struct ProgressRing: View {
     // MARK: Properties
 
-    var style: ProgressRingStyle = RingDefaults.ringStyle
+    var style: ProgressRingStyle = .ontop
 
-    var ringWidths: (outer: CGFloat, inner: CGFloat) = (outer: RingDefaults.outerRingWidth,
-                                                      inner: RingDefaults.innerRingWidth)
+    var ringWidths: (outer: CGFloat, inner: CGFloat) = (outer: 10, inner: 8)
 
-    var ringColors: (outer: Color, inner: Color) = (outer: RingDefaults.outerRingColor,
-                                                    inner: RingDefaults.innerRingColor)
+    var ringColors: (outer: Color, inner: Color) = (outer: .red, inner: .blue)
 
     var value: Double = 0.0
 
@@ -54,19 +52,17 @@ public extension ProgressRing {
     }
 
     /// returns a modified copy of `ProgressRing` by modifying `ringWidths`
-    func ringWidths(outer: CGFloat = RingDefaults.outerRingWidth,
-                    inner: CGFloat = RingDefaults.innerRingWidth) -> Self {
+    func ringWidths(outer: CGFloat = 10, inner: CGFloat = 8) -> Self {
         return modifying(\.ringWidths, value: (outer: outer, inner: inner))
     }
 
     /// returns a modified copy of `ProgressRing` by modifying `ringColors`
-    func ringColors(outer: Color = RingDefaults.outerRingColor,
-                    inner: Color = RingDefaults.innerRingColor) -> Self {
+    func ringColors(outer: Color = .red, inner: Color = .blue) -> Self {
         return modifying(\.ringColors, value: (outer: outer, inner: inner))
     }
 
     /// returns a modified copy of `ProgressRing` by modifying `style`
-    func ringStyle(_ style: ProgressRingStyle = RingDefaults.ringStyle) -> Self {
+    func ringStyle(_ style: ProgressRingStyle = .ontop) -> Self {
         return modifying(\.style, value: style)
     }
 }

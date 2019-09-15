@@ -9,13 +9,13 @@ import SwiftUI
 
 @available(OSX 10.15, iOS 13.0, *)
 struct InnerRing: Ring {
-    var width: CGFloat = RingDefaults.innerRingWidth
-    var capStyle: CGLineCap = RingDefaults.ringCapStyle
+    var width: CGFloat = 8
+    var capStyle: CGLineCap = .round
     var ringOffset: CGFloat = 0
 
     var value: Double = 0
-    var minValue: Double = RingDefaults.innerRingMinValue
-    var maxValue: Double = RingDefaults.innerRingMaxValue
+    var minValue: Double = 0
+    var maxValue: Double = 100
 
     func path(in rect: CGRect) -> Path {
         let radius = min(rect.width, rect.height) / 2 - ringOffset
@@ -42,8 +42,7 @@ struct InnerRing: Ring {
 @available(OSX 10.15, iOS 13.0, *)
 extension InnerRing {
     /// returns a copy of `InnerRing` after modifying `minValue` and `maxValue`
-    func values(min: Double = RingDefaults.innerRingMinValue,
-                max: Double = RingDefaults.innerRingMaxValue) -> Self {
+    func values(min: Double = 0, max: Double = 100) -> Self {
         return self
             .modifying(\.minValue, value: min)
             .modifying(\.maxValue, value: max)

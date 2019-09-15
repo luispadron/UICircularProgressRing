@@ -9,8 +9,8 @@ import SwiftUI
 
 @available(OSX 10.15, iOS 13.0, *)
 struct OuterRing: Ring {
-    var width: CGFloat = RingDefaults.outerRingWidth
-    var capStyle: CGLineCap = RingDefaults.ringCapStyle
+    var width: CGFloat = 10
+    var capStyle: CGLineCap = .round
     var ringOffset: CGFloat = 0
 
     func path(in rect: CGRect) -> Path {
