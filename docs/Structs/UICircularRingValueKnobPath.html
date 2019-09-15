@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>UICircularRingValueFormatter Protocol Reference</title>
+    <title>UICircularRingValueKnobPath Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/UICircularRingValueFormatter" class="dashAnchor"></a>
-    <a title="UICircularRingValueFormatter Protocol Reference"></a>
+    <a name="//apple_ref/swift/Struct/UICircularRingValueKnobPath" class="dashAnchor"></a>
+    <a title="UICircularRingValueKnobPath Structure Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">UICircularProgressRing 6.0.0 Docs</a> (90% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">UICircularProgressRing Reference</a>
         <img id="carat" src="../img/carat.png" />
-        UICircularRingValueFormatter Protocol Reference
+        UICircularRingValueKnobPath Structure Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -92,16 +92,22 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>UICircularRingValueFormatter</h1>
+            <h1>UICircularRingValueKnobPath</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">UICircularRingValueFormatter</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UICircularRingValueKnobPath</span></code></pre>
 
                 </div>
               </div>
-            <p>UICircularRingValueFormatter</p>
+            <h1 id='uicircularringvalueknobpath' class='heading'>UICircularRingValueKnobPath</h1>
 
-<p>Any custom formatter must conform to this protocol.</p>
+<p>Used to create a custom <q>knob</q> for the progress ring.
+Simply create a path that fits within the given <code>CGRect</code>.</p>
+
+<p>Default = <code>.oval</code></p>
+<h2 id='author' class='heading'>Author</h2>
+
+<p>Tom Knapen</p>
 
           </section>
           <section class="section task-group-section">
@@ -110,9 +116,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:22UICircularProgressRing0aC14ValueFormatterP6string3forSSSgyp_tF"></a>
-                    <a name="//apple_ref/swift/Method/string(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:22UICircularProgressRing0aC14ValueFormatterP6string3forSSSgyp_tF">string(for:)</a>
+                    <a name="/s:22UICircularProgressRing0aC13ValueKnobPathVyACSo08UIBezierF0CSo6CGRectVccfc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0aC13ValueKnobPathVyACSo08UIBezierF0CSo6CGRectVccfc">init(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -120,14 +126,41 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>returns a string for the given object</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">string</span><span class="p">(</span><span class="k">for</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">from</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">CGRect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIBezierPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0aC13ValueKnobPathV4ovalACvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/oval" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0aC13ValueKnobPathV4ovalACvpZ">oval</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">oval</span><span class="p">:</span> <span class="kt">UICircularRingValueKnobPath</span></code></pre>
 
                         </div>
                       </div>

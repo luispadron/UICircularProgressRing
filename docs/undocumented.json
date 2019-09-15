@@ -8,6 +8,41 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingStyle.swift",
+      "line": 73,
+      "symbol": "UICircularRingValueKnobPath.init(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingStyle.swift",
+      "line": 77,
+      "symbol": "UICircularRingValueKnobPath.oval",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingStyle.swift",
+      "line": 116,
+      "symbol": "UICircularRingValueKnobStyle.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingStyle.swift",
+      "line": 119,
+      "symbol": "UICircularRingValueKnobStyle.imageTintColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingStyle.swift",
+      "line": 122,
+      "symbol": "UICircularRingValueKnobStyle.imageInsets",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/luis/Programming/iOS/UICircularProgressRing/src/UICircularProgressRing/UICircularRingValueFormatter.swift",
       "line": 55,
       "symbol": "UICircularTimerRingFormatter.init(units:style:)",

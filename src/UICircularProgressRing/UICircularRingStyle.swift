@@ -54,6 +54,19 @@ public enum UICircularRingStyle {
     case bordered(width: CGFloat, color: UIColor)
 }
 
+/**
+
+ # UICircularRingValueKnobPath
+
+ Used to create a custom "knob" for the progress ring.
+ Simply create a path that fits within the given `CGRect`.
+
+ Default = `.oval`
+
+ ## Author
+ Tom Knapen
+
+ */
 public struct UICircularRingValueKnobPath {
     let from: (CGRect) -> UIBezierPath
 
