@@ -18,6 +18,8 @@ public enum ProgressRingStyle {
 
 @available(OSX 10.15, iOS 13.0, *)
 extension ProgressRingStyle {
+
+    /// returns the calculated offset for the outer ring
     func outerRingOffset(widths: (outer: CGFloat, inner: CGFloat)) -> CGFloat {
         switch self {
         case .ontop, .inside:
@@ -25,6 +27,7 @@ extension ProgressRingStyle {
         }
     }
 
+    /// returns the calculated offset for the inner ring
     func innerRingOffset(widths: (outer: CGFloat, inner: CGFloat)) -> CGFloat {
         switch self {
         case .ontop:

@@ -17,11 +17,13 @@ public struct ProgressRing: View {
 
     var ringColors: (outer: Color, inner: Color) = (outer: .red, inner: .blue)
 
-    var value: Double = 0.0
+    @Binding var progress: Double
 
     // MARK: Init
 
-    public init() { }
+    public init(progress: Binding<Double>) {
+        self._progress = progress
+    }
 
     // MARK: View Body
 
@@ -35,7 +37,7 @@ public struct ProgressRing: View {
             InnerRing()
                 .ringOffset(style.innerRingOffset(widths: ringWidths))
                 .width(ringWidths.inner)
-                .value(value)
+                .value(progress)
                 .fill(ringColors.inner)
         }
         .aspectRatio(1, contentMode: .fit)
@@ -46,10 +48,6 @@ public struct ProgressRing: View {
 
 @available(OSX 10.15, iOS 13.0, *)
 public extension ProgressRing {
-    /// returns a modified copy of `ProgressRing` by modifying `value` of `InnerRing`
-    func value(_ value: Double) -> Self {
-        return modifying(\.value, value: value)
-    }
 
     /// returns a modified copy of `ProgressRing` by modifying `ringWidths`
     func ringWidths(outer: CGFloat = 10, inner: CGFloat = 8) -> Self {
@@ -73,7 +71,7 @@ public extension ProgressRing {
 @available(OSX 10.15, iOS 13.0, *)
 struct ProgressRing_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressRing()
+        ProgressRing(progress: .constant(55))
     }
 }
 #endif
