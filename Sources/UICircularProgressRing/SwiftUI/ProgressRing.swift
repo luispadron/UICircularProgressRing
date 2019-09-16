@@ -13,11 +13,13 @@ public struct ProgressRing: View {
 
     var style: ProgressRingStyle = .ontop
 
-    var labelStyle: RingLabelStyle = .init()
-
     var ringWidths: (outer: CGFloat, inner: CGFloat) = (outer: 10, inner: 8)
 
     var ringColors: (outer: Color, inner: Color) = (outer: .red, inner: .blue)
+
+    var labelStyle: RingLabelStyle = .init()
+
+    var labelFormatter: UICircularRingValueFormatter = UICircularProgressRingFormatter()
 
     @Binding var progress: Double
 
@@ -43,12 +45,9 @@ public struct ProgressRing: View {
                 .fill(ringColors.inner)
 
             // TODO: Remove this overlay nonesense when Apple fixes the modifier not allowed in a container bug
-            Color.clear
-                .overlay(
-                    RingLabel(value: progress,
-                              formatter: UICircularProgressRingFormatter(),
-                              style: labelStyle)
-                )
+            Color
+                .clear
+                .overlay(RingLabel(value: progress, formatter: labelFormatter, style: labelStyle))
         }
         .aspectRatio(1, contentMode: .fit)
     }
@@ -77,6 +76,11 @@ public extension ProgressRing {
     /// returns a modified copy of `ProgressRing` by modifying `labelStyle`
     func labelStyle(_ style: RingLabelStyle = .init()) -> Self {
         return modifying(\.labelStyle, value: style)
+    }
+
+    /// returns a modified copy of `ProgressRing` by modifying `labelFormatter`
+    func labelFormatter(_ formatter: UICircularRingValueFormatter = UICircularProgressRingFormatter()) -> Self {
+        return modifying(\.labelFormatter, value: formatter)
     }
 }
 
