@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 @available(OSX 10.15, iOS 13.0, *)
 extension View {
     /// modifies the `View` by creating a copy and editing the given `keypath` with given `value`

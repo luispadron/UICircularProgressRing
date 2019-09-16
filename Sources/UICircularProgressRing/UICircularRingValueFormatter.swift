@@ -148,20 +148,28 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
 
     /// formats the value of the progress ring using the given properties
     public func string(for value: Any) -> String? {
-        guard let value = value as? CGFloat else { return nil }
+        var progress: CGFloat
+        
+        if let dvalue = value as? Double {
+            progress = CGFloat(dvalue)
+        } else if let cgvalue = value as? CGFloat {
+            progress = cgvalue
+        } else {
+            return nil
+        }
 
         if rightToLeft {
             if showFloatingPoint {
-                return "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", value)
+                return "\(valueIndicator)" + String(format: "%.\(decimalPlaces)f", progress)
             } else {
-                return "\(valueIndicator)\(Int(value))"
+                return "\(valueIndicator)\(Int(progress))"
             }
 
         } else {
             if showFloatingPoint {
-                return String(format: "%.\(decimalPlaces)f", value) + "\(valueIndicator)"
+                return String(format: "%.\(decimalPlaces)f", progress) + "\(valueIndicator)"
             } else {
-                return "\(Int(value))\(valueIndicator)"
+                return "\(Int(progress))\(valueIndicator)"
             }
         }
     }
