@@ -46,6 +46,8 @@
 
 *NOTE: Objective-C support: Support for Objective-C has been dropped in version 5.0.0, use version 4 or lower if you are using Objective-C.*
 
+⚠️ **There is currently work being done to re-write this library in SwiftUI, check out [features/swift-ui](https://github.com/luispadron/UICircularProgressRing/tree/features/swift-ui) branch for more info!** ⚠️
+
 ### CocoaPods (Recommended)
 
 1. Install [CocoaPods](https://cocoapods.org)
