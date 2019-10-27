@@ -1,3 +1,7 @@
+# Version 6.4.0
+
+- Add Swift Package Manager support
+
 # Version 6.3.0
 
 - Add new "knob" related features, such as custom knob paths and ability to add images to the progress ring knob. Thanks to [@Tom Knapen](https://github.com/wassup-) for the PR!
