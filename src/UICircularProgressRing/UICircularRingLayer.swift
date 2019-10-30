@@ -39,6 +39,7 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged var value: CGFloat
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
+	@NSManaged var isReverse: Bool
 
     /// the delegate for the value, is notified when value changes
     @NSManaged weak var ring: UICircularRing!
@@ -400,10 +401,13 @@ class UICircularRingLayer: CAShapeLayer {
 
         // Draws the text field
         // Some basic label properties are set
+
+		let valueToDisplay = isReverse ? (maxValue - value) + 1 : value
+
         valueLabel.font = ring.font
         valueLabel.textAlignment = .center
         valueLabel.textColor = ring.fontColor
-        valueLabel.text = valueFormatter?.string(for: value)
+        valueLabel.text = valueFormatter?.string(for: valueToDisplay)
         ring.willDisplayLabel(label: valueLabel)
         valueLabel.sizeToFit()
 

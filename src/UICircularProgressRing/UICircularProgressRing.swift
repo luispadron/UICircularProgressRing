@@ -136,6 +136,20 @@ final public class UICircularProgressRing: UICircularRing {
     }
 
     /**
+     A variable to determine if the value label will count down to zero.
+
+     ## Important ##
+     Default = false
+
+	## Author
+	Jonah Ollman
+	*/
+
+	@IBInspectable public var isReverse: Bool = false {
+		didSet { ringLayer.isReverse = isReverse }
+	}
+
+    /**
      The type of animation function the ring view will use
 
      ## Important ##
