@@ -96,6 +96,16 @@ import UIKit
     open var gradientOptions: UICircularRingGradientOptions? = nil {
         didSet { ringLayer.setNeedsDisplay() }
     }
+ 
+    /**
+     The strength of the glow on the inner ring.
+
+     ## Important ##
+    Default = `0.0`
+    */
+    open var glowStrength: CGFloat = 0.0 {
+        didSet { ringLayer.setNeedsDisplay() }
+    }
 
     /**
      A toggle for showing or hiding the value label.
