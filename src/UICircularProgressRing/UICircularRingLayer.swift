@@ -215,6 +215,7 @@ class UICircularRingLayer: CAShapeLayer {
         ctx.setLineJoin(.round)
         ctx.setLineCap(ring.innerCapStyle)
         ctx.setStrokeColor(ring.innerRingColor.cgColor)
+        ctx.setShadow(offset: .zero, blur: ring.glowStrength, color: ring.innerRingColor)
         ctx.addPath(innerPath.cgPath)
         ctx.drawPath(using: .stroke)
 
