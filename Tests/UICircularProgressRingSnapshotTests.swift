@@ -16,7 +16,6 @@ final class UICircularProgressRingSnapshotTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        record = true
         ring = UICircularProgressRing()
         ring.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         ring.startProgress(to: 75, duration: 0)
