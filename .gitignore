@@ -23,6 +23,7 @@ xcuserdata/
 *.xcscmblueprint
 .DS_Store
 UICircularProgressRing.framework.zip
-src/fastlane/report.xml
-src/fastlane/test_output/report.html
-src/fastlane/test_output/report.junit
+UICircularProgressRing.xcodeproj
+fastlane/report.xml
+fastlane/test_output/*
+.build

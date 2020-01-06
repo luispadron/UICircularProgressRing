@@ -10,6 +10,8 @@
  * This file includes internal extensions.
  */
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Helper extension to allow removing layer animation based on AnimationKeys enum
@@ -44,3 +46,5 @@ extension TimeInterval {
 extension CGFloat {
     var interval: TimeInterval { return TimeInterval(self) }
 }
+
+#endif

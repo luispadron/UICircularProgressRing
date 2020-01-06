@@ -7,14 +7,11 @@
 set -e
 
 # Install gems
-cd src
-gem install bundler -v 2.0.1
 bundle install
-cd ..
 
 # Install swiftlint
 SWIFTLINT_PKG_PATH="/tmp/SwiftLint.pkg"
-SWIFTLINT_PKG_URL="https://github.com/realm/SwiftLint/releases/download/0.27.0/SwiftLint.pkg"
+SWIFTLINT_PKG_URL="https://github.com/realm/SwiftLint/releases/download/0.38.1/SwiftLint.pkg"
 
 wget --output-document=$SWIFTLINT_PKG_PATH $SWIFTLINT_PKG_URL
 
@@ -28,3 +25,6 @@ else
   git submodule update --init --recursive &&
   sudo make install
 fi
+
+echo "Generating Xcode project"
+swift package generate-xcodeproj

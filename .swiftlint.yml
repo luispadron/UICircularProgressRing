@@ -4,7 +4,7 @@ disabled_rules:
   - type_body_length
 file_length: 500
 line_length: 150
+included:
+  - Sources
 excluded:
-  - src/UICircularProgressRingTests
-  - UICircularProgressRingTests
-  - Example
+  - Tests

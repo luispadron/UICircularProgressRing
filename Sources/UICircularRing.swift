@@ -23,6 +23,8 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /**
@@ -620,3 +622,5 @@ extension UICircularRing {
         case value
     }
 }
+
+#endif

@@ -6,6 +6,4 @@
 
 set -e
 
-cd src
 bundle exec fastlane ios test
-cd ..

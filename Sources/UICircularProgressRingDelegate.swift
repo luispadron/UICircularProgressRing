@@ -23,6 +23,8 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /**
@@ -90,3 +92,5 @@ public protocol UICircularProgressRingDelegate: class {
      */
     func willDisplayLabel(for ring: UICircularProgressRing, _ label: UILabel)
 }
+
+#endif

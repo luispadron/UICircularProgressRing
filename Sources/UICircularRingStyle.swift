@@ -23,6 +23,8 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit.UIColor
 
 // MARK: UICircularRingStyle
@@ -238,3 +240,5 @@ public struct UICircularRingGradientOptions {
         self.colorLocations = colorLocations
     }
 }
+
+#endif

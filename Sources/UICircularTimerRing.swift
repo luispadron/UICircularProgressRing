@@ -23,6 +23,8 @@
 //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 final public class UICircularTimerRing: UICircularRing {
@@ -151,3 +153,5 @@ public extension UICircularTimerRing {
         case paused(elpasedTime: TimeInterval?)
     }
 }
+
+#endif

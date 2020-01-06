@@ -11,11 +11,11 @@
 // and isn't premeturely firing it's completion block
 
 import Foundation
-
 import XCTest
+
 @testable import UICircularProgressRing
 
-class UICircularProgressRingPauseResetTests: XCTestCase {
+final class UICircularProgressRingPauseResetTests: XCTestCase {
 
     var progressRing: UICircularProgressRing!
 

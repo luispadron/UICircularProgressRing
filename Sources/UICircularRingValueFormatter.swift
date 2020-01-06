@@ -6,6 +6,8 @@
 //  Copyright © 2019 Luis Padron. All rights reserved.
 //
 
+#if canImport(UIKit)
+
 import Foundation
 import UIKit
 
@@ -166,3 +168,5 @@ public struct UICircularProgressRingFormatter: UICircularRingValueFormatter {
         }
     }
 }
+
+#endif

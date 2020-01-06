@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import UICircularProgressRing
 
 final class ValueFormatterTests: XCTestCase {

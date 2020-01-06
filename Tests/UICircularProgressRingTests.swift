@@ -7,9 +7,10 @@
 //
 
 import XCTest
+
 @testable import UICircularProgressRing
 
-class UICircularProgressRingTests: XCTestCase {
+final class UICircularProgressRingTests: XCTestCase {
 
     var progressRing: UICircularProgressRing!
 
