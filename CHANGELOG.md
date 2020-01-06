@@ -1,3 +1,7 @@
+# Version 6.5.0
+
+- Fix issue with value knob being clipped for certain ring styles
+
 # Version 6.4.0
 
 - Add Swift Package Manager support
