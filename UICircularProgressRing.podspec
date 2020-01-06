@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
   s.author             = { "Luis Padron" => "heyluispadron@gmail.com" }
   s.social_media_url   = "https://luispadron.com"
 
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "10.0"
   s.tvos.deployment_target = "10.0"
   s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{s.version}" }
 
-  s.source_files  = "src/UICircularProgressRing", "src/UICircularProgressRing/**/*.{h,m}"
+  s.source_files  = "Sources", "Sources/**/*.{h,m}"
 end
