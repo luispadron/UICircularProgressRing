@@ -26,9 +26,6 @@ ANSWER HERE
 
 #### Post sample code or example here
 
-*If sample code can't be provided because it's too long, please provide a small example project,
-where I can test, if you cannot provide either. There is not much I can do.*
-
 ```swift
 ANSWER HERE
 ```

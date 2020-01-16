@@ -1,0 +1,10 @@
+opt_in_rules:
+  - multiline_parameters_brackets
+  - missing_docs
+line_length: 150
+included:
+  - Sources
+  - Tests
+excluded:
+  - Example
+  - .build

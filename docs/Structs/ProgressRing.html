@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ProgressRing Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/ProgressRing" class="dashAnchor"></a>
+    <a title="ProgressRing Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">UICircularProgressRing 7.0.0 Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">UICircularProgressRing Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        ProgressRing Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/RingAxis.html">RingAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingColor.html">RingColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingProgress.html">RingProgress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/IndeterminateRing.html">IndeterminateRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PercentFormattedText.html">PercentFormattedText</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProgressRing.html">ProgressRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Ring.html">Ring</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RingStyle.html">RingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TimerRing.html">TimerRing</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>ProgressRing</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ProgressRing</span><span class="o">&lt;</span><span class="kt">Label</span><span class="p">,</span> <span class="kt">IndeterminateView</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Label</span> <span class="p">:</span> <span class="kt">View</span><span class="p">,</span> <span class="kt">IndeterminateView</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ProgressRing</span><span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                </div>
+              </div>
+            <h1 id='progressring' class='heading'>ProgressRing</h1>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0bC0V8progress4axis9clockwise05outerC5Style05innercH0__ACyxq_G7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cH0VASxSdcq_Sdctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(progress:axis:clockwise:outerRingStyle:innerRingStyle:_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0bC0V8progress4axis9clockwise05outerC5Style05innercH0__ACyxq_G7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cH0VASxSdcq_Sdctcfc">init(progress:<wbr>axis:<wbr>clockwise:<wbr>outerRingStyle:<wbr>innerRingStyle:<wbr>_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>ProgressRing</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span> <span class="p">(</span>
+    <span class="nv">progress</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/RingProgress.html">RingProgress</a></span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">32</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">label</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Label</span><span class="p">,</span>
+    <span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">indeterminateView</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndeterminateView</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> to some <code><a href="../Enums/RingProgress.html">RingProgress</a></code> which determines the state of the progress ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Enums/RingAxis.html">RingAxis</a></code> which determines the starting axis for which to draw.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the ring is drawn in a clock wise manner or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>innerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the inner ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure which constructs the <code>Label</code> for the progress ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indeterminateView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure which constructs a view that is used when progress <code>isIndeterminate</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Body"></a>
+                <a name="//apple_ref/swift/Section/Body" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Body"></a>
+                  <h3 class="section-name"><p>Body</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftUI4ViewP4body4BodyQzvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP4body4BodyQzvp">body</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60IndeterminateView%60%20%3D%3D%20%60IndeterminateRing%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `IndeterminateView` == `IndeterminateRing`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60IndeterminateView%60%20%3D%3D%20%60IndeterminateRing%60"></a>
+                  <h3 class="section-name"><p>Available where <code>IndeterminateView</code> == <code><a href="../Structs/IndeterminateRing.html">IndeterminateRing</a></code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0bC0VA2A013IndeterminateC0VRs_rlE8progress4axis9clockwise05outerC5Style05innercI0_ACyxAEG7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cI0VAUxSdctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(progress:axis:clockwise:outerRingStyle:innerRingStyle:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0bC0VA2A013IndeterminateC0VRs_rlE8progress4axis9clockwise05outerC5Style05innercI0_ACyxAEG7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cI0VAUxSdctcfc">init(progress:<wbr>axis:<wbr>clockwise:<wbr>outerRingStyle:<wbr>innerRingStyle:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>ProgressRing</code>.
+Uses a default <code>IndeterminateView</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span>
+    <span class="nv">progress</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/RingProgress.html">RingProgress</a></span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">32</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">label</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Label</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> to some <code><a href="../Enums/RingProgress.html">RingProgress</a></code> which determines the state of the progress ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Enums/RingAxis.html">RingAxis</a></code> which determines the starting axis for which to draw.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the ring is drawn in a clock wise manner or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>innerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the inner ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure which constructs the <code>Label</code> for the progress ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Label%60%20%3D%3D%20%60PercentFormattedText%60%2C%20%60IndeterminateView%60%20%3D%3D%20%60IndeterminateRing%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Label` == `PercentFormattedText`, `IndeterminateView` == `IndeterminateRing`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Label%60%20%3D%3D%20%60PercentFormattedText%60%2C%20%60IndeterminateView%60%20%3D%3D%20%60IndeterminateRing%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Label</code> == <code><a href="../Structs/PercentFormattedText.html">PercentFormattedText</a></code>, <code>IndeterminateView</code> == <code><a href="../Structs/IndeterminateRing.html">IndeterminateRing</a></code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0bC0VA2A20PercentFormattedTextVRszAA013IndeterminateC0VRs_rlE8progress4axis9clockwise05outerC5Style05innercL0ACyAeGG7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cL0VAWtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(progress:axis:clockwise:outerRingStyle:innerRingStyle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0bC0VA2A20PercentFormattedTextVRszAA013IndeterminateC0VRs_rlE8progress4axis9clockwise05outerC5Style05innercL0ACyAeGG7SwiftUI7BindingVyAA0cB0OG_AA0C4AxisOSbAA0cL0VAWtcfc">init(progress:<wbr>axis:<wbr>clockwise:<wbr>outerRingStyle:<wbr>innerRingStyle:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>ProgressRing</code>.
+Uses a default <code>Label</code> and <code>IndeterminateView</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span>
+    <span class="nv">progress</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/RingProgress.html">RingProgress</a></span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">32</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span><span class="p">)</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>progress</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> to some <code><a href="../Enums/RingProgress.html">RingProgress</a></code> which determines the state of the progress ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Enums/RingAxis.html">RingAxis</a></code> which determines the starting axis for which to draw.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the ring is drawn in a clock wise manner or not.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>innerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>ProgressRingStyle</code> used to customize the inner ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="http://ucpr.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2020-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,3 +1,9 @@
+# Version 7.0.0
+
+- With this version the library gets a complete rewrite.
+- Written using SwiftUI.
+- Read the README for more info!
+
 # Version 6.5.0
 
 - Fix issue with value knob being clipped for certain ring styles

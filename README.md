@@ -1,148 +1,128 @@
+## UICircularProgressRing
+
 <p align="center">
-	<img src="https://img.shields.io/github/license/luispadron/UICircularProgressRing.svg">
-	<img src="https://travis-ci.org/luispadron/UICircularProgressRing.svg?branch=master">
-	<img src="https://img.shields.io/github/issues/luispadron/UICircularProgressRing.svg">
+<img src="./.github/demo.gif"/>
 </p>
 
-![Banner](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png)
+UICircularProgress ring is a library for rendering circular progress rings and timers.
 
-<h3 align="center">A circular progress bar for iOS written in Swift</h3>
-
-## Features
-
-* 2 views, progress or timer
-* Interface builder designable
-* Highly customizable and flexible
-* Easy to use
-* Fluid and interruptible animations
-* Written in Swift
-* RTL language support
-
-## Apps Using UICircularProgressRing
-
-- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron.
-
-- [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-index-now/id1207745216?mt=8) by Alexander Ershov.
-
-- [HotelTonight](https://itunes.apple.com/app/id407690035?mt=8) by Hotel Tonight Inc.
-
-- [הנתיב המהיר](https://itunes.apple.com/us/app/הנתיב-המהיר/id1320456872?mt=8) by Elad Hayun
-
-- [Nyx Nightclub Management](https://itunes.apple.com/dk/app/nyx-nightclub-management-ipad/id954874082?mt=8) by Nyx Systems IVS
-
-- [Barstool Sports](https://itunes.apple.com/us/app/barstool-sports/id456805313) by Barstool Sports
-
-- [88 Days](http://88-days.com) by Stijn Kramer
-
-- [Bookbot](https://www.bookbotkids.com) by Bookbot
+- **Declarative:** Written using [SwiftUI](https://developer.apple.com/xcode/swiftui/) (*legacy UIKit version available*), UICircularProgressRing is declarative making it easy to read, and easy to use.
+- **Customizable:** Designed to be used in production, all of the views are highly customizable without giving up ease of use. This allows the developer to tailor the look, feel and functionality to fit their needs.
+- **Tested:** Battle tested in many [production applications](#apps-using-uicircularprogressring). UICircularProgressRing is also fully unit tested as well as snapshot tested so developers can feel safe.
+- **Documented:** UICircularProgressRing's public API is 100% documented and its something that is enforced before any code is ever added. This is a resource that will help any new user understand how to get the most out of this library.
 
 ## Installation
 
-*NOTE: Objective-C support: Support for Objective-C has been dropped in version 5.0.0, use version 4 or lower if you are using Objective-C.*
+UICircularProgressRing is available in two major versions. The latest version **v7.0+** or legacy versions. The legacy version is written using UIKit and requires a deployment target of `iOS 8.0+` or `tvOS 10.0+`. The latest version is written in SwiftUI and requires `iOS 13.0+`, `macOS 15.0+`, `tvOS 13.0+` or `WatchOS 2.0+`.
 
-⚠️ **There is currently work being done to re-write this library in SwiftUI, check out [features/swift-ui](https://github.com/luispadron/UICircularProgressRing/tree/features/swift-ui) branch for more info!** ⚠️
+For legacy installation, [follow these](./LegacyREADME.md) instructions.
 
-### CocoaPods (Recommended)
+### Swift Package Manager
 
-1. Install [CocoaPods](https://cocoapods.org)
-2. Add this repo to your `Podfile`
-
-	```ruby
-	target 'Example' do
-	    # IMPORTANT: Make sure use_frameworks! is included at the top of the file
-	    use_frameworks!
-
-	    pod 'UICircularProgressRing'
-	end
-	```
-3. Run `pod install`
-4. Open up the `.xcworkspace` that CocoaPods created
-5. Done!
-
-### Carthage
-
-#### Important: Interface builder support with Carthage is either broken or extremely limted
-
-To use with [Carthage](https://github.com/Carthage/Carthage)
-
-1. Make sure Carthage is installed
-
-	`brew install carthage`
-2. Add this repo to your Cartfile
-
-	`github "luispadron/UICircularProgressRing"`
-3. Install dependencies
-	`carthage update --platform iOS`
-
-## Usage
-
-### UICircularProgressRing Example
+Simply add this library to your package manifest or follow instructions on adding a package dependency [using Xcode here](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app).
 
 ```swift
-override func viewDidLoad() {
-  // Create the view
-  let progressRing = UICircularProgressRing()
-  // Change any of the properties you'd like
-  progressRing.maxValue = 50
-  progressRing.style = .dashed(pattern: [7.0, 7.0])
-  // etc ...
-}
-```
-
-To set a value and animate the view
-
-```swift
-// Somewhere not in viewDidLoad (since the views have not set yet, thus cannot be animated)
-// Remember to use unowned or weak self if referencing self to avoid retain cycle
-progressRing.startProgress(to: 49, duration: 2.0) {
-  print("Done animating!")
-  // Do anything your heart desires...
-}
-
-// Pause at any time during a running animation
-progressRing.pauseProgress()
-
-// Continue where you left off after a pause
-progressRing.continueProgress()
-```
-
-### UICircularTimerRing Example
-
-```swift
-override func viewDidLoad() {
-	// create the view
-	let timerRing = UICircularTimerRing()
-}
-```
-
-Animate and set time
-
-```swift
-						// seconds
-timerRing.startTimer(to: 60) { state in
-    switch state {
-    case .finished:
-        print("finished")
-    case .continued(let time):
-        print("continued: \(time)")
-    case .paused(let time):
-        print("paused: \(time)")
-    }
-}
-
-timerRing.pauseTimer() // pauses the timer
-
-timerRing.continueTimer() // continues from where we paused
-
-timerRing.resetTimer() // resets and cancels animations previously running
+.package(
+    url: "https://github.com/luispadron/UICircularProgressRing.git",
+    .branch("master")
+)
 ```
 
 ## Documentation
 
-Please **read** this before creating an issue about how to use the library:
+This projects public API is 100% documented and it's something we spend a lot of time working on. Please make sure to read the documentation before opening any issues, questions, etc.
 
-[DOCUMENTATION](https://htmlpreview.github.io/?https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/docs/Classes/UICircularProgressRing.html)
+[Read the documentation 📖](https://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
 
-## Misc.
+## Usage
 
-Do you use this library? Want to be featured? Go [here.](https://github.com/luispadron/UICircularProgressRing/issues/54)
+### ProgressRing
+
+`ProgressRing` is a view designed to display some kind of progress, this can be anything which is represented as a percentage in the range `[0, ∞)`. A percentage is represented in decimal format, i.e. `0.5` is `50%`. Progress may be a downloading operation, the grade percentage of a users test score, etc. A short example of using `ProgressRing` is shown below, for more details [read the docs](#documentation) or play with the [example app](/Example/).
+
+```swift
+struct ProgressRingExample: View {
+    @State var progress = RingProgress.percent(0.44)
+
+    var body: some View {
+        VStack {
+            ProgressRing(
+                progress: $progress,
+                axis: .top,
+                clockwise: true,
+                outerRingStyle: .init(
+                    color: .color(.gray),
+                    strokeStyle: .init(lineWidth: 20)
+                ),
+                innerRingStyle: .init(
+                    color: .color(.green),
+                    strokeStyle: .init(lineWidth: 10),
+                    padding: 5
+                )
+            )
+                .animation(.easeInOut(duration: 5))
+                .padding(32)
+        }
+    }
+}
+```
+
+![An example image of a ProgressRing view rendered with a green inner circle, a gray outer circle and at 44 percent completion.](./.github/progress-ring-demo.png)
+
+### TimerRing
+
+`TimerRing` is a view designed to display time. You initialize the timer by giving it a unit of time and duration, for example: `.seconds(60)`. This means the `TimerRing` will run for 60 seconds, filling up the inner ring until finally reaching 100% around the entire outer ring.
+A short example of using `TimerRing` is shown below, for more details [read the docs](#documentation) or play with the [example app](/Example/).
+
+```swift
+struct TimerRingExample: View {
+    @State var isPaused = false
+    @State var isDone = false
+
+    var body: some View {
+        TimerRing(
+            time: .minutes(1),
+            delay: .seconds(0.5),
+            innerRingStyle: .init(
+                color: .color(.green),
+                strokeStyle: .init(lineWidth: 16),
+                padding: 8
+            ),
+            isPaused: $isTimerPaused,
+            isDone: $isTimerDone
+        ) { currentTime in
+            Text(timeFormatter.string(from: currentTime))
+                .font(.title)
+                .bold()
+        }
+    }
+}
+```
+
+![A demo image of a timer ring view with a green inner ring, a gray outer ring and at twenty-seven seconds.](./.github/timer-ring-demo.png)
+
+## Examples
+
+- [Loading/Spinner](./Example/UICircularProgressRingExample/Examples/IndeterminateExample.swift)
+- [Networking](./Example/UICircularProgressRingExample/Examples/NetworkingProgressExample.swift)
+
+## Road Map
+
+This being the first version written using SwiftUI, there is some functionality that is missing in this version that was previously available. Below are some things that I plan on adding in the near future:
+
+- Adding all of the functionality from the legacy version into this version.
+- Adding seamless interoperability between the SwiftUI views and UIKit.
+- Implementing as much as reasonably possible of the [feature requests](https://github.com/luispadron/UICircularProgressRing/labels/feature%20request).
+
+## Apps Using UICircularProgressRing
+
+- [GradePoint](http://gradepoint.luispadron.com) by Luis Padron.
+- [UVI Mate](https://itunes.apple.com/us/app/uvi-mate-global-uv-indethex-now/id1207745216?mt=8) by Alexander Ershov.
+- [HotelTonight](https://itunes.apple.com/app/id407690035?mt=8) by Hotel Tonight Inc.
+- [הנתיב המהיר](https://itunes.apple.com/us/app/הנתיב-המהיר/id1320456872?mt=8) by Elad Hayun
+- [Nyx Nightclub Management](https://itunes.apple.com/dk/app/nyx-nightclub-management-ipad/id954874082?mt=8) by Nyx Systems IVS
+- [Barstool Sports](https://itunes.apple.com/us/app/barstool-sports/id456805313) by Barstool Sports
+- [88 Days](http://88-days.com) by Stijn Kramer
+- [Bookbot](https://www.bookbotkids.com) by Bookbot
+- [car2go](https://apps.apple.com/us/app/car2go/id514921710) by car2go Group GmbH
+- [Do you use this library?](https://github.com/luispadron/UICircularProgressRing/issues/54)

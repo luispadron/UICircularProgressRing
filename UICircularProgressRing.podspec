@@ -1,25 +1,39 @@
+Pod::Spec.new do |spec|
 
-Pod::Spec.new do |s|
+  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.name         = "UICircularProgressRing"
-  s.version      = "6.5.0"
-  s.summary      = "A highly customizable circular progress bar for iOS written in Swift"
-
-  s.description  = <<-DESC
+  spec.name         = "UICircularProgressRing"
+  spec.version      = "7.0.0"
+  spec.homepage     = "http://ucpr.luispadron.com"
+  spec.summary      = "A highly customizable circular progress bar for iOS written in Swift"
+  spec.description  = <<-DESC
   A highly customizable circular progress bar for iOS written in Swift, with Interface Builder support.
-                   DESC
+                      DESC
 
-  s.homepage     = "https://github.com/luispadron/UICircularProgressRing"
-  s.screenshots  = "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/banner.png", "https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"
+  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.license      = { :type => "MIT", :file => "LICENSE" }
+  spec.license      = { :type => "MIT", :file => "LICENSE.md" }
 
-  s.author             = { "Luis Padron" => "heyluispadron@gmail.com" }
-  s.social_media_url   = "https://luispadron.com"
 
-  s.ios.deployment_target = "8.0"
-  s.tvos.deployment_target = "10.0"
-  s.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{s.version}" }
+  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.source_files  = "src/UICircularProgressRing", "src/UICircularProgressRing/**/*.{h,m}"
+  spec.author             = { "Luis Padron" => "heyluispadron@gmail.com" }
+
+  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+
+  spec.ios.deployment_target = "8.0"
+  spec.tvos.deployment_target = "10.0"
+
+  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+
+  spec.source       = { :git => "https://github.com/luispadron/UICircularProgressRing.git", :tag => "v#{spec.version}" }
+
+  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+
+  spec.source_files  = "Legacy", "Legacy/**/*.{h,m,swift}"
+
+  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
+
+  spec.swift_version = '5.2.4'
+
 end

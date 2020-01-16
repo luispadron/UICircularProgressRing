@@ -1,0 +1,72 @@
+# coding: utf-8
+fastlane_version "2.148.1"
+
+default_platform :ios
+
+root = File.expand_path('.')
+
+desc "Creates the project file"
+lane :create_project do
+	UI.message "Generating Project"
+	spm(
+	  command: "generate-xcodeproj",
+	  build_path: ".build"
+	)
+end
+
+desc "Runs swiftlint"
+lane :lint do
+	swiftlint(
+		mode: :lint,
+		config_file: ".swiftlint.yml",
+		raise_if_swiftlint_error: true,
+		ignore_exit_status: false
+	)
+end
+
+desc "Run snapshot generation"
+lane :run_snapshot do
+	create_project
+
+	UI.message "Removing old snapshots"
+	sh "rm -rf ../SnapshotTests/__Snapshots__/"
+
+	UI.message "Generating snapshots"
+	scan(
+	  project: "UICircularProgressRing.xcodeproj",
+	  scheme: "UICircularProgressRing-Package",
+	  device: "iPhone 11",
+	  xcargs: {
+		:SWIFT_ACTIVE_COMPILATION_CONDITIONS => '$(inherited) SNAPSHOT_GENERATION'
+	 },
+	 skip_build: true
+	)
+end
+
+desc "Run Xcode tests, including snapshot tests"
+lane :test do
+	create_project
+
+	scan(
+	  project: "UICircularProgressRing.xcodeproj",
+	  scheme: "UICircularProgressRing-Package",
+	  device: "iPhone 11"
+	)
+end
+
+desc "Runs all steps required for CI"
+lane :ci_test do
+	lint
+	gen_docs
+	test
+	ensure_git_status_clean(
+		show_uncommitted_changes: true
+	)
+end
+
+desc "Runs Jazzy documentation generation"
+lane :gen_docs do
+	sh "rm -rf ../docs"
+	jazzy(config: ".jazzy.yml")
+	sh "rm -rf ../docs/docsets"
+end
