@@ -249,7 +249,7 @@ import UIKit
      The spacing between the outer ring and inner ring
 
      ## Important ##
-     This only applies when using progressRingStyle = 1
+     This only applies when using `ringStyle` = `.inside`
 
      Default = 1
 
