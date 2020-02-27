@@ -100,7 +100,7 @@ final public class UICircularProgressRing: UICircularRing {
      The minimum value for the progress ring. ex: (0) -> 100.
 
      ## Important ##
-     Default = 100
+     Default = 0.0
 
      Must be a non-negative value, the absolute value is taken when setting this property.
 
@@ -120,7 +120,7 @@ final public class UICircularProgressRing: UICircularRing {
      The maximum value for the progress ring. ex: 0 -> (100)
 
      ## Important ##
-     Default = 100
+     Default = 100.0
 
      Must be a non-negative value, the absolute value is taken when setting this property.
 
