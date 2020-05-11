@@ -132,8 +132,8 @@ final public class UICircularTimerRing: UICircularRing {
     /**
      Get remaining time
      */
-    public func getRemainTime() -> TimeInterval? {
-        return time - elapsedTime
+    public func getRemainTime() -> TimeInterval {
+        return time - (elapsedTime ?? 0)
     }
 
     // MARK: Overrides
