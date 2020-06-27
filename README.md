@@ -10,9 +10,8 @@
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>
+<a href="https://tracking.gitads.io/?repo=UICircularProgressring"><img src="https://images.gitads.io/UICircularProgressRing" alt="GitAds"/></a>
 </p>
-
-![Styles](https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/styles-banner.png)
 
 ## Features
 
