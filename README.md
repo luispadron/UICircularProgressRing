@@ -8,11 +8,6 @@
 
 <h3 align="center">A circular progress bar for iOS written in Swift</h3>
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/luispadron/UICircularProgressRing/master/.github/demo.gif"/>
-<a href="https://tracking.gitads.io/?repo=UICircularProgressring"><img src="https://images.gitads.io/UICircularProgressRing" alt="GitAds"/></a>
-</p>
-
 ## Features
 
 * 2 views, progress or timer
