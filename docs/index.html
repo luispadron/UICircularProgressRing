@@ -13,8 +13,7 @@
     <a title="UICircularProgressRing  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">UICircularProgressRing 6.0.0 Docs</a> (90% documented)</p>
-        <p class="header-right"><a href="https://github.com/luispadron/UICircularProgressRing"><img src="img/gh.png"/>View on GitHub</a></p>
+        <p><a href="index.html">UICircularProgressRing 7.0.0 Docs</a> (100% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -28,41 +27,19 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="Classes.html">Classes</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Classes/UICircularProgressRing.html">UICircularProgressRing</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/UICircularRing.html">UICircularRing</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/UICircularTimerRing.html">UICircularTimerRing</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/UICircularTimerRing/State.html">– State</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/UICircularRingGradientPosition.html">UICircularRingGradientPosition</a>
+                <a href="Enums/RingAxis.html">RingAxis</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/UICircularRingStyle.html">UICircularRingStyle</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Protocols.html">Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Protocols/UICircularProgressRingDelegate.html">UICircularProgressRingDelegate</a>
+                <a href="Enums/RingColor.html">RingColor</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/UICircularRingValueFormatter.html">UICircularRingValueFormatter</a>
+                <a href="Enums/RingProgress.html">RingProgress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a>
               </li>
             </ul>
           </li>
@@ -70,19 +47,22 @@
             <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Structs/UICircularProgressRingFormatter.html">UICircularProgressRingFormatter</a>
+                <a href="Structs/IndeterminateRing.html">IndeterminateRing</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/UICircularRingGradientOptions.html">UICircularRingGradientOptions</a>
+                <a href="Structs/PercentFormattedText.html">PercentFormattedText</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/UICircularRingValueKnobPath.html">UICircularRingValueKnobPath</a>
+                <a href="Structs/ProgressRing.html">ProgressRing</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/UICircularRingValueKnobStyle.html">UICircularRingValueKnobStyle</a>
+                <a href="Structs/Ring.html">Ring</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/UICircularTimerRingFormatter.html">UICircularTimerRingFormatter</a>
+                <a href="Structs/RingStyle.html">RingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/TimerRing.html">TimerRing</a>
               </li>
             </ul>
           </li>
@@ -92,22 +72,133 @@
         <section>
           <section class="section">
             
-            <h1 id='uicircularprogressring' class='heading'>UICircularProgressRing</h1>
-<h3 id='a-highly-customizable-circular-progress-bar-for-ios-written-in-swift' class='heading'>A highly customizable circular progress bar for iOS written in Swift</h3>
+            <h2 id='uicircularprogressring' class='heading'>UICircularProgressRing</h2>
 
-<p>A highly customizable circular progress bar for iOS written in Swift, with Interface Builder support.</p>
-<h3 id='installation' class='heading'>Installation</h3>
-<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'UICircularProgressRing'</span>
+<p align="center">
+<img src="./.github/demo.gif"/>
+</p>
+
+<p>UICircularProgress ring is a library for rendering circular progress rings and timers.</p>
+
+<ul>
+<li><strong>Declarative:</strong> Written using <a href="https://developer.apple.com/xcode/swiftui/">SwiftUI</a> (<em>legacy UIKit version available</em>), UICircularProgressRing is declarative making it easy to read, and easy to use.</li>
+<li><strong>Customizable:</strong> Designed to be used in production, all of the views are highly customizable without giving up ease of use. This allows the developer to tailor the look, feel and functionality to fit their needs.</li>
+<li><strong>Tested:</strong> Battle tested in many <a href="#apps-using-uicircularprogressring">production applications</a>. UICircularProgressRing is also fully unit tested as well as snapshot tested so developers can feel safe.</li>
+<li><strong>Documented:</strong> UICircularProgressRing&rsquo;s public API is 100% documented and its something that is enforced before any code is ever added. This is a resource that will help any new user understand how to get the most out of this library.</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>UICircularProgressRing is available in two major versions. The latest version <strong>v7.0+</strong> or legacy versions. The legacy version is written using UIKit and requires a deployment target of <code>iOS 8.0+</code> or <code>tvOS 10.0+</code>. The latest version is written in SwiftUI and requires <code>iOS 13.0+</code>, <code>macOS 15.0+</code>, <code>tvOS 13.0+</code> or <code>WatchOS 2.0+</code>.</p>
+
+<p>For legacy installation, <a href="./LegacyREADME.md">follow these</a> instructions.</p>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p>Simply add this library to your package manifest or follow instructions on adding a package dependency <a href="https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app">using Xcode here</a>.</p>
+<pre class="highlight swift"><code><span class="o">.</span><span class="nf">package</span><span class="p">(</span>
+    <span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/luispadron/UICircularProgressRing.git"</span><span class="p">,</span>
+    <span class="o">.</span><span class="nf">branch</span><span class="p">(</span><span class="s">"master"</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre>
-<h3 id='authors' class='heading'>Authors</h3>
+<h2 id='documentation' class='heading'>Documentation</h2>
 
-<p>Luis</p>
+<p>This projects public API is 100% documented and it&rsquo;s something we spend a lot of time working on. Please make sure to read the documentation before opening any issues, questions, etc.</p>
+
+<p><a href="https://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html">Read the documentation 📖</a></p>
+<h2 id='usage' class='heading'>Usage</h2>
+<h3 id='progressring' class='heading'>ProgressRing</h3>
+
+<p><code><a href="Structs/ProgressRing.html">ProgressRing</a></code> is a view designed to display some kind of progress, this can be anything which is represented as a percentage in the range <code>[0, ∞)</code>. A percentage is represented in decimal format, i.e. <code>0.5</code> is <code>50%</code>. Progress may be a downloading operation, the grade percentage of a users test score, etc. A short example of using <code><a href="Structs/ProgressRing.html">ProgressRing</a></code> is shown below, for more details <a href="#documentation">read the docs</a> or play with the <a href="/Example/">example app</a>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ProgressRingExample</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kd">@State</span> <span class="k">var</span> <span class="nv">progress</span> <span class="o">=</span> <span class="kt">RingProgress</span><span class="o">.</span><span class="nf">percent</span><span class="p">(</span><span class="mf">0.44</span><span class="p">)</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">VStack</span> <span class="p">{</span>
+            <span class="kt">ProgressRing</span><span class="p">(</span>
+                <span class="nv">progress</span><span class="p">:</span> <span class="err">$</span><span class="n">progress</span><span class="p">,</span>
+                <span class="nv">axis</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+                <span class="nv">clockwise</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span>
+                    <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span>
+                    <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+                <span class="p">),</span>
+                <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span>
+                    <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">green</span><span class="p">),</span>
+                    <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">10</span><span class="p">),</span>
+                    <span class="nv">padding</span><span class="p">:</span> <span class="mi">5</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+                <span class="o">.</span><span class="nf">animation</span><span class="p">(</span><span class="o">.</span><span class="nf">easeInOut</span><span class="p">(</span><span class="nv">duration</span><span class="p">:</span> <span class="mi">5</span><span class="p">))</span>
+                <span class="o">.</span><span class="nf">padding</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><img src="./.github/progress-ring-demo.png" alt="An example image of a ProgressRing view rendered with a green inner circle, a gray outer circle and at 44 percent completion."></p>
+<h3 id='timerring' class='heading'>TimerRing</h3>
+
+<p><code><a href="Structs/TimerRing.html">TimerRing</a></code> is a view designed to display time. You initialize the timer by giving it a unit of time and duration, for example: <code>.seconds(60)</code>. This means the <code><a href="Structs/TimerRing.html">TimerRing</a></code> will run for 60 seconds, filling up the inner ring until finally reaching 100% around the entire outer ring.
+A short example of using <code><a href="Structs/TimerRing.html">TimerRing</a></code> is shown below, for more details <a href="#documentation">read the docs</a> or play with the <a href="/Example/">example app</a>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">TimerRingExample</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="kd">@State</span> <span class="k">var</span> <span class="nv">isPaused</span> <span class="o">=</span> <span class="kc">false</span>
+    <span class="kd">@State</span> <span class="k">var</span> <span class="nv">isDone</span> <span class="o">=</span> <span class="kc">false</span>
+
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">TimerRing</span><span class="p">(</span>
+            <span class="nv">time</span><span class="p">:</span> <span class="o">.</span><span class="nf">minutes</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="nv">delay</span><span class="p">:</span> <span class="o">.</span><span class="nf">seconds</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
+            <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span>
+                <span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">green</span><span class="p">),</span>
+                <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span>
+                <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span>
+            <span class="p">),</span>
+            <span class="nv">isPaused</span><span class="p">:</span> <span class="err">$</span><span class="n">isTimerPaused</span><span class="p">,</span>
+            <span class="nv">isDone</span><span class="p">:</span> <span class="err">$</span><span class="n">isTimerDone</span>
+        <span class="p">)</span> <span class="p">{</span> <span class="n">currentTime</span> <span class="k">in</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="n">timeFormatter</span><span class="o">.</span><span class="nf">string</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="n">currentTime</span><span class="p">))</span>
+                <span class="o">.</span><span class="nf">font</span><span class="p">(</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+                <span class="o">.</span><span class="nf">bold</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><img src="./.github/timer-ring-demo.png" alt="A demo image of a timer ring view with a green inner ring, a gray outer ring and at twenty-seven seconds."></p>
+<h2 id='examples' class='heading'>Examples</h2>
+
+<ul>
+<li><a href="./Example/UICircularProgressRingExample/Examples/IndeterminateExample.swift">Loading/Spinner</a></li>
+<li><a href="./Example/UICircularProgressRingExample/Examples/NetworkingProgressExample.swift">Networking</a></li>
+</ul>
+<h2 id='road-map' class='heading'>Road Map</h2>
+
+<p>This being the first version written using SwiftUI, there is some functionality that is missing in this version that was previously available. Below are some things that I plan on adding in the near future:</p>
+
+<ul>
+<li>Adding all of the functionality from the legacy version into this version.</li>
+<li>Adding seamless interoperability between the SwiftUI views and UIKit.</li>
+<li>Implementing as much as reasonably possible of the <a href="https://github.com/luispadron/UICircularProgressRing/labels/feature%20request">feature requests</a>.</li>
+</ul>
+<h2 id='apps-using-uicircularprogressring' class='heading'>Apps Using UICircularProgressRing</h2>
+
+<ul>
+<li><a href="http://gradepoint.luispadron.com">GradePoint</a> by Luis Padron.</li>
+<li><a href="https://itunes.apple.com/us/app/uvi-mate-global-uv-indethex-now/id1207745216?mt=8">UVI Mate</a> by Alexander Ershov.</li>
+<li><a href="https://itunes.apple.com/app/id407690035?mt=8">HotelTonight</a> by Hotel Tonight Inc.</li>
+<li><a href="https://itunes.apple.com/us/app/%D7%94%D7%A0%D7%AA%D7%99%D7%91-%D7%94%D7%9E%D7%94%D7%99%D7%A8/id1320456872?mt=8">הנתיב המהיר</a> by Elad Hayun</li>
+<li><a href="https://itunes.apple.com/dk/app/nyx-nightclub-management-ipad/id954874082?mt=8">Nyx Nightclub Management</a> by Nyx Systems IVS</li>
+<li><a href="https://itunes.apple.com/us/app/barstool-sports/id456805313">Barstool Sports</a> by Barstool Sports</li>
+<li><a href="http://88-days.com">88 Days</a> by Stijn Kramer</li>
+<li><a href="https://www.bookbotkids.com">Bookbot</a> by Bookbot</li>
+<li><a href="https://apps.apple.com/us/app/car2go/id514921710">car2go</a> by car2go Group GmbH</li>
+<li><a href="https://github.com/luispadron/UICircularProgressRing/issues/54">Do you use this library?</a></li>
+</ul>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://luispadron.com" target="_blank" rel="external">Luis</a>. All rights reserved. (Last updated: 2020-01-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2020 <a class="link" href="http://ucpr.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2020-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

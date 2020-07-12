@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/luispadron/swift-snapshot-testing.git",
+        "state": {
+          "branch": "master",
+          "revision": "8e9f6855674c885abfce358f5ad3f2f632d2c51f",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

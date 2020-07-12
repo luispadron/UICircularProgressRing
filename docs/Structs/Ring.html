@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ring Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Ring" class="dashAnchor"></a>
+    <a title="Ring Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">UICircularProgressRing 7.0.0 Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">UICircularProgressRing Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Ring Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/RingAxis.html">RingAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingColor.html">RingColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingProgress.html">RingProgress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/IndeterminateRing.html">IndeterminateRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PercentFormattedText.html">PercentFormattedText</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProgressRing.html">ProgressRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Ring.html">Ring</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RingStyle.html">RingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TimerRing.html">TimerRing</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Ring</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Ring</span><span class="o">&lt;</span><span class="kt">Content</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Content</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Ring</span><span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                </div>
+              </div>
+            <h1 id='ring' class='heading'>Ring</h1>
+
+<p>A view which represents a ring (a circle with a stroke).
+The <code>percent</code> determines how much of the ring is drawn starting from the <code>axis</code>.</p>
+
+<p>Example: A ring with an axis of <code><a href="../Enums/RingAxis.html#/s:22UICircularProgressRing0C4AxisO3topyA2CmF">RingAxis.top</a></code>, a percent of <code>0.5</code>, and <code>clockwise == true</code> will draw
+a stroked circle from <code>90</code> degrees (on a unit circle) to <code>270</code> degrees.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0C0V7percent4axis9clockwise5color11strokeStyle_ACyxGSd_AA0C4AxisOSbAA0C5ColorO7SwiftUI06StrokeI0VxSdctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(percent:axis:clockwise:color:strokeStyle:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0C0V7percent4axis9clockwise5color11strokeStyle_ACyxGSd_AA0C4AxisOSbAA0C5ColorO7SwiftUI06StrokeI0VxSdctcfc">init(percent:<wbr>axis:<wbr>clockwise:<wbr>color:<wbr>strokeStyle:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>Ring</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">percent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">color</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingColor.html">RingColor</a></span><span class="p">,</span>
+    <span class="nv">strokeStyle</span><span class="p">:</span> <span class="kt">StrokeStyle</span><span class="p">,</span>
+    <span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">content</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Double</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Content</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>percent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The starting completion percent of the ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The axis to begin drawing the ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether the ring is drawn in a clockwise manner.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>color</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The stroke color for the ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>strokeStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>StrokeStyle</code> for the ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>content</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An optional content view placed within the center of the ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftUI4ViewP4body4BodyQzvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP4body4BodyQzvp">body</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Content%60%20%3D%3D%20%60EmptyView%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Content` == `EmptyView`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Content%60%20%3D%3D%20%60EmptyView%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Content</code> == <code>EmptyView</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing0C0VAA7SwiftUI9EmptyViewVRszrlE7percent4axis9clockwise5color11strokeStyleACyAFGSd_AA0C4AxisOSbAA0C5ColorOAD06StrokeM0Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(percent:axis:clockwise:color:strokeStyle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing0C0VAA7SwiftUI9EmptyViewVRszrlE7percent4axis9clockwise5color11strokeStyleACyAFGSd_AA0C4AxisOSbAA0C5ColorOAD06StrokeM0Vtcfc">init(percent:<wbr>axis:<wbr>clockwise:<wbr>color:<wbr>strokeStyle:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default init which returns a ring with no label.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">percent</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span>
+    <span class="nv">color</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingColor.html">RingColor</a></span><span class="p">,</span>
+    <span class="nv">strokeStyle</span><span class="p">:</span> <span class="kt">StrokeStyle</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="http://ucpr.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2020-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

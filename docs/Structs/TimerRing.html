@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TimerRing Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/TimerRing" class="dashAnchor"></a>
+    <a title="TimerRing Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">UICircularProgressRing 7.0.0 Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">UICircularProgressRing Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        TimerRing Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/RingAxis.html">RingAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingColor.html">RingColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingProgress.html">RingProgress</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/IndeterminateRing.html">IndeterminateRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PercentFormattedText.html">PercentFormattedText</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ProgressRing.html">ProgressRing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Ring.html">Ring</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/RingStyle.html">RingStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TimerRing.html">TimerRing</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>TimerRing</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TimerRing</span><span class="o">&lt;</span><span class="kt">Label</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Label</span> <span class="p">:</span> <span class="kt">View</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TimerRing</span><span class="p">:</span> <span class="kt">View</span></code></pre>
+
+                </div>
+              </div>
+            <h1 id='timerring' class='heading'>TimerRing</h1>
+
+<p>A specialized <code><a href="../Structs/Ring.html">Ring</a></code> for displaying time.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing05TimerC0V4time5delay11elapsedTime8tickRate4axis9clockwise05outerC5Style05innercN08isPaused0P4Done13mainScheduler6onTick_ACyxGAA0dcH4UnitO_ARSgAsrA0C4AxisOSbAA0cN0VAW7SwiftUI7BindingVySbGA_So17OS_dispatch_queueCySdcSgxSdctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(time:delay:elapsedTime:tickRate:axis:clockwise:outerRingStyle:innerRingStyle:isPaused:isDone:mainScheduler:onTick:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing05TimerC0V4time5delay11elapsedTime8tickRate4axis9clockwise05outerC5Style05innercN08isPaused0P4Done13mainScheduler6onTick_ACyxGAA0dcH4UnitO_ARSgAsrA0C4AxisOSbAA0cN0VAW7SwiftUI7BindingVySbGA_So17OS_dispatch_queueCySdcSgxSdctcfc">init(time:<wbr>delay:<wbr>elapsedTime:<wbr>tickRate:<wbr>axis:<wbr>clockwise:<wbr>outerRingStyle:<wbr>innerRingStyle:<wbr>isPaused:<wbr>isDone:<wbr>mainScheduler:<wbr>onTick:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>TimerRing</code> where the <code>Label</code> is <code>EmptyView</code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Do not perform expensive operations in <code>onTick</code>. This closure is called very often.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">time</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">,</span>
+    <span class="nv">delay</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">elapsedTime</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">tickRate</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">32</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="nv">isPaused</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">.</span><span class="nf">constant</span><span class="p">(</span><span class="kc">false</span><span class="p">),</span>
+    <span class="nv">isDone</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">mainScheduler</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
+    <span class="nv">onTick</span><span class="p">:</span> <span class="p">((</span><span class="kt">TimeInterval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="kd">@ViewBuilder</span> <span class="n">_</span> <span class="nv">label</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">TimeInterval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Label</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>time</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines how long the ring animates for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delay</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A delay before the ring begins animating. Default = <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elapsedTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount of time already elapsed. The total running time is determined by <code>time - elapsedTime</code>. Default = <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tickRate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The rate at which the ring updates its time value. Default = <code>TimerRingTimeUnit.milliseconds(100)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Enums/RingAxis.html">RingAxis</a></code> at which drawing begins.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to draw in a clockwise manner.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Structs/RingStyle.html">RingStyle</a></code> of the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>innerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Structs/RingStyle.html">RingStyle</a></code> of the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isPaused</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> used to determine if the timer is paused. Default = <code>Binding.constant(false)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isDone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> used to determine if the timer is done.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mainScheduler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The scheduler on which the timing operations and animations are run on. Default = <code>DispatchQueue.main</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onTick</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure which is called whenever the timer is updated. This is called roughly every <code>tickRate</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>label</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A view builder closure which constructs a some <code>View</code>. The current time (in seconds) is passed into the closure.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Body"></a>
+                <a name="//apple_ref/swift/Section/Body" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Body"></a>
+                  <h3 class="section-name"><p>Body</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7SwiftUI4ViewP4body4BodyQzvp"></a>
+                    <a name="//apple_ref/swift/Property/body" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7SwiftUI4ViewP4body4BodyQzvp">body</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Label%60%20%3D%3D%20%60EmptyView%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Label` == `EmptyView`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Label%60%20%3D%3D%20%60EmptyView%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Label</code> == <code>EmptyView</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:22UICircularProgressRing05TimerC0VAA7SwiftUI9EmptyViewVRszrlE4time5delay11elapsedTime8tickRate4axis9clockwise05outerC5Style05innercR08isPaused0T4Done13mainScheduler6onTickACyAFGAA0dcL4UnitO_AUSgAvuA0C4AxisOSbAA0cR0VAzD7BindingVySbGA1_So17OS_dispatch_queueCySdcSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(time:delay:elapsedTime:tickRate:axis:clockwise:outerRingStyle:innerRingStyle:isPaused:isDone:mainScheduler:onTick:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:22UICircularProgressRing05TimerC0VAA7SwiftUI9EmptyViewVRszrlE4time5delay11elapsedTime8tickRate4axis9clockwise05outerC5Style05innercR08isPaused0T4Done13mainScheduler6onTickACyAFGAA0dcL4UnitO_AUSgAvuA0C4AxisOSbAA0cR0VAzD7BindingVySbGA1_So17OS_dispatch_queueCySdcSgtcfc">init(time:<wbr>delay:<wbr>elapsedTime:<wbr>tickRate:<wbr>axis:<wbr>clockwise:<wbr>outerRingStyle:<wbr>innerRingStyle:<wbr>isPaused:<wbr>isDone:<wbr>mainScheduler:<wbr>onTick:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code>TimerRing</code> where the <code>Label</code> is <code>EmptyView</code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>Do not perform expensive operations in <code>onTick</code>. This closure is called very often.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">time</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">,</span>
+    <span class="nv">delay</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">elapsedTime</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="nv">tickRate</span><span class="p">:</span> <span class="kt"><a href="../Enums/TimerRingTimeUnit.html">TimerRingTimeUnit</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="nv">axis</span><span class="p">:</span> <span class="kt"><a href="../Enums/RingAxis.html">RingAxis</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">top</span><span class="p">,</span>
+    <span class="nv">clockwise</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nv">outerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">gray</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">32</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nv">innerRingStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/RingStyle.html">RingStyle</a></span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">color</span><span class="p">:</span> <span class="o">.</span><span class="nf">color</span><span class="p">(</span><span class="o">.</span><span class="n">blue</span><span class="p">),</span> <span class="nv">strokeStyle</span><span class="p">:</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">lineWidth</span><span class="p">:</span> <span class="mi">16</span><span class="p">),</span> <span class="nv">padding</span><span class="p">:</span> <span class="mi">8</span><span class="p">),</span>
+    <span class="nv">isPaused</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">.</span><span class="nf">constant</span><span class="p">(</span><span class="kc">false</span><span class="p">),</span>
+    <span class="nv">isDone</span><span class="p">:</span> <span class="kt">Binding</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nv">mainScheduler</span><span class="p">:</span> <span class="kt">DispatchQueue</span> <span class="o">=</span> <span class="o">.</span><span class="n">main</span><span class="p">,</span>
+    <span class="nv">onTick</span><span class="p">:</span> <span class="p">((</span><span class="kt">TimeInterval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>time</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines how long the ring animates for.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>delay</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A delay before the ring begins animating. Default = <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elapsedTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount of time already elapsed. The total running time is determined by <code>time - elapsedTime</code>. Default = <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tickRate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The rate at which the ring updates its time value. Default = <code>TimerRingTimeUnit.milliseconds(100)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>axis</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Enums/RingAxis.html">RingAxis</a></code> at which drawing begins.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>clockwise</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Whether to draw in a clockwise manner.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Structs/RingStyle.html">RingStyle</a></code> of the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>innerRingStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Structs/RingStyle.html">RingStyle</a></code> of the outer ring.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isPaused</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> used to determine if the timer is paused. Default = <code>Binding.constant(false)</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isDone</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code>Binding</code> used to determine if the timer is done.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mainScheduler</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The scheduler on which the timing operations and animations are run on. Default = <code>DispatchQueue.main</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>onTick</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure which is called whenever the timer is updated. This is called roughly every <code>tickRate</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="http://ucpr.luispadron.com" target="_blank" rel="external">Luis Padron</a>. All rights reserved. (Last updated: 2020-07-12)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
