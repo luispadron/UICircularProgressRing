@@ -29,6 +29,15 @@ final public class UICircularTimerRing: UICircularRing {
     // MARK: Members
 
     /**
+     The initial value to display for the ring.
+
+     Default is 0.
+     */
+    public var value: CGFloat = 0 {
+        didSet { ringLayer.value = value }
+    }
+
+    /**
      The formatter used when formatting the value into a string for the ring.
 
      Default formatter is of type `UICircularTimerRingFormatter`.
@@ -129,7 +138,7 @@ final public class UICircularTimerRing: UICircularRing {
         super.initialize()
         ringLayer.ring = self
         ringLayer.minValue = 0
-        ringLayer.value = 0
+        ringLayer.value = value
         ringLayer.maxValue = time.float
         ringLayer.valueFormatter = valueFormatter
         ringLayer.animationTimingFunction = .linear

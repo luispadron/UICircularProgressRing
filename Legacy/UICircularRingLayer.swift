@@ -39,6 +39,7 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged var value: CGFloat
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
+    @NSManaged var isReverse: Bool
 
     /// the delegate for the value, is notified when value changes
     @NSManaged weak var ring: UICircularRing!
@@ -134,13 +135,23 @@ class UICircularRingLayer: CAShapeLayer {
     override func action(forKey event: String) -> CAAction? {
         if event == "value" && animated {
             let animation = CABasicAnimation(keyPath: "value")
-            animation.fromValue = presentation()?.value(forKey: "value")
+            if isReverse {
+                animation.fromValue = maxValue
+                animation.toValue = 0
+            } else {
+                animation.fromValue = presentation()?.value(forKey: "value")
+            }
             animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = animationDuration
             return animation
         } else if UICircularRingLayer.isAnimatableProperty(event) && shouldAnimateProperties {
             let animation = CABasicAnimation(keyPath: event)
-            animation.fromValue = presentation()?.value(forKey: event)
+            if isReverse {
+                animation.fromValue = maxValue
+                animation.toValue = 0
+            } else {
+                animation.fromValue = presentation()?.value(forKey: event)
+            }
             animation.timingFunction = CAMediaTimingFunction(name: animationTimingFunction)
             animation.duration = propertyAnimationDuration
             return animation
