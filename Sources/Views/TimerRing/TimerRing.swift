@@ -13,6 +13,7 @@ import SwiftUI
 public struct TimerRing<Label: View> {
     private let timeInterval: TimeInterval
     private let tickRate: TimeInterval
+    private let inverseCountdown: Bool
     private let axis: RingAxis
     private let clockwise: Bool
     private let outerRingStyle: RingStyle
@@ -33,6 +34,7 @@ public struct TimerRing<Label: View> {
     ///   - delay: A delay before the ring begins animating. Default = `nil`.
     ///   - elapsedTime: The amount of time already elapsed. The total running time is determined by `time - elapsedTime`. Default = `nil`.
     ///   - tickRate: The rate at which the ring updates its time value. Default = `TimerRingTimeUnit.milliseconds(100)`.
+    ///   - inverseCountdown: If set to true the ring will act as a countdown timer. Default = false
     ///   - axis: The `RingAxis` at which drawing begins.
     ///   - clockwise: Whether to draw in a clockwise manner.
     ///   - outerRingStyle: The `RingStyle` of the outer ring.
@@ -49,6 +51,7 @@ public struct TimerRing<Label: View> {
         delay: TimerRingTimeUnit? = nil,
         elapsedTime: TimerRingTimeUnit? = nil,
         tickRate: TimerRingTimeUnit = .milliseconds(100),
+        inverseCountdown: Bool = false,
         axis: RingAxis = .top,
         clockwise: Bool = true,
         outerRingStyle: RingStyle = .init(color: .color(.gray), strokeStyle: .init(lineWidth: 32), padding: 0),
@@ -59,9 +62,12 @@ public struct TimerRing<Label: View> {
         onTick: ((TimeInterval) -> Void)? = nil,
         @ViewBuilder _ label: @escaping (TimeInterval) -> Label
     ) {
-        _ticks = State(initialValue: elapsedTime?.timeInterval ?? 0)
+        let initialValue = inverseCountdown ? time.timeInterval : elapsedTime?.timeInterval ?? 0
+            
+        _ticks = State(initialValue: initialValue)
         self.timeInterval = time.timeInterval
         self.tickRate = tickRate.timeInterval
+        self.inverseCountdown = inverseCountdown
         self.axis = axis
         self.clockwise = clockwise
         self.outerRingStyle = outerRingStyle
@@ -101,6 +107,7 @@ extension TimerRing where Label == EmptyView {
     ///   - delay: A delay before the ring begins animating. Default = `nil`.
     ///   - elapsedTime: The amount of time already elapsed. The total running time is determined by `time - elapsedTime`. Default = `nil`.
     ///   - tickRate: The rate at which the ring updates its time value. Default = `TimerRingTimeUnit.milliseconds(100)`.
+    ///   - inverseCountdown: If set to true the ring will act as a countdown timer. Default = false
     ///   - axis: The `RingAxis` at which drawing begins.
     ///   - clockwise: Whether to draw in a clockwise manner.
     ///   - outerRingStyle: The `RingStyle` of the outer ring.
@@ -116,6 +123,7 @@ extension TimerRing where Label == EmptyView {
         delay: TimerRingTimeUnit? = nil,
         elapsedTime: TimerRingTimeUnit? = nil,
         tickRate: TimerRingTimeUnit = .milliseconds(100),
+        inverseCountdown: Bool = false,
         axis: RingAxis = .top,
         clockwise: Bool = true,
         outerRingStyle: RingStyle = .init(color: .color(.gray), strokeStyle: .init(lineWidth: 32), padding: 0),
@@ -130,6 +138,7 @@ extension TimerRing where Label == EmptyView {
             delay: delay,
             elapsedTime: elapsedTime,
             tickRate: tickRate,
+            inverseCountdown: inverseCountdown,
             axis: axis,
             clockwise: clockwise,
             outerRingStyle: outerRingStyle,
@@ -172,13 +181,27 @@ extension TimerRing: View {
             }
         }
         .onReceive(tickPublisher) {
-            guard self.ticks < self.timeInterval else {
-                self.isDone = true
-                return
+            var ticks = 0.0
+            
+            if self.inverseCountdown {
+                guard self.ticks > 0 else {
+                    self.isDone = true
+                    return
+                }
+                
+                ticks = max(self.ticks - self.tickRate, 0)
+            } else {
+                guard self.ticks < self.timeInterval else {
+                    self.isDone = true
+                    return
+                }
+                
+                ticks = min(self.ticks + self.tickRate, self.timeInterval)
             }
 
             withAnimation {
-                self.ticks = min(self.ticks + self.tickRate, self.timeInterval)
+                self.ticks = ticks
+                
                 self.onTick?(self.ticks)
             }
         }

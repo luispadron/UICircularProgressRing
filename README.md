@@ -72,17 +72,20 @@ struct ProgressRingExample: View {
 ### TimerRing
 
 `TimerRing` is a view designed to display time. You initialize the timer by giving it a unit of time and duration, for example: `.seconds(60)`. This means the `TimerRing` will run for 60 seconds, filling up the inner ring until finally reaching 100% around the entire outer ring.
+The `isInverseCountdown` parameter switch the behavior of the ring from regular to inverse countdown.
 A short example of using `TimerRing` is shown below, for more details [read the docs](#documentation) or play with the [example app](/Example/).
 
 ```swift
 struct TimerRingExample: View {
     @State var isPaused = false
     @State var isDone = false
+    @State var isInverseCountdown: Bool = false
 
     var body: some View {
         TimerRing(
             time: .minutes(1),
             delay: .seconds(0.5),
+            inverseCountdown: isInverseCountdown,
             innerRingStyle: .init(
                 color: .color(.green),
                 strokeStyle: .init(lineWidth: 16),
