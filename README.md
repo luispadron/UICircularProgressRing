@@ -11,6 +11,10 @@ UICircularProgress ring is a library for rendering circular progress rings and t
 - **Tested:** Battle tested in many [production applications](#apps-using-uicircularprogressring). UICircularProgressRing is also fully unit tested as well as snapshot tested so developers can feel safe.
 - **Documented:** UICircularProgressRing's public API is 100% documented and its something that is enforced before any code is ever added. This is a resource that will help any new user understand how to get the most out of this library.
 
+## iOS 14+ Note
+
+Since Apple has now added a built in [ProgressView](https://developer.apple.com/documentation/swiftui/progressview) the need for this library is about to be over. My recommendation: If you can support iOS 14.0 and use the new system `ProgressView` then you should use that. This library will be continued to be maintained (critical bugs will be fixed, etc) but no new features are planned as we are reaching EOL for this library.
+
 ## Installation
 
 UICircularProgressRing is available in two major versions. The latest version **v7.0+** or legacy versions. The legacy version is written using UIKit and requires a deployment target of `iOS 8.0+` or `tvOS 10.0+`. The latest version is written in SwiftUI and requires `iOS 13.0+`, `macOS 15.0+`, `tvOS 13.0+` or `WatchOS 2.0+`.
@@ -106,14 +110,6 @@ struct TimerRingExample: View {
 - [Loading/Spinner](./Example/UICircularProgressRingExample/Examples/IndeterminateExample.swift)
 - [Networking](./Example/UICircularProgressRingExample/Examples/NetworkingProgressExample.swift)
 
-## Road Map
-
-This being the first version written using SwiftUI, there is some functionality that is missing in this version that was previously available. Below are some things that I plan on adding in the near future:
-
-- Adding all of the functionality from the legacy version into this version.
-- Adding seamless interoperability between the SwiftUI views and UIKit.
-- Implementing as much as reasonably possible of the [feature requests](https://github.com/luispadron/UICircularProgressRing/labels/feature%20request).
-
 ## Apps Using UICircularProgressRing
 
 - [GradePoint](http://gradepoint.luispadron.com) by Luis Padron.
@@ -125,4 +121,3 @@ This being the first version written using SwiftUI, there is some functionality 
 - [88 Days](http://88-days.com) by Stijn Kramer
 - [Bookbot](https://www.bookbotkids.com) by Bookbot
 - [car2go](https://apps.apple.com/us/app/car2go/id514921710) by car2go Group GmbH
-- [Do you use this library?](https://github.com/luispadron/UICircularProgressRing/issues/54)
