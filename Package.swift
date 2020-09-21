@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -15,8 +15,9 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/luispadron/swift-snapshot-testing.git",
-            .branch("master")
+            name: "SnapshotTesting", 
+            url: "https://github.com/pointfreeco/swift-snapshot-testing.git", 
+            from: "1.8.1"
         )
     ],
     targets: [
