@@ -79,7 +79,7 @@ A short example of using `TimerRing` is shown below, for more details [read the 
 struct TimerRingExample: View {
     @State var isPaused = false
     @State var isDone = false
-    @State var isInverseCountdown: Bool = false
+    @State var isInverseCountdown = false
 
     var body: some View {
         TimerRing(
