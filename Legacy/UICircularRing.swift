@@ -172,6 +172,17 @@ import UIKit
         didSet { ringLayer.setNeedsDisplay() }
     }
 
+    /**
+     Determines if the progress ring should animate in reverse
+
+     ## Important ##
+     Default = false
+
+    */
+    open var isReverse: Bool = false {
+        didSet { ringLayer.isReverse = isReverse }
+    }
+
     // MARK: Outer Ring properties
 
     /**
